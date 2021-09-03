@@ -12,7 +12,7 @@ defmodule Ego.Template do
          options = Keyword.put(options, :cwd, Path.dirname(path)),
          {:ok, template_str} <- File.read(path),
          {:ok, template} <- Solid.parse(template_str, parser: Ego.TemplateParser) do
-      Solid.render(template, assigns, options)
+      {:ok, Solid.render(template, assigns, options)}
     end
   end
 end

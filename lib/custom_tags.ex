@@ -1,19 +1,18 @@
 defmodule Ego.CustomTags do
   defmodule Render do
+    require Logger
+
     def render(context, [template: template_binding], options) do
       template = Solid.Argument.get(template_binding, context)
-      current_dir = options[:cwd]
-      lookup_dir = options[:lookup_dir] || []
+      vars = Map.merge(context.vars, %{})
 
-      case Ego.TemplateResolver.lookup_template(template, current_dir, lookup_dir) do
-        {:ok, path} ->
-          vars = Map.merge(context.vars, %{})
-          options = Keyword.put(options, :cwd, Path.dirname(path))
+      case Ego.Template.render(template, vars, options) do
+        {:ok, rendered_data} ->
+          rendered_data
 
-          Ego.Template.render(path, vars, options)
-
-        _ ->
-          raise "Template #{template} not found in #{current_dir} or #{inspect(lookup_dir)}"
+        err ->
+          Logger.error(inspect(err))
+          raise "cannot render template #{template}"
       end
     end
   end
