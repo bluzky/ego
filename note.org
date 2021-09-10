@@ -1,0 +1,44 @@
+#+begin_src elixir
+          %{
+          documents: %{
+          "type" => [docs]
+          },
+
+          taxonomies: %{
+    tags: [],
+  categories: []
+        }
+
+          site: %{
+            name: "",
+            description: "",
+            author: "",
+            theme: "",
+            params: %{},
+          paginate: 5
+          }
+
+          }
+#+end_src
+
+- render
+  page -> archetypes
+
+  page: %{
+  entries: [],
+  content_type: ""
+  paginator: {
+    total_page: x,
+    total_entry: x,
+    curretn_page: x,
+    has_next: true,
+    has_prev: true
+  }
+  },
+  
+
+- lookup
+  - page
+    layout -> <page> -> page -> single
+  - archetypes
+    <archetype> -> <default>

@@ -24,3 +24,7 @@ ego-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+public/
+air/
+.DS_Store

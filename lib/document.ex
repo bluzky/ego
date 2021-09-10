@@ -18,6 +18,27 @@ defmodule Ego.Document do
           date: NaiveDateTime.t()
         }
 
+  def find(documents, filters) do
+    Enum.find(documents, &match(&1, filters))
+  end
+
+  def filter(documents, filters) do
+    Enum.filter(documents, &match(&1, filters))
+  end
+
+  def by_category(documents, cat) do
+    Enum.filter(documents, &(cat in &1.categories))
+  end
+
+  def by_tag(documents, tag) do
+    Enum.filter(documents, &(tag in &1.tags))
+  end
+
+  defp match(document, filters) do
+    data = Map.take(document, Map.keys(filters))
+    data == filters
+  end
+
   def load_content(directory_path, opts \\ []) do
     path = Path.expand(directory_path)
     type = opts[:type]
@@ -71,6 +92,6 @@ defmodule Ego.Document do
   end
 
   defp md_to_html(content) do
-    Earmark.as_html(content)
+    Earmark.as_html!(content)
   end
 end

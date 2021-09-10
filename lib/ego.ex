@@ -1,13 +1,16 @@
 defmodule Ego do
-  def render(file_path, assigns, opts \\ []) do
-    tags_renderers = %{
-      "render" => Ego.CustomTags.Render
+  alias Ego.Document
+  alias Ego.Renderer
+
+  def build do
+    {:ok, documents} = Document.load_content("priv/content")
+
+    assigns = %{
+      "site" => %{
+        "documents" => documents
+      }
     }
 
-    opts = Keyword.put(opts, :tags, tags_renderers)
-
-    File.read!(file_path)
-    |> Solid.parse!(parser: Ego.TemplateParser)
-    |> Solid.render(assigns, opts)
+    Renderer.render(assigns)
   end
 end
