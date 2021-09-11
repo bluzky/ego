@@ -1,6 +1,4 @@
-defmodule Ego.ContentLoader do
-  @default_type "page"
-
+defmodule Ego.Store.ContentLoader do
   def load_all(directory_path, opts \\ []) do
     path = Path.expand(directory_path)
     type = opts[:type]
@@ -39,18 +37,36 @@ defmodule Ego.ContentLoader do
     doc =
       case String.split(content, ~r/\r*\n-{3,}\r*\n*/, parts: 2) do
         [frontmatter, markdown] ->
-          frontmatter
-          |> YamlElixir.read_from_string!()
-          |> Map.put("content", md_to_html(markdown))
+          meta = YamlElixir.read_from_string!(frontmatter)
+
+          %Ego.Document{
+            content: md_to_html(markdown),
+            title: meta["title"],
+            categories: meta["categories"] || [],
+            tags: meta["tags"] || [],
+            author: meta["author"],
+            draft: meta["draft"],
+            layout: meta["layout"],
+            date: meta["date"],
+            image: meta["image"],
+            extra: Map.drop(meta, ~w(title categories tags author draft layout date image))
+          }
 
         markdown ->
-          %{"content" => md_to_html(markdown)}
+          %Ego.Document{content: md_to_html(markdown)}
       end
 
-    Map.merge(doc, %{
-      "type" => opts[:type] || @default_type,
-      "slug" => Path.basename(file, ".md")
-    })
+    type =
+      if type = opts[:type] do
+        String.to_atom(type)
+      else
+        doc.type
+      end
+
+    struct(doc,
+      type: type,
+      slug: Path.basename(file, ".md")
+    )
   end
 
   defp md_to_html(content) do

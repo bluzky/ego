@@ -1,68 +1,54 @@
 defmodule Ego.Server.ContentController do
   use Ego.Server, :controller
+  alias Ego.{Context, Store, Renderer}
 
   # render terms
   def index(conn, %{"type" => type} = params) when type in ["tags", "categories"] do
-    term_type =
-      case type do
-        "tags" -> "tag"
-        "categories" -> "category"
-      end
-
     terms =
-      Ego.DocumentStore.all_terms()
+      Ego.Store.all_terms()
       |> Map.get(type, [])
 
-    assigns =
-      build_assigns(%{
-        "terms" => terms
-      })
+    context =
+      Context.new(section: String.to_existing_atom(type))
+      |> Context.put_var(:terms, terms)
+      |> Context.put_template(["terms", "list"])
 
-    render_index(
-      conn,
-      %{params | "type" => term_type},
-      ["terms", "list"],
-      build_assigns(%{"terms" => terms})
-    )
+    render_index(conn, params, context)
   end
 
   # render archetype
   def index(conn, %{"type" => type} = params) do
-    documents = Ego.DocumentStore.filter(%{"type" => type})
+    documents = Ego.Store.by_type(type)
 
     if documents != [] do
-      render_index(conn, params, "list", build_assigns(%{"documents" => documents}))
+      context =
+        Context.new(section: String.to_existing_atom(type))
+        |> Context.put_var(:documents, documents)
+        |> Context.put_template("list")
+
+      render_index(conn, params, context)
     else
       Ego.Server.PageController.show(conn, %{"slug" => type})
     end
   end
 
-  defp render_index(conn, params, template, assigns) do
-    content = Ego.Renderer.render(template, assigns, type: params["type"])
+  defp render_index(conn, params, context) do
+    content = Renderer.render(context, context.template)
     html(conn, content)
   end
 
   def show(conn, %{"type" => type, "slug" => slug}) when type in ["tags", "categories"] do
-    term_type =
-      case type do
-        "tags" -> "tag"
-        "categories" -> "category"
-      end
-
     term =
-      Ego.DocumentStore.all_terms()
+      Store.all_terms()
       |> Map.get(type, [])
-      |> Enum.find(&(&1["slug"] == slug))
+      |> Enum.find(&(&1.slug == slug))
 
     if term do
-      documents = Ego.DocumentStore.by_term(term_type, term["title"])
+      documents = Store.by_term(term.type, term.title)
 
       content =
-        Ego.Renderer.render(
-          ["term", "single"],
-          build_assigns(%{"documents" => documents, "term" => term}),
-          type: type
-        )
+        Context.new(section: String.to_existing_atom(type))
+        |> Renderer.render(["term", "single"], documents: documents, term: term)
 
       html(conn, content)
     else
@@ -71,14 +57,14 @@ defmodule Ego.Server.ContentController do
   end
 
   def show(conn, %{"type" => type, "slug" => slug}) do
-    document = Ego.DocumentStore.find(%{"type" => type, "slug" => slug})
+    document = Ego.Store.find(%{type: type, slug: slug})
 
     if document do
       content =
-        Ego.Renderer.render(
-          [document["layout"], "single"],
-          build_assigns(%{"document" => document}),
-          type: type
+        Context.new(section: String.to_existing_atom(type))
+        |> Renderer.render(
+          [document.layout, "single"],
+          document: document
         )
 
       html(conn, content)

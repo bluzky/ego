@@ -22,7 +22,7 @@ defmodule Ego.Server.Application do
     Task.start(fn ->
       "content"
       |> Ego.FileSystem.source_path()
-      |> Ego.DocumentStore.init()
+      |> Ego.Store.init()
     end)
 
     rs

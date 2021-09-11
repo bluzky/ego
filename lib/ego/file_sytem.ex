@@ -1,5 +1,5 @@
 defmodule Ego.FileSystem do
-  def lookup_dir("page") do
+  def lookup_dir(:page) do
     source_path([
       "layouts/",
       "layouts/_default"
@@ -30,20 +30,8 @@ defmodule Ego.FileSystem do
     |> Keyword.get(:output_dir)
   end
 
-  def output_path("page", slug) do
-    Path.join(output_dir(), "#{slug}.html")
-  end
-
-  def output_path("tag", slug) do
-    Path.join(output_dir(), "tags/#{slug}.html")
-  end
-
-  def output_path("category", slug) do
-    Path.join(output_dir(), "categories/#{slug}.html")
-  end
-
   def output_path(type, slug) do
-    Path.join(output_dir(), "#{type}/#{slug}.html")
+    Path.join(output_dir(), "#{Ego.PathHelpers.path(type, slug)}.html")
   end
 
   def output_path(rel_path) do
@@ -56,10 +44,6 @@ defmodule Ego.FileSystem do
   end
 
   def copy_all(sources, destination) when is_list(sources) do
-    Enum.each(sources, &copy_all(&1, destination))
-  end
-
-  def copy_all(source, destination) do
-    File.cp_r!(source, destination)
+    Enum.each(sources, &File.cp_r!(&1, destination))
   end
 end

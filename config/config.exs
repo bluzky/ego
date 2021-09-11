@@ -12,7 +12,7 @@ config :ego, Ego.Server.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-server: true,
+  server: true,
   watchers: []
 
 # Configures Elixir's Logger
@@ -30,4 +30,5 @@ config :phoenix, :stacktrace_depth, 20
 config :ego, :config,
   source_dir: "priv/",
   output_dir: "public/",
-  server: true
+  server: true,
+  base_url: "/"

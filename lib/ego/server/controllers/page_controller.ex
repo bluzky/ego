@@ -1,23 +1,24 @@
 defmodule Ego.Server.PageController do
   use Ego.Server, :controller
+  alias Ego.{Context, Store, Renderer}
 
   def index(conn, _params) do
-    document = Ego.DocumentStore.find(%{"type" => "page", "slug" => "index"})
-    content = Ego.Renderer.render("index", build_assigns(%{"document" => document}), type: "page")
+    document = Ego.Store.find(%{type: :page, slug: "index"})
+
+    content =
+      Context.new(section: :page)
+      |> Renderer.render("index", document: document)
 
     html(conn, content)
   end
 
   def show(conn, %{"slug" => slug}) do
-    document = Ego.DocumentStore.find(%{"type" => "page", "slug" => slug})
+    document = Ego.Store.find(%{type: :page, slug: slug})
 
     if document do
       content =
-        Ego.Renderer.render(
-          [document["layout"], "single"],
-          build_assigns(%{"document" => document}),
-          type: "page"
-        )
+        Context.new(section: :page)
+        |> Renderer.render([document.layout, "single"], document: document)
 
       html(conn, content)
     else

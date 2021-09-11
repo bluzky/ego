@@ -1,39 +1,26 @@
-defmodule Ego.DocumentStore do
+defmodule Ego.Store do
   @moduledoc """
   Load content file and parse metadata as document
   """
 
   require Logger
 
-  @type document :: %{
-          type: binary,
-          title: binary,
-          slug: binary,
-          categories: list(binary),
-          tags: list(binary),
-          author: binary,
-          content: binary,
-          draft: boolean,
-          layout: binary,
-          date: NaiveDateTime.t()
-        }
-
   def init(content_dir, opts \\ []) do
-    case Ego.ContentLoader.load_all(content_dir, opts) do
+    case Ego.Store.ContentLoader.load_all(content_dir, opts) do
       {:ok, documents} ->
-        documents = Enum.sort_by(documents, & &1["date"], &>=/2)
+        documents = Enum.sort_by(documents, & &1.date, &>=/2)
         Cachex.put(:ego, :documents, documents)
 
         types =
-          Enum.map(documents, & &1["type"])
+          Enum.map(documents, & &1.type)
           |> Enum.uniq()
           |> Enum.reject(&is_nil(&1))
 
         Cachex.put(:ego, :types, types)
 
         Cachex.put(:ego, :terms, %{
-          "categories" => extract_term(documents, "categories", "category"),
-          "tags" => extract_term(documents, "tags", "tag")
+          categories: extract_term(documents, :categories, :category),
+          tags: extract_term(documents, :tags, :tag)
         })
 
         documents
@@ -49,11 +36,11 @@ defmodule Ego.DocumentStore do
     |> Enum.concat()
     |> Enum.group_by(& &1)
     |> Enum.map(fn {name, items} ->
-      %{
-        "title" => name,
-        "count" => length(items),
-        "slug" => Slug.slugify(name),
-        "type" => type
+      %Ego.Taxonomy{
+        title: name,
+        count: length(items),
+        slug: Slug.slugify(name),
+        type: type
       }
     end)
   end
@@ -71,15 +58,14 @@ defmodule Ego.DocumentStore do
   end
 
   def by_term(documents \\ nil, term, value) do
-    key =
-      case term do
-        "category" -> "categories"
-        "tag" -> "tags"
-        _ -> term
-      end
-
     Enum.filter(documents || all_documents(), fn document ->
-      value in (document[key] || [])
+      value in Map.get(document, term, [])
+    end)
+  end
+
+  def by_type(documents \\ nil, type) do
+    Enum.filter(documents || all_documents(), fn document ->
+      type == to_string(document.type)
     end)
   end
 

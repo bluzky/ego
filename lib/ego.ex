@@ -1,11 +1,11 @@
 defmodule Ego do
-  alias Ego.DocumentStore
+  alias Ego.Store
   alias Ego.FileSystem
 
   def build do
     assigns = %{
       "site" => %{
-        "documents" => DocumentStore.all_documents()
+        "documents" => Store.all_documents()
       }
     }
 

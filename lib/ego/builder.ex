@@ -1,87 +1,81 @@
 defmodule Ego.Builder do
-  alias Ego.DocumentStore
+  alias Ego.Store
   alias Ego.Renderer
   alias Ego.FileSystem
+  alias Ego.Context
 
   def build(assigns) do
-    Enum.each(DocumentStore.all_types(), &build(&1, assigns))
+    context = Context.new(%{assigns: assigns})
 
-    Enum.each(DocumentStore.all_terms(), fn {type, terms} ->
-      build_term(type, terms, assigns)
+    Enum.each(Store.all_types(), fn type ->
+      context
+      |> Context.put_section(type)
+      |> build_content()
+    end)
+
+    Enum.each(Store.all_terms(), fn {type, terms} ->
+      context = Context.put_section(context, type)
+      build_term(context, terms)
     end)
 
     copy_assets()
   end
 
-  def build("page", assigns) do
-    render_page("index", assigns)
+  def build_content(%{section: :page} = context) do
+    render_page(context, "index")
     # do not re build index page
-    get_in(assigns, ["site", "documents"])
-    |> DocumentStore.filter(%{"type" => "page"})
-    |> Enum.reject(&(&1["slug"] == "index"))
-    |> Enum.map(&render_page(&1, assigns))
+    Store.filter(%{type: :page})
+    |> Enum.reject(&(&1.slug == "index"))
+    |> Enum.map(fn document ->
+      context
+      |> Context.put_output_path(FileSystem.output_path(context.section, document.slug))
+      |> generate_file([document.layout, "single"], document: document)
+    end)
   end
 
-  defp render_page("index", assigns) do
+  defp render_page(context, "index") do
     document =
-      DocumentStore.find(get_in(assigns, ["site", "documents"]), %{
-        "type" => "page",
-        "slug" => "index"
+      Store.find(%{
+        type: :page,
+        slug: "index"
       })
 
-    html =
-      Renderer.render(
-        "index",
-        Map.put(assigns, :document, document),
-        type: "page"
-      )
-
-    FileSystem.write_file(FileSystem.output_path("page", "index"), html)
+    context
+    |> Context.put_output_path(FileSystem.output_path(context.section, "index"))
+    |> generate_file("index", document: document)
   end
 
-  defp render_page(document, assigns) do
-    assigns = Map.put(assigns, "document", document)
-    html = Renderer.render([document["layout"], "single"], assigns, type: "page")
-    FileSystem.write_file(FileSystem.output_path("page", document["slug"]), html)
+  def build_content(context) do
+    documents = Store.filter(%{type: context.section})
+
+    context
+    |> Context.put_output_path(FileSystem.output_path(context.section, "index"))
+    |> generate_file("list", documents: documents)
+
+    Enum.map(documents, fn document ->
+      context
+      |> Context.put_output_path(FileSystem.output_path(context.section, document.slug))
+      |> generate_file([document.layout, "single"], document: document)
+    end)
   end
 
-  def build(archetype, assigns) do
-    documents = DocumentStore.filter(%{"type" => archetype})
-    render_list(archetype, documents, assigns)
-    Enum.map(documents, &render_single(archetype, &1, assigns))
+  defp build_term(context, terms) do
+    context
+    |> Context.put_output_path(FileSystem.output_path(context.section, "index"))
+    |> generate_file(["terms", "list"], terms: terms)
+
+    Enum.each(terms, fn term ->
+      documents = Store.by_term(context.section, term.title)
+
+      context
+      |> Context.put_output_path(FileSystem.output_path(context.section, term.slug))
+      |> generate_file(["term", "single"], term: term, documents: documents)
+    end)
   end
 
-  def render_list(type, documents, assigns) do
-    assigns = Map.put(assigns, "documents", documents)
-    html = Renderer.render("list", assigns, type: type)
-    FileSystem.write_file(FileSystem.output_path(type, "index"), html)
-  end
-
-  def render_single(type, document, assigns) do
-    assigns = Map.put(assigns, "document", document)
-    html = Renderer.render([document["layout"], "single"], assigns, type: type)
-    FileSystem.write_file(FileSystem.output_path(type, document["slug"]), html)
-  end
-
-  def build_term(type, terms, assigns) do
-    build_list_term(type, terms, assigns)
-    Enum.each(terms, &build_single_term(type, &1, assigns))
-  end
-
-  defp build_list_term(type, terms, assigns) do
-    assigns = Map.put(assigns, "terms", terms)
-    html = Renderer.render(["terms", "list"], assigns, type: type)
-    FileSystem.write_file(FileSystem.output_path(type, "index"), html)
-  end
-
-  def build_single_term(type, term, assigns) do
-    documents = DocumentStore.by_term(type, term["title"])
-    assigns = Map.merge(assigns, %{"term" => term, "documents" => documents})
-    html = Renderer.render(["term", "single"], assigns, type: type)
-
-    term["type"]
-    |> FileSystem.output_path(term["slug"])
-    |> FileSystem.write_file(html)
+  defp generate_file(context, template, assigns) do
+    html = Renderer.render(context, template, assigns)
+    FileSystem.write_file(context.output_path, html)
   end
 
   defp copy_assets() do
