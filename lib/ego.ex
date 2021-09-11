@@ -1,12 +1,11 @@
 defmodule Ego do
-  alias Ego.Document
+  alias Ego.DocumentStore
+  alias Ego.FileSystem
 
   def build do
-    {:ok, documents} = Document.load_content("priv/content")
-
     assigns = %{
       "site" => %{
-        "documents" => documents
+        "documents" => DocumentStore.all_documents()
       }
     }
 

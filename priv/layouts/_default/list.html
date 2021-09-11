@@ -1,0 +1,38 @@
+<div id="fh5co-blog">
+  <div class="container">
+    <div class="row animate-box">
+      <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+        <h2>Our Blog</h2>
+        <p>
+          Far far away, behind the word mountains, far from the countries
+          Vokalia and Consonantia.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      {% for document in documents %}
+      <div class="col-md-4">
+        <div class="fh5co-blog animate-box">
+          <a
+            href="#"
+            class="blog-bg"
+            style="background-image: url({{document.image}});"
+          ></a>
+          <div class="blog-text">
+            <span class="posted_on">{{document.date}}</span>
+            <h3><a href="#">{{document.title}}</a></h3>
+            <p>{{document.title}}</p>
+            <ul class="stuff">
+              <li><i class="icon-heart2"></i>249</li>
+              <li><i class="icon-eye2"></i>1,308</li>
+              <li>
+                <a href="#">Read More<i class="icon-arrow-right22"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

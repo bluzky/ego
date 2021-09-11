@@ -30,6 +30,7 @@ defmodule Ego.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:cachex, "~> 3.4"},
+      {:slugify, "~> 1.3"},
       {:solid, path: "../solid"},
       {:yaml_elixir, "~> 2.8"},
       {:earmark, ">= 1.4.15"},

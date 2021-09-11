@@ -17,7 +17,15 @@ defmodule Ego.Server.Application do
     ]
 
     opts = [strategy: :one_for_one, name: Ego.Server.Supervisor]
-    Supervisor.start_link(children, opts)
+    rs = Supervisor.start_link(children, opts)
+
+    Task.start(fn ->
+      "content"
+      |> Ego.FileSystem.source_path()
+      |> Ego.DocumentStore.init()
+    end)
+
+    rs
   end
 
   # Tell Phoenix to update the endpoint configuration

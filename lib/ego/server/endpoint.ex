@@ -14,27 +14,33 @@ defmodule Ego.Server.Endpoint do
   #
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
-  plug Plug.Static,
+
+  output_dir =
+    Application.get_env(:ego, :config)
+    |> Keyword.get(:output_dir)
+
+  plug(Plug.Static,
     at: "/",
-    from: :ego,
-    gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    from: output_dir,
+    gzip: false
+  )
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
-    plug Phoenix.CodeReloader
+    plug(Phoenix.CodeReloader)
   end
 
-  plug Plug.RequestId
+  plug(Plug.RequestId)
 
-  plug Plug.Parsers,
+  plug(Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
+  )
 
-  plug Plug.MethodOverride
-  plug Plug.Head
-  plug Plug.Session, @session_options
-  plug Ego.Server.Router
+  plug(Plug.MethodOverride)
+  plug(Plug.Head)
+  plug(Plug.Session, @session_options)
+  plug(Ego.Server.Router)
 end

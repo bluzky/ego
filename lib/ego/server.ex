@@ -22,6 +22,7 @@ defmodule Ego.Server do
       use Phoenix.Controller, namespace: Ego.Server
 
       import Plug.Conn
+      import Ego.Server.ControllerHelper
       alias Ego.Server.Router.Helpers, as: Routes
     end
   end
