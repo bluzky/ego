@@ -1,6 +1,5 @@
 defmodule Ego do
   alias Ego.Document
-  alias Ego.Renderer
 
   def build do
     {:ok, documents} = Document.load_content("priv/content")
@@ -11,6 +10,6 @@ defmodule Ego do
       }
     }
 
-    Renderer.render(assigns)
+    Ego.Builder.build(assigns)
   end
 end

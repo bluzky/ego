@@ -1,4 +1,4 @@
-defmodule Ego.FileSystem do
+defmodule Ego.TemplateResolver do
   @behaviour Solid.FileSystem
 
   defstruct [:lookup_dir, :cwd]
