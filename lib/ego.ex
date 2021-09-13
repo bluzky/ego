@@ -5,7 +5,7 @@ defmodule Ego do
   def build do
     assigns = %{
       "site" => %{
-        "documents" => Store.all_documents()
+        "documents" => Store.list_documents()
       }
     }
 

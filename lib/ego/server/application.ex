@@ -2,10 +2,12 @@ defmodule Ego.Server.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
-
   use Application
+  require Logger
 
   def start(_type, _args) do
+    load_config()
+
     children = [
       # Start the PubSub system
       {Phoenix.PubSub, name: Ego.Server.PubSub},
@@ -31,7 +33,15 @@ defmodule Ego.Server.Application do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
+    load_config()
     Ego.Server.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  def load_config() do
+    case Ego.Config.load() do
+      {:ok, site_config} -> Application.put_env(:ego, :site_config, site_config)
+      {:error, message} -> Logger.error(message)
+    end
   end
 end

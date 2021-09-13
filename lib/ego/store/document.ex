@@ -4,9 +4,12 @@ defmodule Ego.Document do
     :slug,
     :author,
     :content,
+    # raw content
+    :plain,
     :layout,
     :image,
     :url,
+    :path,
     type: :page,
     categories: [],
     tags: [],
@@ -23,11 +26,13 @@ defmodule Ego.Document do
           tags: list(binary),
           author: binary,
           content: binary,
+          plain: binary(),
           draft: boolean,
           layout: binary,
           date: NaiveDateTime.t(),
           image: binary(),
           url: binary(),
+          path: binary(),
           extra: map()
         }
 end

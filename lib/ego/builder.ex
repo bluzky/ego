@@ -4,78 +4,78 @@ defmodule Ego.Builder do
   alias Ego.FileSystem
   alias Ego.Context
 
+  require Logger
+
   def build(assigns) do
     context = Context.new(%{assigns: assigns})
 
     Enum.each(Store.all_types(), fn type ->
       context
-      |> Context.put_section(type)
+      |> Context.put_type(type)
       |> build_content()
     end)
 
-    Enum.each(Store.all_terms(), fn {type, terms} ->
-      context = Context.put_section(context, type)
+    Enum.each(Store.list_taxonomies(), fn {type, terms} ->
+      context = Context.put_type(context, type)
       build_term(context, terms)
     end)
 
     copy_assets()
   end
 
-  def build_content(%{section: :page} = context) do
-    render_page(context, "index")
+  def build_content(%{type: :page} = context) do
+    document = Store.find(%{type: :page, slug: "index"})
+
+    context
+    |> Renderer.render_index(document)
+    |> write_file(FileSystem.output_file(:page, nil))
+
     # do not re build index page
     Store.filter(%{type: :page})
     |> Enum.reject(&(&1.slug == "index"))
     |> Enum.map(fn document ->
       context
-      |> Context.put_output_path(FileSystem.output_path(context.section, document.slug))
-      |> generate_file([document.layout, "single"], document: document)
+      |> Renderer.render_page(document)
+      |> write_file(FileSystem.output_file(:page, document.slug))
     end)
   end
 
-  defp render_page(context, "index") do
-    document =
-      Store.find(%{
-        type: :page,
-        slug: "index"
-      })
-
-    context
-    |> Context.put_output_path(FileSystem.output_path(context.section, "index"))
-    |> generate_file("index", document: document)
-  end
-
   def build_content(context) do
-    documents = Store.filter(%{type: context.section})
+    documents = Store.filter(%{type: context.type})
 
     context
-    |> Context.put_output_path(FileSystem.output_path(context.section, "index"))
-    |> generate_file("list", documents: documents)
+    |> Renderer.render_content_index(documents)
+    |> write_file(FileSystem.output_file(context.type, nil))
 
     Enum.map(documents, fn document ->
       context
-      |> Context.put_output_path(FileSystem.output_path(context.section, document.slug))
-      |> generate_file([document.layout, "single"], document: document)
+      |> Renderer.render_content_page(document)
+      |> write_file(FileSystem.output_file(document.type, document.slug))
     end)
   end
 
   defp build_term(context, terms) do
     context
-    |> Context.put_output_path(FileSystem.output_path(context.section, "index"))
-    |> generate_file(["terms", "list"], terms: terms)
+    |> Renderer.render_term_index(terms)
+    |> write_file(FileSystem.output_file(context.type, nil))
 
     Enum.each(terms, fn term ->
-      documents = Store.by_term(context.section, term.title)
+      documents = Store.by_term(context.type, term.title)
 
       context
-      |> Context.put_output_path(FileSystem.output_path(context.section, term.slug))
-      |> generate_file(["term", "single"], term: term, documents: documents)
+      |> Renderer.render_term_page(term, documents: documents)
+      |> write_file(FileSystem.output_file(context.type, term.slug))
     end)
   end
 
-  defp generate_file(context, template, assigns) do
-    html = Renderer.render(context, template, assigns)
-    FileSystem.write_file(context.output_path, html)
+  defp write_file(content, file) do
+    case content do
+      {:ok, content} ->
+        FileSystem.write_file(file, content)
+
+      {:error, message} ->
+        Logger.error("Error building: #{file} \n#{message}")
+    end
   end
 
   defp copy_assets() do

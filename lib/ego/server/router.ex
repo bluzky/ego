@@ -7,9 +7,12 @@ defmodule Ego.Server.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
+    plug(Ego.Server.BuildContext)
   end
 
   scope "/", Ego.Server do
+    pipe_through(:browser)
+
     get("/:type/:slug", ContentController, :show)
     get("/:type", ContentController, :index)
     get("/:type/page/:page", ContentController, :index)

@@ -41,6 +41,7 @@ defmodule Ego.Store.ContentLoader do
 
           %Ego.Document{
             content: md_to_html(markdown),
+            plain: markdown,
             title: meta["title"],
             categories: meta["categories"] || [],
             tags: meta["tags"] || [],
@@ -63,9 +64,13 @@ defmodule Ego.Store.ContentLoader do
         doc.type
       end
 
+    slug = Path.basename(file, ".md")
+
     struct(doc,
       type: type,
-      slug: Path.basename(file, ".md")
+      slug: slug,
+      url: Ego.UrlHelpers.url(type, slug),
+      path: Ego.UrlHelpers.path(type, slug)
     )
   end
 

@@ -30,8 +30,10 @@ defmodule Ego.FileSystem do
     |> Keyword.get(:output_dir)
   end
 
-  def output_path(type, slug) do
-    Path.join(output_dir(), "#{Ego.PathHelpers.path(type, slug)}.html")
+  def output_file(type, slug \\ nil) do
+    output_dir()
+    |> Path.join("#{Ego.UrlHelpers.path(type, slug)}")
+    |> Path.join("index.html")
   end
 
   def output_path(rel_path) do

@@ -13,7 +13,20 @@ config :ego, Ego.Server.Endpoint,
   code_reloader: true,
   check_origin: false,
   server: true,
-  watchers: []
+  watchers: [
+    # node: [
+    #   "node_modules/webpack/bin/webpack.js",
+    #   "--mode",
+    #   "development",
+    #   "--watch-stdin",
+    #   cd: Path.expand("../assets", __DIR__)
+    # ]
+    sass: {
+      DartSass,
+      :install_and_run,
+      [:default, ~w(--embed-source-map --source-map-urls=absolute --watch)]
+    }
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -31,4 +44,12 @@ config :ego, :config,
   source_dir: "priv/",
   output_dir: "public/",
   server: true,
-  base_url: "/"
+  base_url: "http://localhost:4000"
+
+config :solid, :custom_filters, Ego.Template.Filters
+
+config :dart_sass,
+  version: "1.36.0",
+  default: [
+    args: ~w(priv/assets/scss/style.scss public/css/style.css)
+  ]
