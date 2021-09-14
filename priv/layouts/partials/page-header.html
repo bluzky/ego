@@ -2,30 +2,17 @@
   <div class="container">
     <div class="row">
       <div class="col-8 mx-auto text-center">
+        {% assign document = document or term %}
 
-        {{ if or (eq .Section "tags") (eq .Section "categories") }}
-        {{ if or (eq .Permalink (`tags/` | abs_url)) (eq .Permalink (`categories/` | abs_url)) }}
-        <h3 class="mb-3 text-dark font-weight-bold">{{.Title | markdownify}}</h3>
-        {{else}}
-        <h4 class="mb-3 text-dark font-weight-bold">Showing posts from <mark>{{.Title | markdownify}}</mark></h4>
-        {{ end }}
-        {{ else }}
-        <h3 class="mb-3 text-dark font-weight-bold">{{.Title | markdownify}}</h3>
-        {{ end }}
-
-
-        <ul class="list-inline breadcrumb-menu">
-        {{ $url := replace .Permalink ( printf "%s" site.BaseURL) "" }}
-        {{ $.Scratch.Add "path" site.BaseURL }}
-        <li class="list-inline-item"><a href="{{site.BaseURL | relLangURL}}">Home</a></li>
-        {{ range $index, $element := split $url "/" }}
-        {{ $.Scratch.Add "path" $element }}
-        {{ if (ne $element "") }}
-        <li class="list-inline-item">/ &nbsp; <a href="{{ $.Scratch.Get `path` }}">{{ . | humanize }}</a></li>
-        {{ $.Scratch.Add "path" "/" }}
-        {{ end }}
-        {{ end }}
-        </ul>
+        {% if  section == "tags" or  section == "categories" %}
+        {% if  document.url == 'tags/' | abs_url or document.url == 'categories/' | abs_url %}
+        <h3 class="mb-3 text-dark font-weight-bold">{{document.title | markdownify}}</h3>
+        {% else %}
+        <h4 class="mb-3 text-dark font-weight-bold">Showing posts from <mark>{{document.title | markdownify}}</mark></h4>
+        {% endif %}
+        {% else %}
+        <h3 class="mb-3 text-dark font-weight-bold">{{document.title | markdownify}}</h3>
+        {% endif %}
       </div>
     </div>
   </div>

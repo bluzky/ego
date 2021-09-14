@@ -9,7 +9,8 @@ defmodule Ego.FileSystem do
   def lookup_dir(type) do
     source_path([
       "layouts/#{type}",
-      "layouts/_default"
+      "layouts/_default",
+      "layouts/"
     ])
   end
 

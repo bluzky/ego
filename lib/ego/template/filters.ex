@@ -2,8 +2,8 @@ defmodule Ego.Template.Filters do
   alias Ego.{UrlHelpers, MapHelpers}
   alias Ego.Store
 
-  def abs_url(input), do: UrlHelpers.url(input)
-  def rel_url(input), do: UrlHelpers.path(input)
+  def abs_url(input), do: UrlHelpers.url(input || "")
+  def rel_url(input), do: UrlHelpers.path(input || "")
 
   def match(input, pattern) do
     input =~ Regex.compile!(pattern)
@@ -22,7 +22,7 @@ defmodule Ego.Template.Filters do
 
   def filter_by_section(documents, section) do
     (documents || [])
-    |> Store.filter(%{"type" => String.to_existing_atom(section)})
+    |> Store.filter(%{"type" => section})
     |> MapHelpers.to_string_key()
   end
 
@@ -33,7 +33,7 @@ defmodule Ego.Template.Filters do
   def md5(text), do: text |> :crypto.hash(:md5) |> Base.encode64()
 
   def markdownify(text) do
-    case Earmark.as_html(text) do
+    case Earmark.as_html(text || "") do
       {:ok, content, _} -> content
       _error -> nil
     end

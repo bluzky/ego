@@ -10,7 +10,7 @@ summaryLength: 20
 # google analytics
 google_analytics: "UA-40665301-3" # example : UA-123-45
 # disqus short name
-disqus_shortname: "the-orange-1" # get your shortname form here : https://disqus.com
+disqus_shortname: "" # get your shortname form here : https://disqus.com
 
 
 ############################# Outputs ##############################

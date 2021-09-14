@@ -5,12 +5,14 @@ defmodule Ego.Server.ContentController do
 
   # render terms
   def index(conn, %{"type" => type} = params) when type in ["tags", "categories"] do
+    type = String.to_existing_atom(type)
+
     terms =
       Store.list_taxonomies()
       |> Map.get(type, [])
 
     conn.assigns.context
-    |> Context.put_type(String.to_existing_atom(type))
+    |> Context.put_type(type)
     |> Renderer.render_term_index(terms)
   end
 
@@ -30,7 +32,7 @@ defmodule Ego.Server.ContentController do
   def show(conn, %{"type" => type, "slug" => slug}) when type in ["tags", "categories"] do
     term =
       Store.list_taxonomies()
-      |> Map.get(type, [])
+      |> Map.get(String.to_existing_atom(type), [])
       |> Enum.find(&(&1.slug == slug))
 
     if term do
