@@ -3,6 +3,7 @@ defmodule Ego.Template.Filters do
   alias Ego.Store
 
   def abs_url(input), do: UrlHelpers.url(input)
+  def rel_url(input), do: UrlHelpers.path(input)
 
   def match(input, pattern) do
     input =~ Regex.compile!(pattern)
@@ -30,4 +31,11 @@ defmodule Ego.Template.Filters do
   def urlize(text), do: slugify(text)
 
   def md5(text), do: text |> :crypto.hash(:md5) |> Base.encode64()
+
+  def markdownify(text) do
+    case Earmark.as_html(text) do
+      {:ok, content, _} -> content
+      _error -> nil
+    end
+  end
 end

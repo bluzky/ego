@@ -12,5 +12,6 @@ defmodule Ego.MapHelpers do
     Enum.map(data, &to_string_key(&1))
   end
 
+  def to_string_key(value) when is_atom(value), do: to_string(value)
   def to_string_key(value), do: value
 end

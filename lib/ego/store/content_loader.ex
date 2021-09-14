@@ -50,7 +50,7 @@ defmodule Ego.Store.ContentLoader do
             layout: meta["layout"],
             date: meta["date"],
             image: meta["image"],
-            extra: Map.drop(meta, ~w(title categories tags author draft layout date image))
+            params: Map.drop(meta, ~w(title categories tags author draft layout date image))
           }
 
         markdown ->
