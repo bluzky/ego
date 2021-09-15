@@ -57,14 +57,19 @@ defmodule Ego.Renderer do
   def render(context, template, assigns \\ %{}) do
     lookup_dir = context.lookup_dir || FileSystem.lookup_dir(context.type) || ["."]
     fs = TemplateResolver.new(lookup_dir)
-    opts = [file_system: {TemplateResolver, fs}]
+
+    opts = [
+      file_system: {TemplateResolver, fs},
+      parser: Ego.Template.Parser,
+      tags: %{"with" => Ego.Template.WithTag}
+    ]
 
     context = Context.merge_assign(context, Map.new(assigns))
 
     try do
       content =
         TemplateResolver.read_template_file(template, fs)
-        |> Solid.parse!()
+        |> Solid.parse!(opts)
         |> Solid.render(context.assigns, opts)
         |> to_string()
 
@@ -73,7 +78,7 @@ defmodule Ego.Renderer do
 
       content =
         TemplateResolver.read_template_file(context.layout || "baseof", fs)
-        |> Solid.parse!()
+        |> Solid.parse!(opts)
         |> Solid.render(context.assigns, opts)
         |> to_string
 
