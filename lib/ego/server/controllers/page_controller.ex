@@ -4,9 +4,21 @@ defmodule Ego.Server.PageController do
 
   action_fallback(Ego.Server.FallbackController)
 
-  def index(conn, _params) do
+  def index(conn, params) do
     document = Ego.Store.find(%{type: :page, slug: "index"})
-    Renderer.render_index(conn.assigns.context, document)
+
+    context =
+      if params["page"] do
+        Ego.Context.put_var(
+          conn.assigns.context,
+          :__current_page,
+          String.to_integer(params["page"])
+        )
+      else
+        conn.assigns.context
+      end
+
+    Renderer.render_index(context, document)
   end
 
   def show(conn, %{"slug" => slug}) do

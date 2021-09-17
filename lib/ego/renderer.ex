@@ -3,6 +3,7 @@ defmodule Ego.Renderer do
   alias Ego.FileSystem
   alias Ego.Context
   alias Solid.TemplateError
+  alias Ego.UrlHelpers
 
   require Logger
 
@@ -11,6 +12,8 @@ defmodule Ego.Renderer do
     |> Context.put_type(:page)
     |> Context.put_var(:document, document)
     |> Context.put_var(:section, "index")
+    |> Context.put_var(:current_url, UrlHelpers.url(:page, nil, assigns[:page]))
+    |> Context.put_var(:current_path, UrlHelpers.path(:page, nil, assigns[:page]))
     |> render("index", assigns)
   end
 
@@ -19,6 +22,8 @@ defmodule Ego.Renderer do
     |> Context.put_type(:page)
     |> Context.put_var(:document, document)
     |> Context.put_var(:section, document.slug)
+    |> Context.put_var(:current_url, UrlHelpers.url(document.path))
+    |> Context.put_var(:current_path, document.path)
     |> render([document.layout, "single"], assigns)
   end
 
@@ -27,6 +32,8 @@ defmodule Ego.Renderer do
     |> Context.put_type(doc.type)
     |> Context.put_var(:documents, documents)
     |> Context.put_var(:section, doc.type)
+    |> Context.put_var(:current_url, UrlHelpers.url(doc.type, nil, assigns[:page]))
+    |> Context.put_var(:current_path, UrlHelpers.path(doc.type, nil, assigns[:page]))
     |> render("list", assigns)
   end
 
@@ -35,6 +42,8 @@ defmodule Ego.Renderer do
     |> Context.put_type(document.type)
     |> Context.put_var(:document, document)
     |> Context.put_var(:section, document.type)
+    |> Context.put_var(:current_url, UrlHelpers.url(document.path))
+    |> Context.put_var(:current_path, document.path)
     |> render("single", assigns)
   end
 
@@ -43,6 +52,8 @@ defmodule Ego.Renderer do
     |> Context.put_type(term.type)
     |> Context.put_var(:terms, terms)
     |> Context.put_var(:section, term.type)
+    |> Context.put_var(:current_url, UrlHelpers.url(term.type, nil, assigns[:page]))
+    |> Context.put_var(:current_path, UrlHelpers.path(term.type, nil, assigns[:page]))
     |> render(["terms", "list"], assigns)
   end
 
@@ -51,6 +62,8 @@ defmodule Ego.Renderer do
     |> Context.put_type(term.type)
     |> Context.put_var(:term, term)
     |> Context.put_var(:section, term.type)
+    |> Context.put_var(:current_url, UrlHelpers.url(term.type, term.slug, assigns[:page]))
+    |> Context.put_var(:current_path, UrlHelpers.path(term.type, term.slug, assigns[:page]))
     |> render(["term", "single"], assigns)
   end
 
@@ -61,7 +74,7 @@ defmodule Ego.Renderer do
     opts = [
       file_system: {TemplateResolver, fs},
       parser: Ego.Template.Parser,
-      tags: %{"with" => Ego.Template.WithTag}
+      tags: %{"with" => Ego.Template.WithTag, "paginate" => Ego.Template.PaginateTag}
     ]
 
     context = Context.merge_assign(context, Map.new(assigns))
