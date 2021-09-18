@@ -13,6 +13,20 @@
         {% else %}
         <h3 class="mb-3 text-dark font-weight-bold">{{document.title | markdownify}}</h3>
         {% endif %}
+
+
+        <ul class="list-inline breadcrumb-menu">
+        {% assign path = "/" %}
+        <li class="list-inline-item"><a href="{{ "/" | abs_url }}">Home</a></li>
+        {% assign parts = current_path | split: "/"  %}
+        {% for part in parts %}
+        {% assign path = path | append: part %}
+        {% if part != "" %}
+        <li class="list-inline-item">/ &nbsp; <a href="{{ path | abs_url }}">{{ part | humanize }}</a></li>
+        {% assign path =  path | append: "/" %}
+        {% endif %}
+        {% endfor %}
+        </ul>
       </div>
     </div>
   </div>
