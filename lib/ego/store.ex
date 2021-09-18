@@ -66,6 +66,13 @@ defmodule Ego.Store do
   end
 
   def by_term(documents \\ nil, term, value) do
+    term =
+      case term do
+        :tag -> :tags
+        :category -> :categories
+        _ -> term
+      end
+
     Enum.filter(documents || list_documents(), fn document ->
       value in Map.get(document, term, [])
     end)

@@ -3,12 +3,11 @@
     <div class="row">
       <div class="col-8 mx-auto text-center">
         {% assign document = document or term %}
-
-        {% if  section == "tags" or  section == "categories" %}
-        {% if  document.url == 'tags/' | abs_url or document.url == 'categories/' | abs_url %}
-        <h3 class="mb-3 text-dark font-weight-bold">{{document.title | markdownify}}</h3>
+        {% if  section == "tag" or  section == "category" %}
+        {% if  current_url == 'tags/' | abs_url or current_url == 'categories/' | abs_url %}
+        <h3 class="mb-3 text-dark font-weight-bold">{% if section == "tag" %}Tags{% else %} Categories {% endif %}</h3>
         {% else %}
-        <h4 class="mb-3 text-dark font-weight-bold">Showing posts from <mark>{{document.title | markdownify}}</mark></h4>
+        <h4 class="mb-3 text-dark font-weight-bold">Showing posts from <mark>{{document.title}}</mark></h4>
         {% endif %}
         {% else %}
         <h3 class="mb-3 text-dark font-weight-bold">{{document.title | markdownify}}</h3>
