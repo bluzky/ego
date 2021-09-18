@@ -64,7 +64,7 @@ defmodule Ego.Renderer do
     |> Context.put_var(:section, term.type)
     |> Context.put_var(:current_url, UrlHelpers.url(term.type, term.slug, assigns[:page]))
     |> Context.put_var(:current_path, UrlHelpers.path(term.type, term.slug, assigns[:page]))
-    |> render(["term", "single"], assigns)
+    |> render(["term", "list"], assigns)
   end
 
   def render(context, template, assigns \\ %{}) do

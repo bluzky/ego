@@ -20,6 +20,6 @@ defmodule Ego.Server.Router do
     get("/:type/page/:page", ContentController, :index)
 
     get("/", PageController, :index)
-    get("/:slug", PageController, :show)
+    # get("/:slug", PageController, :show)
   end
 end

@@ -41,7 +41,6 @@ defmodule Ego.Store.ContentLoader do
 
           %Ego.Document{
             content: md_to_html(markdown),
-            plain: markdown,
             title: meta["title"],
             categories: meta["categories"] || [],
             tags: meta["tags"] || [],
@@ -70,7 +69,8 @@ defmodule Ego.Store.ContentLoader do
       type: type,
       slug: slug,
       url: Ego.UrlHelpers.url(type, slug),
-      path: Ego.UrlHelpers.path(type, slug)
+      path: Ego.UrlHelpers.path(type, slug),
+      plain: Floki.text(Floki.parse_document!(doc.content))
     )
   end
 

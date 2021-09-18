@@ -7,7 +7,7 @@
       {% render "partials/header.html", site: site %}
 
       {% if section != "index" and section != "blog" and section != "about"  and section != "search" %}
-      {% render "partials/page-header.html", site: site, section: section, document: document, term: term, current_path: current_path %}
+      {% render "partials/page-header.html", site: site, section: section, document: document, term: term, current_path: current_path, current_url: current_url %}
       {% endif %}
 
       {{ inner_content }}

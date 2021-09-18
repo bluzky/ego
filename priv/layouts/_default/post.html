@@ -13,7 +13,8 @@
   <div class="card-body">
     <ul class="card-meta list-inline mb-2">
       <li class="list-inline-item mb-2">
-        {% assign author = document.author | urlize | lower | get_page: "author" %}
+        {% assign author = document.author | urlize | lower | get_page: "author"
+        %}
         <a href="{{author.url}}" class="card-meta-author">
           {% if author.image %}
           <img
@@ -37,7 +38,7 @@
     <h3 class="mb-3">
       <a class="post-title" href="{{document.url}}">{{document.title}}</a>
     </h3>
-    <p>{{ document.plain | default: "" | slice: 0, 150 }}</p>
+    <p>{{ document.plain | default: "" | slice: 0, 150 | append: "..." }}</p>
     <ul class="card-meta list-inline">
       <li class="list-inline-item mb-2">
         <ul class="card-meta-tag list-inline">
