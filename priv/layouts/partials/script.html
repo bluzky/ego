@@ -1,11 +1,15 @@
 <!-- JS Plugins + Main script -->
 {% for link in site.params.plugins.js %}
 {% if link | match: "^http" %}
-<script  data-turbolinks-suppress-warning  src="{{ link | abs_url }}" ></script>
-{% else %}
 <script src="{{ link }}"></script>
-{% endif %}
-{% endfor %}
+{% else %}
+<script data-turbolinks-suppress-warning src="{{ link | abs_url }}"></script>
+{% endif %} {% endfor %}
+
+<script
+  data-turbolinks-suppress-warning
+  src="{{ '/js/script.js' | abs_url }}"
+></script>
 
 <!-- cookie -->
 {% if site.params.cookies.enable %}

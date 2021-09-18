@@ -30,6 +30,8 @@ defmodule Ego.Template.Filters do
 
   def urlize(text), do: slugify(text)
 
+  def humanize(text), do: Phoenix.Naming.humanize(text || "")
+
   def md5(text), do: text |> :crypto.hash(:md5) |> Base.encode64()
 
   def markdownify(text) do

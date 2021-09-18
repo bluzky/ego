@@ -11,13 +11,24 @@ defmodule Ego.Server.ContentController do
       Store.list_taxonomies()
       |> Map.get(type, [])
 
-    conn.assigns.context
+    context =
+      if params["page"] do
+        Ego.Context.put_var(
+          conn.assigns.context,
+          :__current_page,
+          String.to_integer(params["page"])
+        )
+      else
+        conn.assigns.context
+      end
+
+    context
     |> Context.put_type(type)
     |> Renderer.render_term_index(terms)
   end
 
   # render archetype
-  def index(conn, %{"type" => type} = params) do
+  def index(conn, %{"type" => type}) do
     documents = Store.by_type(type)
 
     if documents != [] do
