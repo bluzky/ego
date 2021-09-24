@@ -68,14 +68,12 @@ defmodule Ego.Builder do
     end)
   end
 
-  defp write_file(content, file) do
-    case content do
-      {:ok, content} ->
-        FileSystem.write_file(file, content)
+  defp write_file({:ok, content, _context}, file) do
+    FileSystem.write_file(file, content)
+  end
 
-      {:error, message} ->
-        Logger.error("Error building: #{file} \n#{message}")
-    end
+  defp write_file({:error, message}, file) do
+    Logger.error("Cannot render file #{file} due to error #{inspect(message)}")
   end
 
   defp copy_assets() do

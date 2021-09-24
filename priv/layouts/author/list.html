@@ -1,47 +1,49 @@
-{{define "main"}}
+
 
 <section class="section-sm">
   <div class="container">
     <div class="row justify-content-center text-center">
-      {{range .RegularPages }}
+      {% for doc in documents %}
       <div class="col-lg-4 col-sm-6 mb-4">
-        {{ if .params.image }}
-        <a class="d-inline-block" href="{{.Permalink}}">
+        {% if doc.image %}
+        <a class="d-inline-block" href="{{doc.url}}">
           <img
             loading="lazy"
             class="img-fluid rounded"
-            src="{{.params.image | abs_url}}"
-            alt="{{.Title}}"
+            src="{{doc.image | abs_url}}"
+            alt="{{doc.title}}"
           />
-          <h4 class="font-weight-700 text-dark mt-4 mb-3">{{.Title}}</h4>
+          <h4 class="font-weight-700 text-dark mt-4 mb-3">{{doc.title}}</h4>
         </a>
-        {{ else }}
-        <a class="d-inline-block" href="{{.Permalink}}">
+        {% else %}
+        <a class="d-inline-block" href="{{doc.url}}">
           <img
             loading="lazy"
             class="img-fluid rounded"
-            src="https://www.gravatar.com/avatar/{{ md5 .params.email }}?s=150&pg&d=identicon"
+            src="https://www.gravatar.com/avatar/{{- doc.params.email | md5  -}}?s=150&pg&d=identicon"
           />
-          <h4 class="font-weight-700 text-dark mt-4 mb-3">{{.Title}}</h4>
+          <h4 class="font-weight-700 text-dark mt-4 mb-3">{{doc.title}}</h4>
         </a>
-        {{ end }}
+        {% endif %}
         <ul class="social-links list-unstyled list-inline ml-0 ml-sm-n2 mb-2">
-          {{ range .params.social }}
+          {% for item in doc.params.social %}
           <li class="list-inline-item">
-            <a href="{{.link | safeURL}}">
-              <i data-eva="{{.icon}}"></i>
+            <a href="{{item.link }}">
+              <i data-eva="{{item.icon}}"></i>
             </a>
           </li>
-          {{end}}
+          {% endfor %}
         </ul>
         <p>
-          {{- .Summary | truncate 100 -}} &nbsp;
-          <a class="text-dark" href="{{.Permalink}}">Read More</a>
+          {% if doc.summary -%}
+          {{- doc.summary | slice: 0, 100 -}} &nbsp;
+          {%- endif %}
+          <a class="text-dark" href="{{doc.url}}">Read More</a>
         </p>
       </div>
-      {{end}}
+      {% endfor %}
     </div>
   </div>
 </section>
 
-{{end}}
+

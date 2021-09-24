@@ -20,7 +20,7 @@ defmodule Ego.Template.WithTag do
     |> ignore(Tag.closing_tag())
   end
 
-  def render(context, [argument: argument, result: result], options) do
+  def render([argument: argument, result: result], context, options) do
     value = Solid.Argument.get(argument, context)
 
     if value do

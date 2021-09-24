@@ -79,14 +79,14 @@ defmodule Ego.Renderer do
     context = Context.merge_assign(context, Map.new(assigns))
 
     try do
-      content =
+      {content, solid_context} =
         TemplateResolver.read_template_file(template, fs)
         |> Solid.parse!(opts)
-        |> Solid.render(context.assigns, opts)
-        |> to_string()
+        |> Map.get(:parsed_template)
+        |> Solid.render(%Solid.Context{vars: context.assigns}, opts)
 
       TemplateResolver.reset(fs)
-      context = Context.put_var(context, :inner_content, content)
+      context = Context.put_var(context, :inner_content, to_string(content))
 
       content =
         TemplateResolver.read_template_file(context.layout || "baseof", fs)
@@ -94,7 +94,7 @@ defmodule Ego.Renderer do
         |> Solid.render(context.assigns, opts)
         |> to_string
 
-      {:ok, content}
+      {:ok, content, nil}
     rescue
       err in TemplateError ->
         Logger.error(err.message)

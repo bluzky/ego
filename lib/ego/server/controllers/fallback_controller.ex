@@ -13,7 +13,7 @@ defmodule Ego.Server.FallbackController do
     |> html(message)
   end
 
-  def call(conn, {:ok, content}) do
+  def call(conn, {:ok, content, _context}) do
     html(conn, content)
   end
 

@@ -1,36 +1,36 @@
-{{define "main"}}
+
 
 <section class="section-sm">
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col-12 mb-4">
-        {{if .params.image}}
+        {% if document.image %}
         <img
           loading="lazy"
           class="img-fluid rounded mb-5"
-          src="{{.params.image | abs_url}}"
-          alt="{{.Title}}"
+          src="{{document.image | abs_url}}"
+          alt="{{document.title}}"
         />
-        {{else}}
+        {% else %}
         <img
           loading="lazy"
           class="img-fluid rounded mb-5"
-          src="https://www.gravatar.com/avatar/{{ md5 .params.email }}?s=150&pg&d=identicon"
+          src="https://www.gravatar.com/avatar/{{  document.email | md5 }}?s=150&pg&d=identicon"
         />
-        {{end}}
-        <h3 class="text-dark font-weight-700 mb-2">{{.Title}}</h3>
+        {% endif %}
+        <h3 class="text-dark font-weight-700 mb-2">{{document.title}}</h3>
         <ul class="social-links list-unstyled list-inline ml-0 ml-sm-n2">
-          {{ range .params.social }}
+          {% for item in  document.params.social %}
           <li class="list-inline-item">
-            <a href="{{.link | safeURL}}">
-              <i data-eva="{{.icon}}"></i>
+            <a href="{{item.link }}">
+              <i data-eva="{{item.icon}}"></i>
             </a>
           </li>
-          {{end}}
+          {% endfor %}
         </ul>
       </div>
       <div class="col-lg-8">
-        <div class="content">{{.Content}}</div>
+        <div class="content">{{document.content}}</div>
       </div>
     </div>
   </div>
@@ -38,10 +38,11 @@
 
 <div class="container">
   <div class="row">
-    {{ range where site.RegularPages "params.author" .Title }}
-    <div class="col-lg-6">{{.Render "post"}}</div>
-    {{ end }}
+    {% assign posts = document.title | filter_document: "author" %}
+    {% for post in posts %}
+    <div class="col-lg-6">{% render "post", site: site, document: post  %}</div>
+    {% endfor %}
   </div>
 </div>
 
-{{end}}
+

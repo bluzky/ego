@@ -29,22 +29,32 @@ defmodule Ego.Template.PaginateTag do
     |> ignore(Tag.closing_tag())
   end
 
-  def render(context, [argument: argument, page_size: [page_size], result: result], options) do
+  def render([argument: argument, page_size: [page_size], result: result], context, options) do
     value = Solid.Argument.get(argument, context)
     current_page = context.vars["__current_page"] || 1
 
     if is_list(value) and page_size > 0 do
-      paginate =
-        build_paginator(value, current_page, page_size, context.vars["current_url"])
-        |> Ego.MapHelpers.to_string_key()
+      paginate = build_paginator(value, current_page, page_size, context.vars["current_url"])
 
-      context = %{
+      inner_context = %{
         context
-        | vars: Map.put(context.vars, "paginate", paginate)
+        | vars: Map.put(context.vars, "paginate", Ego.MapHelpers.to_string_key(paginate))
       }
 
-      {rendered, _} = Solid.render(result, context, options)
-      [text: rendered]
+      {rendered, _} = Solid.render(result, inner_context, options)
+
+      # update context so we know there more page to render
+      context =
+        if paginate.next.is_link do
+          %{
+            context
+            | vars: Map.put(context.vars, "_next_page", paginate.next.page)
+          }
+        else
+          context
+        end
+
+      {[text: rendered], context}
     else
       [text: ""]
     end
@@ -62,11 +72,13 @@ defmodule Ego.Template.PaginateTag do
       total_item: item_count,
       next: %{
         is_link: current_page < page_count,
+        page: current_page + 1,
         title: "Next",
         url: if(current_page < page_count, do: paginate_url(current_url, current_page + 1))
       },
       previous: %{
         is_link: current_page > 1,
+        page: current_page - 1,
         title: "Previous",
         url: if(current_page > 1, do: paginate_url(current_url, current_page - 1))
       },
