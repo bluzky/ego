@@ -3,11 +3,11 @@ defmodule Ego.Template.PaginateTag do
   Implement paginate tag similar to the one by shopify
   https://shopify.dev/api/liquid/objects/paginate
   """
-  @behaviour Solid.Tag.CustomTag
+  @behaviour Solid.Tag
   import NimbleParsec
   alias Solid.Parser.{Literal, Tag, Variable}
 
-  def spec() do
+  def spec(parser) do
     space = Literal.whitespace(min: 0)
 
     ignore(Tag.opening_tag())
@@ -21,7 +21,7 @@ defmodule Ego.Template.PaginateTag do
     |> tag(Literal.int(), :page_size)
     |> ignore(space)
     |> ignore(Tag.closing_tag())
-    |> tag(parsec(:liquid_entry), :result)
+    |> tag(parsec({parser, :liquid_entry}), :result)
     |> ignore(Tag.opening_tag())
     |> ignore(space)
     |> ignore(string("endpaginate"))

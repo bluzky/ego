@@ -73,8 +73,7 @@ defmodule Ego.Renderer do
 
     opts = [
       file_system: {TemplateResolver, fs},
-      parser: Ego.Template.Parser,
-      tags: %{"with" => Ego.Template.WithTag, "paginate" => Ego.Template.PaginateTag}
+      parser: Ego.Template.Parser
     ]
 
     context = Context.merge_assign(context, Map.new(assigns))
