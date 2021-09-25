@@ -31,9 +31,9 @@ defmodule Ego.FileSystem do
     |> Keyword.get(:output_dir)
   end
 
-  def output_file(type, slug \\ nil) do
+  def output_file(path) do
     output_dir()
-    |> Path.join("#{Ego.UrlHelpers.path(type, slug)}")
+    |> Path.join(path)
     |> Path.join("index.html")
   end
 

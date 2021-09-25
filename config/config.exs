@@ -44,7 +44,7 @@ config :ego, :config,
   source_dir: "priv/",
   output_dir: "public/",
   server: true,
-  base_url: "http://localhost:4000"
+  base_url: "/"
 
 config :solid, :custom_filters, Ego.Template.Filters
 

@@ -15,10 +15,6 @@ defmodule Ego.UrlHelpers do
     path(type, slug)
   end
 
-  def path(type, slug, page) do
-    type |> path(slug) |> paginate(page)
-  end
-
   def path(type, slug \\ nil)
 
   def path(:page, slug) do
@@ -37,16 +33,17 @@ defmodule Ego.UrlHelpers do
     "/#{type}/#{slug}"
   end
 
+  def paginate_path(type, slug, page) do
+    path(type, slug)
+    |> paginate(page)
+  end
+
   def paginate(path_url, page \\ nil) do
     if page && page > 0 do
       Path.join(path_url, "/page/#{page}")
     else
       path_url
     end
-  end
-
-  def url(type, slug, page) do
-    type |> url(slug) |> paginate(page)
   end
 
   def url(type, slug) do
@@ -59,5 +56,9 @@ defmodule Ego.UrlHelpers do
     Application.get_env(:ego, :config)
     |> Keyword.get(:base_url, "/")
     |> Path.join(rel_url)
+  end
+
+  def paginate_url(type, slug, page) do
+    type |> url(slug) |> paginate(page)
   end
 end

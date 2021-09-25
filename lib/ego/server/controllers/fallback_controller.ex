@@ -7,7 +7,7 @@ defmodule Ego.Server.FallbackController do
   use Ego.Server, :controller
 
   # This clause handles errors returned by Ecto's insert/update/delete.
-  def call(conn, {:error, message}) do
+  def call(conn, {:error, message, _}) do
     conn
     |> put_status(:unprocessable_entity)
     |> html(message)

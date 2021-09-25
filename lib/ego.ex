@@ -3,12 +3,6 @@ defmodule Ego do
   alias Ego.FileSystem
 
   def build do
-    assigns = %{
-      "site" => %{
-        "documents" => Store.list_documents()
-      }
-    }
-
-    Ego.Builder.build(assigns)
+    Ego.Builder.build()
   end
 end
