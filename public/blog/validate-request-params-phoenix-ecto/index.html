@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  <meta charset="utf-8" />
+  <title>The Organge+</title>
+
+  <meta name="author" content="Dung Nguyen" />
+  <meta
+    name="description"
+    content=""
+  />
+
+  <!-- mobile responsive meta -->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=5"
+  />
+
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    href="/images/favicon.png"
+    type="image/x-icon"
+  />
+
+  <!-- CSS Plugins -->
+  <!-- plugins + stylesheet -->
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+ 
+<link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css" media="screen" />
+  
+<link rel="stylesheet" href="/css/style.css" media="screen" />
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" />
+ 
+
+
+  
+  <script type=application/javascript>
+   var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-40665301-3','auto'),ga('send','pageview'))</script>
+  
+
+</head>
+
+
+  <body>
+    <div style="min-height: calc(100vh - 65px)">
+      <div class="header-height-fix"></div>
+<header class="header-nav">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+          <a class="navbar-brand font-weight-bold mr-0" href="">
+            
+            <img
+              loading="lazy"
+              src="/images/logo.png"
+              alt="The Organge+"
+              height="35px"
+            />
+            
+          </a>
+
+          
+          <button
+            class="search-toggle d-inline-block d-lg-none ml-auto mr-3"
+            data-toggle="search"
+            aria-label="Search Toggle"
+          >
+            <i data-eva="search-outline"></i>
+          </button>
+          
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navHeader"
+            aria-controls="navHeader"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i data-eva="menu-outline"></i>
+            <i class="d-none" data-eva="close-outline"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navHeader">
+            <ul
+              class="navbar-nav mx-auto"
+            >
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/">Blog</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/tags">Tags</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/about">About me</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle d-inline-block "
+                  href="#"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-expanded="false"
+                  >More</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/categories"
+                      >Category</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/elements"
+                      >Elements</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/privacy"
+                      >Privacy</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/terms-conditions"
+                      >Terms & Conditions</a
+                    >
+                  </li></ul>
+              </li>
+              
+              
+              
+            </ul>
+
+            
+            <div class="navbar-right d-none d-lg-inline-block">
+              <ul class="social-links list-unstyled list-inline">
+                <li class="list-inline-item ml-4 d-none d-lg-inline-block">
+                  <button
+                    class="search-toggle"
+                    data-toggle="search"
+                    aria-label="Search Toggle"
+                  >
+                    <i data-eva="search-outline"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div class="search-block">
+  <div data-toggle="search-close">
+    <i data-eva="close-outline" class="text-primary"></i>
+  </div>
+  <form action="/search/">
+    <input
+      id="search-query"
+      name="s"
+      type="search"
+      placeholder="Type words &amp; hit enter"
+      class="text-center"
+      aria-label="search-query"
+    />
+  </form>
+</div>
+
+
+
+      
+
+      <!-- checking blog -->
+
+
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div
+        class=" col-lg-10 "
+      >
+        <div class="pr-lg-4">
+          <div class="single-post">
+            <div class="text-center mb-5">
+              <h1 class="mb-4 post-title">Parse và validate request param trong Phoenix với Ecto</h1>
+              <ul class="card-meta list-inline">
+                <li class="list-inline-item">
+                  <a href="#!" class="card-meta-author"><a href="/author/dung-nguyen" class="card-meta-author">
+                      <img
+                        loading="lazy"
+                        src="/images/author/dung-nguyen.jpg"
+                        alt="Dung Nguyen"
+                      />
+                      <span>Dung Nguyen</span>
+                    </a>
+                  </a>
+                </li>
+                <li class="list-inline-item">|</li>
+                <li class="list-inline-item">
+                  <span>2020-09-26</span>
+                </li>
+              </ul>
+            </div>
+
+            
+            <div class="mb-5 text-center">
+              <img
+                loading="lazy"
+                class="img-fluid rounded"
+                src="/img/parse-ecto-phoenix.png"
+                alt="Image not Found"
+              />
+            </div>
+            
+
+            <div class="content"><p>
+Khi viết các API hoặc cả các endpoint thì thông thường chúng ta sẽ có một số nhu cầu:</p>
+<ul>
+  <li>
+Chỉ cho phép một số các tham số xác định được truyền vào.  </li>
+  <li>
+Chuyển các tham số về kiểu dữ liệu mong muốn  </li>
+  <li>
+Validate các tham số theo yêu cầu  </li>
+</ul>
+<p>
+Bài viết này sẽ hướng dẫn các bạn giải quyết các vấn đề trên sử dụng <code class="inline">Ecto.Changeset</code></p>
+<p>
+Thư viện <code class="inline">Ecto</code> đã cung cấp sẵn cho chúng ta module <code class="inline">Changeset</code>. Nó hỗ trợ việc cast các tham số về đúng kiểu dữ liệu mong muốn, nó cũng hỗ trợ các phương thức để validate các tham số yêu cầu, và nó cũng cho phép bạn giới hạn tham số nào được truyền vào.</p>
+<p>
+Và sau đây là một ví dụ sử dụng <code class="inline">Chageset</code> để validate các tham số khi filter các đơn hàng.</p>
+<h2>
+1. Đầu tiên bạn phải định nghĩa một schema</h2>
+<pre><code class="elixir">defmodule MyApp.OrderFilterParams do
+    use Ecto.Schema
+    import Ecto.Changeset
+
+    schema &quot;order_filter_params&quot; do
+        field :keyword, :string
+        field :category_id,  :integer
+        field :status, :string
+        field :start_date, :utc_datetime
+        field :end_date, :utc_datetime
+    end
+end</code></pre>
+<h2>
+2. Cast và validate</h2>
+<p>
+Sau đó phải định nghĩa một hàm để thực hiện việc cast tham số và validate <code class="inline">changeset</code>.</p>
+<pre><code class="elixir">defmodule MyApp.OrderFilterParams do
+
+    ...
+
+    @required ~w(category_id start_date)
+    @optional ~w(keyword status end_date)
+
+    def changeset(changeset_or_model, params) do
+         cast(changeset_or_model, params, @required ++ @optional)
+        |&gt; validate_required(@required)
+    end
+end</code></pre>
+<h2>
+3. Set giá trị default động</h2>
+<p>
+Nếu bạn muốn sử dụng các giá trị default động, ví dụ như mặc định ngày kết thúc là ngày hiện tại, các bạn phải định nghĩa một function để set giá trị mong muốn.</p>
+<pre><code class="elixir">defmodule MyApp.OrderFilterParams do
+
+    ...
+
+    def changeset(changeset_or_model, params) do
+         cast(changeset_or_model, params, @required ++ @optional)
+        |&gt; validate_required(@required)
+        |&gt; set_default_end_date()
+    end
+
+    defp set_defaut_end_date(changeset) do
+        end_date = get_change(changeset, :end_date)
+        if is_nil(end_date) do
+            put_change(changeset, :end_date, Timex.today())
+        else
+            changeset
+        end
+    end
+end</code></pre>
+<h2>
+4. Sử dụng Params schema</h2>
+<pre><code class="elixir">defmodule MyApp.OrderController do
+    use MyApp, :controller
+    alias MyApp.OrderFilterParams
+
+    def index(conn, params) do
+        changeset = OrderFilterParams.changeset(%OrderFilterParams{}, params)
+
+        if changeset.valid? do
+            strong_params = Ecto.Changeset.apply_changes(changeset)
+                IO.put(strong_params.keyword)
+            # Do something with your params
+        else
+            # handle error
+        end
+    end
+end
+</code></pre>
+<p>
+Rất đơn giản đúng không, nếu bạn đã sử dụng <code class="inline">Ecto</code> thì việc này chỉ là ruồi muỗi. Tuy nhiên đơn giản thì phải có thứ đánh đổi chứ.</p>
+<h2>
+Vài thứ mà bạn sẽ thấy bất tiện</h2>
+<h3>
+1. Lượng code mà bạn phải viết quá nhiều.</h3>
+<p>
+Thử tưởng tượng mỗi API bạn lại phải định nghĩa thêm một Module params cho nó thì phức tạp vl.</p>
+<p>
+Bạn có thể sử dụng schemaless, nhưng mà function của bạn sẽ rối nùi lên vì code logic và code xử lý params nó không liên quan gì tới nhau cả. Và bạn thì kiểu như đổ sting vào cơm để ăn vậy.</p>
+<h3>
+2. Thiếu linh hoạt.</h3>
+<p>
+Điều này cũng đúng vì mục đích chính của <code class="inline">Ecto</code> là phục vụ cho việc định nghĩa các schema cho database.</p>
+<p>
+Đơn giản như việc định nghĩa giá trị default động như trên, bạn phải viết luôn 1 hàm mới</p>
+<p>
+<strong>Tuy nhiên nó cũng có một ưu điểm là bạn không phải sử dụng thêm thư viện của bên thứ ba.</strong></p>
+<h2>
+Kết</h2>
+<p>
+Nếu bạn không cần phải xử lý nhiều ràng buộc liên quan đến tham số của request thì đơn giản là cứ dùng <code class="inline">Changeset</code> thôi. </p>
+<p>
+Nếu bạn muốn nhanh gọn hơn thì trên Hex có một số thư viện để hỗ trợ định nghĩa param đơn giản hơn, ví dụ như <a href="https://github.com/bluzky/tarams/">https://github.com/bluzky/tarams/</a></p>
+<p>
+Thư viện này cung cấp cách thức đơn giản và nhanh chóng hơn để định nghĩa param cho API. Mình sẽ viết bài hướng dẫn sau.</p>
+</div>
+          </div>
+
+          <!-- Post meta -->
+          <div class="single-post-meta">
+            <div class="row justify-content-center">
+              <div class="col-md-6 text-center text-md-left">
+                <ul class="post-meta-tags list-unstyled list-inline">
+                  
+                  <li class="list-inline-item">
+                    <a href="/tagselixir">#elixir</a>
+                  </li>
+                  
+                  <li class="list-inline-item">
+                    <a href="/tagsecto">#ecto</a>
+                  </li>
+                  
+                  <li class="list-inline-item">
+                    <a href="/tagsphoenix">#phoenix</a>
+                  </li>
+                  
+                </ul>
+              </div>
+              <div class="col-md-6 text-center text-md-right mt-4 mt-md-0">
+<ul
+  class="social-links has-bg-color list-unstyled list-inline"
+  style="line-height: 0"
+>
+  <li class="list-inline-item">
+    <!-- Sharingbutton Facebook -->
+    <a
+      class="resp-sharing-button__link d-block"
+      href="https://facebook.com/sharer/sharer.php?u=/blog/validate-request-params-phoenix-ecto"
+      target="_blank"
+      rel="noopener"
+      aria-label=""
+    >
+      <div
+        class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"
+      >
+        <div
+          aria-hidden="true"
+          class="resp-sharing-button__icon resp-sharing-button__icon--solid"
+        >
+          <i data-eva="facebook-outline" class="text-dark"></i>
+        </div>
+      </div>
+    </a>
+  </li>
+
+  <li class="list-inline-item">
+    <!-- Sharingbutton Twitter -->
+    <a
+      class="resp-sharing-button__link d-block"
+      href="https://twitter.com/intent/tweet/?text=Parse và validate request param trong Phoenix với Ecto&amp;url=/blog/validate-request-params-phoenix-ecto"
+      target="_blank"
+      rel="noopener"
+      aria-label=""
+    >
+      <div
+        class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small"
+      >
+        <div
+          aria-hidden="true"
+          class="resp-sharing-button__icon resp-sharing-button__icon--solid"
+        >
+          <i data-eva="twitter-outline" class="text-dark"></i>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
+</div>
+            </div>
+          </div>
+
+          <div class="single-post-author">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                  <a href="/author/dung-nguyen"
+                    ><img
+                      loading="lazy"
+                      class="img-fluid rounded-circle mr-0 mr-sm-4 mb-4"
+                      src="/images/author/dung-nguyen.jpg"
+                      alt="Dung Nguyen"
+                  /></a>
+                  <div class="media-body">
+                    <h4>
+                      <a href="/author/dung-nguyen" class="text-dark font-weight-700"
+                        >Dung Nguyen</a
+                      >
+                    </h4>
+                    <p class="font-primary"><p>
+Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
+</p>
+                    <ul
+                      class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
+                    >
+                      
+                      <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/in/dung-nguyen-tien-695ba135/">
+                          <i class="lab linkedin-outline"></i>
+                        </a>
+                      </li>
+                      
+                      <li class="list-inline-item">
+                        <a href="https://www.github.com/bluzky">
+                          <i class="lab github-outline"></i>
+                        </a>
+                      </li>
+                      
+                      <li class="list-inline-item">
+                        <a href="https://dev.to/bluzky">
+                          <i class="lab book-outline"></i>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DISQUS comment -->
+          
+          <div class="single-post-similer">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="row mt-3">
+                  <div id="disqus_thread" class="w-100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="single-post-similer">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <h3 class="text-dark font-weight-800 mb-4 pb-2">
+                      You May Also Like
+                    </h3>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+
+
+    </div>
+    <footer class="section-sm p-0">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-5">
+         
+      </div>
+      <div class="col-lg-12 text-center mb-3">
+        
+        <ul
+          class="social-links icon-box list-unstyled list-inline font-weight-500 mb-3"
+        >
+          
+        </ul>
+
+        <p class="mb-0 font-weight-500 copyright-text content">
+          <p>
+Blog by Dung Nguyen.Theme by <a href="https://gethugothemes.com/">Gethugothemes</a></p>
+
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <!-- JS Plugins + Main script -->
+
+
+<script data-turbolinks-suppress-warning src="/plugins/jquery/jquery.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/bootstrap/bootstrap.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/fuse.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/mark.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/search.js"></script>
+ 
+
+<script src="https://unpkg.com/eva-icons"></script>
+ 
+
+<script
+  data-turbolinks-suppress-warning
+  src="/js/script.js"
+></script>
+
+<!-- cookie -->
+
+
+<!-- DISQUS -->
+
+<script>
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+  */
+  (function () {
+    // DON'T EDIT BELOW THIS LINE
+    var d = document,
+      s = d.createElement("script");
+    s.src = "https://.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+
+  </body>
+</html>

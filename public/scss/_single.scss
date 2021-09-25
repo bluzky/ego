@@ -1,0 +1,296 @@
+.single-post {
+  .post-title {
+    font-weight: 800;
+    font-size: $h1-lg;
+    color: $dark;
+    display: inline-block;
+  }
+}
+
+
+// content
+.content {
+  font-family: $font-content;
+  font-size: 20px;
+
+  * {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  p {
+    margin-bottom: 1.5em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    color: $dark;
+  }
+
+  h2,
+  h3,
+  h4 {
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    margin-top: 40px;
+  }
+
+  p + h2, ul + h2, ol + h2{
+    margin-top: 0.8em;
+  }
+
+  img {
+    margin: 1.5rem 0;
+    max-width: 100%;
+    @extend .rounded;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  blockquote {
+    padding: 15px 20px;
+    border-left: 3px solid $color-primary;
+    color: $light-gray;
+    font-weight: 700;
+    margin: 30px 0;
+    font-style: italic;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: $gray;
+    border-bottom: 1px dashed $color-primary;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+  a.collapse-head {
+    border-bottom: 1px solid #dee2e6;
+  }
+
+
+  ol,
+  ul {
+    margin-bottom: 1.5em;
+    padding-left: 0;
+
+    li {
+      // margin-bottom: 10px;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  ul {
+    list-style-type: none;
+
+    li {
+      padding-left: 30px;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        left: 10px;
+        content: '-';
+      }
+    }
+
+  }
+
+  p + ul, p + ol {
+    margin-top: -1.3rem;
+  }
+
+  table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+  }
+
+  table td,
+  table th {
+    padding: .75rem;
+    vertical-align: top;
+    margin-bottom: 0;
+    border: 1px solid #e0e0e0;
+  }
+
+  tr:not(:last-child) {
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  th {
+    font-weight: 500;
+  }
+
+  thead {
+    background: #efefef;
+    margin-bottom: 0;
+
+    tr {
+      border-bottom: 1px solid #e0e0e0;
+    }
+  }
+
+  tbody {
+    background: lighten($color: #efefef, $amount: 5);
+    margin-bottom: 0;
+  }
+
+  .notices {
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .notices p {
+    padding: 10px;
+    margin-bottom: 0;
+  }
+
+  .notices p::before {
+    position: absolute;
+    top: 2px;
+    color: $white;
+    font-family: 'Line Awesome Free';
+    font-weight: 900;
+    content: "\f05a";
+    left: 10px;
+  }
+
+  .notices.note p {
+    border-top: 30px solid #6ab0de;
+    background: $light;
+  }
+
+  .notices.note p::after {
+    content: 'Note';
+    position: absolute;
+    top: 2px;
+    color: $white;
+    left: 2rem;
+  }
+
+
+  .notices.tip p {
+    border-top: 30px solid #78C578;
+    background: $light;
+  }
+
+  .notices.tip p::after {
+    content: 'Tip';
+    position: absolute;
+    top: 2px;
+    color: $white;
+    left: 2rem;
+  }
+
+  .notices.info p {
+    border-top: 30px solid #F0B37E;
+    background: #f7f7f7;
+  }
+
+  .notices.info p::after {
+    content: 'Info';
+    position: absolute;
+    top: 2px;
+    color: $white;
+    left: 2rem;
+  }
+
+
+  .notices.warning p {
+    border-top: 30px solid #E06F6C;
+    background: $light;
+  }
+
+  .notices.warning p::after {
+    content: 'Warning';
+    position: absolute;
+    top: 2px;
+    color: #fff;
+    left: 2rem;
+  }
+
+  :not(pre) > code {
+    /* font-size: 100%; */
+    color: $color_primary;
+    background-color: rgba($color_primary, 0.1);
+    padding: 0 3px;
+  }
+
+  pre{
+    padding: 1rem 0;
+    margin-bottom: 0;
+    font-size: 80%;
+  }
+
+  .highlight{
+    margin-bottom: 1.5em;
+  }
+}
+
+
+// code-tab
+.code-tabs {
+  border: 1px solid #ddd;
+  overflow: hidden;
+  margin-bottom: 20px;
+
+  .nav-tabs {
+    margin-bottom: 0;
+
+    .nav-item {
+      padding-left: 0;
+      border-right: 1px solid #ddd;
+
+      .nav-link {
+        text-decoration: none;
+        font-weight: 500;
+        border: 0;
+      }
+
+      &::before {
+        display: none;
+      }
+
+      &.active {
+        background: $color-primary;
+
+        .nav-link {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    padding: 20px 15px;
+  }
+}
+
+#TableOfContents{
+  ul {
+    list-style: none;
+    font-size: 0.875rem;
+    li{
+      margin: 0.425rem;
+    }
+  }
+}

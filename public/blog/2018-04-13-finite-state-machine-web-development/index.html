@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  <meta charset="utf-8" />
+  <title>The Organge+</title>
+
+  <meta name="author" content="Dung Nguyen" />
+  <meta
+    name="description"
+    content=""
+  />
+
+  <!-- mobile responsive meta -->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=5"
+  />
+
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    href="/images/favicon.png"
+    type="image/x-icon"
+  />
+
+  <!-- CSS Plugins -->
+  <!-- plugins + stylesheet -->
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+ 
+<link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css" media="screen" />
+  
+<link rel="stylesheet" href="/css/style.css" media="screen" />
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" />
+ 
+
+
+  
+  <script type=application/javascript>
+   var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-40665301-3','auto'),ga('send','pageview'))</script>
+  
+
+</head>
+
+
+  <body>
+    <div style="min-height: calc(100vh - 65px)">
+      <div class="header-height-fix"></div>
+<header class="header-nav">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+          <a class="navbar-brand font-weight-bold mr-0" href="">
+            
+            <img
+              loading="lazy"
+              src="/images/logo.png"
+              alt="The Organge+"
+              height="35px"
+            />
+            
+          </a>
+
+          
+          <button
+            class="search-toggle d-inline-block d-lg-none ml-auto mr-3"
+            data-toggle="search"
+            aria-label="Search Toggle"
+          >
+            <i data-eva="search-outline"></i>
+          </button>
+          
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navHeader"
+            aria-controls="navHeader"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i data-eva="menu-outline"></i>
+            <i class="d-none" data-eva="close-outline"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navHeader">
+            <ul
+              class="navbar-nav mx-auto"
+            >
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/">Blog</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/tags">Tags</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/about">About me</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle d-inline-block "
+                  href="#"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-expanded="false"
+                  >More</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/categories"
+                      >Category</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/elements"
+                      >Elements</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/privacy"
+                      >Privacy</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/terms-conditions"
+                      >Terms & Conditions</a
+                    >
+                  </li></ul>
+              </li>
+              
+              
+              
+            </ul>
+
+            
+            <div class="navbar-right d-none d-lg-inline-block">
+              <ul class="social-links list-unstyled list-inline">
+                <li class="list-inline-item ml-4 d-none d-lg-inline-block">
+                  <button
+                    class="search-toggle"
+                    data-toggle="search"
+                    aria-label="Search Toggle"
+                  >
+                    <i data-eva="search-outline"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div class="search-block">
+  <div data-toggle="search-close">
+    <i data-eva="close-outline" class="text-primary"></i>
+  </div>
+  <form action="/search/">
+    <input
+      id="search-query"
+      name="s"
+      type="search"
+      placeholder="Type words &amp; hit enter"
+      class="text-center"
+      aria-label="search-query"
+    />
+  </form>
+</div>
+
+
+
+      
+
+      <!-- checking blog -->
+
+
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div
+        class=" col-lg-10 "
+      >
+        <div class="pr-lg-4">
+          <div class="single-post">
+            <div class="text-center mb-5">
+              <h1 class="mb-4 post-title">Finite state machine trong lập trình</h1>
+              <ul class="card-meta list-inline">
+                <li class="list-inline-item">
+                  <a href="#!" class="card-meta-author"><a href="/author/dung-nguyen" class="card-meta-author">
+                      <img
+                        loading="lazy"
+                        src="/images/author/dung-nguyen.jpg"
+                        alt="Dung Nguyen"
+                      />
+                      <span>Dung Nguyen</span>
+                    </a>
+                  </a>
+                </li>
+                <li class="list-inline-item">|</li>
+                <li class="list-inline-item">
+                  <span>2018-04-13T22:32:22+07:00</span>
+                </li>
+              </ul>
+            </div>
+
+            
+
+            <div class="content"><h2>
+1. Tìm hiểu về FSM</h2>
+<blockquote>
+  <p>
+<a href="https://vi.wikipedia.org/wiki/M%C3%A1y_tr%E1%BA%A1ng_th%C3%A1i_h%E1%BB%AFu_h%E1%BA%A1n">FSM(Finite state machine)</a> - Máy trạng thái hữu hạn là một mô hình toán học biểu diễn trạng thái của hệ, trong đó số trạng thái là hữu hạn. Từ mỗi trạng thái, máy có thể chuyển đổi qua 1 số trạng thái cố định khác, dựa trên các sự kiện, input.  </p>
+</blockquote>
+<p>
+Fsm được biểu diễn như 1 đồ thị có hướng.</p>
+<p>
+<strong>Ví dụ</strong>:</p>
+<p>
+Máy trạng thái thể hiện trạng thái của 1 bài báo trên trang tin tức</p>
+<p>
+  <img src="/img/fsm_post.png" alt="fsm" />
+</p>
+<ul>
+  <li>
+<code class="inline">draft</code>, <code class="inline">in review</code> <code class="inline">published</code> là các trạng thái của bài viết  </li>
+  <li>
+<code class="inline">review</code>, <code class="inline">approve</code>, <code class="inline">reject</code>, <code class="inline">unpublish</code> là các sự kiện( event ). Các sự kiện này phát sinh khi nhận các input như click lên button, … Các sự kiện này gây ra việc chuyển trạng thái (ví dụ từ Draft -&gt; In review), gọi là quá trình chuyển đổi (<code class="inline">transition</code>)  </li>
+</ul>
+<p>
+<strong>Đặc điểm</strong></p>
+<p>
+Trong mô hình sử dụng <code class="inline">DFS</code> máy  trạng thái đơn định.</p>
+<ul>
+  <li>
+Tại mỗi thời điểm  máy chỉ ở 1 trạng thái duy nhất  </li>
+  <li>
+Tại mỗi trạng thái, chỉ có thể chuyển qua những trạng thái được cho phép  </li>
+  <li>
+Từ trạng thái hiện tại, có thể biết được những trạng thái kế tiếp mà máy có thể chuyển qua  </li>
+</ul>
+<h2>
+2. Ứng dụng của FSM trong lập trình</h2>
+<ul>
+  <li>
+    <p>
+FSM mô tả các trạng thái, sự kiện và quá trình chuyển đổi giữa các trạng thái, nên FSM có thể được sử dụng để quản lý trạng thái của object, hoặc workflow.     </p>
+  </li>
+  <li>
+    <p>
+Ví dụ: Quản lý trạng thái đơn hàng, quản lý trạng thái của ticket, quản lý trạng thái của nhân vật trong game, …    </p>
+    <p>
+​
+Trong ví dụ trên, mỗi bài viết, chỉ có thể có một trạng thái tại một thời điểm, và từ 1 trạng thái chỉ có thể chuyển đổi qua một số trạng thái được quy định trước:    </p>
+    <ul>
+      <li>
+Từ <code class="inline">draft</code> chỉ có thể chuyển qua <code class="inline">in review</code>      </li>
+      <li>
+Từ <code class="inline">draft</code> không thể chuyển qua <code class="inline">published</code>      </li>
+    </ul>
+  </li>
+</ul>
+<h3>
+2.1 Khi không dùng FSM</h3>
+<p>
+Khi không sử dụng FSM thì code sẽ phải dùng tới rất nhiều điều kiện <code class="inline">if … else…</code> hoặc <code class="inline">case</code> (<code class="inline">switch ... case …</code> trong các ngôn ngữ khác)</p>
+<pre><code class="elixir">defmodule Post do
+    defstruct content: &quot;sample content&quot;, status: &quot;draft&quot;
+    
+    def all_status, do: [&quot;draft&quot;, &quot;in_review&quot;, &quot;published&quot;]
+    
+    def update_status(%{status: &quot;draft&quot;} = post, status) do
+        if status == &quot;in_review&quot; do
+            IO.put(&quot;Update post status to in_review&quot;)
+            Map.put(post, :status, &quot;in_review&quot;)
+        else
+            IO.put(&quot;Cannot update to #{status} from draft&quot;)
+            post
+        end
+    end
+    
+    def update_status(%{status: &quot;in_review&quot;} = post, status) do
+        case status do
+            &quot;draft&quot; -&gt;
+                IO.put(&quot;Reject the post&quot;)
+                Map.put(post, :status, &quot;draft&quot;)
+            
+            &quot;published&quot;
+                IO.put(&quot;Publish the post&quot;)
+                Map.put(post, :status, &quot;published&quot;)
+            true -&gt;
+                IO.put(&quot;Cannot update to #{status} from in_review&quot;)
+                post
+        end
+    end
+    
+    def update_status(%{status: &quot;published&quot;} = post, status) do
+        if status == &quot;draft&quot; do
+            IO.put(&quot;Unpublish the post&quot;)
+            Map.put(post, :status, &quot;draft&quot;)
+        else
+            IO.put(&quot;Cannot update to #{status} from published&quot;)
+            post
+        end
+    end
+end</code></pre>
+<p>
+<strong>Vấn đề: </strong></p>
+<ul>
+  <li>
+    <p>
+Code dài, khó mở rộng, dễ xảy ra lỗi    </p>
+  </li>
+  <li>
+    <p>
+Nếu thêm nhiều trạng thái khác cho post, phải update toàn bộ các hàm <code class="inline">update_status</code>    </p>
+  </li>
+  <li>
+    <p>
+Nếu có nhiều cách chuyển đổi giữa các trạng thái, phải update toàn bộ    </p>
+  </li>
+  <li>
+    <p>
+Làm sao biết từ trạng thái hiện tại có thể chuyển qua trạng thái nào khác?    </p>
+  </li>
+  <li>
+    <p>
+Làm sao đảm bảo luồng dữ liệu/ logic chạy đúng    </p>
+  </li>
+</ul>
+<h3>
+2.2 Sử dụng FSM</h3>
+<p>
+Trong ví dụ này sử dụng thư viện <a href="https://github.com/bluzky/as_fsm">as_fsm</a> hỗ trợ việc implement máy trạng thái trên ngôn ngữ elixir</p>
+<pre><code class="elixir">defmodule Post do
+  # define state, event and transition 
+  use AsFsm,
+    states: [:draft, :in_review, :published],
+    events: [
+      review: [
+        name:     &quot;In review&quot;,
+        from:     [:draft],
+        to:       :in_review,
+        on_transition: fn(post, params) -&gt; 
+            # thực ra việc gán trạng thái mới được tự động thực hiện bởi thư viện
+            # code này chỉ để mục đích cho dễ hiểu
+            post = Map.put(post, :status, :in_review)
+            {:ok, post}
+        end
+      ], 
+      approve: [
+        name:     &quot;Approve&quot;,
+        from:     [:in_review],
+        to:       :published
+        on_transition: fn(post, params) -&gt; 
+            post = Map.put(post, :status, :published)
+            {:ok, post}
+        end
+      ], 
+      reject: [
+        name:     &quot;Reject&quot;,
+        from:     [:in_review],
+        to:       :draft,
+        on_transition: fn(post, params) -&gt; 
+            post = Map.put(post, :status, :draft)
+            {:ok, post}
+        end
+      ],
+      unpublish: [
+        name:     &quot;Unpublish&quot;,
+        from:     [:published],
+        to:       :draft,
+        on_transition: fn(post, params) -&gt; 
+            post = Map.put(post, :status, :draft)
+            {:ok, post}
+        end
+      ]
+    ]
+    
+    defstruct content: &quot;sample content&quot;, status: &quot;draft&quot;
+end
+
+# gọi thực hiện 
+iex &gt; post = %Post{content: &quot;test content&quot;, status: &quot;draft&quot;}
+iex &gt; post = Post.review(post)
+# hoac
+iex &gt; post = Post.trigger(post, :review)</code></pre>
+<ul>
+  <li>
+Việc implement FSM cũng không quá phức tạp nhưng có thể tái sử dụng được nhiều lần  </li>
+  <li>
+Việc thêm mới các trạng thái (state) hoặc các bước chuyển tiếp (transition) không cần thay đổi quá nhiều code  </li>
+  <li>
+các luồng xử lý, event được thể hiện rõ trên cấu hình trạng thái  </li>
+</ul>
+<h2>
+3. Tham khảo</h2>
+<ul>
+  <li>
+    <p>
+Học thêm về <a href="https://brilliant.org/wiki/finite-state-machines/">FSM trên Brilliant</a>    </p>
+  </li>
+  <li>
+    <p>
+<a href="https://blog.4xxi.com/finite-state-machine-in-web-development-dc1dc6f67d7c">Finite-state machine in web-development</a>    </p>
+  </li>
+  <li>
+    <p>
+Thư viện FSM cho ecto model <a href="https://github.com/asiniy/ecto_state_machine">ecto_state_machine</a>    </p>
+  </li>
+  <li>
+    <p>
+Slide <a href="https://www.slideshare.net/EuropeanSharePointCommunity/th11-fitzmauricestate-machine-workflows?next_slideshow=1">State Machine Workflow: Esoteric Techniques &amp; Patterns</a>    </p>
+    <p>
+​    </p>
+  </li>
+</ul>
+</div>
+          </div>
+
+          <!-- Post meta -->
+          <div class="single-post-meta">
+            <div class="row justify-content-center">
+              <div class="col-md-6 text-center text-md-left">
+                <ul class="post-meta-tags list-unstyled list-inline">
+                  
+                  <li class="list-inline-item">
+                    <a href="/tagselixir">#elixir</a>
+                  </li>
+                  
+                  <li class="list-inline-item">
+                    <a href="/tagstech">#tech</a>
+                  </li>
+                  
+                </ul>
+              </div>
+              <div class="col-md-6 text-center text-md-right mt-4 mt-md-0">
+<ul
+  class="social-links has-bg-color list-unstyled list-inline"
+  style="line-height: 0"
+>
+  <li class="list-inline-item">
+    <!-- Sharingbutton Facebook -->
+    <a
+      class="resp-sharing-button__link d-block"
+      href="https://facebook.com/sharer/sharer.php?u=/blog/2018-04-13-finite-state-machine-web-development"
+      target="_blank"
+      rel="noopener"
+      aria-label=""
+    >
+      <div
+        class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"
+      >
+        <div
+          aria-hidden="true"
+          class="resp-sharing-button__icon resp-sharing-button__icon--solid"
+        >
+          <i data-eva="facebook-outline" class="text-dark"></i>
+        </div>
+      </div>
+    </a>
+  </li>
+
+  <li class="list-inline-item">
+    <!-- Sharingbutton Twitter -->
+    <a
+      class="resp-sharing-button__link d-block"
+      href="https://twitter.com/intent/tweet/?text=Finite state machine trong lập trình&amp;url=/blog/2018-04-13-finite-state-machine-web-development"
+      target="_blank"
+      rel="noopener"
+      aria-label=""
+    >
+      <div
+        class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small"
+      >
+        <div
+          aria-hidden="true"
+          class="resp-sharing-button__icon resp-sharing-button__icon--solid"
+        >
+          <i data-eva="twitter-outline" class="text-dark"></i>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
+</div>
+            </div>
+          </div>
+
+          <div class="single-post-author">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                  <a href="/author/dung-nguyen"
+                    ><img
+                      loading="lazy"
+                      class="img-fluid rounded-circle mr-0 mr-sm-4 mb-4"
+                      src="/images/author/dung-nguyen.jpg"
+                      alt="Dung Nguyen"
+                  /></a>
+                  <div class="media-body">
+                    <h4>
+                      <a href="/author/dung-nguyen" class="text-dark font-weight-700"
+                        >Dung Nguyen</a
+                      >
+                    </h4>
+                    <p class="font-primary"><p>
+Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
+</p>
+                    <ul
+                      class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
+                    >
+                      
+                      <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/in/dung-nguyen-tien-695ba135/">
+                          <i class="lab linkedin-outline"></i>
+                        </a>
+                      </li>
+                      
+                      <li class="list-inline-item">
+                        <a href="https://www.github.com/bluzky">
+                          <i class="lab github-outline"></i>
+                        </a>
+                      </li>
+                      
+                      <li class="list-inline-item">
+                        <a href="https://dev.to/bluzky">
+                          <i class="lab book-outline"></i>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DISQUS comment -->
+          
+          <div class="single-post-similer">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="row mt-3">
+                  <div id="disqus_thread" class="w-100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="single-post-similer">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <h3 class="text-dark font-weight-800 mb-4 pb-2">
+                      You May Also Like
+                    </h3>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+
+
+    </div>
+    <footer class="section-sm p-0">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-5">
+         
+      </div>
+      <div class="col-lg-12 text-center mb-3">
+        
+        <ul
+          class="social-links icon-box list-unstyled list-inline font-weight-500 mb-3"
+        >
+          
+        </ul>
+
+        <p class="mb-0 font-weight-500 copyright-text content">
+          <p>
+Blog by Dung Nguyen.Theme by <a href="https://gethugothemes.com/">Gethugothemes</a></p>
+
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <!-- JS Plugins + Main script -->
+
+
+<script data-turbolinks-suppress-warning src="/plugins/jquery/jquery.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/bootstrap/bootstrap.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/fuse.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/mark.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/search.js"></script>
+ 
+
+<script src="https://unpkg.com/eva-icons"></script>
+ 
+
+<script
+  data-turbolinks-suppress-warning
+  src="/js/script.js"
+></script>
+
+<!-- cookie -->
+
+
+<!-- DISQUS -->
+
+<script>
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+  */
+  (function () {
+    // DON'T EDIT BELOW THIS LINE
+    var d = document,
+      s = d.createElement("script");
+    s.src = "https://.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+
+  </body>
+</html>

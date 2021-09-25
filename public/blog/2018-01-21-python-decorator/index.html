@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  <meta charset="utf-8" />
+  <title>The Organge+</title>
+
+  <meta name="author" content="Dung Nguyen" />
+  <meta
+    name="description"
+    content=""
+  />
+
+  <!-- mobile responsive meta -->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=5"
+  />
+
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    href="/images/favicon.png"
+    type="image/x-icon"
+  />
+
+  <!-- CSS Plugins -->
+  <!-- plugins + stylesheet -->
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+ 
+<link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css" media="screen" />
+  
+<link rel="stylesheet" href="/css/style.css" media="screen" />
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" />
+ 
+
+
+  
+  <script type=application/javascript>
+   var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-40665301-3','auto'),ga('send','pageview'))</script>
+  
+
+</head>
+
+
+  <body>
+    <div style="min-height: calc(100vh - 65px)">
+      <div class="header-height-fix"></div>
+<header class="header-nav">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+          <a class="navbar-brand font-weight-bold mr-0" href="">
+            
+            <img
+              loading="lazy"
+              src="/images/logo.png"
+              alt="The Organge+"
+              height="35px"
+            />
+            
+          </a>
+
+          
+          <button
+            class="search-toggle d-inline-block d-lg-none ml-auto mr-3"
+            data-toggle="search"
+            aria-label="Search Toggle"
+          >
+            <i data-eva="search-outline"></i>
+          </button>
+          
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navHeader"
+            aria-controls="navHeader"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i data-eva="menu-outline"></i>
+            <i class="d-none" data-eva="close-outline"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navHeader">
+            <ul
+              class="navbar-nav mx-auto"
+            >
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/">Blog</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/tags">Tags</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/about">About me</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle d-inline-block "
+                  href="#"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-expanded="false"
+                  >More</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/categories"
+                      >Category</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/elements"
+                      >Elements</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/privacy"
+                      >Privacy</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/terms-conditions"
+                      >Terms & Conditions</a
+                    >
+                  </li></ul>
+              </li>
+              
+              
+              
+            </ul>
+
+            
+            <div class="navbar-right d-none d-lg-inline-block">
+              <ul class="social-links list-unstyled list-inline">
+                <li class="list-inline-item ml-4 d-none d-lg-inline-block">
+                  <button
+                    class="search-toggle"
+                    data-toggle="search"
+                    aria-label="Search Toggle"
+                  >
+                    <i data-eva="search-outline"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div class="search-block">
+  <div data-toggle="search-close">
+    <i data-eva="close-outline" class="text-primary"></i>
+  </div>
+  <form action="/search/">
+    <input
+      id="search-query"
+      name="s"
+      type="search"
+      placeholder="Type words &amp; hit enter"
+      class="text-center"
+      aria-label="search-query"
+    />
+  </form>
+</div>
+
+
+
+      
+
+      <!-- checking blog -->
+
+
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div
+        class=" col-lg-10 "
+      >
+        <div class="pr-lg-4">
+          <div class="single-post">
+            <div class="text-center mb-5">
+              <h1 class="mb-4 post-title">Python decorator là gì? dùng khi nào</h1>
+              <ul class="card-meta list-inline">
+                <li class="list-inline-item">
+                  <a href="#!" class="card-meta-author"><a href="/author/dung-nguyen" class="card-meta-author">
+                      <img
+                        loading="lazy"
+                        src="/images/author/dung-nguyen.jpg"
+                        alt="Dung Nguyen"
+                      />
+                      <span>Dung Nguyen</span>
+                    </a>
+                  </a>
+                </li>
+                <li class="list-inline-item">|</li>
+                <li class="list-inline-item">
+                  <span>2018-01-21</span>
+                </li>
+              </ul>
+            </div>
+
+            
+
+            <div class="content"><h2>
+1. Decorator là gì?</h2>
+<ul>
+  <li>
+Decorator là một mẫu thiết kế (Design pattern) thường được dùng để thay đổi hành vi, chức năng của hàm(function) hoặc lớp (class) mà không cần phải thay đổi code của hàm hoặc lớp.
+<a href="https://sourcemaking.com/design_patterns/decorator">Tham khảo</a>  </li>
+  <li>
+Python hỗ trợ cú pháp (syntax) cho Decorator từ version 2.4  </li>
+  <li>
+Về cơ bản Decorator giống như một lớp vỏ bọc (wrapper), nó thay đổi hành vi(behavior) của code trước và sau khi gọi hàm chính (hàm được decorate).  </li>
+</ul>
+<h2>
+2. Decorator được dùng làm gì?</h2>
+<p>
+Tại sao chúng ta cần Decorator?</p>
+<ul>
+  <li>
+Cho phép tái sử dụng code.  </li>
+  <li>
+Mở rộng các hàm, hoặc lớp mà không cần phải thay đổi code có sẵn –&gt; không cần test lại.  </li>
+</ul>
+<p>
+Ví dụ trong chương trình của bạn bạn cần kiểm tra quyền (permission) của người dùng trước khi thực hiện hàm. Bạn có thể phải thêm code vào tất cả các hàm đã có để kiểm tra. Thay vào đó với decorator, bạn chỉ cần định nghĩa một decorator và khai báo nó trước hàm.</p>
+<h2>
+3. Làm sao để định nghĩa một decorator?</h2>
+<ul>
+  <li>
+    <p>
+Decorator cũng là một hàm chỉ khác là hàm decorator nhận vào một hàm và kết quả trả về của nó là hàm sau khi được decorate.    </p>
+  </li>
+  <li>
+    <p>
+Như vậy để định nghĩa một decorator chỉ đơn giản là định nghĩa một hàm nhận vào một hàm khác và trả về một hàm mới có prototype tương đương với hàm nhận vào.    </p>
+  </li>
+  <li>
+    <p>
+<strong>Ví dụ 1:</strong>    </p>
+    <pre><code class="python">def ten_decorator(f):
+    def wrapper(ten):
+        chuoi_moi = &quot;Ten tui la %s&quot; % ten
+        return f(chuoi_moi)
+    return wrapper
+def xuat_ten( ten ):
+    print ten</code></pre>
+  </li>
+  <li>
+    <p>
+<strong>CHÚ Ý QUAN TRỌNG</strong>: hàm <code class="inline">wrapper</code> và hàm f phải có tham số phù hợp với nhau. Ví dụ như hàm f nhận vào chỉ 2 tham số thì hàm <code class="inline">decorator</code> không thể nhận vào 3 tham số hoặc 1 tham số.    </p>
+  </li>
+</ul>
+<h2>
+4. Sử dụng decorator như thế nào?</h2>
+<ul>
+  <li>
+Sử dụng Decorator hết sức đơn giản. Sử dụng decorator trong ví dụ trên cho hàm <code class="inline">xuat_ten</code> như sau:  </li>
+</ul>
+<pre><code class="python">@ten_decorator
+def xuat_ten(ten):
+    print ten</code></pre>
+<ul>
+  <li>
+Dùng dấu @ để thông báo đó là một decorator. Một hàm có thể dùng nhiều decorator cùng lúc:  </li>
+</ul>
+<pre><code class="python">@ten_decorator1
+@ten_decorator2
+@ten_decorator3
+def xuat_ten(ten):
+    print ten</code></pre>
+<h2>
+5. Decorator hoạt động như thế nào?</h2>
+<p>
+Như trong ví dụ ở trên:</p>
+<ul>
+  <li>
+    <p>
+<code class="inline">ten_decorator</code> nhận vào hàm f, sau đó bọc hàm f trong hàm <code class="inline">wrapper</code> của nó và trả về hàm <code class="inline">wrapper</code>. Hàm <code class="inline">wrapper</code> có nhiệm vụ gắn thêm thông tin vào tên rồi mới gọi thực hiện hàm f với chuỗi mới.    </p>
+  </li>
+  <li>
+    <p>
+Việc sử dụng:    </p>
+    <pre><code class="python">@ten_decorator
+def xuat_ten(ten):
+    print ten
+xuat_ten(&#39;coulson&#39;)</code></pre>
+    <p>
+Tương đương với:    </p>
+    <pre><code class="python">def xuat_ten(ten):
+print ten
+ham_xuat_ten_moi = ten_decorator(xuat_ten)
+ham_xuat_ten_moi(&#39;coulson&#39;)</code></pre>
+  </li>
+  <li>
+    <p>
+Rõ ràng với việc sử dụng cú pháp decorator thì code sẽ ngắn gọn và đơn giản hơn. Developer không phải gọi decorator mỗi lần sử dụng mà trình thông dịch sẽ làm việc đó.    </p>
+  </li>
+</ul>
+<p>
+<strong>Đối với hàm sử dụng nhiều decorator</strong></p>
+<p>
+<strong>Ví dụ 2</strong></p>
+<pre><code class="python">@ten_decorator1
+@ten_decorator2
+@ten_decorator3
+def xuat_ten(ten):
+    print ten</code></pre>
+<ul>
+  <li>
+Decorator nào càng ở trên, xa function thì sẽ bọc lớp ngoài Giống như khi bạn bọc trái xoài vào trong bị, rồi lại lấy cái bị khác để bọc bên ngoài nữa.  </li>
+  <li>
+Thứ tự thực thi code: - Code của decorator được thực thi ngay lúc file nguồn Python được load lên. Ngoại trừ code trong hàm wrapper của decorator trong cùng sẽ được thực thi lúc gọi hàm. - Decorator được gọi thực thi theo thứ tự từ trong (gần hàm nhất) ra ngoài.  </li>
+</ul>
+<h2>
+6 Truyền tham số cho decorator</h2>
+<blockquote>
+  <p>
+Ở trên, để cho đơn giản, và dễ hiểu thì decorator là một hàm có tham số là một hàm khác. Nhưng điều đó không bắt buộc, decorator cũng có thể là một hàm nhận vào tham số bất kỳ và trả về một hàm và hàm trả về này nhận vào tham số là một hàm khác.  </p>
+</blockquote>
+<p>
+<strong>Ví dụ 3</strong>: thêm chức danh vào chuỗi xuất ra mình có thể định nghĩa decorator như sau:</p>
+<pre><code class="python">def chuc_danh_decorator(ten_chuc_danh):
+    def ten_decorator(f):
+        def wrapper(ten):
+            chuoi_moi = &quot;Xin gioi thieu %s %s&quot; % (ten_chuc_danh, ten)
+            return f(chuoi_moi)
+        return wrapper
+    return ten_decorator
+
+@chuc_danh_decorator(&quot;Giao su&quot;)
+def gioi_thieu(ten):
+    print ten
+
+@chuc_danh_decorator(&quot;Tien si&quot;)
+def gioi_thieu_2(ten):
+    print ten
+
+gioi_thieu(&quot;Teo&quot;)
+gioi_thieu_2(&quot;Ti&quot;)
+
+&gt;&gt; Xin gioi thieu Giao su Teo
+&gt;&gt; Xin gioi thieu Tien si Ti</code></pre>
+<p>
+<strong>Sự khác biệt:</strong></p>
+<ul>
+  <li>
+Hàm decorator bây giờ không phải nhận vào tham số là một hàm mà có thể là tham số bất kỳ.  </li>
+  <li>
+Hàm trả về từ decorator nhận vào một hàm và chính nó mới trả về hàm wrapper  </li>
+  <li>
+Cách sử dụng decorator cũng khác một chút. Decorator được gọi chạy ( dùng dấu () ) và truyền vào tham số.  </li>
+</ul>
+<p>
+<strong>Nó chạy như thế nào:</strong></p>
+<ul>
+  <li>
+Trong ví dụ 3 decorator được sử dụng <code class="inline">@chuc_danh_decorator(&quot;Giao su&quot;)</code>. Chú ý dấu (…), decorator được gọi thực thi và nó trả về hàm <code class="inline">ten_decorator</code> và chính nó sẽ bọc hàm được decorate.  </li>
+  <li>
+Hàm <code class="inline">chuc_danh_decorator</code> chỉ có tác dụng là dùng để truyền tham số vào decorator.  </li>
+</ul>
+<h2>
+7. Debug hàm decorator.</h2>
+<p>
+Khi sử dụng decorator thì hàm thực sự được gọi là hàm wrapper của trả về từ decorator. Nên các thuộc tính <code class="inline">__name__</code>, <code class="inline">__doc__</code>, <code class="inline">__module__</code> không còn là của hàm được decorate nữa mà là của wrapper</p>
+<p>
+Sử dụng lại code trong ví dụ 1:</p>
+<pre><code class="python">print xuat_ten.__name__
+
+&gt;&gt; wrapper</code></pre>
+<p>
+<strong>Khắc phục:</strong> sử dụng thư viện <code class="inline">functools</code>
+<strong>Ví dụ 4:</strong></p>
+<pre><code class="python">from functools import wraps
+
+def ten_decorator(f):
+   @wraps(f)
+   def wrapper(ten):
+       chuoi_moi = &quot;Ten tui la %s&quot; % ten
+       return f(chuoi_moi)
+   return wrapper
+
+def xuat_ten( ten ):
+   print ten
+
+print xuat_ten.__name__
+
+&gt;&gt; xuat_ten</code></pre>
+<p>
+Decorator <code class="inline">wraps</code> sẽ lấy các thuộc tính <code class="inline">__name__</code>, <code class="inline">__doc__</code>, <code class="inline">__module__</code> của hàm được decorate và gán cho hàm wrapper nên khi lấy những thuộc tính này sẽ trả về thông tin đúng.</p>
+<h2>
+8. Khi nào nên sử dụng decorator?</h2>
+<p>
+Tham khảo trang <a href="https://wiki.python.org/moin/PythonDecoratorLibrary">Wiki</a> của Python</p>
+</div>
+          </div>
+
+          <!-- Post meta -->
+          <div class="single-post-meta">
+            <div class="row justify-content-center">
+              <div class="col-md-6 text-center text-md-left">
+                <ul class="post-meta-tags list-unstyled list-inline">
+                  
+                  <li class="list-inline-item">
+                    <a href="/tagspython">#python</a>
+                  </li>
+                  
+                  <li class="list-inline-item">
+                    <a href="/tagspython-basic">#python-basic</a>
+                  </li>
+                  
+                </ul>
+              </div>
+              <div class="col-md-6 text-center text-md-right mt-4 mt-md-0">
+<ul
+  class="social-links has-bg-color list-unstyled list-inline"
+  style="line-height: 0"
+>
+  <li class="list-inline-item">
+    <!-- Sharingbutton Facebook -->
+    <a
+      class="resp-sharing-button__link d-block"
+      href="https://facebook.com/sharer/sharer.php?u=/blog/2018-01-21-python-decorator"
+      target="_blank"
+      rel="noopener"
+      aria-label=""
+    >
+      <div
+        class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"
+      >
+        <div
+          aria-hidden="true"
+          class="resp-sharing-button__icon resp-sharing-button__icon--solid"
+        >
+          <i data-eva="facebook-outline" class="text-dark"></i>
+        </div>
+      </div>
+    </a>
+  </li>
+
+  <li class="list-inline-item">
+    <!-- Sharingbutton Twitter -->
+    <a
+      class="resp-sharing-button__link d-block"
+      href="https://twitter.com/intent/tweet/?text=Python decorator là gì? dùng khi nào&amp;url=/blog/2018-01-21-python-decorator"
+      target="_blank"
+      rel="noopener"
+      aria-label=""
+    >
+      <div
+        class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small"
+      >
+        <div
+          aria-hidden="true"
+          class="resp-sharing-button__icon resp-sharing-button__icon--solid"
+        >
+          <i data-eva="twitter-outline" class="text-dark"></i>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
+</div>
+            </div>
+          </div>
+
+          <div class="single-post-author">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                  <a href="/author/dung-nguyen"
+                    ><img
+                      loading="lazy"
+                      class="img-fluid rounded-circle mr-0 mr-sm-4 mb-4"
+                      src="/images/author/dung-nguyen.jpg"
+                      alt="Dung Nguyen"
+                  /></a>
+                  <div class="media-body">
+                    <h4>
+                      <a href="/author/dung-nguyen" class="text-dark font-weight-700"
+                        >Dung Nguyen</a
+                      >
+                    </h4>
+                    <p class="font-primary"><p>
+Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
+</p>
+                    <ul
+                      class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
+                    >
+                      
+                      <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/in/dung-nguyen-tien-695ba135/">
+                          <i class="lab linkedin-outline"></i>
+                        </a>
+                      </li>
+                      
+                      <li class="list-inline-item">
+                        <a href="https://www.github.com/bluzky">
+                          <i class="lab github-outline"></i>
+                        </a>
+                      </li>
+                      
+                      <li class="list-inline-item">
+                        <a href="https://dev.to/bluzky">
+                          <i class="lab book-outline"></i>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DISQUS comment -->
+          
+          <div class="single-post-similer">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="row mt-3">
+                  <div id="disqus_thread" class="w-100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="single-post-similer">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <h3 class="text-dark font-weight-800 mb-4 pb-2">
+                      You May Also Like
+                    </h3>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+
+
+    </div>
+    <footer class="section-sm p-0">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-5">
+         
+      </div>
+      <div class="col-lg-12 text-center mb-3">
+        
+        <ul
+          class="social-links icon-box list-unstyled list-inline font-weight-500 mb-3"
+        >
+          
+        </ul>
+
+        <p class="mb-0 font-weight-500 copyright-text content">
+          <p>
+Blog by Dung Nguyen.Theme by <a href="https://gethugothemes.com/">Gethugothemes</a></p>
+
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <!-- JS Plugins + Main script -->
+
+
+<script data-turbolinks-suppress-warning src="/plugins/jquery/jquery.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/bootstrap/bootstrap.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/fuse.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/mark.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/search.js"></script>
+ 
+
+<script src="https://unpkg.com/eva-icons"></script>
+ 
+
+<script
+  data-turbolinks-suppress-warning
+  src="/js/script.js"
+></script>
+
+<!-- cookie -->
+
+
+<!-- DISQUS -->
+
+<script>
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+  */
+  (function () {
+    // DON'T EDIT BELOW THIS LINE
+    var d = document,
+      s = d.createElement("script");
+    s.src = "https://.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+
+  </body>
+</html>

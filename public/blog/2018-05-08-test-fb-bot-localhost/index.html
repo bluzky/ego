@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  <meta charset="utf-8" />
+  <title>The Organge+</title>
+
+  <meta name="author" content="Dung Nguyen" />
+  <meta
+    name="description"
+    content=""
+  />
+
+  <!-- mobile responsive meta -->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=5"
+  />
+
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    href="/images/favicon.png"
+    type="image/x-icon"
+  />
+
+  <!-- CSS Plugins -->
+  <!-- plugins + stylesheet -->
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+ 
+<link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css" media="screen" />
+  
+<link rel="stylesheet" href="/css/style.css" media="screen" />
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" />
+ 
+
+
+  
+  <script type=application/javascript>
+   var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-40665301-3','auto'),ga('send','pageview'))</script>
+  
+
+</head>
+
+
+  <body>
+    <div style="min-height: calc(100vh - 65px)">
+      <div class="header-height-fix"></div>
+<header class="header-nav">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+          <a class="navbar-brand font-weight-bold mr-0" href="">
+            
+            <img
+              loading="lazy"
+              src="/images/logo.png"
+              alt="The Organge+"
+              height="35px"
+            />
+            
+          </a>
+
+          
+          <button
+            class="search-toggle d-inline-block d-lg-none ml-auto mr-3"
+            data-toggle="search"
+            aria-label="Search Toggle"
+          >
+            <i data-eva="search-outline"></i>
+          </button>
+          
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navHeader"
+            aria-controls="navHeader"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i data-eva="menu-outline"></i>
+            <i class="d-none" data-eva="close-outline"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navHeader">
+            <ul
+              class="navbar-nav mx-auto"
+            >
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/">Blog</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/tags">Tags</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/about">About me</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle d-inline-block "
+                  href="#"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-expanded="false"
+                  >More</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/categories"
+                      >Category</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/elements"
+                      >Elements</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/privacy"
+                      >Privacy</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/terms-conditions"
+                      >Terms & Conditions</a
+                    >
+                  </li></ul>
+              </li>
+              
+              
+              
+            </ul>
+
+            
+            <div class="navbar-right d-none d-lg-inline-block">
+              <ul class="social-links list-unstyled list-inline">
+                <li class="list-inline-item ml-4 d-none d-lg-inline-block">
+                  <button
+                    class="search-toggle"
+                    data-toggle="search"
+                    aria-label="Search Toggle"
+                  >
+                    <i data-eva="search-outline"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div class="search-block">
+  <div data-toggle="search-close">
+    <i data-eva="close-outline" class="text-primary"></i>
+  </div>
+  <form action="/search/">
+    <input
+      id="search-query"
+      name="s"
+      type="search"
+      placeholder="Type words &amp; hit enter"
+      class="text-center"
+      aria-label="search-query"
+    />
+  </form>
+</div>
+
+
+
+      
+
+      <!-- checking blog -->
+
+
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div
+        class=" col-lg-10 "
+      >
+        <div class="pr-lg-4">
+          <div class="single-post">
+            <div class="text-center mb-5">
+              <h1 class="mb-4 post-title">Cấu hình kết nối HTTPS để test Facebook app trên localhost</h1>
+              <ul class="card-meta list-inline">
+                <li class="list-inline-item">
+                  <a href="#!" class="card-meta-author"><a href="/author/dung-nguyen" class="card-meta-author">
+                      <img
+                        loading="lazy"
+                        src="/images/author/dung-nguyen.jpg"
+                        alt="Dung Nguyen"
+                      />
+                      <span>Dung Nguyen</span>
+                    </a>
+                  </a>
+                </li>
+                <li class="list-inline-item">|</li>
+                <li class="list-inline-item">
+                  <span>2018-05-08T20:56:31+07:00</span>
+                </li>
+              </ul>
+            </div>
+
+            
+
+            <div class="content"><p>
+Trong quá trình tìm hiểu về lập trình chat bot sử dụng các API của Facebook Messenger thì việt test chat bot trên localhost là một trở ngại.  </p>
+<p>
+Khi tạo một subscription cho app chat bot, Facebook sẽ gửi một request đến server mà chat bot đang chạy để xác nhận có đúng là chat bot của bạn không. Cũng như sau đó, tất cả những tin nhắn của nguời dùng sẽ đuợc gửi tới chat bot thông qua <code class="inline">callback url</code>. Và vấn đề là khi dev và test trên localhost thì làm sao để server local của bạn có thể nhận và phản hồi request của Facebook.</p>
+<p>
+Một giải pháp đơn giản là sử dụng dịch vụ của <a href="https://ngrok.com/">https://ngrok.com</a> để chuyển các request về máy localhost. <code class="inline">ngrok.com</code> cung cấp gói miễn phí test vô tư, hơn nữa <code class="inline">ngrok</code> hỗ trợ cả <code class="inline">https</code>.
+Điều này rất quan trọng, bởi vì từ 2018 thì tất cả các <code class="inline">callback url</code> khi đăng ký ứng dụng trên Facebook Developer đều phải sử dụng kết nối <code class="inline">TLS</code>.</p>
+<h2>
+Buớc 1: Đăng ký tài khoản</h2>
+<ul>
+  <li>
+Đăng ký tại <a href="https://ngrok.com/pricing">https://ngrok.com/pricing</a>
+Vì là tài khoản miễn phí nên sẽ có một số giới hạn:  </li>
+  <li>
+40 kết nối / phút  </li>
+  <li>
+Mỗi lần chỉ chạy được 1 <code class="inline">ngrok</code> process  </li>
+</ul>
+<h2>
+Bước 2: Download ngrok và cấu hình API key</h2>
+<ul>
+  <li>
+Download tại <a href="https://ngrok.com/download">https://ngrok.com/download</a>  </li>
+  <li>
+Giải nén file vừa Download bạn sẽ có file <code class="inline">ngrok</code>  </li>
+  <li>
+Thêm token vào ngrok config bằng lệnh  </li>
+</ul>
+<pre><code class="shell">$ ./ngrok authtoken &lt;YOUR_AUTH_TOKEN&gt;</code></pre>
+<p>
+Bạn có thể copy command trên từ <a href="https://dashboard.ngrok.com/get-started">Dashboard</a> trong phần <code class="inline">Connect your account</code></p>
+<h2>
+Bước 3: Khởi chạy ngrok process</h2>
+<p>
+<strong>Chạy lệnh</strong></p>
+<pre><code class="shell">./ngrok http &lt;PORT&gt;</code></pre>
+<p>
+trong đó <code class="inline">PORT</code> là port number của server localhost mà bạn muốn test.</p>
+<p>
+<strong>Ouput mẫu của <code class="inline">ngrok</code></strong></p>
+<p>
+  <img src="/img/ngrok.png" alt="ngrok" />
+</p>
+<p>
+<code class="inline">ngrok</code> cung cấp cho bạn 2 public URL để kết nối vào server localhost. 1 URL với giao thức <code class="inline">http</code> và 1 URL với <code class="inline">https</code>.
+Ngon không nào!</p>
+<p>
+Bây giờ bạn đã có thể cấu hình Facebook để test trên localhost rồi.</p>
+<p>
+<strong>Lưu ý:</strong>  <br />
+Khi sử dụng tài khoản Free, mỗi lần chạy <code class="inline">ngrok</code> thì forwarding URL sẽ khác nhau nên sẽ phải sửa lại sửa lại cấu hình app trên Facebook Developer. Đồ chùa thường là đồ chua mà. Khi sử dụng gói có phí bạn có thể cấu hình forwarding URL theo ý mình. Mình nghèo nên chịu khó thôi.</p>
+</div>
+          </div>
+
+          <!-- Post meta -->
+          <div class="single-post-meta">
+            <div class="row justify-content-center">
+              <div class="col-md-6 text-center text-md-left">
+                <ul class="post-meta-tags list-unstyled list-inline">
+                  
+                  <li class="list-inline-item">
+                    <a href="/tagstech">#tech</a>
+                  </li>
+                  
+                  <li class="list-inline-item">
+                    <a href="/tagstil">#til</a>
+                  </li>
+                  
+                </ul>
+              </div>
+              <div class="col-md-6 text-center text-md-right mt-4 mt-md-0">
+<ul
+  class="social-links has-bg-color list-unstyled list-inline"
+  style="line-height: 0"
+>
+  <li class="list-inline-item">
+    <!-- Sharingbutton Facebook -->
+    <a
+      class="resp-sharing-button__link d-block"
+      href="https://facebook.com/sharer/sharer.php?u=/blog/2018-05-08-test-fb-bot-localhost"
+      target="_blank"
+      rel="noopener"
+      aria-label=""
+    >
+      <div
+        class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"
+      >
+        <div
+          aria-hidden="true"
+          class="resp-sharing-button__icon resp-sharing-button__icon--solid"
+        >
+          <i data-eva="facebook-outline" class="text-dark"></i>
+        </div>
+      </div>
+    </a>
+  </li>
+
+  <li class="list-inline-item">
+    <!-- Sharingbutton Twitter -->
+    <a
+      class="resp-sharing-button__link d-block"
+      href="https://twitter.com/intent/tweet/?text=Cấu hình kết nối HTTPS để test Facebook app trên localhost&amp;url=/blog/2018-05-08-test-fb-bot-localhost"
+      target="_blank"
+      rel="noopener"
+      aria-label=""
+    >
+      <div
+        class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small"
+      >
+        <div
+          aria-hidden="true"
+          class="resp-sharing-button__icon resp-sharing-button__icon--solid"
+        >
+          <i data-eva="twitter-outline" class="text-dark"></i>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
+</div>
+            </div>
+          </div>
+
+          <div class="single-post-author">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                  <a href="/author/dung-nguyen"
+                    ><img
+                      loading="lazy"
+                      class="img-fluid rounded-circle mr-0 mr-sm-4 mb-4"
+                      src="/images/author/dung-nguyen.jpg"
+                      alt="Dung Nguyen"
+                  /></a>
+                  <div class="media-body">
+                    <h4>
+                      <a href="/author/dung-nguyen" class="text-dark font-weight-700"
+                        >Dung Nguyen</a
+                      >
+                    </h4>
+                    <p class="font-primary"><p>
+Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
+</p>
+                    <ul
+                      class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
+                    >
+                      
+                      <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/in/dung-nguyen-tien-695ba135/">
+                          <i class="lab linkedin-outline"></i>
+                        </a>
+                      </li>
+                      
+                      <li class="list-inline-item">
+                        <a href="https://www.github.com/bluzky">
+                          <i class="lab github-outline"></i>
+                        </a>
+                      </li>
+                      
+                      <li class="list-inline-item">
+                        <a href="https://dev.to/bluzky">
+                          <i class="lab book-outline"></i>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DISQUS comment -->
+          
+          <div class="single-post-similer">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="row mt-3">
+                  <div id="disqus_thread" class="w-100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="single-post-similer">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <h3 class="text-dark font-weight-800 mb-4 pb-2">
+                      You May Also Like
+                    </h3>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+
+
+    </div>
+    <footer class="section-sm p-0">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-5">
+         
+      </div>
+      <div class="col-lg-12 text-center mb-3">
+        
+        <ul
+          class="social-links icon-box list-unstyled list-inline font-weight-500 mb-3"
+        >
+          
+        </ul>
+
+        <p class="mb-0 font-weight-500 copyright-text content">
+          <p>
+Blog by Dung Nguyen.Theme by <a href="https://gethugothemes.com/">Gethugothemes</a></p>
+
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <!-- JS Plugins + Main script -->
+
+
+<script data-turbolinks-suppress-warning src="/plugins/jquery/jquery.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/bootstrap/bootstrap.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/fuse.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/mark.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/search.js"></script>
+ 
+
+<script src="https://unpkg.com/eva-icons"></script>
+ 
+
+<script
+  data-turbolinks-suppress-warning
+  src="/js/script.js"
+></script>
+
+<!-- cookie -->
+
+
+<!-- DISQUS -->
+
+<script>
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+  */
+  (function () {
+    // DON'T EDIT BELOW THIS LINE
+    var d = document,
+      s = d.createElement("script");
+    s.src = "https://.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+
+  </body>
+</html>

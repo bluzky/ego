@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  <meta charset="utf-8" />
+  <title>The Organge+</title>
+
+  <meta name="author" content="Dung Nguyen" />
+  <meta
+    name="description"
+    content=""
+  />
+
+  <!-- mobile responsive meta -->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=5"
+  />
+
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    href="/images/favicon.png"
+    type="image/x-icon"
+  />
+
+  <!-- CSS Plugins -->
+  <!-- plugins + stylesheet -->
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+ 
+<link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css" media="screen" />
+  
+<link rel="stylesheet" href="/css/style.css" media="screen" />
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" />
+ 
+
+
+  
+  <script type=application/javascript>
+   var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-40665301-3','auto'),ga('send','pageview'))</script>
+  
+
+</head>
+
+
+  <body>
+    <div style="min-height: calc(100vh - 65px)">
+      <div class="header-height-fix"></div>
+<header class="header-nav">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+          <a class="navbar-brand font-weight-bold mr-0" href="">
+            
+            <img
+              loading="lazy"
+              src="/images/logo.png"
+              alt="The Organge+"
+              height="35px"
+            />
+            
+          </a>
+
+          
+          <button
+            class="search-toggle d-inline-block d-lg-none ml-auto mr-3"
+            data-toggle="search"
+            aria-label="Search Toggle"
+          >
+            <i data-eva="search-outline"></i>
+          </button>
+          
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navHeader"
+            aria-controls="navHeader"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i data-eva="menu-outline"></i>
+            <i class="d-none" data-eva="close-outline"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navHeader">
+            <ul
+              class="navbar-nav mx-auto"
+            >
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/">Blog</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/tags">Tags</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="/about">About me</a>
+              </li>
+              
+              
+              
+              
+              
+
+              
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle d-inline-block "
+                  href="#"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-expanded="false"
+                  >More</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/categories"
+                      >Category</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/elements"
+                      >Elements</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/privacy"
+                      >Privacy</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item "
+                      href="/terms-conditions"
+                      >Terms & Conditions</a
+                    >
+                  </li></ul>
+              </li>
+              
+              
+              
+            </ul>
+
+            
+            <div class="navbar-right d-none d-lg-inline-block">
+              <ul class="social-links list-unstyled list-inline">
+                <li class="list-inline-item ml-4 d-none d-lg-inline-block">
+                  <button
+                    class="search-toggle"
+                    data-toggle="search"
+                    aria-label="Search Toggle"
+                  >
+                    <i data-eva="search-outline"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div class="search-block">
+  <div data-toggle="search-close">
+    <i data-eva="close-outline" class="text-primary"></i>
+  </div>
+  <form action="/search/">
+    <input
+      id="search-query"
+      name="s"
+      type="search"
+      placeholder="Type words &amp; hit enter"
+      class="text-center"
+      aria-label="search-query"
+    />
+  </form>
+</div>
+
+
+
+      
+
+      <!-- checking blog -->
+
+
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div
+        class=" col-lg-10 "
+      >
+        <div class="pr-lg-4">
+          <div class="single-post">
+            <div class="text-center mb-5">
+              <h1 class="mb-4 post-title">Sử dụng ETS để tăng tốc ứng dụng với Phoenix</h1>
+              <ul class="card-meta list-inline">
+                <li class="list-inline-item">
+                  <a href="#!" class="card-meta-author"><a href="/author/dung-nguyen" class="card-meta-author">
+                      <img
+                        loading="lazy"
+                        src="/images/author/dung-nguyen.jpg"
+                        alt="Dung Nguyen"
+                      />
+                      <span>Dung Nguyen</span>
+                    </a>
+                  </a>
+                </li>
+                <li class="list-inline-item">|</li>
+                <li class="list-inline-item">
+                  <span>2018-05-18T01:05:50+07:00</span>
+                </li>
+              </ul>
+            </div>
+
+            
+
+            <div class="content"><blockquote>
+  <p>
+Bài viết này sẽ hướng dẫn các bạn sử dụng ETS như là bộ nhớ cache để tăng tốc các ứng dụng web Phoenix  </p>
+</blockquote>
+<p>
+Dành cho các bạn chưa biết: </p>
+<ul>
+  <li>
+ETS (Erlang Term Storage) là cơ sở dữ liệu dạng <code class="inline">key-value</code> lưu trữ trên RAM, tương tự như <strong>Memcache</strong> và <strong>Redis</strong>, với ưu điểm là tốc độ truy xuất cực nhanh. Đọc thêm về <a href="http://bluzky.github.io/post/2018-05-12-erlang-term-storage/">ETS</a>  </li>
+  <li>
+Cache là việc lưu lại các kết quả xử lý của request vào bộ nhớ và trả về cho các request sau mà không cần phải tính toán lại -&gt; giảm response time.  </li>
+</ul>
+<h3>
+1. Setup project</h3>
+<ul>
+  <li>
+    <p>
+Tạo 1 project mới    </p>
+    <pre><code class="shell">mix phx.new phoenix_cache
+mix deps.get</code></pre>
+  </li>
+  <li>
+    <p>
+Thêm chức năng tạo/xoá/sửa bài viết    </p>
+    <pre><code class="shell">mix phx.gen.html Posts Post posts title:string summary:text content:text
+mix ecto.create
+mix ecto.migrate</code></pre>
+  </li>
+  <li>
+    <p>
+Vào <a href="http://0.0.0.0:4000/posts">http://0.0.0.0:4000/posts</a> để xem chức năng bài viết. Thêm vài bài viết để có dữ liệu test
+      <img src="/img/ets-phoenix.png" alt="img" />
+    </p>
+  </li>
+</ul>
+<h3>
+2. Tạo một module để quản lý cache</h3>
+<p>
+Do table trong ETS sẽ bị huỷ khi process khởi tạo table kết thúc, nên cần phải có 1 process luôn luôn chạy để table không bị xoá. Sử dụng <code class="inline">GenServer</code> để quản lý Cache là tiện nhất vì nó được cung cấp sẵn bởi Elixir.
+Đọc thêm về <a href="https://hexdocs.pm/elixir/GenServer.html">GenServer</a></p>
+<h4>
+2.1 Tạo module</h4>
+<p>
+Tạo một file mới <code class="inline">phoenix_cache/lib/phoenix_cache/bucket.ex</code></p>
+<pre><code class="elixir">defmodule PhoenixCache.Bucket do
+  use GenServer
+  alias :ets, as: Ets
+
+  # thời gian sống của 1 entry mặc định là 6 phút
+  @expired_after 6 * 60
+
+  def start_link(args \\ []) do
+    GenServer.start_link(__MODULE__, args, name: __MODULE__)
+  end
+end</code></pre>
+<h4>
+2.2 Khởi tạo cache table khi bắt đầu chạy <code class="inline">GenServer</code></h4>
+<pre><code class="elixir">def init(state) do
+    Ets.new(:simple_cache, [:set, :protected, :named_table, read_concurrency: true])
+    {:ok, state}
+end</code></pre>
+<p>
+<strong>Module cache sẽ hỗ trợ 3 thao tác:</strong></p>
+<ul>
+  <li>
+<code class="inline">set</code>: lưu data vào bộ nhớ cache  </li>
+  <li>
+<code class="inline">get</code>: lấy data từ bộ nhớ cache  </li>
+  <li>
+<code class="inline">delete</code>: xoá data khỏi cache (cái này có vẻ không cần lắm thì phải)  </li>
+</ul>
+<h4>
+2.3 Thêm data vào cache</h4>
+<pre><code class="elixir">
+  def set(key, value) do
+    GenServer.cast(__MODULE__, {:set, key, value})
+  end
+
+  @doc &quot;&quot;&quot;
+  Default TTL 
+  &quot;&quot;&quot;
+  def handle_cast({:set, key, val}, state) do
+    expired_at =
+      NaiveDateTime.utc_now()
+      |&gt; NaiveDateTime.add(@expired_after, :second)
+
+    Ets.insert(:simple_cache, {key, val, expired_at})
+    {:noreply, state}
+  end</code></pre>
+<p>
+Ở đây chúng ta sẽ tạo tính toán thời điểm expire/hết hạn của giá trị cache, tính từ thời điểm hiện tại, sử dụng giá trị <code class="inline">TTL</code>(thời gian sống) mặc định là 6phút. Bạn có thể cấu hình lưu <code class="inline">TTL</code> mặc định vào config hoặc biến môi trường. Mình lưu vào thuộc tính module cho tiện.</p>
+<h4>
+2.4 Thêm data vào cache và thiết lập thời gian sống của data</h4>
+<p>
+Để có thể thoải mái thiết lập <code class="inline">TTL</code>, ta thêm 1 hàm cho phép truyền vào tham số <code class="inline">TTL</code></p>
+<pre><code class="elixir">@doc &quot;&quot;&quot;
+  Custom TTL for cache entry
+  ttl: Time to live in second
+  &quot;&quot;&quot;
+  def set(key, value, ttl) do
+    GenServer.cast(__MODULE__, {:set, key, value, ttl})
+  end
+  
+  @doc &quot;&quot;&quot;
+  Custom TTL
+  &quot;&quot;&quot;
+  def handle_cast({:set, key, val, ttl}, state) do
+    inserted_at =
+      NaiveDateTime.utc_now()
+      |&gt; NaiveDateTime.add(ttl, :second)
+
+    Ets.insert(:simple_cache, {key, val, inserted_at})
+    {:noreply, state}
+  end</code></pre>
+<p>
+Cũng tương tự như trên nhưng hàm <code class="inline">set</code> sẽ nhận thêm tham số thứ 3 là <code class="inline">TTL</code> thay vì xài giá trị mặc định.</p>
+<h4>
+2.5 Truy xuất dữ liệu từ cache</h4>
+<p>
+Có vào thì phải có lấy ra chứ nhỉ, bây giờ ta sẽ thêm code để truy xuất data từ cache.</p>
+<pre><code class="elixir">  def get(key) do
+    # lấy giá trị đầu tiên tìm đuợc
+    rs = Ets.lookup(:simple_cache, key) |&gt; List.first()
+
+        # Nếu không tìm thấy thì trả về lỗi
+    if rs == nil do
+      {:error, :not_found}
+    else
+      expired_at = elem(rs, 2)
+            
+            # So sánh thời điểm hết hạn với hiện tại, nếu hết hạn thì trả về lỗi
+      cond do
+        NaiveDateTime.diff(NaiveDateTime.utc_now(), expired_at) &gt; 0 -&gt;
+          {:error, :expired}
+
+        true -&gt;
+          {:ok, elem(rs, 1)}
+      end
+    end
+  end</code></pre>
+<p>
+<strong>Note</strong>: Nhờ feedback của bác @HQC, chỗ này mình đọc trực tiếp từ table, thay vì dùng <code class="inline">GenServer.call</code> như trước vì khi send request vào GenServer thì code sẽ được chạy <code class="inline">sync</code>/đồng bộ. Do vậy sẽ tạo nên ngẽn cổ chai. Mình sửa lại ở phần tạo table thêm <code class="inline">read_concurrency: true</code> và đưa phần code query dữ liệu ra ngoài GenServer</p>
+<h4>
+2.6 Xoá dữ liệu khỏi cache</h4>
+<pre><code class="elixir">  def delete(key) do
+    GenServer.cast(__MODULE__, {:delete, key})
+  end
+  
+  def handle_cast({:delete, key}, state) do
+    Ets.delete(:simple_cache, key)
+    {:noreply, state}
+  end</code></pre>
+<h4>
+2.7 Module hoàn chỉnh</h4>
+<pre><code class="elixir">defmodule PhoenixCache.Bucket do
+  use GenServer
+  alias :ets, as: Ets
+
+  @expired_after 6 * 60
+
+  def start_link(args \\ []) do
+    GenServer.start_link(__MODULE__, args, name: __MODULE__)
+  end
+
+  def set(key, value) do
+    GenServer.cast(__MODULE__, {:set, key, value})
+  end
+
+  @doc &quot;&quot;&quot;
+  Custom TTL for cache entry
+  ttl: Time to live in second
+  &quot;&quot;&quot;
+  def set(key, value, ttl) do
+    GenServer.cast(__MODULE__, {:set, key, value, ttl})
+  end
+
+  def get(key) do
+    rs = Ets.lookup(:simple_cache, key) |&gt; List.first()
+
+    if rs == nil do
+      {:error, :not_found}
+    else
+      expired_at = elem(rs, 2)
+
+      cond do
+        NaiveDateTime.diff(NaiveDateTime.utc_now(), expired_at) &gt; 0 -&gt;
+          {:error, :expired}
+
+        true -&gt;
+          {:ok, elem(rs, 1)}
+      end
+    end
+  end
+
+  def delete(key) do
+    GenServer.cast(__MODULE__, {:delete, key})
+  end
+
+  # Server callbacks
+  # Server (callbacks)
+
+  @impl true
+  def init(state) do
+    Ets.new(:simple_cache, [:set, :protected, :named_table, read_concurrency: true])
+    {:ok, state}
+  end
+
+  @doc &quot;&quot;&quot;
+  Default TTL 
+  &quot;&quot;&quot;
+  def handle_cast({:set, key, val}, state) do
+    expired_at =
+      NaiveDateTime.utc_now()
+      |&gt; NaiveDateTime.add(@expired_after, :second)
+
+    Ets.insert(:simple_cache, {key, val, expired_at})
+    {:noreply, state}
+  end
+
+  @doc &quot;&quot;&quot;
+  Custom TTL
+  &quot;&quot;&quot;
+  def handle_cast({:set, key, val, ttl}, state) do
+    inserted_at =
+      NaiveDateTime.utc_now()
+      |&gt; NaiveDateTime.add(ttl, :second)
+
+    Ets.insert(:simple_cache, {key, val, inserted_at})
+    {:noreply, state}
+  end
+
+  @impl true
+  def handle_cast({:delete, key}, state) do
+    Ets.delete(:simple_cache, key)
+    {:noreply, state}
+  end
+end
+</code></pre>
+<h3>
+3. Setup cache</h3>
+<p>
+Ta đã tạo xong module cache rồi, nhưng làm sao để cache tự động chạy khi chạy server? </p>
+<p>
+Thêm worker vào file <code class="inline">phoenix_cache/lib/phoenix_cache/application.ex</code></p>
+<pre><code class="elixir">children = [
+      ...
+      worker(PhoenixCache.Bucket, [])
+    ]</code></pre>
+<p>
+Khi <code class="inline">Supervisor</code> khởi chạy, nó sẽ start các <code class="inline">children</code> và quản lý chúng. Để hiểu rõ hơn, đọc thêm tại <a href="https://hexdocs.pm/elixir/Supervisor.html">https://hexdocs.pm/elixir/Supervisor.html</a></p>
+<h3>
+4. Xài cache</h3>
+<p>
+Olala, ta đã tạo module cache và thiết lập để chạy cùng với server, bây giờ tới lúc xài nó rồi.</p>
+<p>
+Thử dùng cache cho chức năng xem bài viết:</p>
+<pre><code class="elixir">def show(conn, %{&quot;id&quot; =&gt; id}) do
+    post =
+      # lấy nội dung post từ cache
+      case PhoenixCache.Bucket.get(&quot;posts-#{id}&quot;) do
+        # Nếu có ròi thì khỏi cần đọc DB
+        {:ok, post} -&gt;
+          IO.puts(&quot;HIT&quot;)
+          post
+
+        {:error, _} -&gt;
+          IO.puts(&quot;MISS&quot;)
+          # Chưa cache thì đọc từ DB
+          post = Posts.get_post!(id)
+
+          # cache bài viết 60s
+          PhoenixCache.Bucket.set(&quot;posts-#{id}&quot;, post, 60)
+          post
+      end
+
+    render(conn, &quot;show.html&quot;, post: post)
+  end
+</code></pre>
+<p>
+Kết quả request:</p>
+<pre><code class="shell">[info] GET /posts/1
+MISS
+...
+[info] GET /posts/1
+HIT
+...</code></pre>
+<p>
+Lần request đầu tiên, bài viết chưa được cache nên phải truy xuất database và cache lại, lần thứ 2 thì đã có trong cache nên không cần phải đọc từ database nữa.</p>
+<p>
+Ở ví dụ này có thể bạn sẽ chưa thấy sự khác biệt lắm về tốc độ response, nhưng nếu như thay vì load 1 bài viết bằng việc xử lý thống kê dữ liệu thì sự khác biệt sẽ rất lớn.</p>
+<h3>
+5. Plug cache</h3>
+<p>
+Nếu cứ mỗi chức năng đều phải thêm code để kiểm tra cache  thì sẽ lặp lại rất nhiều. Để phát huy cái sự lười biếng thì ta sẽ tạo một plug đơn giản để khỏi phải code nhiều lần.</p>
+<pre><code class="elixir">defmodule PhoenixCache.Plug.Cache do
+  import Plug.Conn
+
+  # 6 minute
+  @default_ttl 6 * 60
+
+  def init(ttl \\ nil), do: ttl
+
+  def call(conn, ttl \\ nil) do
+    ttl = ttl || @default_ttl
+
+    # Chỉ cache với GET request
+    if conn.method == &quot;GET&quot; do
+      # tạo key từ request path và query param, thông thường
+      # thì cùng path và cùng param thì kết quả là giống nhau
+      key = &quot;#{conn.request_path}-#{conn.query_string}&quot;
+
+      case PhoenixCache.Bucket.get(key) do
+        {:ok, body} -&gt;
+          IO.puts(&quot;PLUG HIT&quot;)
+          
+          # nếu đã cache thì trả về ngay
+          conn
+          |&gt; send_resp(200, body)
+          |&gt; halt
+
+        _ -&gt;
+          IO.puts(&quot;PLUG MISS&quot;)
+          # nếu chưa cache thì xử lý như bình thường
+          conn
+          |&gt; assign(:ttl, ttl)
+          |&gt; register_before_send(&amp;cache_before_send/1) # gọi hàm này trước khi trả về
+      end
+    else
+      conn
+    end
+  end
+
+  def cache_before_send(conn) do
+    # nếu request đuợc xử lý thành công thì cache
+    if conn.status == 200 do
+      key = &quot;#{conn.request_path}-#{conn.query_string}&quot;
+      data = conn.resp_body
+      PhoenixCache.Bucket.set(key, data, conn.assigns[:ttl] || @default_ttl)
+      conn
+      
+    else
+      # không thì kệ chúng mày
+      conn
+    end
+  end
+end
+</code></pre>
+<p>
+Đây chỉ là một plug đơn giản, bạn có thể viết lại theo nhu cầu.</p>
+<p>
+Sử dụng Plug: <code class="inline">plug(PhoenixCache.Plug.Cache, TTL )</code></p>
+<pre><code class="elixir">pipeline :browser do
+    ...
+    plug(PhoenixCache.Plug.Cache, 100) # cache 100s
+ end</code></pre>
+<h3>
+6. Kết luận</h3>
+<p>
+Vậy là bạn đã có thể sử dụng ETS như là bộ nhớ cache cho ứng dụng Phoenix của mình mà không cần phải cài thêm phần mềm/dịch vụ khác.</p>
+<p>
+Hi vọng sẽ giúp ích cho các bạn</p>
+<p>
+Source code project <a href="https://github.com/bluzky/phoenix_ets_cache_example">https://github.com/bluzky/phoenix_ets_cache_example</a></p>
+</div>
+          </div>
+
+          <!-- Post meta -->
+          <div class="single-post-meta">
+            <div class="row justify-content-center">
+              <div class="col-md-6 text-center text-md-left">
+                <ul class="post-meta-tags list-unstyled list-inline">
+                  
+                  <li class="list-inline-item">
+                    <a href="/tagselixir">#elixir</a>
+                  </li>
+                  
+                  <li class="list-inline-item">
+                    <a href="/tagsphoenix">#phoenix</a>
+                  </li>
+                  
+                  <li class="list-inline-item">
+                    <a href="/tagsets">#ETS</a>
+                  </li>
+                  
+                </ul>
+              </div>
+              <div class="col-md-6 text-center text-md-right mt-4 mt-md-0">
+<ul
+  class="social-links has-bg-color list-unstyled list-inline"
+  style="line-height: 0"
+>
+  <li class="list-inline-item">
+    <!-- Sharingbutton Facebook -->
+    <a
+      class="resp-sharing-button__link d-block"
+      href="https://facebook.com/sharer/sharer.php?u=/blog/2018-05-17-ets-as-cache-phoenix"
+      target="_blank"
+      rel="noopener"
+      aria-label=""
+    >
+      <div
+        class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"
+      >
+        <div
+          aria-hidden="true"
+          class="resp-sharing-button__icon resp-sharing-button__icon--solid"
+        >
+          <i data-eva="facebook-outline" class="text-dark"></i>
+        </div>
+      </div>
+    </a>
+  </li>
+
+  <li class="list-inline-item">
+    <!-- Sharingbutton Twitter -->
+    <a
+      class="resp-sharing-button__link d-block"
+      href="https://twitter.com/intent/tweet/?text=Sử dụng ETS để tăng tốc ứng dụng với Phoenix&amp;url=/blog/2018-05-17-ets-as-cache-phoenix"
+      target="_blank"
+      rel="noopener"
+      aria-label=""
+    >
+      <div
+        class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small"
+      >
+        <div
+          aria-hidden="true"
+          class="resp-sharing-button__icon resp-sharing-button__icon--solid"
+        >
+          <i data-eva="twitter-outline" class="text-dark"></i>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
+</div>
+            </div>
+          </div>
+
+          <div class="single-post-author">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                  <a href="/author/dung-nguyen"
+                    ><img
+                      loading="lazy"
+                      class="img-fluid rounded-circle mr-0 mr-sm-4 mb-4"
+                      src="/images/author/dung-nguyen.jpg"
+                      alt="Dung Nguyen"
+                  /></a>
+                  <div class="media-body">
+                    <h4>
+                      <a href="/author/dung-nguyen" class="text-dark font-weight-700"
+                        >Dung Nguyen</a
+                      >
+                    </h4>
+                    <p class="font-primary"><p>
+Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
+</p>
+                    <ul
+                      class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
+                    >
+                      
+                      <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/in/dung-nguyen-tien-695ba135/">
+                          <i class="lab linkedin-outline"></i>
+                        </a>
+                      </li>
+                      
+                      <li class="list-inline-item">
+                        <a href="https://www.github.com/bluzky">
+                          <i class="lab github-outline"></i>
+                        </a>
+                      </li>
+                      
+                      <li class="list-inline-item">
+                        <a href="https://dev.to/bluzky">
+                          <i class="lab book-outline"></i>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DISQUS comment -->
+          
+          <div class="single-post-similer">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="row mt-3">
+                  <div id="disqus_thread" class="w-100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="single-post-similer">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <h3 class="text-dark font-weight-800 mb-4 pb-2">
+                      You May Also Like
+                    </h3>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+
+
+    </div>
+    <footer class="section-sm p-0">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-5">
+         
+      </div>
+      <div class="col-lg-12 text-center mb-3">
+        
+        <ul
+          class="social-links icon-box list-unstyled list-inline font-weight-500 mb-3"
+        >
+          
+        </ul>
+
+        <p class="mb-0 font-weight-500 copyright-text content">
+          <p>
+Blog by Dung Nguyen.Theme by <a href="https://gethugothemes.com/">Gethugothemes</a></p>
+
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <!-- JS Plugins + Main script -->
+
+
+<script data-turbolinks-suppress-warning src="/plugins/jquery/jquery.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/bootstrap/bootstrap.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/fuse.min.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/mark.js"></script>
+ 
+
+<script data-turbolinks-suppress-warning src="/plugins/search/search.js"></script>
+ 
+
+<script src="https://unpkg.com/eva-icons"></script>
+ 
+
+<script
+  data-turbolinks-suppress-warning
+  src="/js/script.js"
+></script>
+
+<!-- cookie -->
+
+
+<!-- DISQUS -->
+
+<script>
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+  */
+  (function () {
+    // DON'T EDIT BELOW THIS LINE
+    var d = document,
+      s = d.createElement("script");
+    s.src = "https://.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+
+  </body>
+</html>
