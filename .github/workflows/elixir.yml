@@ -17,7 +17,7 @@ jobs:
     - name: Set up Elixir
       uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
       with:
-        elixir-version: '1.10.3' # Define the elixir version [required]
+        elixir-version: '1.12' # Define the elixir version [required]
         otp-version: '22.3' # Define the OTP version [required]
     - name: Restore dependencies cache
       uses: actions/cache@v2
@@ -31,7 +31,8 @@ jobs:
       run: mix escript.build
     - name: Generate sample file
       run: ./ego build
-    - uses: peaceiris/actions-gh-pages@v3
+    - name: Deploy to target directory
+      uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+        destination_dir: public
