@@ -8,12 +8,14 @@ defmodule Ego.Renderer do
   require Logger
 
   def render_index(context, document, assigns \\ %{}) do
+    path = UrlHelpers.paginate_path(:page, nil, context.assigns["__current_page"])
+
     context
     |> Context.put_type(:page)
     |> Context.put_var(:document, document)
     |> Context.put_var(:section, "index")
-    |> Context.put_var(:current_url, UrlHelpers.url(:page, nil, assigns[:page]))
-    |> Context.put_var(:current_path, UrlHelpers.path(:page, nil, assigns[:page]))
+    |> Context.put_var(:current_url, UrlHelpers.url(path))
+    |> Context.put_var(:current_path, path)
     |> render("index", assigns)
   end
 
@@ -32,8 +34,8 @@ defmodule Ego.Renderer do
     |> Context.put_type(doc.type)
     |> Context.put_var(:documents, documents)
     |> Context.put_var(:section, doc.type)
-    |> Context.put_var(:current_url, UrlHelpers.url(doc.type, nil, assigns[:page]))
-    |> Context.put_var(:current_path, UrlHelpers.path(doc.type, nil, assigns[:page]))
+    |> Context.put_var(:current_url, UrlHelpers.paginate_url(doc.type, nil, assigns[:page]))
+    |> Context.put_var(:current_path, UrlHelpers.paginate_path(doc.type, nil, assigns[:page]))
     |> render("list", assigns)
   end
 
@@ -52,8 +54,8 @@ defmodule Ego.Renderer do
     |> Context.put_type(term.type)
     |> Context.put_var(:terms, terms)
     |> Context.put_var(:section, term.type)
-    |> Context.put_var(:current_url, UrlHelpers.url(term.type, nil, assigns[:page]))
-    |> Context.put_var(:current_path, UrlHelpers.path(term.type, nil, assigns[:page]))
+    |> Context.put_var(:current_url, UrlHelpers.paginate_url(term.type, nil, assigns[:page]))
+    |> Context.put_var(:current_path, UrlHelpers.paginate_path(term.type, nil, assigns[:page]))
     |> render(["terms", "list"], assigns)
   end
 
@@ -62,8 +64,14 @@ defmodule Ego.Renderer do
     |> Context.put_type(term.type)
     |> Context.put_var(:term, term)
     |> Context.put_var(:section, term.type)
-    |> Context.put_var(:current_url, UrlHelpers.url(term.type, term.slug, assigns[:page]))
-    |> Context.put_var(:current_path, UrlHelpers.path(term.type, term.slug, assigns[:page]))
+    |> Context.put_var(
+      :current_url,
+      UrlHelpers.paginate_url(term.type, term.slug, assigns[:page])
+    )
+    |> Context.put_var(
+      :current_path,
+      UrlHelpers.paginate_path(term.type, term.slug, assigns[:page])
+    )
     |> render(["term", "list"], assigns)
   end
 
@@ -77,13 +85,14 @@ defmodule Ego.Renderer do
     ]
 
     context = Context.merge_assign(context, Map.new(assigns))
+    solid_context = %Solid.Context{vars: context.assigns}
 
     try do
       {content, solid_context} =
         TemplateResolver.read_template_file(template, fs)
         |> Solid.parse!(opts)
         |> Map.get(:parsed_template)
-        |> Solid.render(%Solid.Context{vars: context.assigns}, opts)
+        |> Solid.render(solid_context, opts)
 
       TemplateResolver.reset(fs)
       context = Context.put_var(context, :inner_content, to_string(content))
@@ -94,12 +103,12 @@ defmodule Ego.Renderer do
         |> Solid.render(context.assigns, opts)
         |> to_string
 
-      {:ok, content, nil}
+      {:ok, content, solid_context}
     rescue
       err in TemplateError ->
         Logger.error(err.message)
 
-        {:error, err.message}
+        {:error, err.message, solid_context}
     after
       TemplateResolver.reset(fs)
     end

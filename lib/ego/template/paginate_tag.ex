@@ -48,7 +48,7 @@ defmodule Ego.Template.PaginateTag do
         if paginate.next.is_link do
           %{
             context
-            | vars: Map.put(context.vars, "_next_page", paginate.next.page)
+            | vars: Map.put(context.vars, "__next_page", paginate.next.page)
           }
         else
           context
@@ -60,7 +60,9 @@ defmodule Ego.Template.PaginateTag do
     end
   end
 
+  # Build paginator
   defp build_paginator(list, current_page, page_size, current_url) do
+    # we should remove trailing `/page/xxx` from the url
     item_count = length(list)
     page_count = round(Float.ceil(item_count / page_size))
     current_offset = (current_page - 1) * page_size
@@ -100,14 +102,21 @@ defmodule Ego.Template.PaginateTag do
   end
 
   defp paginate_url(current_url, page) do
-    regex = ~r/(.+\/page\/)\d+/
+    regex = ~r/(.*\/)page\/\d+/
 
-    case Regex.run(regex, current_url) do
-      [_, base] ->
-        Path.join(base, to_string(base))
+    url =
+      case Regex.run(regex, current_url) do
+        [_, base] ->
+          base
 
-      _ ->
-        Path.join(current_url, "/page/#{page}")
+        _ ->
+          current_url
+      end
+
+    if page > 1 do
+      Path.join(url, "/page/#{page}")
+    else
+      url
     end
   end
 end
