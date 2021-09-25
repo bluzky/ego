@@ -15,6 +15,8 @@ defmodule Ego.CLI do
 
   def process_args({["build" | _], _}) do
     Ego.Server.Application.start(:normal, [])
+    filters = Application.get_env(:solid, :custom_filters)
+    filters.md5("ego")
     Ego.build()
   end
 

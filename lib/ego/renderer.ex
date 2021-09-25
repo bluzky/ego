@@ -76,6 +76,7 @@ defmodule Ego.Renderer do
   end
 
   def render(context, template, assigns \\ %{}) do
+    Logger.info("Rendering \"#{context.assigns["current_path"]}\"")
     lookup_dir = context.lookup_dir || FileSystem.lookup_dir(context.type) || ["."]
     fs = TemplateResolver.new(lookup_dir)
 
