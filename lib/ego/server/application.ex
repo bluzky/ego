@@ -9,10 +9,7 @@ defmodule Ego.Server.Application do
     load_config(opts[:server])
 
     children = [
-      {Cachex, name: :ego},
-      {Ego.Server.AssetsWatcher, dirs: Ego.FileSystem.assets_paths(), name: :asset_watcher},
-      {Ego.Server.ContentWatcher,
-       dirs: [Ego.FileSystem.source_path("/content")], name: :content_watcher}
+      {Cachex, name: :ego}
     ]
 
     children =
@@ -20,7 +17,10 @@ defmodule Ego.Server.Application do
         children ++
           [
             {Phoenix.PubSub, name: Ego.Server.PubSub},
-            Ego.Server.Endpoint
+            Ego.Server.Endpoint,
+            {Ego.Server.AssetsWatcher, dirs: Ego.FileSystem.assets_paths(), name: :asset_watcher},
+            {Ego.Server.ContentWatcher,
+             dirs: [Ego.FileSystem.source_path("/content")], name: :content_watcher}
           ]
       else
         children
