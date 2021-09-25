@@ -9,24 +9,8 @@ config :ego, Ego.Server.Endpoint,
   pubsub_server: Ego.Server.PubSub,
   live_view: [signing_salt: "Lq9NSY1g"],
   http: [port: 4000],
-  debug_errors: true,
-  code_reloader: true,
   check_origin: false,
-  server: true,
-  watchers: [
-    # node: [
-    #   "node_modules/webpack/bin/webpack.js",
-    #   "--mode",
-    #   "development",
-    #   "--watch-stdin",
-    #   cd: Path.expand("../assets", __DIR__)
-    # ]
-    sass: {
-      DartSass,
-      :install_and_run,
-      [:default, ~w(--embed-source-map --source-map-urls=absolute --watch)]
-    }
-  ]
+  server: true
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -53,3 +37,5 @@ config :dart_sass,
   default: [
     args: ~w(priv/assets/scss/style.scss public/css/style.css)
   ]
+
+import_config "#{Mix.env()}.exs"

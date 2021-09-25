@@ -5,27 +5,28 @@ defmodule Ego.Server.Application do
   use Application
   require Logger
 
-  def start(_type, _args) do
+  def start(_type, opts \\ []) do
     load_config()
 
-    children = [
-      # Start the PubSub system
-      {Phoenix.PubSub, name: Ego.Server.PubSub},
-      # Start the Endpoint (http/https)
-      Ego.Server.Endpoint,
-      {Cachex, name: :ego}
-      # Start a worker by calling: Ego.Server.Worker.start_link(arg)
-      # {Ego.Server.Worker, arg}
-    ]
+    children = [{Cachex, name: :ego}]
+
+    children =
+      if opts[:server] do
+        children ++
+          [
+            {Phoenix.PubSub, name: Ego.Server.PubSub},
+            Ego.Server.Endpoint
+          ]
+      else
+        children
+      end
 
     opts = [strategy: :one_for_one, name: Ego.Server.Supervisor]
     rs = Supervisor.start_link(children, opts)
 
-    Task.start(fn ->
-      "content"
-      |> Ego.FileSystem.source_path()
-      |> Ego.Store.init()
-    end)
+    "content"
+    |> Ego.FileSystem.source_path()
+    |> Ego.Store.init()
 
     rs
   end
