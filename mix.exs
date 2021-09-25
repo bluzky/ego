@@ -13,14 +13,15 @@ defmodule Ego.MixProject do
         "esbuild default --minify",
         "sass default --no-source-map --style=compressed",
         "phx.digest"
-      ]
+      ],
+      escript: [main_module: Ego.CLI]
     ]
   end
 
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      mod: {Ego.Server.Application, []},
+      # mod: {Ego.Server.Application, []},
       extra_applications: [:logger]
     ]
   end
@@ -42,8 +43,8 @@ defmodule Ego.MixProject do
       {:makeup, "~> 1.0"},
       {:ex_doc, "~> 0.21", only: :docs},
       {:makeup_elixir, ">= 0.0.0"},
-      {:floki, "~> 0.31"},
-      {:dart_sass, "~> 0.1", runtime: Mix.env() == :dev}
+      {:floki, "~> 0.31"}
+      # {:dart_sass, "~> 0.1", runtime: Mix.env() == :dev}
     ]
   end
 end
