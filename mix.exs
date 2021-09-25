@@ -43,7 +43,8 @@ defmodule Ego.MixProject do
       {:makeup, "~> 1.0"},
       {:ex_doc, "~> 0.21", only: :docs},
       {:makeup_elixir, ">= 0.0.0"},
-      {:floki, "~> 0.31"}
+      {:floki, "~> 0.31"},
+      {:file_system, "~> 0.2"}
       # {:dart_sass, "~> 0.1", runtime: Mix.env() == :dev}
     ]
   end
