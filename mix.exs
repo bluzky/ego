@@ -37,7 +37,7 @@ defmodule Ego.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:cachex, "~> 3.4"},
       {:slugify, "~> 1.3"},
-      {:solid, path: "../solid"},
+      {:solid, github: "bluzky/solid", branch: "ego"},
       {:yaml_elixir, "~> 2.8"},
       {:earmark, ">= 1.4.15"},
       {:makeup, "~> 1.0"},
