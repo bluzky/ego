@@ -5,7 +5,6 @@ defmodule Ego.CLI do
 
   def parse_args(args) do
     {params, command, _} = OptionParser.parse(args, switches: [help: :boolean])
-
     {command, params}
   end
 
@@ -15,6 +14,7 @@ defmodule Ego.CLI do
 
   def process_args({["build" | _], _}) do
     Ego.Server.Application.start(:normal, [])
+
     filters = Application.get_env(:solid, :custom_filters)
     filters.md5("ego")
     Ego.build()

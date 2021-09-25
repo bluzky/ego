@@ -28,7 +28,7 @@ config :ego, :config,
   source_dir: "priv/",
   output_dir: "public/",
   server: true,
-  base_url: "/ego/"
+  base_url: "/"
 
 config :solid, :custom_filters, Ego.Template.Filters
 

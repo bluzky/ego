@@ -1,17 +1,21 @@
 defmodule Ego.FileSystem do
   def lookup_dir(:page) do
-    source_path([
+    paths = [
       "layouts/",
       "layouts/_default"
-    ])
+    ]
+
+    source_path(paths) ++ theme_path(paths)
   end
 
   def lookup_dir(type) do
-    source_path([
+    paths = [
       "layouts/#{type}",
       "layouts/_default",
       "layouts/"
-    ])
+    ]
+
+    source_path(paths) ++ theme_path(paths)
   end
 
   def source_path(paths) when is_list(paths) do
@@ -24,6 +28,33 @@ defmodule Ego.FileSystem do
 
   def source_path(path) do
     List.first(source_path([path]))
+  end
+
+  def theme_path(paths) when is_list(paths) do
+    theme =
+      Application.get_env(:ego, :site_config, %{})
+      |> Map.get("theme", "default")
+
+    theme_dir = source_path("/themes/#{theme}")
+
+    Enum.map(paths, fn path ->
+      Path.join(theme_dir, path)
+    end)
+  end
+
+  def theme_path(path) do
+    theme_path([path])
+    |> List.first()
+  end
+
+  def assets_paths() do
+    paths =
+      source_path(["assets/", "static/"]) ++
+        theme_path(["assets/", "static/"])
+
+    Enum.filter(paths, fn path ->
+      File.exists?(path)
+    end)
   end
 
   def output_dir() do

@@ -151,9 +151,9 @@ defmodule Ego.Builder do
   end
 
   # copy assets from directory `assets/` and `static/` to output directory
-  defp copy_assets() do
+  def copy_assets() do
     Ego.FileSystem.copy_all(
-      FileSystem.source_path(["assets/", "static/"]),
+      FileSystem.assets_paths(),
       FileSystem.output_path("")
     )
   end
