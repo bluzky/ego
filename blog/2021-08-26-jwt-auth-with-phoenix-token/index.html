@@ -263,72 +263,48 @@
             </div>
             
 
-            <div class="content"><p>
-In this post, you’ll learn how to implement JWT-based authentication using <code class="inline">Phoenix.Token</code>.</p>
-<p>
-In our previous projects, we use <code class="inline">guardian</code> library to implement JWT authentication. <code class="inline">Guardian</code> is a great library which provides lots of method and tool to work with authentication. But sometime we don’t need them all. And recently, I found <code class="inline">Phoenix.Token</code> module shipped with <code class="inline">phoenix</code> framework that helps me to implement JWT alternative token authentication with few lines of code.</p>
-<p>
-Let’s do it.</p>
-<h2>
-1. Implement Token module</h2>
-<p>
-Here is the document of <a href="https://hexdocs.pm/phoenix/Phoenix.Token.html">Phoenix.Token</a>.</p>
-<p>
-We just wrap <code class="inline">sign</code> and <code class="inline">verify</code> function from <code class="inline">Phoenix.Token</code> to create and check for valid token.</p>
-<pre><code class="elixir">defmodule MyApp.Token do
-  @signing_salt &quot;octosell_api&quot;
+            <div class="content"><p>In this post, you'll learn how to implement JWT-based authentication using <code class="inline">Phoenix.Token</code>.</p><p>In our previous projects, we use <code class="inline">guardian</code> library to implement JWT authentication. <code class="inline">Guardian</code> is a great library which provides lots of method and tool to work with authentication. But sometime we don't need them all. And recently, I found <code class="inline">Phoenix.Token</code> module shipped with <code class="inline">phoenix</code> framework that helps me to implement JWT alternative token authentication with few lines of code.</p><p>Let's do it.</p><h2 id="1-implement-token-module">1. Implement Token module</h2><p>Here is the document of <a href="https://hexdocs.pm/phoenix/Phoenix.Token.html">Phoenix.Token</a>.</p><p>We just wrap <code class="inline">sign</code> and <code class="inline">verify</code> function from <code class="inline">Phoenix.Token</code> to create and check for valid token.</p><pre><code class="elixir">defmodule MyApp.Token do
+  @signing_salt "octosell_api"
   # token for 2 week
   @token_age_secs 14 * 86_400
 
-  @doc &quot;&quot;&quot;
+  @doc """
   Create token for given data
-  &quot;&quot;&quot;
+  """
   @spec sign(map()) :: binary()
   def sign(data) do
     Phoenix.Token.sign(MyAppWeb.Endpoint, @signing_salt, data)
   end
 
 
-  @doc &quot;&quot;&quot;
+  @doc """
   Verify given token by:
   - Verify token signature
   - Verify expiration time
-  &quot;&quot;&quot;
+  """
   @spec verify(String.t()) :: {:ok, any()} | {:error, :unauthenticated}
   def verify(token) do
     case Phoenix.Token.verify(MyAppWeb.Endpoint, @signing_salt, token,
              max_age: @token_age_secs
            ) do
-      {:ok, data} -&gt; {:ok, data}
-      _error -&gt; {:error, :unauthenticated}
+      {:ok, data} -> {:ok, data}
+      _error -> {:error, :unauthenticated}
     end
   end
-end</code></pre>
-<p>
-Here we wrap in <code class="inline">Token</code> module to simplify API. We pass <code class="inline">MyAppWeb.Endpoint</code> here to use secret key that config for endpoint. You can pass secret key from config as firt argument.</p>
-<h2>
-2. Generate token</h2>
-<pre><code class="elixir">defmodule MyAppWeb.SessionController do
+end</code></pre><p>Here we wrap in <code class="inline">Token</code> module to simplify API. We pass <code class="inline">MyAppWeb.Endpoint</code> here to use secret key that config for endpoint. You can pass secret key from config as firt argument.</p><h2 id="2-generate-token">2. Generate token</h2><pre><code class="elixir">defmodule MyAppWeb.SessionController do
   ...
-  def new(conn, %{&quot;email&quot; =&gt; email, &quot;password&quot; =&gt; password}) do
-    with {:ok, user} &lt;- Account.authenticate_user(email, password),
-         {:ok, token} &lt;- MyApp.Token.sign(%{user_id: user.id}) do
+  def new(conn, %{"email" => email, "password" => password}) do
+    with {:ok, user} <- Account.authenticate_user(email, password),
+         {:ok, token} <- MyApp.Token.sign(%{user_id: user.id}) do
       ...
       # return token to client
     else
-      _ -&gt;
-        {:error, gettext(&quot;email or password is in correct&quot;)}
+      _ ->
+        {:error, gettext("email or password is in correct")}
     end
   end
 end
-</code></pre>
-<p>
-Here we create Phoenix token with a map <code class="inline">%{user_id: user.id}</code> and return to client.</p>
-<h2>
-3. Build Plug to verify token</h2>
-<p>
-Client sent token to server via header <code class="inline">Authorization</code>. We extract token and call <code class="inline">Token.verify</code> to check if token is valid and not expired.</p>
-<pre><code class="elixir">defmodule MyApp.Plug.Authenticate do
+</code></pre><p>Here we create Phoenix token with a map <code class="inline">%{user_id: user.id}</code> and return to client.</p><h2 id="3-build-plug-to-verify-token">3. Build Plug to verify token</h2><p>Client sent token to server via header <code class="inline">Authorization</code>. We extract token and call <code class="inline">Token.verify</code> to check if token is valid and not expired.</p><pre><code class="elixir">defmodule MyApp.Plug.Authenticate do
   import Plug.Conn
   require Logger
 
@@ -337,61 +313,43 @@ Client sent token to server via header <code class="inline">Authorization</code>
   end
 
   def call(conn, _opts) do
-    with [&quot;Bearer &quot; &lt;&gt; token] &lt;- get_req_header(conn, &quot;authorization&quot;),
-         {:ok, data} &lt;- MyApp.Token.verify(token) do
+    with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
+         {:ok, data} <- MyApp.Token.verify(token) do
       conn
-      |&gt; assign(:current_user, MyApp.Account.get_user(data.user_id))
+      |> assign(:current_user, MyApp.Account.get_user(data.user_id))
     else
-      error -&gt;
+      error ->
         conn
-        |&gt; put_status(:unauthorized)
-        |&gt; Phoenix.Controller.put_view(MyAppWeb.ErrorView)
-        |&gt; Phoenix.Controller.render(:&quot;401&quot;)
-        |&gt; halt()
+        |> put_status(:unauthorized)
+        |> Phoenix.Controller.put_view(MyAppWeb.ErrorView)
+        |> Phoenix.Controller.render(:"401")
+        |> halt()
     end
   end
-end</code></pre>
-<h2>
-4. Add plug to router</h2>
-<pre><code class="elixir">defmodule MyAppWeb.Router do
+end</code></pre><h2 id="4-add-plug-to-router">4. Add plug to router</h2><pre><code class="elixir">defmodule MyAppWeb.Router do
   use MyAppWeb, :router
 
   pipeline :api do
-    plug :accepts, [&quot;json&quot;]
+    plug :accepts, ["json"]
   end
 
   pipeline :authenticated do
     plug MyAppWeb.Plug.Authenticate
   end
 
-  scope &quot;/api&quot;, MyAppWeb do
+  scope "/api", MyAppWeb do
     pipe_through :api
-    post &quot;/auth/login&quot;, SessionController, :new
+    post "/auth/login", SessionController, :new
   end
 
-  scope &quot;/api&quot;, MyAppWeb do
+  scope "/api", MyAppWeb do
     pipe_through [:api, :authenticated]
-    delete &quot;/auth/logout&quot;, SessionController, :delete
+    delete "/auth/logout", SessionController, :delete
     ...
   end
 end
-</code></pre>
-<p>
-We have done with it. Just a few line of code</p>
-<h2>
-Conclusion</h2>
-<p>
-Implement token authentication with <code class="inline">Phoenix</code> is so easy and you may not need Guardian for your application.
-In this post I only implement simple version of token authentication. In real application, you should store token signature in database or redis and</p>
-<ul>
-  <li>
-In <code class="inline">Authenticate</code> plug check if the token exists in database.  </li>
-  <li>
-When user logout, clear it from database/redis to make sure that token cannot be used to make request anymore.  </li>
-</ul>
-<p>
-Thanks for reading.</p>
-</div>
+</code></pre><p>We have done with it. Just a few line of code</p><h2 id="conclusion">Conclusion</h2><p>Implement token authentication with <code class="inline">Phoenix</code> is so easy and you may not need Guardian for your application.
+In this post I only implement simple version of token authentication. In real application, you should store token signature in database or redis and</p><ul><li>In <code class="inline">Authenticate</code> plug check if the token exists in database.</li><li>When user logout, clear it from database/redis to make sure that token cannot be used to make request anymore.</li></ul><p>Thanks for reading.</p></div>
           </div>
 
           <!-- Post meta -->
@@ -484,9 +442,7 @@ Thanks for reading.</p>
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

@@ -263,101 +263,16 @@
             </div>
             
 
-            <div class="content"><p>
-If you are new to Elixir, Pattern Matching may be something strange to you. When you get familiar with it, you will know how powerful it is. And I’m sure that you will definite love it. Pattern matching is used everywhere in your elixlir code . And I would bring it to other language that I use ( if I can :D)</p>
-<p>
-But it’s not so hard. </p>
-<h2>
-What does Pattern Matching do?</h2>
-<p>
-Give you a variable/value, you might want</p>
-<ol>
-  <li>
-Check if data type is match your expected data type  </li>
-  <li>
-Check if structure of data match your expected data structure  </li>
-  <li>
-Assign matching part of data to a variable  </li>
-</ol>
-<p>
-And pattern matching do all these thing for you. Just look at some example. </p>
-<p>
-When you try these example, it will raise exception if data doesn’t match against the pattern. In real Elixir app, you won’t use it this way, check <strong>Where it is used</strong> at the end of this article</p>
-<h2>
-Pattern matching with Map/Struct</h2>
-<p>
-<strong>1. Check if this data is a map</strong></p>
-<pre><code class="elixir">%{} = params</code></pre>
-<p>
-<strong>2. Check if data is a map and has key <code class="inline">email</code> and email value is <code class="inline">zoo@example.com</code></strong></p>
-<pre><code class="elixir">%{&quot;email&quot; =&gt; &quot;zoo@example.com&quot;} = params</code></pre>
-<p>
-<strong>3. Check if data is a map and has key <code class="inline">email</code>, if matchs pattern, assign value of key <code class="inline">email</code> to variable <code class="inline">my_email</code></strong></p>
-<pre><code class="elixir">%{&quot;email&quot; =&gt; my_email} = params</code></pre>
-<p>
-<strong>4. Check if data is a map and has key <code class="inline">email</code>, I don’t want to extract value</strong></p>
-<p>
-use <code class="inline">_</code> to ignore value</p>
-<pre><code class="elixir">%{&quot;email&quot; =&gt; _} = params</code></pre>
-<p>
-<strong>5. Pattern matching nested map</strong></p>
-<pre><code class="elixir">%{&quot;address&quot; =&gt; %{&quot;city&quot; =&gt; city}} = params</code></pre>
-<p>
-<strong>6. Check if data is type struct <code class="inline">User</code></strong></p>
-<pre><code class="elixir">%User{} = params</code></pre>
-<blockquote>
-  <p>
-The rest is same with map. Struct is basically a map with atom key.  </p>
-</blockquote>
-<h2>
-Pattern matching with List</h2>
-<p>
-<strong>1. Check if data is empty lis</strong></p>
-<pre><code class="elixir">[] = params</code></pre>
-<p>
-<strong>2. Check if data is a list and not empty</strong></p>
-<pre><code class="elixir">[_|_] = params</code></pre>
-<p>
-<strong>3. Check if data is exact list</strong></p>
-<pre><code class="elixir">[1, 2] = params</code></pre>
-<p>
-<strong>4. Check if data is list and extract first element and remaining</strong></p>
-<pre><code class="elixir">[first_element | remaining] = params</code></pre>
-<h2>
-Pattern matching with Tuple</h2>
-<p>
-You don’t have much pattern to match against tuple</p>
-<p>
-<strong>1. Check if data is tuple of 2 elements</strong></p>
-<pre><code class="elixir">{_, _} = params</code></pre>
-<p>
-<strong>2. Check if data is tuple and has specific value</strong></p>
-<pre><code class="elixir">{:ok, data} = result
-# you use this most of time</code></pre>
-<h2>
-Where to use pattern matching</h2>
-<p>
-<strong>1. case clause</strong></p>
-<pre><code class="elixir">case user do
-    %User{is_active: true} -&gt; &quot;Log you in&quot;
-    %User{is_active: false} -&gt; &quot;Check your email&quot;
-    _others -&gt; &quot;Not a user&quot;
-end</code></pre>
-<p>
-<strong>2. with clause</strong></p>
-<pre><code class="elixir">with {:ok, user} &lt;- create_user(params) do
+            <div class="content"><p>If you are new to Elixir, Pattern Matching may be something strange to you. When you get familiar with it, you will know how powerful it is. And I'm sure that you will definite love it. Pattern matching is used everywhere in your elixlir code . And I would bring it to other language that I use ( if I can :D)</p><p>But it's not so hard. </p><h2 id="what-does-pattern-matching-do">What does Pattern Matching do?</h2><p>Give you a variable/value, you might want</p><ol><li>Check if data type is match your expected data type</li><li>Check if structure of data match your expected data structure</li><li>Assign matching part of data to a variable</li></ol><p>And pattern matching do all these thing for you. Just look at some example. </p><p>When you try these example, it will raise exception if data doesn't match against the pattern. In real Elixir app, you won't use it this way, check <strong>Where it is used</strong> at the end of this article</p><h2 id="pattern-matching-with-map-struct">Pattern matching with Map/Struct</h2><p><strong>1. Check if this data is a map</strong></p><pre><code class="elixir">%{} = params</code></pre><p><strong>2. Check if data is a map and has key <code class="inline">email</code> and email value is <code class="inline">zoo@example.com</code></strong></p><pre><code class="elixir">%{"email" => "zoo@example.com"} = params</code></pre><p><strong>3. Check if data is a map and has key <code class="inline">email</code>, if matchs pattern, assign value of key <code class="inline">email</code> to variable <code class="inline">my_email</code></strong></p><pre><code class="elixir">%{"email" => my_email} = params</code></pre><p><strong>4. Check if data is a map and has key <code class="inline">email</code>, I don't want to extract value</strong></p><p>use <code class="inline">_</code> to ignore value</p><pre><code class="elixir">%{"email" => _} = params</code></pre><p><strong>5. Pattern matching nested map</strong></p><pre><code class="elixir">%{"address" => %{"city" => city}} = params</code></pre><p><strong>6. Check if data is type struct <code class="inline">User</code></strong></p><pre><code class="elixir">%User{} = params</code></pre><blockquote><p>The rest is same with map. Struct is basically a map with atom key.</p></blockquote><h2 id="pattern-matching-with-list">Pattern matching with List</h2><p><strong>1. Check if data is empty lis</strong></p><pre><code class="elixir">[] = params</code></pre><p><strong>2. Check if data is a list and not empty</strong></p><pre><code class="elixir">[_|_] = params</code></pre><p><strong>3. Check if data is exact list</strong></p><pre><code class="elixir">[1, 2] = params</code></pre><p><strong>4. Check if data is list and extract first element and remaining</strong></p><pre><code class="elixir">[first_element | remaining] = params</code></pre><h2 id="pattern-matching-with-tuple">Pattern matching with Tuple</h2><p>You don't have much pattern to match against tuple</p><p><strong>1. Check if data is tuple of 2 elements</strong></p><pre><code class="elixir">{_, _} = params</code></pre><p><strong>2. Check if data is tuple and has specific value</strong></p><pre><code class="elixir">{:ok, data} = result
+# you use this most of time</code></pre><h2 id="where-to-use-pattern-matching">Where to use pattern matching</h2><p><strong>1. case clause</strong></p><pre><code class="elixir">case user do
+    %User{is_active: true} -> "Log you in"
+    %User{is_active: false} -> "Check your email"
+    _others -> "Not a user"
+end</code></pre><p><strong>2. with clause</strong></p><pre><code class="elixir">with {:ok, user} <- create_user(params) do
     # your code
-end</code></pre>
-<p>
-<strong>3. function</strong></p>
-<pre><code class="elixir">def is_admin(%User{role: &quot;admin&quot;}), do: true
+end</code></pre><p><strong>3. function</strong></p><pre><code class="elixir">def is_admin(%User{role: "admin"}), do: true
 def is_admin(%User{role: _}), do: false
-def is_admin(_), do: raise &quot;Not a user&quot;</code></pre>
-<h2>
-Conclusion</h2>
-<p>
-At first, it’s a bit strange to grasp, but gradually you can live without it. It is one of Elixir’s features that I love most. And I think you will. Using it more and its power is in your hand.</p>
-</div>
+def is_admin(_), do: raise "Not a user"</code></pre><h2 id="conclusion">Conclusion</h2><p>At first, it's a bit strange to grasp, but gradually you can live without it. It is one of Elixir's features that I love most. And I think you will. Using it more and its power is in your hand.</p></div>
           </div>
 
           <!-- Post meta -->
@@ -446,9 +361,7 @@ At first, it’s a bit strange to grasp, but gradually you can live without it. 
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

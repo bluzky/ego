@@ -263,34 +263,10 @@
             </div>
             
 
-            <div class="content"><p>
-When writing API with Phoenix and render json to client,</p>
-<ul>
-  <li>
-<strong>For some fields I want to keep it original value.</strong>  </li>
-  <li>
-<strong>For some fields, I want to do some calculation or format data before returning.</strong>  </li>
-  <li>
-<strong>And I want to render Ecto association too.</strong>  </li>
-</ul>
-<p>
-An while working on an project at <a href="https://www.onpoint.vn/">OnPoint</a> I have build a little module that helps to do this easier.</p>
-<p>
-I have extract that module and release as a package named <code class="inline">JsonView</code>. Its source code is hosted on github:</p>
-<p>
-<a href="https://github.com/bluzky/json_view">https://github.com/bluzky/json_view</a></p>
-<p>
-You can use it with Phoenix.View or use it independently. It helps to manipulate data, and handle rendering association automatically.</p>
-<p>
-<strong>I have published an article on how to write it</strong>
-<a href="https://dev.to/bluzky/a-better-way-to-render-json-response-in-elixir-phoenix-41a3">A better way to render json response in Elixir Phoenix</a></p>
-<p>
-Let’s take a look.</p>
-<p>
-First define view modules</p>
-<pre><code class="elixir">  defmodule MyApp.UserView do
+            <div class="content"><p>When writing API with Phoenix and render json to client,</p><ul><li><strong>For some fields I want to keep it original value.</strong></li><li><strong>For some fields, I want to do some calculation or format data before returning.</strong></li><li><strong>And I want to render Ecto association too.</strong></li></ul><p>An while working on an project at <a href="https://www.onpoint.vn/">OnPoint</a> I have build a little module that helps to do this easier.</p><p>I have extract that module and release as a package named <code class="inline">JsonView</code>. Its source code is hosted on github:</p><p><a href="https://github.com/bluzky/json_view">https://github.com/bluzky/json_view</a></p><p>You can use it with Phoenix.View or use it independently. It helps to manipulate data, and handle rendering association automatically.</p><p><strong>I have published an article on how to write it</strong>
+<a href="https://dev.to/bluzky/a-better-way-to-render-json-response-in-elixir-phoenix-41a3">A better way to render json response in Elixir Phoenix</a></p><p>Let's take a look.</p><p>First define view modules</p><pre><code class="elixir">  defmodule MyApp.UserView do
       use JsonView
-      def render(&quot;user.json&quot;, %{user: user}) do
+      def render("user.json", %{user: user}) do
         render_json(user, [:first_name, :last_name, :vatar], [], [])
       end
   end
@@ -305,7 +281,7 @@ First define view modules</p>
       # define which view used to render relationship
       @relationships [author: MyApp.UserView]
 
-      def render(&quot;post.json&quot;, %{post: post}) do
+      def render("post.json", %{post: post}) do
           # 1st way if `use JsonView`
           render_json(post, @fields, @custom_fields, @relationships)
       end
@@ -313,48 +289,37 @@ First define view modules</p>
       def render_field(:like_count, item) do
           # load like_count from some where
       end
-  end</code></pre>
-<p>
-And then use it</p>
-<pre><code class="elixir">post = %Post{
-    title: &quot;Hello JsonView&quot;,
-    excerpt: &quot;Now you can render Json easier&quot;,
-    content: &quot;Install and put it to work&quot;,
+  end</code></pre><p>And then use it</p><pre><code class="elixir">post = %Post{
+    title: "Hello JsonView",
+    excerpt: "Now you can render Json easier",
+    content: "Install and put it to work",
     cover: nil,
     inserted_at: ~N[2021-07-05 00:00:00],
     updated_at: ~N[2021-07-09 00:00:00],
     author: %User{
-        first_name: &quot;Daniel&quot;,
-        last_name: &quot;James&quot;,
-        email: &quot;daniel@example.com&quot;,
+        first_name: "Daniel",
+        last_name: "James",
+        email: "daniel@example.com",
         avatar: nil,
         inserted_at: ~N[2021-06-30 00:00:00]
         updated_at: ~N[2021-07-02 00:00:00]
     }
 }
 
-MyApp.PostView.render(&quot;post.json&quot;, %{post: post})
+MyApp.PostView.render("post.json", %{post: post})
 
 # or invoke from PostController
-render(conn, &quot;post.json&quot;, post: post)</code></pre>
-<p>
-This is the result that you can use to return from PhoenixController</p>
-<pre><code class="elixir">%{
-    title: &quot;Hello JsonView&quot;,
-    excerpt: &quot;Now you can render Json easier&quot;,
-    content: &quot;Install and put it to work&quot;,
+render(conn, "post.json", post: post)</code></pre><p>This is the result that you can use to return from PhoenixController</p><pre><code class="elixir">%{
+    title: "Hello JsonView",
+    excerpt: "Now you can render Json easier",
+    content: "Install and put it to work",
     cover: nil,
   like_count: nil,
     author: %{
-        first_name: &quot;Daniel&quot;,
-        last_name: &quot;James&quot;
+        first_name: "Daniel",
+        last_name: "James"
     }
-}</code></pre>
-<p>
-If you have any feedback, please comment or <a href="https://github.com/bluzky/json_view/issues/new">create an issue</a>.</p>
-<p>
-In the next post I will go through step by step to write this library.</p>
-</div>
+}</code></pre><p>If you have any feedback, please comment or <a href="https://github.com/bluzky/json_view/issues/new">create an issue</a>.</p><p>In the next post I will go through step by step to write this library.</p></div>
           </div>
 
           <!-- Post meta -->
@@ -451,9 +416,7 @@ In the next post I will go through step by step to write this library.</p>
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

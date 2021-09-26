@@ -254,58 +254,10 @@
 
             
 
-            <div class="content"><p>
-Trong quá trình tìm hiểu về lập trình chat bot sử dụng các API của Facebook Messenger thì việt test chat bot trên localhost là một trở ngại.  </p>
-<p>
-Khi tạo một subscription cho app chat bot, Facebook sẽ gửi một request đến server mà chat bot đang chạy để xác nhận có đúng là chat bot của bạn không. Cũng như sau đó, tất cả những tin nhắn của nguời dùng sẽ đuợc gửi tới chat bot thông qua <code class="inline">callback url</code>. Và vấn đề là khi dev và test trên localhost thì làm sao để server local của bạn có thể nhận và phản hồi request của Facebook.</p>
-<p>
-Một giải pháp đơn giản là sử dụng dịch vụ của <a href="https://ngrok.com/">https://ngrok.com</a> để chuyển các request về máy localhost. <code class="inline">ngrok.com</code> cung cấp gói miễn phí test vô tư, hơn nữa <code class="inline">ngrok</code> hỗ trợ cả <code class="inline">https</code>.
-Điều này rất quan trọng, bởi vì từ 2018 thì tất cả các <code class="inline">callback url</code> khi đăng ký ứng dụng trên Facebook Developer đều phải sử dụng kết nối <code class="inline">TLS</code>.</p>
-<h2>
-Buớc 1: Đăng ký tài khoản</h2>
-<ul>
-  <li>
-Đăng ký tại <a href="https://ngrok.com/pricing">https://ngrok.com/pricing</a>
-Vì là tài khoản miễn phí nên sẽ có một số giới hạn:  </li>
-  <li>
-40 kết nối / phút  </li>
-  <li>
-Mỗi lần chỉ chạy được 1 <code class="inline">ngrok</code> process  </li>
-</ul>
-<h2>
-Bước 2: Download ngrok và cấu hình API key</h2>
-<ul>
-  <li>
-Download tại <a href="https://ngrok.com/download">https://ngrok.com/download</a>  </li>
-  <li>
-Giải nén file vừa Download bạn sẽ có file <code class="inline">ngrok</code>  </li>
-  <li>
-Thêm token vào ngrok config bằng lệnh  </li>
-</ul>
-<pre><code class="shell">$ ./ngrok authtoken &lt;YOUR_AUTH_TOKEN&gt;</code></pre>
-<p>
-Bạn có thể copy command trên từ <a href="https://dashboard.ngrok.com/get-started">Dashboard</a> trong phần <code class="inline">Connect your account</code></p>
-<h2>
-Bước 3: Khởi chạy ngrok process</h2>
-<p>
-<strong>Chạy lệnh</strong></p>
-<pre><code class="shell">./ngrok http &lt;PORT&gt;</code></pre>
-<p>
-trong đó <code class="inline">PORT</code> là port number của server localhost mà bạn muốn test.</p>
-<p>
-<strong>Ouput mẫu của <code class="inline">ngrok</code></strong></p>
-<p>
-  <img src="/img/ngrok.png" alt="ngrok" />
-</p>
-<p>
-<code class="inline">ngrok</code> cung cấp cho bạn 2 public URL để kết nối vào server localhost. 1 URL với giao thức <code class="inline">http</code> và 1 URL với <code class="inline">https</code>.
-Ngon không nào!</p>
-<p>
-Bây giờ bạn đã có thể cấu hình Facebook để test trên localhost rồi.</p>
-<p>
-<strong>Lưu ý:</strong>  <br />
-Khi sử dụng tài khoản Free, mỗi lần chạy <code class="inline">ngrok</code> thì forwarding URL sẽ khác nhau nên sẽ phải sửa lại sửa lại cấu hình app trên Facebook Developer. Đồ chùa thường là đồ chua mà. Khi sử dụng gói có phí bạn có thể cấu hình forwarding URL theo ý mình. Mình nghèo nên chịu khó thôi.</p>
-</div>
+            <div class="content"><p>Trong quá trình tìm hiểu về lập trình chat bot sử dụng các API của Facebook Messenger thì việt test chat bot trên localhost là một trở ngại.  </p><p>Khi tạo một subscription cho app chat bot, Facebook sẽ gửi một request đến server mà chat bot đang chạy để xác nhận có đúng là chat bot của bạn không. Cũng như sau đó, tất cả những tin nhắn của nguời dùng sẽ đuợc gửi tới chat bot thông qua <code class="inline">callback url</code>. Và vấn đề là khi dev và test trên localhost thì làm sao để server local của bạn có thể nhận và phản hồi request của Facebook.</p><p>Một giải pháp đơn giản là sử dụng dịch vụ của <a href="https://ngrok.com/">https://ngrok.com</a> để chuyển các request về máy localhost. <code class="inline">ngrok.com</code> cung cấp gói miễn phí test vô tư, hơn nữa <code class="inline">ngrok</code> hỗ trợ cả <code class="inline">https</code>.
+Điều này rất quan trọng, bởi vì từ 2018 thì tất cả các <code class="inline">callback url</code> khi đăng ký ứng dụng trên Facebook Developer đều phải sử dụng kết nối <code class="inline">TLS</code>.</p><h2 id="buoc-1-dang-ky-tai-khoan">Buớc 1: Đăng ký tài khoản</h2><ul><li>Đăng ký tại <a href="https://ngrok.com/pricing">https://ngrok.com/pricing</a>
+Vì là tài khoản miễn phí nên sẽ có một số giới hạn:</li><li>40 kết nối / phút</li><li>Mỗi lần chỉ chạy được 1 <code class="inline">ngrok</code> process</li></ul><h2 id="buoc-2-download-ngrok-va-cau-hinh-api-key">Bước 2: Download ngrok và cấu hình API key</h2><ul><li>Download tại <a href="https://ngrok.com/download">https://ngrok.com/download</a></li><li>Giải nén file vừa Download bạn sẽ có file <code class="inline">ngrok</code></li><li>Thêm token vào ngrok config bằng lệnh</li></ul><pre><code class="shell">$ ./ngrok authtoken <YOUR_AUTH_TOKEN></code></pre><p>Bạn có thể copy command trên từ <a href="https://dashboard.ngrok.com/get-started">Dashboard</a> trong phần <code class="inline">Connect your account</code></p><h2 id="buoc-3-khoi-chay-ngrok-process">Bước 3: Khởi chạy ngrok process</h2><p><strong>Chạy lệnh</strong></p><pre><code class="shell">./ngrok http <PORT></code></pre><p>trong đó <code class="inline">PORT</code> là port number của server localhost mà bạn muốn test.</p><p><strong>Ouput mẫu của <code class="inline">ngrok</code></strong></p><p><img src="/img/ngrok.png" alt="ngrok"></img></p><p><code class="inline">ngrok</code> cung cấp cho bạn 2 public URL để kết nối vào server localhost. 1 URL với giao thức <code class="inline">http</code> và 1 URL với <code class="inline">https</code>.
+Ngon không nào!</p><p>Bây giờ bạn đã có thể cấu hình Facebook để test trên localhost rồi.</p><p><strong>Lưu ý:</strong><br></br>Khi sử dụng tài khoản Free, mỗi lần chạy <code class="inline">ngrok</code> thì forwarding URL sẽ khác nhau nên sẽ phải sửa lại sửa lại cấu hình app trên Facebook Developer. Đồ chùa thường là đồ chua mà. Khi sử dụng gói có phí bạn có thể cấu hình forwarding URL theo ý mình. Mình nghèo nên chịu khó thôi.</p></div>
           </div>
 
           <!-- Post meta -->
@@ -394,9 +346,7 @@ Khi sử dụng tài khoản Free, mỗi lần chạy <code class="inline">ngrok
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

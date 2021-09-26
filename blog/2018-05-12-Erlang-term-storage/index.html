@@ -254,161 +254,28 @@
 
             
 
-            <div class="content"><h2>
-ETS là gì?</h2>
-<p>
-Có lẽ các bạn đã nghe qua về <code class="inline">redis</code> hoặc <code class="inline">memcache</code>, hoặc là cả hai. Còn nếu bạn chưa nghe tới bao giờ thì đó là những cơ sở dữ liệu lưu trữ trên RAM với ưu điểm là tốc độ truy xuất cực kỳ nhanh. ETS - Erlang Term Service - cũng là một CSDL lưu trữ trên RAM (in-ram DB) nhưng khác ở chỗ là ETS có sẵn khi cài Elixir/Erlang và bạn chẳng phải mất công cài đặt, cấu hình như 2 anh trên kia, nhà trồng được việc gì phải ngại.</p>
-<p>
-<strong>Đặc điểm</strong> của em nó là:</p>
-<ul>
-  <li>
-Không cần cài đặt   </li>
-  <li>
-Dữ liệu lưu trữ trên RAM và mất đi khi process kết thúc  </li>
-  <li>
-Dữ liệu lưu trữ dạng <code class="inline">key-value</code>  </li>
-  <li>
-<code class="inline">value</code> có thể là <code class="inline">set</code>, <code class="inline">ordered_set</code>, <code class="inline">bag</code>, <code class="inline">duplicated_bag</code>  </li>
-  <li>
-Kiểu dữ liệu của <code class="inline">value</code> trên cùng 1 bảng là giống nhau và đuợc khai báo khi tạo bảng.  </li>
-</ul>
-<h2>
-Các thao tác trong ETS</h2>
-<h3>
-1. Tạo bảng</h3>
-<pre><code class="elixir">iex&gt; :ets.new(:cache, [:set, :protected, :named_table])</code></pre>
-<p>
-<strong>Syntax: </strong> <code class="inline">:ets.new(ten_bang, [type, access, name_table])</code></p>
-<ul>
-  <li>
-<code class="inline">type</code> là kiểu dữ liệu của <code class="inline">value</code> lưu trong bảng    <ul>
-      <li>
-<code class="inline">set</code> là kiểu dữ liệu, chú này chung thuỷ chỉ có 1 value cho 1 key và key là duy nhất, không bị trùng.      </li>
-      <li>
-<code class="inline">ordered_set</code> thằng em nghiêm túc của <code class="inline">set</code>, khác thằng anh ở chỗ đuợc tự động order khi thêm data vào.      </li>
-      <li>
-<code class="inline">bag</code> khác với <code class="inline">set</code> ở chỗ chú này chơi harem, cho phép nhiều value cho cùng 1 key, tuy nhiên các value không đuợc trùng nhau.      </li>
-      <li>
-<code class="inline">duplicated_bag</code> thằng này ăn tạp giống <code class="inline">bag</code> nhưng cho phép value trùng nhau      </li>
-    </ul>
-  </li>
-  <li>
-<code class="inline">access</code>  giới hạn khả năng truy xuất dữ liệu từ bảng, cũng khá dễ nhớ    <ul>
-      <li>
-<code class="inline">public</code>: hàng công cộng, chú process nào thích nhìn (đọc), sờ (ghi) gì anh cho hết      </li>
-      <li>
-<code class="inline">protected</code>: các chú chỉ đuợc nhìn thôi, anh sở hữu thì anh đuợc sờ      </li>
-      <li>
-<code class="inline">private</code>: anh giấu hết, chỉ có anh mới đuợc nhìn và sờ, các chú đi ra chỗ khác      </li>
-    </ul>
-  </li>
-  <li>
-<code class="inline">named_table</code> Cái này tuỳ chọn, bình thuờng thì sẽ trả về 1 id dùng để truy xuất vào table. Nếu thêm option này vào thì có thể dùng <code class="inline">ten_bang</code> để truy xuất vào table.  </li>
-</ul>
-<p>
-Đã xong phần khởi tạo, giờ phần hay ho nhất đây.</p>
-<h3>
-2. Insert và update dữ liệu</h3>
-<ul>
-  <li>
-    <p>
-Insert dữ liệu nếu <code class="inline">key</code> đã có chủ thì ghi đè (đập chậu cuớp bông)    </p>
-    <pre><code class="elixir">  iex&gt; :ets.insert(:cache, {&quot;post-1&quot;, &quot;world!&quot;, %{view: 1}})
-  true</code></pre>
-  </li>
-  <li>
-    <p>
-Insert dữ liệu, nếu <code class="inline">key</code> đã có chủ thì bỏ qua.    </p>
-    <pre><code class="elixir">  iex&gt; :ets.insert_new(:cache, {&quot;post-1&quot;, &quot;Lao!&quot;, %{view: 2}})
+            <div class="content"><h2 id="ets-la-gi">ETS là gì?</h2><p>Có lẽ các bạn đã nghe qua về <code class="inline">redis</code> hoặc <code class="inline">memcache</code>, hoặc là cả hai. Còn nếu bạn chưa nghe tới bao giờ thì đó là những cơ sở dữ liệu lưu trữ trên RAM với ưu điểm là tốc độ truy xuất cực kỳ nhanh. ETS - Erlang Term Service - cũng là một CSDL lưu trữ trên RAM (in-ram DB) nhưng khác ở chỗ là ETS có sẵn khi cài Elixir/Erlang và bạn chẳng phải mất công cài đặt, cấu hình như 2 anh trên kia, nhà trồng được việc gì phải ngại.</p><p><strong>Đặc điểm</strong> của em nó là:</p><ul><li>Không cần cài đặt </li><li>Dữ liệu lưu trữ trên RAM và mất đi khi process kết thúc</li><li>Dữ liệu lưu trữ dạng <code class="inline">key-value</code></li><li><code class="inline">value</code> có thể là <code class="inline">set</code>, <code class="inline">ordered_set</code>, <code class="inline">bag</code>, <code class="inline">duplicated_bag</code></li><li>Kiểu dữ liệu của <code class="inline">value</code> trên cùng 1 bảng là giống nhau và đuợc khai báo khi tạo bảng.</li></ul><h2 id="cac-thao-tac-trong-ets">Các thao tác trong ETS</h2><h3 id="1-tao-bang">1. Tạo bảng</h3><pre><code class="elixir">iex> :ets.new(:cache, [:set, :protected, :named_table])</code></pre><p><strong>Syntax: </strong> <code class="inline">:ets.new(ten_bang, [type, access, name_table])</code></p><ul><li><code class="inline">type</code> là kiểu dữ liệu của <code class="inline">value</code> lưu trong bảng<ul><li><code class="inline">set</code> là kiểu dữ liệu, chú này chung thuỷ chỉ có 1 value cho 1 key và key là duy nhất, không bị trùng.</li><li><code class="inline">ordered_set</code> thằng em nghiêm túc của <code class="inline">set</code>, khác thằng anh ở chỗ đuợc tự động order khi thêm data vào.</li><li><code class="inline">bag</code> khác với <code class="inline">set</code> ở chỗ chú này chơi harem, cho phép nhiều value cho cùng 1 key, tuy nhiên các value không đuợc trùng nhau.</li><li><code class="inline">duplicated_bag</code> thằng này ăn tạp giống <code class="inline">bag</code> nhưng cho phép value trùng nhau</li></ul></li><li><code class="inline">access</code>  giới hạn khả năng truy xuất dữ liệu từ bảng, cũng khá dễ nhớ<ul><li><code class="inline">public</code>: hàng công cộng, chú process nào thích nhìn (đọc), sờ (ghi) gì anh cho hết</li><li><code class="inline">protected</code>: các chú chỉ đuợc nhìn thôi, anh sở hữu thì anh đuợc sờ</li><li><code class="inline">private</code>: anh giấu hết, chỉ có anh mới đuợc nhìn và sờ, các chú đi ra chỗ khác</li></ul></li><li><code class="inline">named_table</code> Cái này tuỳ chọn, bình thuờng thì sẽ trả về 1 id dùng để truy xuất vào table. Nếu thêm option này vào thì có thể dùng <code class="inline">ten_bang</code> để truy xuất vào table.</li></ul><p>Đã xong phần khởi tạo, giờ phần hay ho nhất đây.</p><h3 id="2-insert-va-update-du-lieu">2. Insert và update dữ liệu</h3><ul><li><p>Insert dữ liệu nếu <code class="inline">key</code> đã có chủ thì ghi đè (đập chậu cuớp bông)</p><pre><code class="elixir">  iex> :ets.insert(:cache, {"post-1", "world!", %{view: 1}})
+  true</code></pre></li><li><p>Insert dữ liệu, nếu <code class="inline">key</code> đã có chủ thì bỏ qua.</p><pre><code class="elixir">  iex> :ets.insert_new(:cache, {"post-1", "Lao!", %{view: 2}})
   false
-  iex&gt; :ets.insert_new(:cache, {&quot;post-2&quot;, &quot;Vietnam!&quot;, %{view: 999}})
-  true</code></pre>
-  </li>
-</ul>
-<p>
-Dữ liệu cho hàm <code class="inline">insert/2</code> và <code class="inline">insert_new/2</code> là 1 <code class="inline">tuple</code>, phần tử đầu tiên của <code class="inline">tuple</code> mặc định được dùng làm <code class="inline">key</code>.</p>
-<h3>
-3. Query dữ liệu</h3>
-<p>
-<strong>3.1 Query đơn giản</strong>: tìm kiếm dữ liệu theo key dùng hàm <code class="inline">lookup/2</code></p>
-<pre><code class="elixir">iex&gt; :ets.lookup(:cache, &quot;post-1&quot;)
-[{&quot;post-1&quot;, &quot;world!&quot;, %{view: 1}}]</code></pre>
-<p>
-<strong>3.2 Query với nhiều trường dữ liệu</strong> với hàm <code class="inline">match_object/2</code></p>
-<pre><code class="elixir">iex&gt; :ets.match_object(:cache, {:&quot;_&quot;, &quot;Vietnam!&quot;, :&quot;_&quot;})
-[{&quot;post-2&quot;, &quot;Vietnam!&quot;, %{view: 999}}]</code></pre>
-<ul>
-  <li>
-<strong>Note</strong> <code class="inline">:&quot;_&quot;</code> đánh dấu tại vị trí này sẽ không xài để match dữ liệu, truờng này chứa dữ liệu gì cũng đuợc, anh không quan tâm  </li>
-</ul>
-<p>
-<strong>3.3 Select trường dữ liệu nào sẽ trả về</strong> với <code class="inline">match/2</code></p>
-<pre><code class="elixir">iex&gt; :ets.match_object(:cache, {:&quot;$1&quot;, :&quot;$2&quot;, :&quot;_&quot;})
-[{&quot;post-1&quot;, &quot;world!&quot;}, {&quot;post-2&quot;, &quot;Vietnam!&quot;}]</code></pre>
-<ul>
-  <li>
-<strong>Note</strong> <code class="inline">:&quot;$N&quot;</code>  dùng để <code class="inline">select</code> kết quả trả về,  <code class="inline">N</code> là một số nguyên dùng để xác định vị trí của dữ liệu trong kết quả.  </li>
-</ul>
-<pre><code class="elixir">iex&gt; :ets.match_object(:cache, {:&quot;$30&quot;, :&quot;$2&quot;, :&quot;_&quot;})
-[{&quot;world!&quot;, &quot;post-1&quot;}, {&quot;Vietnam!&quot;, &quot;post-2&quot;}]</code></pre>
-<p>
-<strong>3.4 Giới hạn kết quả tra về</strong></p>
-<p>
-Sử dụng hàm <code class="inline">match/3</code> hoặc <code class="inline">match_object/3</code> tương tự như <code class="inline">match/2</code> và <code class="inline">match_object/2</code>, trong đó tham số thứ 3 là số lượng phần tử sẽ trả về.</p>
-<pre><code class="elixir"># them 1 phan tu
-iex&gt; :ets.insert_new(:cache, {&quot;post-3&quot;, &quot;Vietnam!&quot;, %{view: 1000}})
+  iex> :ets.insert_new(:cache, {"post-2", "Vietnam!", %{view: 999}})
+  true</code></pre></li></ul><p>Dữ liệu cho hàm <code class="inline">insert/2</code> và <code class="inline">insert_new/2</code> là 1 <code class="inline">tuple</code>, phần tử đầu tiên của <code class="inline">tuple</code> mặc định được dùng làm <code class="inline">key</code>.</p><h3 id="3-query-du-lieu">3. Query dữ liệu</h3><p><strong>3.1 Query đơn giản</strong>: tìm kiếm dữ liệu theo key dùng hàm <code class="inline">lookup/2</code></p><pre><code class="elixir">iex> :ets.lookup(:cache, "post-1")
+[{"post-1", "world!", %{view: 1}}]</code></pre><p><strong>3.2 Query với nhiều trường dữ liệu</strong> với hàm <code class="inline">match_object/2</code></p><pre><code class="elixir">iex> :ets.match_object(:cache, {:"_", "Vietnam!", :"_"})
+[{"post-2", "Vietnam!", %{view: 999}}]</code></pre><ul><li><strong>Note</strong> <code class="inline">:"_"</code> đánh dấu tại vị trí này sẽ không xài để match dữ liệu, truờng này chứa dữ liệu gì cũng đuợc, anh không quan tâm</li></ul><p><strong>3.3 Select trường dữ liệu nào sẽ trả về</strong> với <code class="inline">match/2</code></p><pre><code class="elixir">iex> :ets.match_object(:cache, {:"$1", :"$2", :"_"})
+[{"post-1", "world!"}, {"post-2", "Vietnam!"}]</code></pre><ul><li><strong>Note</strong> <code class="inline">:"$N"</code>  dùng để <code class="inline">select</code> kết quả trả về,  <code class="inline">N</code> là một số nguyên dùng để xác định vị trí của dữ liệu trong kết quả.</li></ul><pre><code class="elixir">iex> :ets.match_object(:cache, {:"$30", :"$2", :"_"})
+[{"world!", "post-1"}, {"Vietnam!", "post-2"}]</code></pre><p><strong>3.4 Giới hạn kết quả tra về</strong></p><p>Sử dụng hàm <code class="inline">match/3</code> hoặc <code class="inline">match_object/3</code> tương tự như <code class="inline">match/2</code> và <code class="inline">match_object/2</code>, trong đó tham số thứ 3 là số lượng phần tử sẽ trả về.</p><pre><code class="elixir"># them 1 phan tu
+iex> :ets.insert_new(:cache, {"post-3", "Vietnam!", %{view: 1000}})
 true
 
 # khong limit
-iex&gt; :ets.match_object(:cache, {:&quot;_&quot;, &quot;Vietnam!&quot;, :&quot;_&quot;})
-[{&quot;post-2&quot;, &quot;Vietnam!&quot;, %{view: 999}}, {&quot;post-3&quot;, &quot;Vietnam!&quot;, %{view: 1000}}]
+iex> :ets.match_object(:cache, {:"_", "Vietnam!", :"_"})
+[{"post-2", "Vietnam!", %{view: 999}}, {"post-3", "Vietnam!", %{view: 1000}}]
 
 # co limit
-iex&gt; :ets.match_object(:cache, {:&quot;_&quot;, &quot;Vietnam!&quot;, :&quot;_&quot;}, 1)
-[{&quot;post-2&quot;, &quot;Vietnam!&quot;, %{view: 999}}]</code></pre>
-<h3>
-4. Xoá dữ liệu</h3>
-<p>
-<strong>Xoá theo key</strong></p>
-<pre><code class="elixir">iex&gt; :ets.delete(:cache, &quot;post-1&quot;)
-true</code></pre>
-<p>
-<strong>Match dữ liệu và xoá</strong>. Cách match giống như trong <strong>query dữ liệu</strong></p>
-<pre><code class="elixir">iex&gt; :ets.match_delete(:cache, {:&quot;_&quot;, &quot;Vietnam!&quot;, :&quot;_&quot;})
-true</code></pre>
-<h3>
-5. Xoá bảng</h3>
-<pre><code class="elixir">iex&gt; :ets.delete(:cache)
-true</code></pre>
-<p>
-Nếu không xoá thì dữ liệu sẽ tồn tại cho đến khi process kết thúc mới bị mất đi.</p>
-<h3>
-6. Các hàm hay xài</h3>
-<ul>
-  <li>
-<code class="inline">member/2</code> kiểm tra xem key đã tồn taị trong bảng hay chưa  </li>
-  <li>
-<code class="inline">tab2list</code>: đọc tất cả dữ liệu của bảng vào 1 list  </li>
-  <li>
-<code class="inline">tab2file</code>: lưu tất cả dữ liệu trên bảng vào 1 file, bạn có thể lưu dữ liệu lại <strong>truớc khi process kết thúc</strong> và có thể xài lại dữ liệu sau.  </li>
-  <li>
-<code class="inline">file2tab</code> : đọc 1 file đuợc lưu bởi <code class="inline">tab2file</code> và tạo lại bảng tương ứng   </li>
-  <li>
-<code class="inline">to_dest/2</code>: copy toàn bộ dữ liệu từ bảng ETS qua bảng DETS (lưu dữ liệu trên ổ cứng)  </li>
-  <li>
-<code class="inline">from_dest/2</code>: copy toàn bộ dữ liệu từ bảng DETS qua bảng ETS  </li>
-</ul>
-<h2>
-Tham khảo</h2>
-<ol>
-  <li>
-<a href="http://erlang.org/doc/man/ets.html">http://erlang.org/doc/man/ets.html</a> xem nhiều trò hay  </li>
-  <li>
-<a href="http://learnyousomeerlang.com/ets">http://learnyousomeerlang.com/ets</a>   </li>
-  <li>
-Ngoài ra Erlang còn hỗ trợ <code class="inline">DETS</code> (disk-based term storage) lưu trên ổ cứng với API tương tự <a href="http://erlang.org/doc/man/dets.html">http://erlang.org/doc/man/dets.html</a>  </li>
-</ol>
-</div>
+iex> :ets.match_object(:cache, {:"_", "Vietnam!", :"_"}, 1)
+[{"post-2", "Vietnam!", %{view: 999}}]</code></pre><h3 id="4-xoa-du-lieu">4. Xoá dữ liệu</h3><p><strong>Xoá theo key</strong></p><pre><code class="elixir">iex> :ets.delete(:cache, "post-1")
+true</code></pre><p><strong>Match dữ liệu và xoá</strong>. Cách match giống như trong <strong>query dữ liệu</strong></p><pre><code class="elixir">iex> :ets.match_delete(:cache, {:"_", "Vietnam!", :"_"})
+true</code></pre><h3 id="5-xoa-bang">5. Xoá bảng</h3><pre><code class="elixir">iex> :ets.delete(:cache)
+true</code></pre><p>Nếu không xoá thì dữ liệu sẽ tồn tại cho đến khi process kết thúc mới bị mất đi.</p><h3 id="6-cac-ham-hay-xai">6. Các hàm hay xài</h3><ul><li><code class="inline">member/2</code> kiểm tra xem key đã tồn taị trong bảng hay chưa</li><li><code class="inline">tab2list</code>: đọc tất cả dữ liệu của bảng vào 1 list</li><li><code class="inline">tab2file</code>: lưu tất cả dữ liệu trên bảng vào 1 file, bạn có thể lưu dữ liệu lại <strong>truớc khi process kết thúc</strong> và có thể xài lại dữ liệu sau.</li><li><code class="inline">file2tab</code> : đọc 1 file đuợc lưu bởi <code class="inline">tab2file</code> và tạo lại bảng tương ứng </li><li><code class="inline">to_dest/2</code>: copy toàn bộ dữ liệu từ bảng ETS qua bảng DETS (lưu dữ liệu trên ổ cứng)</li><li><code class="inline">from_dest/2</code>: copy toàn bộ dữ liệu từ bảng DETS qua bảng ETS</li></ul><h2 id="tham-khao">Tham khảo</h2><ol><li><a href="http://erlang.org/doc/man/ets.html">http://erlang.org/doc/man/ets.html</a> xem nhiều trò hay</li><li><a href="http://learnyousomeerlang.com/ets">http://learnyousomeerlang.com/ets</a> </li><li>Ngoài ra Erlang còn hỗ trợ <code class="inline">DETS</code> (disk-based term storage) lưu trên ổ cứng với API tương tự <a href="http://erlang.org/doc/man/dets.html">http://erlang.org/doc/man/dets.html</a></li></ol></div>
           </div>
 
           <!-- Post meta -->
@@ -497,9 +364,7 @@ Ngoài ra Erlang còn hỗ trợ <code class="inline">DETS</code> (disk-based te
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

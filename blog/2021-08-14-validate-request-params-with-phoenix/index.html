@@ -263,29 +263,7 @@
             </div>
             
 
-            <div class="content"><blockquote>
-  <p>
-Credit: filter image taken from <a href="https://www.svgrepo.com/svg/231531/filter">svgrepo.com</a>  </p>
-</blockquote>
-<p>
-In web developments, server receives lots of request data from client side. And when working with request params from client, my first rule is:</p>
-<blockquote>
-  <p>
-Don’t believe the client  </p>
-</blockquote>
-<p>
-Imagine that you provide API to list all post using the filter from client, and user may add <code class="inline">user_id</code> which point to other user, and you don’t remove that unexpected field from request params. If you don’t handle your logic carefully, you may accidentally leak data.</p>
-<p>
-So every request should be cleaned from unexpected params,  casted to the proper data type, and validated before passing to business layer.</p>
-<p>
-You can achieve this by:</p>
-<h2>
-Using Ecto</h2>
-<p>
-If you are building a web server using Phoenix, I guess <code class="inline">Ecto</code> is already in your dependencies. Just use it.</p>
-<p>
-Thank to Ecto schemaless, you can build changeset from a dynamic schema:</p>
-<pre><code class="elixir">defmodule MyApp.PostController do
+            <div class="content"><blockquote><p>Credit: filter image taken from <a href="https://www.svgrepo.com/svg/231531/filter">svgrepo.com</a></p></blockquote><p>In web developments, server receives lots of request data from client side. And when working with request params from client, my first rule is:</p><blockquote><p>Don't believe the client</p></blockquote><p>Imagine that you provide API to list all post using the filter from client, and user may add <code class="inline">user_id</code> which point to other user, and you don't remove that unexpected field from request params. If you don't handle your logic carefully, you may accidentally leak data.</p><p>So every request should be cleaned from unexpected params,  casted to the proper data type, and validated before passing to business layer.</p><p>You can achieve this by:</p><h2 id="using-ecto">Using Ecto</h2><p>If you are building a web server using Phoenix, I guess <code class="inline">Ecto</code> is already in your dependencies. Just use it.</p><p>Thank to Ecto schemaless, you can build changeset from a dynamic schema:</p><pre><code class="elixir">defmodule MyApp.PostController do
     ...
     defp index_params(params) do
         default = %{
@@ -302,7 +280,7 @@ Thank to Ecto schemaless, you can build changeset from a dynamic schema:</p>
 
     changeset =
       {default, types}
-      |&gt; Ecto.Changeset.cast(params, Map.keys(types))
+      |> Ecto.Changeset.cast(params, Map.keys(types))
     
     if changeset.valid? do
         {:ok, Ecto.Changeset.apply_changes(changeset)}
@@ -312,24 +290,12 @@ Thank to Ecto schemaless, you can build changeset from a dynamic schema:</p>
     end
     
     def index(conn, params) do
-        with {:ok, valid_params} &lt;- index_params(params) do
+        with {:ok, valid_params} <- index_params(params) do
             # do your logic
         end
     end
     ...
-end</code></pre>
-<p>
-With Ecto you can do validation on your params as you do with your schema changeset.</p>
-<p>
-This way is simple and most of you are familiar with it. But you have to write much code and cannot cast and validate nested params.</p>
-<h2>
-Use library <code class="inline">Tarams</code></h2>
-<p>
-This library provide a simple way to define schema. Let’s rewrite example above using <code class="inline">tarams</code>.</p>
-<p>
-First add this to your dependency list:</p>
-<pre><code>{:tarams, &quot;~&gt; 1.0.0&quot;}</code></pre>
-<pre><code class="elixir">defmodule MyApp.PostController do
+end</code></pre><p>With Ecto you can do validation on your params as you do with your schema changeset.</p><p>This way is simple and most of you are familiar with it. But you have to write much code and cannot cast and validate nested params.</p><h2 id="use-library-tarams">Use library <code class="inline">Tarams</code></h2><p>This library provide a simple way to define schema. Let's rewrite example above using <code class="inline">tarams</code>.</p><p>First add this to your dependency list:</p><pre><code>{:tarams, "~> 1.0.0"}</code></pre><pre><code class="elixir">defmodule MyApp.PostController do
     ...
     @index_params %{
         status: :string,
@@ -339,15 +305,12 @@ First add this to your dependency list:</p>
         size: [type: :integer, number: [min: 10, max: 100]]
     }
     def index(conn, params) do
-        with {:ok, valid_params} &lt;- Tarams.cast(params, @index_params) do
+        with {:ok, valid_params} <- Tarams.cast(params, @index_params) do
             # do your logic
         end
     end
     ...
-end</code></pre>
-<p>
-And it support nested params too</p>
-<pre><code class="elixir">defmodule MyApp.PostController do
+end</code></pre><p>And it support nested params too</p><pre><code class="elixir">defmodule MyApp.PostController do
     ...
     @create_params %{
         title: [type: :string, required: true],
@@ -361,19 +324,12 @@ And it support nested params too</p>
         }
     }
     def create(conn, params) do
-        with {:ok, valid_params} &lt;- Tarams.cast(params, @create_params) do
+        with {:ok, valid_params} <- Tarams.cast(params, @create_params) do
             MyApp.Content.create_post(valid_params)
         end
     end
     ...
-end</code></pre>
-<h2>
-Conclusion</h2>
-<p>
-All request params should be casted and validated at controller. Then you only work with data that you know what it is, and you don’t have to worry about unexpected parameters.</p>
-<p>
-Thanks for reading, hope it can helps.</p>
-</div>
+end</code></pre><h2 id="conclusion">Conclusion</h2><p>All request params should be casted and validated at controller. Then you only work with data that you know what it is, and you don't have to worry about unexpected parameters.</p><p>Thanks for reading, hope it can helps.</p></div>
           </div>
 
           <!-- Post meta -->
@@ -466,9 +422,7 @@ Thanks for reading, hope it can helps.</p>
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

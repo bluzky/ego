@@ -263,41 +263,18 @@
             </div>
             
 
-            <div class="content"><p>
-Khi viết các API hoặc cả các endpoint thì thông thường chúng ta sẽ có một số nhu cầu:</p>
-<ul>
-  <li>
-Chỉ cho phép một số các tham số xác định được truyền vào.  </li>
-  <li>
-Chuyển các tham số về kiểu dữ liệu mong muốn  </li>
-  <li>
-Validate các tham số theo yêu cầu  </li>
-</ul>
-<p>
-Bài viết này sẽ hướng dẫn các bạn giải quyết các vấn đề trên sử dụng <code class="inline">Ecto.Changeset</code></p>
-<p>
-Thư viện <code class="inline">Ecto</code> đã cung cấp sẵn cho chúng ta module <code class="inline">Changeset</code>. Nó hỗ trợ việc cast các tham số về đúng kiểu dữ liệu mong muốn, nó cũng hỗ trợ các phương thức để validate các tham số yêu cầu, và nó cũng cho phép bạn giới hạn tham số nào được truyền vào.</p>
-<p>
-Và sau đây là một ví dụ sử dụng <code class="inline">Chageset</code> để validate các tham số khi filter các đơn hàng.</p>
-<h2>
-1. Đầu tiên bạn phải định nghĩa một schema</h2>
-<pre><code class="elixir">defmodule MyApp.OrderFilterParams do
+            <div class="content"><p>Khi viết các API hoặc cả các endpoint thì thông thường chúng ta sẽ có một số nhu cầu:</p><ul><li>Chỉ cho phép một số các tham số xác định được truyền vào.</li><li>Chuyển các tham số về kiểu dữ liệu mong muốn</li><li>Validate các tham số theo yêu cầu</li></ul><p>Bài viết này sẽ hướng dẫn các bạn giải quyết các vấn đề trên sử dụng <code class="inline">Ecto.Changeset</code></p><p>Thư viện <code class="inline">Ecto</code> đã cung cấp sẵn cho chúng ta module <code class="inline">Changeset</code>. Nó hỗ trợ việc cast các tham số về đúng kiểu dữ liệu mong muốn, nó cũng hỗ trợ các phương thức để validate các tham số yêu cầu, và nó cũng cho phép bạn giới hạn tham số nào được truyền vào.</p><p>Và sau đây là một ví dụ sử dụng <code class="inline">Chageset</code> để validate các tham số khi filter các đơn hàng.</p><h2 id="1-dau-tien-ban-phai-dinh-nghia-mot-schema">1. Đầu tiên bạn phải định nghĩa một schema</h2><pre><code class="elixir">defmodule MyApp.OrderFilterParams do
     use Ecto.Schema
     import Ecto.Changeset
 
-    schema &quot;order_filter_params&quot; do
+    schema "order_filter_params" do
         field :keyword, :string
         field :category_id,  :integer
         field :status, :string
         field :start_date, :utc_datetime
         field :end_date, :utc_datetime
     end
-end</code></pre>
-<h2>
-2. Cast và validate</h2>
-<p>
-Sau đó phải định nghĩa một hàm để thực hiện việc cast tham số và validate <code class="inline">changeset</code>.</p>
-<pre><code class="elixir">defmodule MyApp.OrderFilterParams do
+end</code></pre><h2 id="2-cast-va-validate">2. Cast và validate</h2><p>Sau đó phải định nghĩa một hàm để thực hiện việc cast tham số và validate <code class="inline">changeset</code>.</p><pre><code class="elixir">defmodule MyApp.OrderFilterParams do
 
     ...
 
@@ -306,21 +283,16 @@ Sau đó phải định nghĩa một hàm để thực hiện việc cast tham s
 
     def changeset(changeset_or_model, params) do
          cast(changeset_or_model, params, @required ++ @optional)
-        |&gt; validate_required(@required)
+        |> validate_required(@required)
     end
-end</code></pre>
-<h2>
-3. Set giá trị default động</h2>
-<p>
-Nếu bạn muốn sử dụng các giá trị default động, ví dụ như mặc định ngày kết thúc là ngày hiện tại, các bạn phải định nghĩa một function để set giá trị mong muốn.</p>
-<pre><code class="elixir">defmodule MyApp.OrderFilterParams do
+end</code></pre><h2 id="3-set-gia-tri-default-dong">3. Set giá trị default động</h2><p>Nếu bạn muốn sử dụng các giá trị default động, ví dụ như mặc định ngày kết thúc là ngày hiện tại, các bạn phải định nghĩa một function để set giá trị mong muốn.</p><pre><code class="elixir">defmodule MyApp.OrderFilterParams do
 
     ...
 
     def changeset(changeset_or_model, params) do
          cast(changeset_or_model, params, @required ++ @optional)
-        |&gt; validate_required(@required)
-        |&gt; set_default_end_date()
+        |> validate_required(@required)
+        |> set_default_end_date()
     end
 
     defp set_defaut_end_date(changeset) do
@@ -331,10 +303,7 @@ Nếu bạn muốn sử dụng các giá trị default động, ví dụ như m�
             changeset
         end
     end
-end</code></pre>
-<h2>
-4. Sử dụng Params schema</h2>
-<pre><code class="elixir">defmodule MyApp.OrderController do
+end</code></pre><h2 id="4-su-dung-params-schema">4. Sử dụng Params schema</h2><pre><code class="elixir">defmodule MyApp.OrderController do
     use MyApp, :controller
     alias MyApp.OrderFilterParams
 
@@ -350,34 +319,7 @@ end</code></pre>
         end
     end
 end
-</code></pre>
-<p>
-Rất đơn giản đúng không, nếu bạn đã sử dụng <code class="inline">Ecto</code> thì việc này chỉ là ruồi muỗi. Tuy nhiên đơn giản thì phải có thứ đánh đổi chứ.</p>
-<h2>
-Vài thứ mà bạn sẽ thấy bất tiện</h2>
-<h3>
-1. Lượng code mà bạn phải viết quá nhiều.</h3>
-<p>
-Thử tưởng tượng mỗi API bạn lại phải định nghĩa thêm một Module params cho nó thì phức tạp vl.</p>
-<p>
-Bạn có thể sử dụng schemaless, nhưng mà function của bạn sẽ rối nùi lên vì code logic và code xử lý params nó không liên quan gì tới nhau cả. Và bạn thì kiểu như đổ sting vào cơm để ăn vậy.</p>
-<h3>
-2. Thiếu linh hoạt.</h3>
-<p>
-Điều này cũng đúng vì mục đích chính của <code class="inline">Ecto</code> là phục vụ cho việc định nghĩa các schema cho database.</p>
-<p>
-Đơn giản như việc định nghĩa giá trị default động như trên, bạn phải viết luôn 1 hàm mới</p>
-<p>
-<strong>Tuy nhiên nó cũng có một ưu điểm là bạn không phải sử dụng thêm thư viện của bên thứ ba.</strong></p>
-<h2>
-Kết</h2>
-<p>
-Nếu bạn không cần phải xử lý nhiều ràng buộc liên quan đến tham số của request thì đơn giản là cứ dùng <code class="inline">Changeset</code> thôi. </p>
-<p>
-Nếu bạn muốn nhanh gọn hơn thì trên Hex có một số thư viện để hỗ trợ định nghĩa param đơn giản hơn, ví dụ như <a href="https://github.com/bluzky/tarams/">https://github.com/bluzky/tarams/</a></p>
-<p>
-Thư viện này cung cấp cách thức đơn giản và nhanh chóng hơn để định nghĩa param cho API. Mình sẽ viết bài hướng dẫn sau.</p>
-</div>
+</code></pre><p>Rất đơn giản đúng không, nếu bạn đã sử dụng <code class="inline">Ecto</code> thì việc này chỉ là ruồi muỗi. Tuy nhiên đơn giản thì phải có thứ đánh đổi chứ.</p><h2 id="vai-thu-ma-ban-se-thay-bat-tien">Vài thứ mà bạn sẽ thấy bất tiện</h2><h3 id="1-luong-code-ma-ban-phai-viet-qua-nhieu">1. Lượng code mà bạn phải viết quá nhiều.</h3><p>Thử tưởng tượng mỗi API bạn lại phải định nghĩa thêm một Module params cho nó thì phức tạp vl.</p><p>Bạn có thể sử dụng schemaless, nhưng mà function của bạn sẽ rối nùi lên vì code logic và code xử lý params nó không liên quan gì tới nhau cả. Và bạn thì kiểu như đổ sting vào cơm để ăn vậy.</p><h3 id="2-thieu-linh-hoat">2. Thiếu linh hoạt.</h3><p>Điều này cũng đúng vì mục đích chính của <code class="inline">Ecto</code> là phục vụ cho việc định nghĩa các schema cho database.</p><p>Đơn giản như việc định nghĩa giá trị default động như trên, bạn phải viết luôn 1 hàm mới</p><p><strong>Tuy nhiên nó cũng có một ưu điểm là bạn không phải sử dụng thêm thư viện của bên thứ ba.</strong></p><h2 id="ket">Kết</h2><p>Nếu bạn không cần phải xử lý nhiều ràng buộc liên quan đến tham số của request thì đơn giản là cứ dùng <code class="inline">Changeset</code> thôi. </p><p>Nếu bạn muốn nhanh gọn hơn thì trên Hex có một số thư viện để hỗ trợ định nghĩa param đơn giản hơn, ví dụ như <a href="https://github.com/bluzky/tarams/">https://github.com/bluzky/tarams/</a></p><p>Thư viện này cung cấp cách thức đơn giản và nhanh chóng hơn để định nghĩa param cho API. Mình sẽ viết bài hướng dẫn sau.</p></div>
           </div>
 
           <!-- Post meta -->
@@ -470,9 +412,7 @@ Thư viện này cung cấp cách thức đơn giản và nhanh chóng hơn đ�
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

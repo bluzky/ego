@@ -254,28 +254,11 @@
 
             
 
-            <div class="content"><blockquote>
-  <p>
-Từ tháng 04/2018 tất cả các app mới tạo trên Facebook chỉ chấp nhận callback url có sử dụng SSL.
-Đây là những bước đơn giản để có thể sử dụng giao thức <code class="inline">https</code> trên localhost đối với <code class="inline">Phoenix</code>  </p>
-</blockquote>
-<p>
-<strong>1. Tạo chứng chỉ</strong>  <br />
-Run command</p>
-<pre><code class="shell">openssl genrsa 1024 &gt; app.key &amp;&amp;
-openssl req -new -x509 -nodes -sha1 -days 365 -key ~/app.key &gt; ~/app.cert</code></pre>
-<p>
-<strong>2. Copy file</strong>  <br />
-<code class="inline">app.key</code> and <code class="inline">app.cert</code> file to <code class="inline">priv/keys</code></p>
-<p>
-<strong>3. Chỉnh sửa cấu hình</strong>  <br />
-file <code class="inline">dev.exs</code></p>
-<pre><code class="elixir">config :my_app, MyAppWeb.Endpoint,
+            <div class="content"><blockquote><p>Từ tháng 04/2018 tất cả các app mới tạo trên Facebook chỉ chấp nhận callback url có sử dụng SSL.
+Đây là những bước đơn giản để có thể sử dụng giao thức <code class="inline">https</code> trên localhost đối với <code class="inline">Phoenix</code></p></blockquote><p><strong>1. Tạo chứng chỉ</strong><br></br>Run command</p><pre><code class="shell">openssl genrsa 1024 > app.key &&
+openssl req -new -x509 -nodes -sha1 -days 365 -key ~/app.key > ~/app.cert</code></pre><p><strong>2. Copy file</strong><br></br><code class="inline">app.key</code> and <code class="inline">app.cert</code> file to <code class="inline">priv/keys</code></p><p><strong>3. Chỉnh sửa cấu hình</strong><br></br>file <code class="inline">dev.exs</code></p><pre><code class="elixir">config :my_app, MyAppWeb.Endpoint,
   http: [port: 4000],
-  https: [port: 4443, keyfile: &quot;priv/keys/app.key&quot;, certfile: &quot;priv/keys/app.cert&quot;],</code></pre>
-<p>
-Access <a href="https://localhost:4443">https://localhost:4443</a> to use SSL connection</p>
-</div>
+  https: [port: 4443, keyfile: "priv/keys/app.key", certfile: "priv/keys/app.cert"],</code></pre><p>Access <a href="https://localhost:4443">https://localhost:4443</a> to use SSL connection</p></div>
           </div>
 
           <!-- Post meta -->
@@ -364,9 +347,7 @@ Access <a href="https://localhost:4443">https://localhost:4443</a> to use SSL co
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

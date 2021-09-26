@@ -254,182 +254,58 @@
 
             
 
-            <div class="content"><h2>
-1. Decorator là gì?</h2>
-<ul>
-  <li>
-Decorator là một mẫu thiết kế (Design pattern) thường được dùng để thay đổi hành vi, chức năng của hàm(function) hoặc lớp (class) mà không cần phải thay đổi code của hàm hoặc lớp.
-<a href="https://sourcemaking.com/design_patterns/decorator">Tham khảo</a>  </li>
-  <li>
-Python hỗ trợ cú pháp (syntax) cho Decorator từ version 2.4  </li>
-  <li>
-Về cơ bản Decorator giống như một lớp vỏ bọc (wrapper), nó thay đổi hành vi(behavior) của code trước và sau khi gọi hàm chính (hàm được decorate).  </li>
-</ul>
-<h2>
-2. Decorator được dùng làm gì?</h2>
-<p>
-Tại sao chúng ta cần Decorator?</p>
-<ul>
-  <li>
-Cho phép tái sử dụng code.  </li>
-  <li>
-Mở rộng các hàm, hoặc lớp mà không cần phải thay đổi code có sẵn –&gt; không cần test lại.  </li>
-</ul>
-<p>
-Ví dụ trong chương trình của bạn bạn cần kiểm tra quyền (permission) của người dùng trước khi thực hiện hàm. Bạn có thể phải thêm code vào tất cả các hàm đã có để kiểm tra. Thay vào đó với decorator, bạn chỉ cần định nghĩa một decorator và khai báo nó trước hàm.</p>
-<h2>
-3. Làm sao để định nghĩa một decorator?</h2>
-<ul>
-  <li>
-    <p>
-Decorator cũng là một hàm chỉ khác là hàm decorator nhận vào một hàm và kết quả trả về của nó là hàm sau khi được decorate.    </p>
-  </li>
-  <li>
-    <p>
-Như vậy để định nghĩa một decorator chỉ đơn giản là định nghĩa một hàm nhận vào một hàm khác và trả về một hàm mới có prototype tương đương với hàm nhận vào.    </p>
-  </li>
-  <li>
-    <p>
-<strong>Ví dụ 1:</strong>    </p>
-    <pre><code class="python">def ten_decorator(f):
+            <div class="content"><h2 id="1-decorator-la-gi">1. Decorator là gì?</h2><ul><li>Decorator là một mẫu thiết kế (Design pattern) thường được dùng để thay đổi hành vi, chức năng của hàm(function) hoặc lớp (class) mà không cần phải thay đổi code của hàm hoặc lớp.
+<a href="https://sourcemaking.com/design_patterns/decorator">Tham khảo</a></li><li>Python hỗ trợ cú pháp (syntax) cho Decorator từ version 2.4</li><li>Về cơ bản Decorator giống như một lớp vỏ bọc (wrapper), nó thay đổi hành vi(behavior) của code trước và sau khi gọi hàm chính (hàm được decorate).</li></ul><h2 id="2-decorator-duoc-dung-lam-gi">2. Decorator được dùng làm gì?</h2><p>Tại sao chúng ta cần Decorator?</p><ul><li>Cho phép tái sử dụng code.</li><li>Mở rộng các hàm, hoặc lớp mà không cần phải thay đổi code có sẵn --> không cần test lại.</li></ul><p>Ví dụ trong chương trình của bạn bạn cần kiểm tra quyền (permission) của người dùng trước khi thực hiện hàm. Bạn có thể phải thêm code vào tất cả các hàm đã có để kiểm tra. Thay vào đó với decorator, bạn chỉ cần định nghĩa một decorator và khai báo nó trước hàm.</p><h2 id="3-lam-sao-de-dinh-nghia-mot-decorator">3. Làm sao để định nghĩa một decorator?</h2><ul><li><p>Decorator cũng là một hàm chỉ khác là hàm decorator nhận vào một hàm và kết quả trả về của nó là hàm sau khi được decorate.</p></li><li><p>Như vậy để định nghĩa một decorator chỉ đơn giản là định nghĩa một hàm nhận vào một hàm khác và trả về một hàm mới có prototype tương đương với hàm nhận vào.</p></li><li><p><strong>Ví dụ 1:</strong></p><pre><code class="python">def ten_decorator(f):
     def wrapper(ten):
-        chuoi_moi = &quot;Ten tui la %s&quot; % ten
+        chuoi_moi = "Ten tui la %s" % ten
         return f(chuoi_moi)
     return wrapper
 def xuat_ten( ten ):
-    print ten</code></pre>
-  </li>
-  <li>
-    <p>
-<strong>CHÚ Ý QUAN TRỌNG</strong>: hàm <code class="inline">wrapper</code> và hàm f phải có tham số phù hợp với nhau. Ví dụ như hàm f nhận vào chỉ 2 tham số thì hàm <code class="inline">decorator</code> không thể nhận vào 3 tham số hoặc 1 tham số.    </p>
-  </li>
-</ul>
-<h2>
-4. Sử dụng decorator như thế nào?</h2>
-<ul>
-  <li>
-Sử dụng Decorator hết sức đơn giản. Sử dụng decorator trong ví dụ trên cho hàm <code class="inline">xuat_ten</code> như sau:  </li>
-</ul>
-<pre><code class="python">@ten_decorator
+    print ten</code></pre></li><li><p><strong>CHÚ Ý QUAN TRỌNG</strong>: hàm <code class="inline">wrapper</code> và hàm f phải có tham số phù hợp với nhau. Ví dụ như hàm f nhận vào chỉ 2 tham số thì hàm <code class="inline">decorator</code> không thể nhận vào 3 tham số hoặc 1 tham số.</p></li></ul><h2 id="4-su-dung-decorator-nhu-the-nao">4. Sử dụng decorator như thế nào?</h2><ul><li>Sử dụng Decorator hết sức đơn giản. Sử dụng decorator trong ví dụ trên cho hàm <code class="inline">xuat_ten</code> như sau:</li></ul><pre><code class="python">@ten_decorator
 def xuat_ten(ten):
-    print ten</code></pre>
-<ul>
-  <li>
-Dùng dấu @ để thông báo đó là một decorator. Một hàm có thể dùng nhiều decorator cùng lúc:  </li>
-</ul>
-<pre><code class="python">@ten_decorator1
+    print ten</code></pre><ul><li>Dùng dấu @ để thông báo đó là một decorator. Một hàm có thể dùng nhiều decorator cùng lúc:</li></ul><pre><code class="python">@ten_decorator1
 @ten_decorator2
 @ten_decorator3
 def xuat_ten(ten):
-    print ten</code></pre>
-<h2>
-5. Decorator hoạt động như thế nào?</h2>
-<p>
-Như trong ví dụ ở trên:</p>
-<ul>
-  <li>
-    <p>
-<code class="inline">ten_decorator</code> nhận vào hàm f, sau đó bọc hàm f trong hàm <code class="inline">wrapper</code> của nó và trả về hàm <code class="inline">wrapper</code>. Hàm <code class="inline">wrapper</code> có nhiệm vụ gắn thêm thông tin vào tên rồi mới gọi thực hiện hàm f với chuỗi mới.    </p>
-  </li>
-  <li>
-    <p>
-Việc sử dụng:    </p>
-    <pre><code class="python">@ten_decorator
+    print ten</code></pre><h2 id="5-decorator-hoat-dong-nhu-the-nao">5. Decorator hoạt động như thế nào?</h2><p>Như trong ví dụ ở trên:</p><ul><li><p><code class="inline">ten_decorator</code> nhận vào hàm f, sau đó bọc hàm f trong hàm <code class="inline">wrapper</code> của nó và trả về hàm <code class="inline">wrapper</code>. Hàm <code class="inline">wrapper</code> có nhiệm vụ gắn thêm thông tin vào tên rồi mới gọi thực hiện hàm f với chuỗi mới.</p></li><li><p>Việc sử dụng:</p><pre><code class="python">@ten_decorator
 def xuat_ten(ten):
     print ten
-xuat_ten(&#39;coulson&#39;)</code></pre>
-    <p>
-Tương đương với:    </p>
-    <pre><code class="python">def xuat_ten(ten):
+xuat_ten('coulson')</code></pre><p>Tương đương với:</p><pre><code class="python">def xuat_ten(ten):
 print ten
 ham_xuat_ten_moi = ten_decorator(xuat_ten)
-ham_xuat_ten_moi(&#39;coulson&#39;)</code></pre>
-  </li>
-  <li>
-    <p>
-Rõ ràng với việc sử dụng cú pháp decorator thì code sẽ ngắn gọn và đơn giản hơn. Developer không phải gọi decorator mỗi lần sử dụng mà trình thông dịch sẽ làm việc đó.    </p>
-  </li>
-</ul>
-<p>
-<strong>Đối với hàm sử dụng nhiều decorator</strong></p>
-<p>
-<strong>Ví dụ 2</strong></p>
-<pre><code class="python">@ten_decorator1
+ham_xuat_ten_moi('coulson')</code></pre></li><li><p>Rõ ràng với việc sử dụng cú pháp decorator thì code sẽ ngắn gọn và đơn giản hơn. Developer không phải gọi decorator mỗi lần sử dụng mà trình thông dịch sẽ làm việc đó.</p></li></ul><p><strong>Đối với hàm sử dụng nhiều decorator</strong></p><p><strong>Ví dụ 2</strong></p><pre><code class="python">@ten_decorator1
 @ten_decorator2
 @ten_decorator3
 def xuat_ten(ten):
-    print ten</code></pre>
-<ul>
-  <li>
-Decorator nào càng ở trên, xa function thì sẽ bọc lớp ngoài Giống như khi bạn bọc trái xoài vào trong bị, rồi lại lấy cái bị khác để bọc bên ngoài nữa.  </li>
-  <li>
-Thứ tự thực thi code: - Code của decorator được thực thi ngay lúc file nguồn Python được load lên. Ngoại trừ code trong hàm wrapper của decorator trong cùng sẽ được thực thi lúc gọi hàm. - Decorator được gọi thực thi theo thứ tự từ trong (gần hàm nhất) ra ngoài.  </li>
-</ul>
-<h2>
-6 Truyền tham số cho decorator</h2>
-<blockquote>
-  <p>
-Ở trên, để cho đơn giản, và dễ hiểu thì decorator là một hàm có tham số là một hàm khác. Nhưng điều đó không bắt buộc, decorator cũng có thể là một hàm nhận vào tham số bất kỳ và trả về một hàm và hàm trả về này nhận vào tham số là một hàm khác.  </p>
-</blockquote>
-<p>
-<strong>Ví dụ 3</strong>: thêm chức danh vào chuỗi xuất ra mình có thể định nghĩa decorator như sau:</p>
-<pre><code class="python">def chuc_danh_decorator(ten_chuc_danh):
+    print ten</code></pre><ul><li>Decorator nào càng ở trên, xa function thì sẽ bọc lớp ngoài Giống như khi bạn bọc trái xoài vào trong bị, rồi lại lấy cái bị khác để bọc bên ngoài nữa.</li><li>Thứ tự thực thi code: - Code của decorator được thực thi ngay lúc file nguồn Python được load lên. Ngoại trừ code trong hàm wrapper của decorator trong cùng sẽ được thực thi lúc gọi hàm. - Decorator được gọi thực thi theo thứ tự từ trong (gần hàm nhất) ra ngoài.</li></ul><h2 id="6-truyen-tham-so-cho-decorator">6 Truyền tham số cho decorator</h2><blockquote><p>Ở trên, để cho đơn giản, và dễ hiểu thì decorator là một hàm có tham số là một hàm khác. Nhưng điều đó không bắt buộc, decorator cũng có thể là một hàm nhận vào tham số bất kỳ và trả về một hàm và hàm trả về này nhận vào tham số là một hàm khác.</p></blockquote><p><strong>Ví dụ 3</strong>: thêm chức danh vào chuỗi xuất ra mình có thể định nghĩa decorator như sau:</p><pre><code class="python">def chuc_danh_decorator(ten_chuc_danh):
     def ten_decorator(f):
         def wrapper(ten):
-            chuoi_moi = &quot;Xin gioi thieu %s %s&quot; % (ten_chuc_danh, ten)
+            chuoi_moi = "Xin gioi thieu %s %s" % (ten_chuc_danh, ten)
             return f(chuoi_moi)
         return wrapper
     return ten_decorator
 
-@chuc_danh_decorator(&quot;Giao su&quot;)
+@chuc_danh_decorator("Giao su")
 def gioi_thieu(ten):
     print ten
 
-@chuc_danh_decorator(&quot;Tien si&quot;)
+@chuc_danh_decorator("Tien si")
 def gioi_thieu_2(ten):
     print ten
 
-gioi_thieu(&quot;Teo&quot;)
-gioi_thieu_2(&quot;Ti&quot;)
+gioi_thieu("Teo")
+gioi_thieu_2("Ti")
 
-&gt;&gt; Xin gioi thieu Giao su Teo
-&gt;&gt; Xin gioi thieu Tien si Ti</code></pre>
-<p>
-<strong>Sự khác biệt:</strong></p>
-<ul>
-  <li>
-Hàm decorator bây giờ không phải nhận vào tham số là một hàm mà có thể là tham số bất kỳ.  </li>
-  <li>
-Hàm trả về từ decorator nhận vào một hàm và chính nó mới trả về hàm wrapper  </li>
-  <li>
-Cách sử dụng decorator cũng khác một chút. Decorator được gọi chạy ( dùng dấu () ) và truyền vào tham số.  </li>
-</ul>
-<p>
-<strong>Nó chạy như thế nào:</strong></p>
-<ul>
-  <li>
-Trong ví dụ 3 decorator được sử dụng <code class="inline">@chuc_danh_decorator(&quot;Giao su&quot;)</code>. Chú ý dấu (…), decorator được gọi thực thi và nó trả về hàm <code class="inline">ten_decorator</code> và chính nó sẽ bọc hàm được decorate.  </li>
-  <li>
-Hàm <code class="inline">chuc_danh_decorator</code> chỉ có tác dụng là dùng để truyền tham số vào decorator.  </li>
-</ul>
-<h2>
-7. Debug hàm decorator.</h2>
-<p>
-Khi sử dụng decorator thì hàm thực sự được gọi là hàm wrapper của trả về từ decorator. Nên các thuộc tính <code class="inline">__name__</code>, <code class="inline">__doc__</code>, <code class="inline">__module__</code> không còn là của hàm được decorate nữa mà là của wrapper</p>
-<p>
-Sử dụng lại code trong ví dụ 1:</p>
-<pre><code class="python">print xuat_ten.__name__
+>> Xin gioi thieu Giao su Teo
+>> Xin gioi thieu Tien si Ti</code></pre><p><strong>Sự khác biệt:</strong></p><ul><li>Hàm decorator bây giờ không phải nhận vào tham số là một hàm mà có thể là tham số bất kỳ.</li><li>Hàm trả về từ decorator nhận vào một hàm và chính nó mới trả về hàm wrapper</li><li>Cách sử dụng decorator cũng khác một chút. Decorator được gọi chạy ( dùng dấu () ) và truyền vào tham số.</li></ul><p><strong>Nó chạy như thế nào:</strong></p><ul><li>Trong ví dụ 3 decorator được sử dụng <code class="inline">@chuc_danh_decorator("Giao su")</code>. Chú ý dấu (...), decorator được gọi thực thi và nó trả về hàm <code class="inline">ten_decorator</code> và chính nó sẽ bọc hàm được decorate.</li><li>Hàm <code class="inline">chuc_danh_decorator</code> chỉ có tác dụng là dùng để truyền tham số vào decorator.</li></ul><h2 id="7-debug-ham-decorator">7. Debug hàm decorator.</h2><p>Khi sử dụng decorator thì hàm thực sự được gọi là hàm wrapper của trả về từ decorator. Nên các thuộc tính <code class="inline">__name__</code>, <code class="inline">__doc__</code>, <code class="inline">__module__</code> không còn là của hàm được decorate nữa mà là của wrapper</p><p>Sử dụng lại code trong ví dụ 1:</p><pre><code class="python">print xuat_ten.__name__
 
-&gt;&gt; wrapper</code></pre>
-<p>
-<strong>Khắc phục:</strong> sử dụng thư viện <code class="inline">functools</code>
-<strong>Ví dụ 4:</strong></p>
-<pre><code class="python">from functools import wraps
+>> wrapper</code></pre><p><strong>Khắc phục:</strong> sử dụng thư viện <code class="inline">functools</code>
+<strong>Ví dụ 4:</strong></p><pre><code class="python">from functools import wraps
 
 def ten_decorator(f):
    @wraps(f)
    def wrapper(ten):
-       chuoi_moi = &quot;Ten tui la %s&quot; % ten
+       chuoi_moi = "Ten tui la %s" % ten
        return f(chuoi_moi)
    return wrapper
 
@@ -438,14 +314,7 @@ def xuat_ten( ten ):
 
 print xuat_ten.__name__
 
-&gt;&gt; xuat_ten</code></pre>
-<p>
-Decorator <code class="inline">wraps</code> sẽ lấy các thuộc tính <code class="inline">__name__</code>, <code class="inline">__doc__</code>, <code class="inline">__module__</code> của hàm được decorate và gán cho hàm wrapper nên khi lấy những thuộc tính này sẽ trả về thông tin đúng.</p>
-<h2>
-8. Khi nào nên sử dụng decorator?</h2>
-<p>
-Tham khảo trang <a href="https://wiki.python.org/moin/PythonDecoratorLibrary">Wiki</a> của Python</p>
-</div>
+>> xuat_ten</code></pre><p>Decorator <code class="inline">wraps</code> sẽ lấy các thuộc tính <code class="inline">__name__</code>, <code class="inline">__doc__</code>, <code class="inline">__module__</code> của hàm được decorate và gán cho hàm wrapper nên khi lấy những thuộc tính này sẽ trả về thông tin đúng.</p><h2 id="8-khi-nao-nen-su-dung-decorator">8. Khi nào nên sử dụng decorator?</h2><p>Tham khảo trang <a href="https://wiki.python.org/moin/PythonDecoratorLibrary">Wiki</a> của Python</p></div>
           </div>
 
           <!-- Post meta -->
@@ -534,9 +403,7 @@ Tham khảo trang <a href="https://wiki.python.org/moin/PythonDecoratorLibrary">
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

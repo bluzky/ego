@@ -254,199 +254,63 @@
 
             
 
-            <div class="content"><h2>
-1. What is Rabbit MQ?</h2>
-<blockquote>
-  <p>
-Rabbit MQ is an server application, it is a message broker which implement AMQP (Advanced Message Queue Protocol).
-It works like a post service, which take the message from sender and dispatch that message to the receiver.  </p>
-</blockquote>
-<p>
-<strong>Some terminologies:</strong></p>
-<ul>
-  <li>
-<code class="inline">Producer</code>: send message to queue  </li>
-  <li>
-<code class="inline">Queue</code>: hold all message added by producer and dispatch those message to a consumer  </li>
-  <li>
-<code class="inline">Consumer</code>: receive message from  </li>
-</ul>
-<h2>
-2. What is Rabbit MQ used for?</h2>
-<p>
-RabbitMQ is a message broker server that receive and dispatch/distribute messages to back end services that handle/process heavy tasks. It helps to build a big system can handle large amount of request</p>
-<h2>
-3. Features list</h2>
-<p>
-<strong>Reliability</strong>  <br />
-RabbitMQ offers a variety of features to let you trade off performance with reliability, including persistence, delivery acknowledgements, publisher confirms, and high availability.</p>
-<p>
-<strong>Flexible Routing</strong>  <br />
-Messages are routed through exchanges before arriving at queues. RabbitMQ features several built-in exchange types for typical routing logic. For more complex routing you can bind exchanges together or even write your own exchange type as a plugin.</p>
-<p>
-<strong>Clustering</strong>  <br />
-Several RabbitMQ servers on a local network can be clustered together, forming a single logical broker.</p>
-<p>
-<strong>Federation</strong>  <br />
-For servers that need to be more loosely and unreliably connected than clustering allows, RabbitMQ offers a federation model.</p>
-<p>
-<strong>Highly Available Queues</strong>  <br />
-Queues can be mirrored across several machines in a cluster, ensuring that even in the event of hardware failure your messages are safe.</p>
-<p>
-<strong>Multi-protocol</strong>  <br />
-RabbitMQ supports messaging over a variety of messaging protocols.</p>
-<p>
-<strong>Many Clients</strong>  <br />
-There are RabbitMQ clients for almost any language you can think of.</p>
-<p>
-<strong>Management UI</strong>  <br />
-RabbitMQ ships with an easy-to use management UI that allows you to monitor and control every aspect of your message broker.</p>
-<p>
-<strong>Tracing</strong>  <br />
-If your messaging system is misbehaving, RabbitMQ offers tracing support to let you find out what’s going on.</p>
-<h2>
-3.Bis. Implement models</h2>
-<h3>
-1. <strong>Supported Model</strong></h3>
-<ul>
-  <li>
-    <p>
-<strong>Default exchange</strong>      <br />
-Message from Producer will be pushed directly to message queue and Consumber will receive message on the same queue.
-Producer and Consumer must know the name of the queue    </p>
-  </li>
-  <li>
-    <p>
-<strong>Fanout exchange</strong>      <br />
-Every message is pushed to Fanout exchange,it will be pushed to all all queues which subscribe this Exchange    </p>
-  </li>
-  <li>
-    <p>
-<strong>Direct exachange</strong>      <br />
-If a Consumer only want to filter received message, it will bind to one or many routing_key. When Exchange have new message, it will append that message to all queue which subscribe same routing_key with message. If message’s routing key does not match any subscriber, it will be discarded    </p>
-  </li>
-  <li>
-    <p>
-<strong>Topic exchange</strong>      <br />
-This type of exchange allow more complicated filter, it use pattern to filter topic. Topic string format contains many words and separate by dot [.]
+            <div class="content"><h2 id="1-what-is-rabbit-mq">1. What is Rabbit MQ?</h2><blockquote><p>Rabbit MQ is an server application, it is a message broker which implement AMQP (Advanced Message Queue Protocol).
+It works like a post service, which take the message from sender and dispatch that message to the receiver.</p></blockquote><p><strong>Some terminologies:</strong></p><ul><li><code class="inline">Producer</code>: send message to queue</li><li><code class="inline">Queue</code>: hold all message added by producer and dispatch those message to a consumer</li><li><code class="inline">Consumer</code>: receive message from</li></ul><h2 id="2-what-is-rabbit-mq-used-for">2. What is Rabbit MQ used for?</h2><p>RabbitMQ is a message broker server that receive and dispatch/distribute messages to back end services that handle/process heavy tasks. It helps to build a big system can handle large amount of request</p><h2 id="3-features-list">3. Features list</h2><p><strong>Reliability</strong><br></br>RabbitMQ offers a variety of features to let you trade off performance with reliability, including persistence, delivery acknowledgements, publisher confirms, and high availability.</p><p><strong>Flexible Routing</strong><br></br>Messages are routed through exchanges before arriving at queues. RabbitMQ features several built-in exchange types for typical routing logic. For more complex routing you can bind exchanges together or even write your own exchange type as a plugin.</p><p><strong>Clustering</strong><br></br>Several RabbitMQ servers on a local network can be clustered together, forming a single logical broker.</p><p><strong>Federation</strong><br></br>For servers that need to be more loosely and unreliably connected than clustering allows, RabbitMQ offers a federation model.</p><p><strong>Highly Available Queues</strong><br></br>Queues can be mirrored across several machines in a cluster, ensuring that even in the event of hardware failure your messages are safe.</p><p><strong>Multi-protocol</strong><br></br>RabbitMQ supports messaging over a variety of messaging protocols.</p><p><strong>Many Clients</strong><br></br>There are RabbitMQ clients for almost any language you can think of.</p><p><strong>Management UI</strong><br></br>RabbitMQ ships with an easy-to use management UI that allows you to monitor and control every aspect of your message broker.</p><p><strong>Tracing</strong><br></br>If your messaging system is misbehaving, RabbitMQ offers tracing support to let you find out what's going on.</p><h2 id="3-bis-implement-models">3.Bis. Implement models</h2><h3 id="1-supported-model">1. <strong>Supported Model</strong></h3><ul><li><p><strong>Default exchange</strong><br></br>Message from Producer will be pushed directly to message queue and Consumber will receive message on the same queue.
+Producer and Consumer must know the name of the queue</p></li><li><p><strong>Fanout exchange</strong><br></br>Every message is pushed to Fanout exchange,it will be pushed to all all queues which subscribe this Exchange</p></li><li><p><strong>Direct exachange</strong><br></br>If a Consumer only want to filter received message, it will bind to one or many routing_key. When Exchange have new message, it will append that message to all queue which subscribe same routing_key with message. If message's routing key does not match any subscriber, it will be discarded</p></li><li><p><strong>Topic exchange</strong><br></br>This type of exchange allow more complicated filter, it use pattern to filter topic. Topic string format contains many words and separate by dot [.]
 # to replace 0 or many words * to replace exactly one word
-<strong>Example</strong>:      <br />
-publish topic: kern.logs.error, security.log.warning
-pattern: *.*.error, kern.#    </p>
-  </li>
-  <li>
-    <p>
-<strong>Headers exchange</strong>    </p>
-  </li>
-</ul>
-<h3>
-2. <strong>Direct message:</strong></h3>
-<blockquote>
-  <p>
-Producer send message directy to message queue
+<strong>Example</strong>:<br></br>publish topic: kern.logs.error, security.log.warning
+pattern: *.*.error, kern.#</p></li><li><p><strong>Headers exchange</strong></p></li></ul><h3 id="2-direct-message">2. <strong>Direct message:</strong></h3><blockquote><p>Producer send message directy to message queue
 To send message direct to queue, set exchange name to empty string
-Many consumer can subcribe same queue. Message will be dispatched using FIFO rule  </p>
-</blockquote>
-<p>
-<strong>Producer</strong></p>
-<pre><code class="python">channel.basic_publish(exchange=&#39;&#39;,
-                      routing_key=&#39;routing_name&#39;,
-                      body=&#39;message_content&#39;)</code></pre>
-<p>
-<strong>Consumer</strong></p>
-<pre><code class="python">channel.basic_consume(callback, # callback function to handle message
-                        queue=&#39;queue_name&#39;
-                        no_ack=True)</code></pre>
-<p>
-{{&lt; mermaid &gt;}}
+Many consumer can subcribe same queue. Message will be dispatched using FIFO rule</p></blockquote><p><strong>Producer</strong></p><pre><code class="python">channel.basic_publish(exchange='',
+                      routing_key='routing_name',
+                      body='message_content')</code></pre><p><strong>Consumer</strong></p><pre><code class="python">channel.basic_consume(callback, # callback function to handle message
+                        queue='queue_name'
+                        no_ack=True)</code></pre><p>{{< mermaid >}}
 graph LR;
-A((Producer))–&gt;Q[queue];
-Q –&gt; C((Consumer 1));
-Q –&gt; C2((Consumer 2));
-Q –&gt; C3(( ……));
-{{&lt; /mermaid &gt;}}</p>
-<h3>
-3. <strong>Publish message via Exchange</strong>(publish/subcribe)</h3>
-<p>
-<strong>Exchange</strong>: acts like an agent, it receives messages from Producer and pushes them to appropriate queue.
-The idea of exchange is to separate Producer from queues. Producers do not need to know about queues, it simply sends message to exchange, and Exchanges will know how/ which queue to append message to or discard them.</p>
-<blockquote>
-  <p>
-Routing key comes with publish and subscribe. Instead of knowing name of queue, producer now only need know routing key, it sends messages to Exchange with routing key. Each time Exchange receives a message, it will check message’s routing key and push that message to all Consumer which subscribe that routing key.  </p>
-</blockquote>
-<p>
-{{&lt; mermaid &gt;}}
+A((Producer))-->Q[queue];
+Q --> C((Consumer 1));
+Q --> C2((Consumer 2));
+Q --> C3(( ......));
+{{< /mermaid >}}</p><h3 id="3-publish-message-via-exchange-publish-subcribe">3. <strong>Publish message via Exchange</strong>(publish/subcribe)</h3><p><strong>Exchange</strong>: acts like an agent, it receives messages from Producer and pushes them to appropriate queue.
+The idea of exchange is to separate Producer from queues. Producers do not need to know about queues, it simply sends message to exchange, and Exchanges will know how/ which queue to append message to or discard them.</p><blockquote><p>Routing key comes with publish and subscribe. Instead of knowing name of queue, producer now only need know routing key, it sends messages to Exchange with routing key. Each time Exchange receives a message, it will check message's routing key and push that message to all Consumer which subscribe that routing key.</p></blockquote><p>{{< mermaid >}}
 graph LR;
-P1((P1))–&gt;E(Exchange);
-P2((P2))–&gt;E;
-E–&gt;|Black|Q1[Queue1];
-E–&gt;|Green|Q2[Queue2];
-E–&gt;|Blue|Q2[Queue2];
-Q1–&gt;C1((C1));
-Q2–&gt;C2((C2));
-{{&lt; /mermaid &gt;}}</p>
-<p>
-<strong>Producer</strong></p>
-<pre><code class="python"># firs we need to declare an exchange
+P1((P1))-->E(Exchange);
+P2((P2))-->E;
+E-->|Black|Q1[Queue1];
+E-->|Green|Q2[Queue2];
+E-->|Blue|Q2[Queue2];
+Q1-->C1((C1));
+Q2-->C2((C2));
+{{< /mermaid >}}</p><p><strong>Producer</strong></p><pre><code class="python"># firs we need to declare an exchange
 # four types of exchange: fanout, headers, topic, direct
-channel.exchange_declare(exchange=&#39;exchange_name&#39;,
-                        type=&#39;exchange_type&#39;)
+channel.exchange_declare(exchange='exchange_name',
+                        type='exchange_type')
 ....
-channel.basic_publish(exchange=&#39;exchange_name&#39;,
-                        routing_key=&#39;channel_name&#39;,
-                        body=&#39;message_content&#39;)
-....</code></pre>
-<p>
-<strong>Consumer</strong></p>
-<pre><code class="python">channel.exchange_declare(exchange=&#39;exchange_name&#39;,
-                        type=&#39;exchange_type&#39;)
+channel.basic_publish(exchange='exchange_name',
+                        routing_key='channel_name',
+                        body='message_content')
+....</code></pre><p><strong>Consumer</strong></p><pre><code class="python">channel.exchange_declare(exchange='exchange_name',
+                        type='exchange_type')
 ....
 # need to bind queue to a specific exchange
-channel.queue_bind(exchange=&#39;exchange_name&#39;,
-                    queue=&#39;queue_name&#39;)
+channel.queue_bind(exchange='exchange_name',
+                    queue='queue_name')
 ....
 channel.basic_consume(callback,
-                    queue=&#39;queue_name&#39;,
-                    no_ack=True)</code></pre>
-<ol start="4">
-  <li>
-    <p>
-<strong>RPC</strong>    </p>
-    <blockquote>
-      <p>
-Client send request to Server, Method is defined at server and Client should know exactly which function server has.
+                    queue='queue_name',
+                    no_ack=True)</code></pre><ol start="4"><li><p><strong>RPC</strong></p><blockquote><p>Client send request to Server, Method is defined at server and Client should know exactly which function server has.
 Client push request to a queue and server subscribe this queue
 Server push result to another queue and clien subscribe this queue
-{{&lt; mermaid &gt;}}
+{{< mermaid >}}
 graph LR
-C((Client))–&gt;Q1[request queue]
-Q1–&gt; S((Server))
-Q2[result queue] –&gt;C
-S–&gt; Q2
+C((Client))-->Q1[request queue]
+Q1--> S((Server))
+Q2[result queue] -->C
+S--> Q2
 style C fill:orange
 style S fill:pink
-{{&lt; /mermaid &gt;}}      </p>
-    </blockquote>
-  </li>
-</ol>
-<p>
-##4. Use case</p>
-<ul>
-  <li>
-<a href="https://developers.soundcloud.com/blog/building-products-at-soundcloud-part-1-dealing-with-the-monolith">Sound cloud</a>  </li>
-</ul>
-<p>
-##5. References</p>
-<ul>
-  <li>
-<a href="http://www.rabbitmq.com/download.html">Install instruction</a>  </li>
-  <li>
-Tutorial <a href="http://www.rabbitmq.com/tutorials/tutorial-one-python.html">page</a>  </li>
-  <li>
-==<strong><a href="https://www.rabbitmq.com/tutorials/amqp-concepts.html">AMQP concept</a></strong>==
-##6. Conclusion  </li>
-</ul>
-</div>
+{{< /mermaid >}}</p></blockquote></li></ol><p>##4. Use case</p><ul><li><a href="https://developers.soundcloud.com/blog/building-products-at-soundcloud-part-1-dealing-with-the-monolith">Sound cloud</a></li></ul><p>##5. References</p><ul><li><a href="http://www.rabbitmq.com/download.html">Install instruction</a></li><li>Tutorial <a href="http://www.rabbitmq.com/tutorials/tutorial-one-python.html">page</a></li><li>==<strong><a href="https://www.rabbitmq.com/tutorials/amqp-concepts.html">AMQP concept</a></strong>==
+##6. Conclusion</li></ul></div>
           </div>
 
           <!-- Post meta -->
@@ -535,9 +399,7 @@ Tutorial <a href="http://www.rabbitmq.com/tutorials/tutorial-one-python.html">pa
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

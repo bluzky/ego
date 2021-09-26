@@ -263,68 +263,30 @@
             </div>
             
 
-            <div class="content"><blockquote>
-  <p>
-Credit: this icon is from <a href="https://www.flaticon.com/free-icon/parking-barrier_2983600">flaticon.com</a>  </p>
-</blockquote>
-<p>
-In previous article, I shown you how to implement you own validation module. I you haven’t read it, you can find it here <a href="/blog/2021-07-31-build-elixir-validator-from-scratch">How to build an Elixir validator from scratch </a></p>
-<p>
-And I think some of you may want a ready to use library so I wrapped it up, added some useful api and published on <a href="https://hex.pm/packages/valdi">hex.pm</a> and <a href="https://github.com/bluzky/valdi">github repo here</a>.</p>
-<p>
-This post is just showcases of what it can do. (not too much fancy)
-First, add dependencies to your <code class="inline">mix.exs</code> and you are ready to go.</p>
-<pre><code class="elixir">{:valdi, &quot;~&gt; 0.2.0&quot;}</code></pre>
-<p>
-And this is how it works.</p>
-<p>
-<strong>Validate using a specific validation function</strong></p>
-<pre><code class="elixir">iex(1)&gt; age = 20
+            <div class="content"><blockquote><p>Credit: this icon is from <a href="https://www.flaticon.com/free-icon/parking-barrier_2983600">flaticon.com</a></p></blockquote><p>In previous article, I shown you how to implement you own validation module. I you haven't read it, you can find it here <a href="/blog/2021-07-31-build-elixir-validator-from-scratch">How to build an Elixir validator from scratch </a></p><p>And I think some of you may want a ready to use library so I wrapped it up, added some useful api and published on <a href="https://hex.pm/packages/valdi">hex.pm</a> and <a href="https://github.com/bluzky/valdi">github repo here</a>.</p><p>This post is just showcases of what it can do. (not too much fancy)
+First, add dependencies to your <code class="inline">mix.exs</code> and you are ready to go.</p><pre><code class="elixir">{:valdi, "~> 0.2.0"}</code></pre><p>And this is how it works.</p><p><strong>Validate using a specific validation function</strong></p><pre><code class="elixir">iex(1)> age = 20
 20
-iex(2)&gt; Valdi.validate_number(age, min: 18, max: 60)
-:ok</code></pre>
-<p>
-But most of the time you don’t do this, you will want to combine multiple validations at a time.</p>
-<pre><code class="elixir">iex(4)&gt; Valdi.validate(&quot;20&quot;, type: :integer,  number: [min: 18, max: 60])
-{:error, &quot;is not a integer&quot;}</code></pre>
-<p>
-And you may want to validate a list of value too:</p>
-<pre><code class="elixir">iex(1)&gt; Valdi.validate_list([&quot;hi&quot;, &quot;how&quot;, &quot;are&quot;, &quot;you&quot;, 100], type: :string,  length: [min: 3])
+iex(2)> Valdi.validate_number(age, min: 18, max: 60)
+:ok</code></pre><p>But most of the time you don't do this, you will want to combine multiple validations at a time.</p><pre><code class="elixir">iex(4)> Valdi.validate("20", type: :integer,  number: [min: 18, max: 60])
+{:error, "is not a integer"}</code></pre><p>And you may want to validate a list of value too:</p><pre><code class="elixir">iex(1)> Valdi.validate_list(["hi", "how", "are", "you", 100], type: :string,  length: [min: 3])
 {:error,
- [[0, &quot;length must be greater than or equal to 3&quot;], [4, &quot;is not a string&quot;]]}</code></pre>
-<p>
-If validation failed, you got a list of error and index of error item.</p>
-<p>
-<code class="inline">Valdi</code> supports you to validate a simple map with given specification:</p>
-<pre><code class="elixir">product_spec = %{
+ [[0, "length must be greater than or equal to 3"], [4, "is not a string"]]}</code></pre><p>If validation failed, you got a list of error and index of error item.</p><p><code class="inline">Valdi</code> supports you to validate a simple map with given specification:</p><pre><code class="elixir">product_spec = %{
     name: [type: :string, required: true],
     sku: [type: :string, required: true],
     price: [type: :integer, number: [min: 0]]
 }
 Valdi.validate_map(%{
-    name: &quot;A magic pen&quot;,
+    name: "A magic pen",
     sku: nil,
     price: -1
 }, product_spec)
 
-# {:error, %{price: &quot;must be greater than or equal to 0&quot;, sku: &quot;is required&quot;}}</code></pre>
-<p>
-<strong>Valdi does not support nested map validation</strong>.</p>
-<p>
-You might want to take a look at <a href="https://github.com/bluzky/contrak">Contrak</a>, it extended <code class="inline">Valdi</code> by providing a simple way to define and validate nested schema.</p>
-<p>
-Why I didn’t put those in just one library? I think data validation and schema validation are quite different, so I want to keep libraries simple and do its best thing.</p>
-<p>
-<strong>Here you can define your own validation</strong></p>
-<pre><code class="elixir">Valdi.validate(&quot;as008x8234&quot;, type: :string, func: fn value -&gt;
-   if String.match?(value, ~r/^\d{4}$/), do: :ok, else: {:error, &quot;not a year string&quot;}
+# {:error, %{price: "must be greater than or equal to 0", sku: "is required"}}</code></pre><p><strong>Valdi does not support nested map validation</strong>.</p><p>You might want to take a look at <a href="https://github.com/bluzky/contrak">Contrak</a>, it extended <code class="inline">Valdi</code> by providing a simple way to define and validate nested schema.</p><p>Why I didn't put those in just one library? I think data validation and schema validation are quite different, so I want to keep libraries simple and do its best thing.</p><p><strong>Here you can define your own validation</strong></p><pre><code class="elixir">Valdi.validate("as008x8234", type: :string, func: fn value ->
+   if String.match?(value, ~r/^\d{4}$/), do: :ok, else: {:error, "not a year string"}
 end)
 
-# {:error, &quot;not a year string&quot;}</code></pre>
-<p>
-Hope this small library can help. If you have any suggestion please comment.
-Thank you.</p>
-</div>
+# {:error, "not a year string"}</code></pre><p>Hope this small library can help. If you have any suggestion please comment.
+Thank you.</p></div>
           </div>
 
           <!-- Post meta -->
@@ -413,9 +375,7 @@ Thank you.</p>
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

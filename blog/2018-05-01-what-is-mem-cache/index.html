@@ -254,83 +254,24 @@
 
             
 
-            <div class="content"><h2>
-1. Memcache</h2>
-<blockquote>
-  <p>
-<a href="https://memcached.org">Memcache</a> là một cơ sở dữ liệu dạng key-value, các dữ liệu đuợc ghi nhớ trên RAM giúp tối ưu thời gian truy xuất.  </p>
-</blockquote>
-<h2>
-2. Đặc điểm</h2>
-<ul>
-  <li>
-Dữ liệu lưu trữ dạng key-value  </li>
-  <li>
-Value là dữ liệu dạng string  </li>
-  <li>
-Kích thuớc của Value giới hạn là 1MB  </li>
-  <li>
-Dữ liệu sẽ bị mất khi tắt máy/ tắt memcache  </li>
-  <li>
-Truy xuất dữ liệu nhanh  </li>
-</ul>
-<h2>
-3. Ứng dụng</h2>
-<p>
-Memcache thường đuợc dùng đễ cache dữ liệu trên các web server giúp giảm thời gian xử lý các request giống nhau, thay vào đó chỉ cần đọc dữ liệu từ bộ nhớ và trả về ngay lập tức.</p>
-<h2>
-4. Ưu - Nhược điểm</h2>
-<p>
-<strong>Ưu điểm</strong></p>
-<ul>
-  <li>
-Dữ liệu truy xuất nhanh  </li>
-  <li>
-Sử dụng phổ biến  </li>
-</ul>
-<p>
-<strong>Nhược điểm</strong></p>
-<ul>
-  <li>
-Khi dữ liệu bị xoá, dữ liệu không đuợc phục hồi  </li>
-  <li>
-Chỉ hỗ trợ dữ liệu kiểu string  </li>
-  <li>
-Kích thước dữ liệu giới hạn chỉ 1MB  </li>
-  <li>
-Không hỗ trợ lưu dữ liệu persistent  </li>
-</ul>
-<h2>
-5. Cách sử dụng</h2>
-<p>
-Ví dụ sử dụng trong Elixir:</p>
-<pre><code class="elixir">def get_post(conn, %{&quot;id&quot; =&gt; id}) do
-  response = Memcache.Client.get(&quot;post-#{id}&quot;)
+            <div class="content"><h2 id="1-memcache">1. Memcache</h2><blockquote><p><a href="https://memcached.org">Memcache</a> là một cơ sở dữ liệu dạng key-value, các dữ liệu đuợc ghi nhớ trên RAM giúp tối ưu thời gian truy xuất.</p></blockquote><h2 id="2-dac-diem">2. Đặc điểm</h2><ul><li>Dữ liệu lưu trữ dạng key-value</li><li>Value là dữ liệu dạng string</li><li>Kích thuớc của Value giới hạn là 1MB</li><li>Dữ liệu sẽ bị mất khi tắt máy/ tắt memcache</li><li>Truy xuất dữ liệu nhanh</li></ul><h2 id="3-ung-dung">3. Ứng dụng</h2><p>Memcache thường đuợc dùng đễ cache dữ liệu trên các web server giúp giảm thời gian xử lý các request giống nhau, thay vào đó chỉ cần đọc dữ liệu từ bộ nhớ và trả về ngay lập tức.</p><h2 id="4-uu-nhuoc-diem">4. Ưu - Nhược điểm</h2><p><strong>Ưu điểm</strong></p><ul><li>Dữ liệu truy xuất nhanh</li><li>Sử dụng phổ biến</li></ul><p><strong>Nhược điểm</strong></p><ul><li>Khi dữ liệu bị xoá, dữ liệu không đuợc phục hồi</li><li>Chỉ hỗ trợ dữ liệu kiểu string</li><li>Kích thước dữ liệu giới hạn chỉ 1MB</li><li>Không hỗ trợ lưu dữ liệu persistent</li></ul><h2 id="5-cach-su-dung">5. Cách sử dụng</h2><p>Ví dụ sử dụng trong Elixir:</p><pre><code class="elixir">def get_post(conn, %{"id" => id}) do
+  response = Memcache.Client.get("post-#{id}")
   
   case response.status do
-    :ok -&gt;
+    :ok ->
       # trả về ngay nếu tìm thấy trong cache
       json(conn, Poison.decode!(response.value))
       
-    status -&gt;
+    status ->
       # Nếu không thấy, truy xuất dữ liệu mới
       data = get_post_data(id)
       
       # Lưu dữ liệu mới vào cache
       json_data = Poison.encode!(data)
-      Memcache.Client.set(&quot;post-#{id}&quot;, json_data)
+      Memcache.Client.set("post-#{id}", json_data)
       json(conn, data)
   end
-end</code></pre>
-<h2>
-6. Refs</h2>
-<ul>
-  <li>
-Trang chủ <a href="https://memcached.org/">memcached.org</a>  </li>
-  <li>
-So sánh Memcache và Redis trên <a href="https://stackoverflow.com/questions/10558465/memcached-vs-redis">Stack overflow</a>  </li>
-</ul>
-</div>
+end</code></pre><h2 id="6-refs">6. Refs</h2><ul><li>Trang chủ <a href="https://memcached.org/">memcached.org</a></li><li>So sánh Memcache và Redis trên <a href="https://stackoverflow.com/questions/10558465/memcached-vs-redis">Stack overflow</a></li></ul></div>
           </div>
 
           <!-- Post meta -->
@@ -419,9 +360,7 @@ So sánh Memcache và Redis trên <a href="https://stackoverflow.com/questions/1
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

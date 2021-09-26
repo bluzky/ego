@@ -254,64 +254,18 @@
 
             
 
-            <div class="content"><h2>
-1. Giới thiệu</h2>
-<ul>
-  <li>
-List là một trong những kiểu dữ liệu được sử dụng rất nhiều trong python.  </li>
-  <li>
-Các thao tác thường được thực hiện trên list: xử lý từng phần tử trong list, lọc lấy một số phần tử thỏa điều kiện, tính toán dựa trên tất cả các phần tử của list( vd tính tổng) và trả về kết quả.  </li>
-  <li>
-Để đơn giản việc xử lý List, Python hỗ trợ một số hàm có sẵn để thực hiện các tác vụ trên gồm <code class="inline">map()</code>, <code class="inline">filter()</code>, <code class="inline">reduce()</code>  </li>
-</ul>
-<h2>
-2. Map</h2>
-<blockquote>
-  <p>
-<code class="inline">map(func, seq)</code> &gt; <code class="inline">map</code> sẽ áp dụng hàm func cho mỗi phần tử của seq và trả về list kết quả.  </p>
-</blockquote>
-<p>
-<strong>Ví dụ:</strong> Tính bình phương các số có trong list</p>
-<p>
-<strong>a. sử dụng map():</strong></p>
-<pre><code class="python">my_list = [1,2,3,4,5]
+            <div class="content"><h2 id="1-gioi-thieu">1. Giới thiệu</h2><ul><li>List là một trong những kiểu dữ liệu được sử dụng rất nhiều trong python.</li><li>Các thao tác thường được thực hiện trên list: xử lý từng phần tử trong list, lọc lấy một số phần tử thỏa điều kiện, tính toán dựa trên tất cả các phần tử của list( vd tính tổng) và trả về kết quả.</li><li>Để đơn giản việc xử lý List, Python hỗ trợ một số hàm có sẵn để thực hiện các tác vụ trên gồm <code class="inline">map()</code>, <code class="inline">filter()</code>, <code class="inline">reduce()</code></li></ul><h2 id="2-map">2. Map</h2><blockquote><p><code class="inline">map(func, seq)</code> > <code class="inline">map</code> sẽ áp dụng hàm func cho mỗi phần tử của seq và trả về list kết quả.</p></blockquote><p><strong>Ví dụ:</strong> Tính bình phương các số có trong list</p><p><strong>a. sử dụng map():</strong></p><pre><code class="python">my_list = [1,2,3,4,5]
 def binh_phuong(number):
     return number*number
 
 print map(binh_phuong, my_list)
-# [1,2,9,16,25]</code></pre>
-<ul>
-  <li>
-Trong ví dụ trên, map sẽ tự động áp dụng hàm binh_phuong với mỗi phần tử trong danh sách my_list  </li>
-  <li>
-Hàm truyền vào hàm <code class="inline">map</code> nhận vào một tham số cùng kiểu với phần tử của list  </li>
-  <li>
-Có thể sử dụng lamda thay thế cho hàm. Ví dụ trên có thể được viết lại: <code class="inline">print map(lambda x: x*x, my_list)</code>  </li>
-</ul>
-<p>
-<strong>b. Cách thông thường:</strong></p>
-<pre><code class="python">my_list = [1,2,3,4,5]
+# [1,2,9,16,25]</code></pre><ul><li>Trong ví dụ trên, map sẽ tự động áp dụng hàm binh_phuong với mỗi phần tử trong danh sách my_list</li><li>Hàm truyền vào hàm <code class="inline">map</code> nhận vào một tham số cùng kiểu với phần tử của list</li><li>Có thể sử dụng lamda thay thế cho hàm. Ví dụ trên có thể được viết lại: <code class="inline">print map(lambda x: x*x, my_list)</code></li></ul><p><strong>b. Cách thông thường:</strong></p><pre><code class="python">my_list = [1,2,3,4,5]
 result = list()
 for number in my_list:
     result.append( number*number)
 
-print result # [1,2,9,16,25]</code></pre>
-<h2>
-3. Filter</h2>
-<blockquote>
-  <ul>
-    <li>
-filter(func, list)    </li>
-    <li>
-Hàm filter sẽ gọi hàm func với tham số lần lượt là từng phần tử của list và trả về danh sách các phần tử mà func trả về <strong>True</strong>    </li>
-    <li>
-func chỉ có thể trả về <strong>True</strong> hoặc <strong>False</strong>    </li>
-  </ul>
-</blockquote>
-<p>
-<strong>Ví dụ:</strong> lọc ra các số chẵn từ danh sách
-a. Sử dụng filter:</p>
-<pre><code class="python">my_list = [1, 2, 3, 4, 5]
+print result # [1,2,9,16,25]</code></pre><h2 id="3-filter">3. Filter</h2><blockquote><ul><li>filter(func, list)</li><li>Hàm filter sẽ gọi hàm func với tham số lần lượt là từng phần tử của list và trả về danh sách các phần tử mà func trả về <strong>True</strong></li><li>func chỉ có thể trả về <strong>True</strong> hoặc <strong>False</strong></li></ul></blockquote><p><strong>Ví dụ:</strong> lọc ra các số chẵn từ danh sách
+a. Sử dụng filter:</p><pre><code class="python">my_list = [1, 2, 3, 4, 5]
 
 def so_chan(number):
     if number % 2 == 0:
@@ -319,32 +273,17 @@ def so_chan(number):
     else:
         return False
 
-print filter(so_chan, my_list)  # [2,4]</code></pre>
-<p>
-#Sử dụng lambda</p>
-<pre><code class="python">print filter(lambda x: x%2 ==0, my_list)# [2,4]</code></pre>
-<p>
-b. Không dùng filter</p>
-<pre><code class="python">my_list = [1, 2, 3, 4, 5]
+print filter(so_chan, my_list)  # [2,4]</code></pre><p>#Sử dụng lambda</p><pre><code class="python">print filter(lambda x: x%2 ==0, my_list)# [2,4]</code></pre><p>b. Không dùng filter</p><pre><code class="python">my_list = [1, 2, 3, 4, 5]
 ket_qua = list()
 
 for number in my_list:
     if number % 2 == 0:
         ket_qua.append(number)
 
-print ket_qua</code></pre>
-<h2>
-4. Reduce</h2>
-<blockquote>
-  <p>
-<code class="inline">reduce(func, seq)</code>
+print ket_qua</code></pre><h2 id="4-reduce">4. Reduce</h2><blockquote><p><code class="inline">reduce(func, seq)</code>
 reduce sẽ tính toán với các phần tử của danh sách và trả về kết quả.
-<code class="inline">func</code> là một hàm nhận vào 2 tham số có dạng<code class="inline">func(arg1, arg2)</code> trong đó <code class="inline">arg1</code> là kết quả tính toán với các phần tử trước, <code class="inline">arg2</code> là giá trị của phần tử của danh sách đang được tính toán.  </p>
-</blockquote>
-<p>
-<strong>Ví dụ:</strong> tính tổng bình phương của các phần tử trong mảng
-a. Su dung reduce</p>
-<pre><code class="python">data = [1,2,3,4]
+<code class="inline">func</code> là một hàm nhận vào 2 tham số có dạng<code class="inline">func(arg1, arg2)</code> trong đó <code class="inline">arg1</code> là kết quả tính toán với các phần tử trước, <code class="inline">arg2</code> là giá trị của phần tử của danh sách đang được tính toán.</p></blockquote><p><strong>Ví dụ:</strong> tính tổng bình phương của các phần tử trong mảng
+a. Su dung reduce</p><pre><code class="python">data = [1,2,3,4]
 def tinh_tong(tong, so):
     return tong + so*so
 
@@ -352,24 +291,12 @@ def tinh_tong(tong, so):
 print reduce(tinh_tong, data) #30
 
 #su dung lambda
-print reduce( (lambda tong, so: tong + so*so), data) #30</code></pre>
-<p>
-b. Khong su dung reduce</p>
-<pre><code class="python">data = [1,2,3,4]
+print reduce( (lambda tong, so: tong + so*so), data) #30</code></pre><p>b. Khong su dung reduce</p><pre><code class="python">data = [1,2,3,4]
 tong = 0
 for so in data:
     tong += so*so
 
-print tong #30</code></pre>
-<h2>
-5. Kết luận</h2>
-<ul>
-  <li>
-<em>Trong bài viết chỉ đưa ra những ví dụ đơn giản nên có thể các bạn chưa thấy được sự tiện dụng của <code class="inline">map, filter, reduce</code>.</em>  </li>
-  <li>
-<em>Tuy nhiên khi phải làm việc với list nhiều các bạn sẽ thấy nó rất là tiện đặc biệt là khi sử dụng kèm lambda hoặc tái sử dụng các hàm với map, filter và reduce</em>  </li>
-</ul>
-</div>
+print tong #30</code></pre><h2 id="5-ket-luan">5. Kết luận</h2><ul><li><em>Trong bài viết chỉ đưa ra những ví dụ đơn giản nên có thể các bạn chưa thấy được sự tiện dụng của <code class="inline">map, filter, reduce</code>.</em></li><li><em>Tuy nhiên khi phải làm việc với list nhiều các bạn sẽ thấy nó rất là tiện đặc biệt là khi sử dụng kèm lambda hoặc tái sử dụng các hàm với map, filter và reduce</em></li></ul></div>
           </div>
 
           <!-- Post meta -->
@@ -458,9 +385,7 @@ print tong #30</code></pre>
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

@@ -263,71 +263,53 @@
             </div>
             
 
-            <div class="content"><p>
-If your data is encrypted, even if it’s leaked, no one know what is the data. That’s great.</p>
-<p>
-In this post, I’m going to show you how to encrypt data with Ecto. <code class="inline">Ecto</code> allows developer to define their own types. And we will define a type called <code class="inline">EncryptedText</code> which encrypts data before persiting to database and decrypts data after loading.</p>
-<h2>
-1. Define encrypt/decrypt methods</h2>
-<p>
-This is a simple version of crypto module:</p>
-<pre><code class="elixir">defmodule Crypto do
+            <div class="content"><p>If your data is encrypted, even if it's leaked, no one know what is the data. That's great.</p><p>In this post, I'm going to show you how to encrypt data with Ecto. <code class="inline">Ecto</code> allows developer to define their own types. And we will define a type called <code class="inline">EncryptedText</code> which encrypts data before persiting to database and decrypts data after loading.</p><h2 id="1-define-encrypt-decrypt-methods">1. Define encrypt/decrypt methods</h2><p>This is a simple version of crypto module:</p><pre><code class="elixir">defmodule Crypto do
   @block_size 16
 
   def generate_secret do
     :crypto.strong_rand_bytes(@block_size)
-    |&gt; Base.encode64()
+    |> Base.encode64()
   end
 
   def encrypt(plaintext, secret_key) do
-    with {:ok, secret_key} &lt;- decode_key(secret_key) do
+    with {:ok, secret_key} <- decode_key(secret_key) do
       iv = :crypto.strong_rand_bytes(@block_size)
       plaintext = pad(plaintext, @block_size)
       ciphertext = :crypto.crypto_one_time(:aes_128_cbc, secret_key, iv, plaintext, true)
 
-      {:ok, Base.encode64(iv &lt;&gt; ciphertext)}
+      {:ok, Base.encode64(iv <> ciphertext)}
     end
   end
 
   def decrypt(ciphertext, secret_key) do
-    with {:ok, secret_key} &lt;- decode_key(secret_key),
-         {:ok, &lt;&lt;iv::binary-@block_size, ciphertext::binary&gt;&gt;} &lt;- Base.decode64(ciphertext) do
+    with {:ok, secret_key} <- decode_key(secret_key),
+         {:ok, <<iv::binary-@block_size, ciphertext::binary>>} <- Base.decode64(ciphertext) do
       plaintext =
         :crypto.crypto_one_time(:aes_128_cbc, secret_key, iv, ciphertext, false)
-        |&gt; unpad
+        |> unpad
 
       {:ok, plaintext}
     else
-      {:error, _} = err -&gt; err
-      _ -&gt; {:error, &quot;Bad encrypted data&quot;}
+      {:error, _} = err -> err
+      _ -> {:error, "Bad encrypted data"}
     end
   end
 
   defp pad(data, block_size) do
     to_add = block_size - rem(byte_size(data), block_size)
-    data &lt;&gt; :binary.copy(&lt;&lt;to_add&gt;&gt;, to_add)
+    data <> :binary.copy(<<to_add>>, to_add)
   end
 
   defp unpad(data) do
     to_remove = :binary.last(data)
     :binary.part(data, 0, byte_size(data) - to_remove)
   end
-end</code></pre>
-<p>
-Let go through the code</p>
-<pre><code class="elixir">  def generate_secret do
+end</code></pre><p>Let go through the code</p><pre><code class="elixir">  def generate_secret do
     :crypto.strong_rand_bytes(@block_size)
-    |&gt; Base.encode64()
-  end</code></pre>
-<p>
-This function generate a 16 bytes secret key and encode base 64 string so you can add it to config.</p>
-<ul>
-  <li>
-<code class="inline">encrypt/2</code> function  </li>
-</ul>
-<pre><code class="elixir"> def encrypt(plaintext, secret_key) do
+    |> Base.encode64()
+  end</code></pre><p>This function generate a 16 bytes secret key and encode base 64 string so you can add it to config.</p><ul><li><code class="inline">encrypt/2</code> function</li></ul><pre><code class="elixir"> def encrypt(plaintext, secret_key) do
     # check the key size
-    with {:ok, secret_key} &lt;- decode_key(secret_key) do
+    with {:ok, secret_key} <- decode_key(secret_key) do
       
       # random initial vector
       iv = :crypto.strong_rand_bytes(@block_size)
@@ -337,54 +319,24 @@ This function generate a 16 bytes secret key and encode base 64 string so you ca
       # encrypt here
       ciphertext = :crypto.crypto_one_time(:aes_128_cbc, secret_key, iv, plaintext, true)
 
-      {:ok, Base.encode64(iv &lt;&gt; ciphertext)}
+      {:ok, Base.encode64(iv <> ciphertext)}
     end
-  end</code></pre>
-<p>
-This is the most important line</p>
-<pre><code class="elixir">ciphertext = :crypto.crypto_one_time(:aes_128_cbc, secret_key, iv, plaintext, true)</code></pre>
-<ul>
-  <li>
-<code class="inline">iv</code> is initial vector. AES-128 algorithms encrypts data by block of 16 bytes, so we need initial vector to make sure that the output of blocks with same data are different from each other.  </li>
-  <li>
-The last parameter is set to <code class="inline">true</code> to encrypt, set to <code class="inline">false</code> to decrypt data  </li>
-</ul>
-<p>
-And then we encode output to base 64 string. Here we concatenate <code class="inline">iv</code> and <code class="inline">ciphertext</code> so that we can extract <code class="inline">iv</code> to use for decrypting</p>
-<pre><code class="elixir">{:ok, Base.encode64(iv &lt;&gt; ciphertext)}</code></pre>
-<ul>
-  <li>
-<code class="inline">decrypt/2</code> function  </li>
-</ul>
-<pre><code class="elixir">def decrypt(ciphertext, secret_key) do
+  end</code></pre><p>This is the most important line</p><pre><code class="elixir">ciphertext = :crypto.crypto_one_time(:aes_128_cbc, secret_key, iv, plaintext, true)</code></pre><ul><li><code class="inline">iv</code> is initial vector. AES-128 algorithms encrypts data by block of 16 bytes, so we need initial vector to make sure that the output of blocks with same data are different from each other.</li><li>The last parameter is set to <code class="inline">true</code> to encrypt, set to <code class="inline">false</code> to decrypt data</li></ul><p>And then we encode output to base 64 string. Here we concatenate <code class="inline">iv</code> and <code class="inline">ciphertext</code> so that we can extract <code class="inline">iv</code> to use for decrypting</p><pre><code class="elixir">{:ok, Base.encode64(iv <> ciphertext)}</code></pre><ul><li><code class="inline">decrypt/2</code> function</li></ul><pre><code class="elixir">def decrypt(ciphertext, secret_key) do
     # check the key
-    with {:ok, secret_key} &lt;- decode_key(secret_key),
-         {:ok, &lt;&lt;iv::binary-@block_size, ciphertext::binary&gt;&gt;} &lt;- Base.decode64(ciphertext) do
+    with {:ok, secret_key} <- decode_key(secret_key),
+         {:ok, <<iv::binary-@block_size, ciphertext::binary>>} <- Base.decode64(ciphertext) do
       plaintext =
         :crypto.crypto_one_time(:aes_128_cbc, secret_key, iv, ciphertext, false)
-        |&gt; unpad
+        |> unpad
 
       {:ok, plaintext}
     else
-      {:error, _} = err -&gt; err
-      _ -&gt; {:error, &quot;Bad encrypted data&quot;}
+      {:error, _} = err -> err
+      _ -> {:error, "Bad encrypted data"}
     end
-  end</code></pre>
-<p>
-We extract <code class="inline">iv</code> and encrypted data from input</p>
-<pre><code class="elixir">{:ok, &lt;&lt;iv::binary-@block_size, ciphertext::binary&gt;&gt;} &lt;- Base.decode64(ciphertext)</code></pre>
-<p>
-We use pattern matching to extract first 16 byte and assign to <code class="inline">iv</code> and assign remaining data to <code class="inline">ciphertext</code>. Then decrypting data</p>
-<pre><code class="elixir">plaintext =
+  end</code></pre><p>We extract <code class="inline">iv</code> and encrypted data from input</p><pre><code class="elixir">{:ok, <<iv::binary-@block_size, ciphertext::binary>>} <- Base.decode64(ciphertext)</code></pre><p>We use pattern matching to extract first 16 byte and assign to <code class="inline">iv</code> and assign remaining data to <code class="inline">ciphertext</code>. Then decrypting data</p><pre><code class="elixir">plaintext =
     :crypto.crypto_one_time(:aes_128_cbc, secret_key, iv, ciphertext, false)
-    |&gt; unpad</code></pre>
-<p>
-This line is similar to the line which encrypts data, the difference is here we replace <code class="inline">plaintext</code> by <code class="inline">ciphertext</code> and last parameter is set to <code class="inline">false</code>. After data is decrypted, we need to remove padding to get the original data.</p>
-<h2>
-2. Build <code class="inline">EncryptedText</code> type</h2>
-<p>
-I define a type to store binary data, you can define a <code class="inline">EncryptedMap</code> to store map data. The most important function are <code class="inline">dump</code> and <code class="inline">load</code> where we encrypt before persisting and decrypt after loading.</p>
-<pre><code class="elixir">defmodule EncryptedText do
+    |> unpad</code></pre><p>This line is similar to the line which encrypts data, the difference is here we replace <code class="inline">plaintext</code> by <code class="inline">ciphertext</code> and last parameter is set to <code class="inline">false</code>. After data is decrypted, we need to remove padding to get the original data.</p><h2 id="2-build-encryptedtext-type">2. Build <code class="inline">EncryptedText</code> type</h2><p>I define a type to store binary data, you can define a <code class="inline">EncryptedMap</code> to store map data. The most important function are <code class="inline">dump</code> and <code class="inline">load</code> where we encrypt before persisting and decrypt after loading.</p><pre><code class="elixir">defmodule EncryptedText do
   use Ecto.Type
 
   # we store data as string
@@ -398,11 +350,11 @@ I define a type to store binary data, you can define a <code class="inline">Encr
   def dump(nil), do: nil
   # encrypt data before persist to database
   def dump(data) when is_binary(data) do
-    with {:ok, secret_key} &lt;- Application.fetch_env(:myapp, :ecto_secret_key),
-         {:ok, data} &lt;- Crypto.encrypt(data, secret_key) do
+    with {:ok, secret_key} <- Application.fetch_env(:myapp, :ecto_secret_key),
+         {:ok, data} <- Crypto.encrypt(data, secret_key) do
       {:ok, data}
     else
-      _ -&gt; :error
+      _ -> :error
     end
   end
 
@@ -413,8 +365,8 @@ I define a type to store binary data, you can define a <code class="inline">Encr
   def load(data) when is_binary(data) do
     secret_key = Application.fetch_env!(:myapp, :ecto_secret_key)
     case Crypto.decrypt(data, secret_key) do
-      {:error, _} -&gt; :error
-      ok -&gt; ok
+      {:error, _} -> :error
+      ok -> ok
     end
   end
 
@@ -422,42 +374,13 @@ I define a type to store binary data, you can define a <code class="inline">Encr
 
   def embed_as(_), do: :dump
 end
-</code></pre>
-<h2>
-3. Use it in your schema</h2>
-<ul>
-  <li>
-You must add secret key to your app config first.  </li>
-</ul>
-<pre><code class="elixir">config :myapp, :ecto_secret_key, &quot;your key using Crypto.generate_secret&quot;</code></pre>
-<ul>
-  <li>
-Add to schema  </li>
-</ul>
-<pre><code class="elixir">schema &quot;users&quot; do
+</code></pre><h2 id="3-use-it-in-your-schema">3. Use it in your schema</h2><ul><li>You must add secret key to your app config first.</li></ul><pre><code class="elixir">config :myapp, :ecto_secret_key, "your key using Crypto.generate_secret"</code></pre><ul><li>Add to schema</li></ul><pre><code class="elixir">schema "users" do
     field :name, :string
     ...
     field :secret, EncryptedText
     ...
-end</code></pre>
-<p>
-Your data are safe now.</p>
-<h2>
-4. Conclusion</h2>
-<p>
-With Crypto you can implement encrypted field for any type of data you want.</p>
-<p>
-There is an issue when you want to change your secret key, you have to load your data row by row, decrypt and then encrypt with new key and update to database.</p>
-<p>
-I found this article which explains very well about crypto if you are interested <a href="https://www.thegreatcodeadventure.com/elixir-encryption-with-erlang-crypto/">https://www.thegreatcodeadventure.com/elixir-encryption-with-erlang-crypto/</a>
-Although she uses old crypto API so it will throw some warnings.</p>
-<p>
-I implemented encrypted type for text and map for my company project here if you want to use it: </p>
-<p>
-<a href="https://github.com/onpointvn/magik/tree/main/lib/ecto_type">Github</a></p>
-<p>
-Thanks for reading.</p>
-</div>
+end</code></pre><p>Your data are safe now.</p><h2 id="4-conclusion">4. Conclusion</h2><p>With Crypto you can implement encrypted field for any type of data you want.</p><p>There is an issue when you want to change your secret key, you have to load your data row by row, decrypt and then encrypt with new key and update to database.</p><p>I found this article which explains very well about crypto if you are interested <a href="https://www.thegreatcodeadventure.com/elixir-encryption-with-erlang-crypto/">https://www.thegreatcodeadventure.com/elixir-encryption-with-erlang-crypto/</a>
+Although she uses old crypto API so it will throw some warnings.</p><p>I implemented encrypted type for text and map for my company project here if you want to use it: </p><p><a href="https://github.com/onpointvn/magik/tree/main/lib/ecto_type">Github</a></p><p>Thanks for reading.</p></div>
           </div>
 
           <!-- Post meta -->
@@ -550,9 +473,7 @@ Thanks for reading.</p>
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

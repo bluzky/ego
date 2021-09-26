@@ -263,132 +263,24 @@
             </div>
             
 
-            <div class="content"><h2>
-What is Guard in Elixir</h2>
-<p>
-In previous post, I explain what is Pattern Matching and how to use it.</p>
-<p>
-<a href="https://dev.to/bluzky/elixir-pattern-matching-in-a-nutshell-5fef">Elixir pattern matching in a nutshell</a></p>
-<p>
-Pattern matching is so cool but some time I want to do some more complicated checking. With pattern matching I can easily do this</p>
-<pre><code class="elixir">def can_access?(%User{paid_user: true}), do: true</code></pre>
-<p>
-Yes, Pattern matching can do check value with exact value easily. But for example, I want to allow <code class="inline">user with level &gt; 25</code> to access.</p>
-<p>
-How to do that check with Pattern matching?</p>
-<p>
-Pattern matching as it’s named, it is used to match data against pattern. If you want to do more complex check, you need another guy. That is where <code class="inline">guard</code> shines, it is complement for Pattern Matching</p>
-<pre><code class="elixir">def can_access?(%User{level: level}) when level &gt; 25, do: true</code></pre>
-<h2>
-What is <code class="inline">guard</code></h2>
-<ul>
-  <li>
-    <p>
-Guard is a complement to your pattern matching to do more complex check.    </p>
-  </li>
-  <li>
-    <p>
-Guard expression is invoke after pattern mattching    </p>
-  </li>
-  <li>
-    <p>
-In many cases, <code class="inline">Guard</code> and <code class="inline">Pattern matching</code> can produce the same result, so use which you like.    </p>
-  </li>
-</ul>
-<pre><code class="elixir"># sum on empty list
+            <div class="content"><h2 id="what-is-guard-in-elixir">What is Guard in Elixir</h2><p>In previous post, I explain what is Pattern Matching and how to use it.</p><p><a href="https://dev.to/bluzky/elixir-pattern-matching-in-a-nutshell-5fef">Elixir pattern matching in a nutshell</a></p><p>Pattern matching is so cool but some time I want to do some more complicated checking. With pattern matching I can easily do this</p><pre><code class="elixir">def can_access?(%User{paid_user: true}), do: true</code></pre><p>Yes, Pattern matching can do check value with exact value easily. But for example, I want to allow <code class="inline">user with level > 25</code> to access.</p><p>How to do that check with Pattern matching?</p><p>Pattern matching as it's named, it is used to match data against pattern. If you want to do more complex check, you need another guy. That is where <code class="inline">guard</code> shines, it is complement for Pattern Matching</p><pre><code class="elixir">def can_access?(%User{level: level}) when level > 25, do: true</code></pre><h2 id="what-is-guard">What is <code class="inline">guard</code></h2><ul><li><p>Guard is a complement to your pattern matching to do more complex check.</p></li><li><p>Guard expression is invoke after pattern mattching</p></li><li><p>In many cases, <code class="inline">Guard</code> and <code class="inline">Pattern matching</code> can produce the same result, so use which you like.</p></li></ul><pre><code class="elixir"># sum on empty list
 # pattern matching
 def sum_list([] = _input), do: 0
 
 # guard
-def sum_list(input) when input == [], do: 0</code></pre>
-<p>
-<strong>Some example</strong></p>
-<ul>
-  <li>
-    <p>
-Check primitive type    </p>
-    <pre><code class="elixir">def sum(a, b) when is_integer(a) and is_integer(b) do
+def sum_list(input) when input == [], do: 0</code></pre><p><strong>Some example</strong></p><ul><li><p>Check primitive type</p><pre><code class="elixir">def sum(a, b) when is_integer(a) and is_integer(b) do
   a + b
-end</code></pre>
-  </li>
-  <li>
-    <p>
-Check value is nil/ not nil    </p>
-    <pre><code class="elixir">def string_length(string) when not is_nil(string) do
+end</code></pre></li><li><p>Check value is nil/ not nil</p><pre><code class="elixir">def string_length(string) when not is_nil(string) do
   # your code
-end</code></pre>
-  </li>
-  <li>
-    <p>
-Check if input  in a list of allowed values    </p>
-    <pre><code class="elixir">def can_edit?(%User{role: role}) when role in [&quot;admin&quot;, &quot;moderator&quot;] do
+end</code></pre></li><li><p>Check if input  in a list of allowed values</p><pre><code class="elixir">def can_edit?(%User{role: role}) when role in ["admin", "moderator"] do
   true
-end</code></pre>
-  </li>
-  <li>
-    <p>
-And many more …    </p>
-  </li>
-</ul>
-<h2>
-Where to use guard?</h2>
-<p>
-Where you can use Pattern Matching, you can use Guard</p>
-<ul>
-  <li>
-    <p>
-<code class="inline">case</code> block    </p>
-    <pre><code class="elixir">case value do
-  x when is_binary(x) -&gt; String.to_integer(x)
-  x when is_integer(x) -&gt; x
-  _ -&gt; raise &quot;Invalid value&quot;
-end</code></pre>
-  </li>
-  <li>
-    <p>
-<code class="inline">with</code> block    </p>
-    <pre><code class="elixir">with user when not is_nil(user) &lt;- find_user(id) do
+end</code></pre></li><li><p>And many more ...</p></li></ul><h2 id="where-to-use-guard">Where to use guard?</h2><p>Where you can use Pattern Matching, you can use Guard</p><ul><li><p><code class="inline">case</code> block</p><pre><code class="elixir">case value do
+  x when is_binary(x) -> String.to_integer(x)
+  x when is_integer(x) -> x
+  _ -> raise "Invalid value"
+end</code></pre></li><li><p><code class="inline">with</code> block</p><pre><code class="elixir">with user when not is_nil(user) <- find_user(id) do
   # your code block
-end</code></pre>
-  </li>
-  <li>
-    <p>
-<code class="inline">function</code> clause as our example above    </p>
-  </li>
-</ul>
-<h2>
-Why my guard not work?</h2>
-<p>
-Not all expression will work with guard. Only a list of built-in <code class="inline">guard</code> and combination of them work in guard expression.</p>
-<p>
-Check this from <a href="https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions">https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions</a></p>
-<blockquote>
-  <ul>
-    <li>
-comparison operators (<a href="https://hexdocs.pm/elixir/Kernel.html#==/2"><code class="inline">==</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#!=/2"><code class="inline">!=</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#===/2"><code class="inline">===</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#!==/2"><code class="inline">!==</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#%3E/2"><code class="inline">&gt;</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#%3E=/2"><code class="inline">&gt;=</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#%3C/2"><code class="inline">&lt;</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#%3C=/2"><code class="inline">&lt;=</code></a>)    </li>
-    <li>
-strictly boolean operators (<a href="https://hexdocs.pm/elixir/Kernel.html#and/2"><code class="inline">and</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#or/2"><code class="inline">or</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#not/1"><code class="inline">not</code></a>). Note <a href="https://hexdocs.pm/elixir/Kernel.html#&&/2"><code class="inline">&amp;&amp;</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#%7C%7C/2"><code class="inline">||</code></a>, and <a href="https://hexdocs.pm/elixir/Kernel.html#!/1"><code class="inline">!</code></a> sibling operators are <strong>not allowed</strong> as they’re not <em>strictly</em> boolean - meaning they don’t require arguments to be booleans    </li>
-    <li>
-arithmetic unary and binary operators (<a href="https://hexdocs.pm/elixir/Kernel.html#+/1"><code class="inline">+</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#-/1"><code class="inline">-</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#+/2"><code class="inline">+</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#-/2"><code class="inline">-</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#*/2"><code class="inline">*</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#//2"><code class="inline">/</code></a>)    </li>
-    <li>
-<a href="https://hexdocs.pm/elixir/Kernel.html#in/2"><code class="inline">in</code></a> and <a href="https://hexdocs.pm/elixir/Kernel.html#in/2"><code class="inline">not in</code></a> operators (as long as the right-hand side is a list or a range)    </li>
-    <li>
-“type-check” functions (<a href="https://hexdocs.pm/elixir/Kernel.html#is_list/1"><code class="inline">is_list/1</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#is_number/1"><code class="inline">is_number/1</code></a>, etc.)    </li>
-    <li>
-functions that work on built-in datatypes (<a href="https://hexdocs.pm/elixir/Kernel.html#abs/1"><code class="inline">abs/1</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#map_size/1"><code class="inline">map_size/1</code></a>, etc.)    </li>
-  </ul>
-</blockquote>
-<h2>
-Can I define my own guard?</h2>
-<p>
-Yes you can define a guard with  <a href="https://hexdocs.pm/elixir/Kernel.html#defguard/1"><code class="inline">defguard/1</code></a> and <a href="https://hexdocs.pm/elixir/Kernel.html#defguardp/1"><code class="inline">defguardp/1</code></a> . But you should only define your own guard if you have a <strong>really really reasonable reason</strong> to do so.</p>
-<p>
-In my experience, I have never defined a guard my own, built-in guards are too enough.</p>
-<h2>
-Conclustion</h2>
-<p>
-With Pattern matching and Guard, you have a super powerful combo in your hand. Let’s code!</p>
-</div>
+end</code></pre></li><li><p><code class="inline">function</code> clause as our example above</p></li></ul><h2 id="why-my-guard-not-work">Why my guard not work?</h2><p>Not all expression will work with guard. Only a list of built-in <code class="inline">guard</code> and combination of them work in guard expression.</p><p>Check this from <a href="https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions">https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions</a></p><blockquote><ul><li>comparison operators (<a href="https://hexdocs.pm/elixir/Kernel.html#==/2"><code class="inline">==</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#!=/2"><code class="inline">!=</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#===/2"><code class="inline">===</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#!==/2"><code class="inline">!==</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#%3E/2"><code class="inline">></code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#%3E=/2"><code class="inline">>=</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#%3C/2"><code class="inline"><</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#%3C=/2"><code class="inline"><=</code></a>)</li><li>strictly boolean operators (<a href="https://hexdocs.pm/elixir/Kernel.html#and/2"><code class="inline">and</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#or/2"><code class="inline">or</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#not/1"><code class="inline">not</code></a>). Note <a href="https://hexdocs.pm/elixir/Kernel.html#&&/2"><code class="inline">&&</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#%7C%7C/2"><code class="inline">||</code></a>, and <a href="https://hexdocs.pm/elixir/Kernel.html#!/1"><code class="inline">!</code></a> sibling operators are <strong>not allowed</strong> as they're not <em>strictly</em> boolean - meaning they don't require arguments to be booleans</li><li>arithmetic unary and binary operators (<a href="https://hexdocs.pm/elixir/Kernel.html#+/1"><code class="inline">+</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#-/1"><code class="inline">-</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#+/2"><code class="inline">+</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#-/2"><code class="inline">-</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#*/2"><code class="inline">*</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#//2"><code class="inline">/</code></a>)</li><li><a href="https://hexdocs.pm/elixir/Kernel.html#in/2"><code class="inline">in</code></a> and <a href="https://hexdocs.pm/elixir/Kernel.html#in/2"><code class="inline">not in</code></a> operators (as long as the right-hand side is a list or a range)</li><li>"type-check" functions (<a href="https://hexdocs.pm/elixir/Kernel.html#is_list/1"><code class="inline">is_list/1</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#is_number/1"><code class="inline">is_number/1</code></a>, etc.)</li><li>functions that work on built-in datatypes (<a href="https://hexdocs.pm/elixir/Kernel.html#abs/1"><code class="inline">abs/1</code></a>, <a href="https://hexdocs.pm/elixir/Kernel.html#map_size/1"><code class="inline">map_size/1</code></a>, etc.)</li></ul></blockquote><h2 id="can-i-define-my-own-guard">Can I define my own guard?</h2><p>Yes you can define a guard with  <a href="https://hexdocs.pm/elixir/Kernel.html#defguard/1"><code class="inline">defguard/1</code></a> and <a href="https://hexdocs.pm/elixir/Kernel.html#defguardp/1"><code class="inline">defguardp/1</code></a> . But you should only define your own guard if you have a <strong>really really reasonable reason</strong> to do so.</p><p>In my experience, I have never defined a guard my own, built-in guards are too enough.</p><h2 id="conclustion">Conclustion</h2><p>With Pattern matching and Guard, you have a super powerful combo in your hand. Let's code!</p></div>
           </div>
 
           <!-- Post meta -->
@@ -477,9 +369,7 @@ With Pattern matching and Guard, you have a super powerful combo in your hand. L
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

@@ -254,17 +254,9 @@
 
             
 
-            <div class="content"><p>
-Thực sự thì không nhất thiết phải là <code class="inline">*args</code> và <code class="inline">**kwargs</code>. điều quan trọng là tham số có 1 dấu sao * hay là 2 dấu sao **. Đặt tên tham số là *var hay **vars hay bất cứ thứ gì bạn muốn.
-Nhưng để dễ hiểu thì nên dùng tên chuẩn là <code class="inline">*args</code> và <code class="inline">**kwargs</code></p>
-<h2>
-1. <code class="inline">*args</code> và <code class="inline">**kwargs</code> dùng để làm gì?</h2>
-<ul>
-  <li>
-Khi khai báo 1 hàm, sử dụng <code class="inline">*args</code> và <code class="inline">**kwargs</code> cho phép bạn truyền vào bao nhiêu tham số cũng được mà không cần biết trước số lượng.
-<strong>Ví dụ</strong>  </li>
-</ul>
-<pre><code class="python"># với giả sử các tham số truyền vào đều là số
+            <div class="content"><p>Thực sự thì không nhất thiết phải là <code class="inline">*args</code> và <code class="inline">**kwargs</code>. điều quan trọng là tham số có 1 dấu sao * hay là 2 dấu sao **. Đặt tên tham số là *var hay **vars hay bất cứ thứ gì bạn muốn.
+Nhưng để dễ hiểu thì nên dùng tên chuẩn là <code class="inline">*args</code> và <code class="inline">**kwargs</code></p><h2 id="1-args-va-kwargs-dung-de-lam-gi">1. <code class="inline">*args</code> và <code class="inline">**kwargs</code> dùng để làm gì?</h2><ul><li>Khi khai báo 1 hàm, sử dụng <code class="inline">*args</code> và <code class="inline">**kwargs</code> cho phép bạn truyền vào bao nhiêu tham số cũng được mà không cần biết trước số lượng.
+<strong>Ví dụ</strong></li></ul><pre><code class="python"># với giả sử các tham số truyền vào đều là số
 def sum(*args):
     total = 0
     for number in args:
@@ -273,75 +265,37 @@ def sum(*args):
 
 # gọi hàm
 sum(1, 2, 3,19)
-sum( 1, 100)</code></pre>
-<h2>
-2. <code class="inline">*args</code> và <code class="inline">**kwargs</code> khác gì nhau?</h2>
-<ul>
-  <li>
-Cho những bạn chưa biêt: Khi gọi hàm trong Python, có 2 kiểu truyền tham số:    <ul>
-      <li>
-Truyền tham số theo tên.      </li>
-      <li>
-Truyền tham số bình thường theo thứ tự khai báo đối số.
-<strong>Ví dụ</strong>        <pre><code class="python">def register(name, password):
+sum( 1, 100)</code></pre><h2 id="2-args-va-kwargs-khac-gi-nhau">2. <code class="inline">*args</code> và <code class="inline">**kwargs</code> khác gì nhau?</h2><ul><li>Cho những bạn chưa biêt: Khi gọi hàm trong Python, có 2 kiểu truyền tham số:<ul><li>Truyền tham số theo tên.</li><li>Truyền tham số bình thường theo thứ tự khai báo đối số.
+<strong>Ví dụ</strong><pre><code class="python">def register(name, password):
 ....
 # Truyền tham số theo kiểu thông thường, phải theo đúng thứ tự
-register( &#39;Coulson&#39;, &#39;hail_Hydra&#39;)
+register( 'Coulson', 'hail_Hydra')
 # Truyền tham số theo tên, Không cần phải theo thứ tự khai báo thao số
-register( password=&#39;cookHim&#39;, name=&#39;Skye&#39;)</code></pre>
-      </li>
-    </ul>
-  </li>
-  <li>
-<strong><code class="inline">*args</code></strong> nhận các tham số truyền bình thường. Sử dụng <strong>args</strong> như một list.  </li>
-  <li>
-<strong>`</strong>kwargs`<strong> nhận tham số truyền theo tên. Sử dụng </strong>kwargs** như một. dictionary  </li>
-</ul>
-<p>
-<strong>Ví dụ</strong></p>
-<pre><code class="python">def test_args(*args):
+register( password='cookHim', name='Skye')</code></pre></li></ul></li><li><strong><code class="inline">*args</code></strong> nhận các tham số truyền bình thường. Sử dụng <strong>args</strong> như một list.</li><li><strong>`</strong>kwargs`<strong> nhận tham số truyền theo tên. Sử dụng </strong>kwargs** như một. dictionary</li></ul><p><strong>Ví dụ</strong></p><pre><code class="python">def test_args(*args):
     for item in args:
     print item
 
-&gt;&gt;test_args(&#39;Hello&#39;, &#39;world!&#39;)
+>>test_args('Hello', 'world!')
 Hello
 world!
 
 def test_kwargs(*kwargs):
     for key, value in kwargs.iteritems():
-    print &#39;{0} = {1}&#39;.format(key, value)
+    print '{0} = {1}'.format(key, value)
 
-&gt;&gt;test_kwargs(name=&#39;Dzung&#39;, age=10)
+>>test_kwargs(name='Dzung', age=10)
 age = 10
-name = Dzung</code></pre>
-<h2>
-3. Thứ tự sử dụng và truyền tham số <code class="inline">*args</code>, <code class="inline">**kwargs</code> và tham số bình thường</h2>
-<p>
-Khi sử dụng phải khai báo đối số theo thứ tự:</p>
-<blockquote>
-  <p>
-<strong>đối số xác đinh –&gt; <code class="inline">*args</code> –&gt; `</strong>kwargs`**  </p>
-</blockquote>
-<p>
-Đây là thứ tự bắt buộc. Và khi truyền tham số bạn cũng phải truyền theo đúng thứ tự này. Không thể truyền lẫn lộn giữa 2 loại.</p>
-<blockquote>
-  <p>
-Khi sử dụng đồng thời <code class="inline">*args</code> <code class="inline">**kwargs</code> thì không thể truyền tham số bình thường theo tên  </p>
-</blockquote>
-<p>
-<strong>Ví dụ</strong></p>
-<pre><code class="python">def show_detail(name, *args, **kwargs):
+name = Dzung</code></pre><h2 id="3-thu-tu-su-dung-va-truyen-tham-so-args-kwargs-va-">3. Thứ tự sử dụng và truyền tham số <code class="inline">*args</code>, <code class="inline">**kwargs</code> và tham số bình thường</h2><p>Khi sử dụng phải khai báo đối số theo thứ tự:</p><blockquote><p><strong>đối số xác đinh --> <code class="inline">*args</code> --> `</strong>kwargs`**</p></blockquote><p>Đây là thứ tự bắt buộc. Và khi truyền tham số bạn cũng phải truyền theo đúng thứ tự này. Không thể truyền lẫn lộn giữa 2 loại.</p><blockquote><p>Khi sử dụng đồng thời <code class="inline">*args</code> <code class="inline">**kwargs</code> thì không thể truyền tham số bình thường theo tên</p></blockquote><p><strong>Ví dụ</strong></p><pre><code class="python">def show_detail(name, *args, **kwargs):
     .....
 
-show_detail(name=&#39;Coulson&#39;, &#39;agent&#39;, age=&#39;40&#39;, level=&#39;A&#39;)
-&gt;&gt; Lỗi
+show_detail(name='Coulson', 'agent', age='40', level='A')
+>> Lỗi
 
 def show_detail_2(name, **kwargs):
     ....
 
-show_detail_2(name=Coulson&#39;, age=&#39;40&#39;, level=&#39;A&#39;)
-&gt;&gt; Chạy Ok</code></pre>
-</div>
+show_detail_2(name=Coulson', age='40', level='A')
+>> Chạy Ok</code></pre></div>
           </div>
 
           <!-- Post meta -->
@@ -430,9 +384,7 @@ show_detail_2(name=Coulson&#39;, age=&#39;40&#39;, level=&#39;A&#39;)
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

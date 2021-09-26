@@ -263,74 +263,28 @@
             </div>
             
 
-            <div class="content"><h2>
-The story</h2>
-<p>
-At our company, <a href="https://www.onpoint.vn/">OnPoint</a>, we are building an ecommerce website using Phoenix Framework. And I am working on admin to manage product, orders … All the listing pages need a filter and this filter change frequently, operation team wants to add this field, order by that field. And each time they change their requirements I have to update query code.</p>
-<p>
-My team use Django Admin before, they support an easy way to compose query directly from the URL. You don’t have to change code on the back-end. It’ll be great if I can do it with Phoenix. </p>
-<p>
-What it should have:</p>
-<ul>
-  <li>
-Support basic query operator: <code class="inline">&gt;, &gt;=, &lt;, &lt;=, =, !=, like, ilike, in</code>  </li>
-  <li>
-Query join table  </li>
-  <li>
-Can sort result   </li>
-</ul>
-<p>
-This is the result after some night of work:</p>
-<p>
-<a href="https://github.com/bluzky/querie">https://github.com/bluzky/querie</a></p>
-<h2>
-How it work</h2>
-<ul>
-  <li>
-I define a simple rule for passing parameter from client side. The key must follow format <code class="inline">[column]__[operator]=[value]</code>.  </li>
-  <li>
-On the server side, it is parsed to <code class="inline">{operator, {column, value}}</code> with appropriate data type  </li>
-  <li>
-Then it is passed to a filter function to build Ecto query dynamically  </li>
-</ul>
-<p>
-You can try with <a href="https://github.com/bluzky/querie/tree/main/example">example project</a> to see how it works.</p>
-<h2>
-How to use it</h2>
-<h3>
-1. Define a filter schema</h3>
-<p>
-For example you have a Post schema:</p>
-<pre><code class="elixir">defmodule Example.Content.Post do
+            <div class="content"><h2 id="the-story">The story</h2><p>At our company, <a href="https://www.onpoint.vn/">OnPoint</a>, we are building an ecommerce website using Phoenix Framework. And I am working on admin to manage product, orders ... All the listing pages need a filter and this filter change frequently, operation team wants to add this field, order by that field. And each time they change their requirements I have to update query code.</p><p>My team use Django Admin before, they support an easy way to compose query directly from the URL. You don't have to change code on the back-end. It'll be great if I can do it with Phoenix. </p><p>What it should have:</p><ul><li>Support basic query operator: <code class="inline">>, >=, <, <=, =, !=, like, ilike, in</code></li><li>Query join table</li><li>Can sort result </li></ul><p>This is the result after some night of work:</p><p><a href="https://github.com/bluzky/querie">https://github.com/bluzky/querie</a></p><h2 id="how-it-work">How it work</h2><ul><li>I define a simple rule for passing parameter from client side. The key must follow format <code class="inline">[column]__[operator]=[value]</code>.</li><li>On the server side, it is parsed to <code class="inline">{operator, {column, value}}</code> with appropriate data type</li><li>Then it is passed to a filter function to build Ecto query dynamically</li></ul><p>You can try with <a href="https://github.com/bluzky/querie/tree/main/example">example project</a> to see how it works.</p><h2 id="how-to-use-it">How to use it</h2><h3 id="1-define-a-filter-schema">1. Define a filter schema</h3><p>For example you have a Post schema:</p><pre><code class="elixir">defmodule Example.Content.Post do
   use Ecto.Schema
   import Ecto.Changeset
 
   def state_enum(), do: ~w(draft published archived trash)
 
-  schema &quot;posts&quot; do
+  schema "posts" do
     field(:content, :string)
-    field(:state, :string, default: &quot;draft&quot;)
+    field(:state, :string, default: "draft")
     field(:title, :string)
     field(:view_count, :integer, default: 0)
     belongs_to(:category, Example.PostMeta.Category)
     belongs_to(:author, Example.Account.User)
   end
-end</code></pre>
-<p>
-And you want to filter the Post by title, state, view_count. This is the filter schema:</p>
-<pre><code class="elixir">@schema %{
+end</code></pre><p>And you want to filter the Post by title, state, view_count. This is the filter schema:</p><pre><code class="elixir">@schema %{
     title: :string,
     state: :string, # short form
     view_count: [type: :integer] # long form
-}</code></pre>
-<h3>
-2. Parse request parameters and build the query</h3>
-<p>
-Use <code class="inline">Querie.parse/2</code> to parse request parameters with your schema</p>
-<pre><code class="elixir">alias Example.Content.Post
+}</code></pre><h3 id="2-parse-request-parameters-and-build-the-query">2. Parse request parameters and build the query</h3><p>Use <code class="inline">Querie.parse/2</code> to parse request parameters with your schema</p><pre><code class="elixir">alias Example.Content.Post
 
 def index(conn, params) do
-    with {:ok, filter} &lt;- Querie.parse(@schema, params) do
+    with {:ok, filter} <- Querie.parse(@schema, params) do
      query = Querie.filter(Post, filter)
      # Or you can pass a query like this
      # query = from(p in Post, where: ....)
@@ -338,46 +292,24 @@ def index(conn, params) do
      posts = Repo.all(query)
      # do the rendering here
     else
-    {:error, errors} -&gt;
+    {:error, errors} ->
      IO.puts(inspect(errors)
      # or do anything with error
      # error is a list of tuple {field, message}
     end
-end</code></pre>
-<h3>
-3. Compose URL</h3>
-<p>
-Then from client side you can send a form:</p>
-<pre><code class="html">&lt;form action=&quot;/posts&quot;&gt;
-    &lt;label&gt;Titlte&lt;/label&gt;
-    &lt;input type=&quot;text&quot; name=&quot;title__icontains&quot;&gt;
-    &lt;label&gt;State&lt;/label&gt;
-    &lt;select name=&quot;state&quot;&gt;
-        &lt;option value=&quot;draft&quot;&gt;&lt;/option&gt;
-        &lt;option value=&quot;published&quot;&gt;&lt;/option&gt;
-        &lt;option value=&quot;trashed&quot;&gt;&lt;/option&gt;
-    &lt;/select&gt;
-    &lt;label&gt;View count greater than&lt;/label&gt;
-    &lt;input type=&quot;number&quot; name=&quot;view_count__ge&quot;&gt;
-&lt;/form&gt;</code></pre>
-<p>
-Or directly from URL with data like this:</p>
-<pre><code>http://localhost:4000/posts?title__icontains=elixir&amp;state=published&amp;view_count__ge=100</code></pre>
-<p>
-Enter and see the result</p>
-<h2>
-Query joined table</h2>
-<p>
-It quite simple to filter result with filter on joined tables.</p>
-<h3>
-1. Update your query</h3>
-<p>
-Querie support <code class="inline">ref</code> operator to join tables.
-For example you want to query Post by author whose email contains sam the query would be:</p>
-<pre><code>?author__ref[email__icontains]=sam</code></pre>
-<h3>
-2. Update your schema</h3>
-<pre><code class="elixir">alias Example.Account.User
+end</code></pre><h3 id="3-compose-url">3. Compose URL</h3><p>Then from client side you can send a form:</p><pre><code class="html"><form action="/posts">
+    <label>Titlte</label>
+    <input type="text" name="title__icontains">
+    <label>State</label>
+    <select name="state">
+        <option value="draft"></option>
+        <option value="published"></option>
+        <option value="trashed"></option>
+    </select>
+    <label>View count greater than</label>
+    <input type="number" name="view_count__ge">
+</form></code></pre><p>Or directly from URL with data like this:</p><pre><code>http://localhost:4000/posts?title__icontains=elixir&state=published&view_count__ge=100</code></pre><p>Enter and see the result</p><h2 id="query-joined-table">Query joined table</h2><p>It quite simple to filter result with filter on joined tables.</p><h3 id="1-update-your-query">1. Update your query</h3><p>Querie support <code class="inline">ref</code> operator to join tables.
+For example you want to query Post by author whose email contains sam the query would be:</p><pre><code>?author__ref[email__icontains]=sam</code></pre><h3 id="2-update-your-schema">2. Update your schema</h3><pre><code class="elixir">alias Example.Account.User
 
 @schema %{
     title: :string,
@@ -390,14 +322,7 @@ For example you want to query Post by author whose email contains sam the query 
             email: :string
         }
       ]
-}</code></pre>
-<p>
-For more query options, please read <a href="https://github.com/bluzky/querie">document</a></p>
-<p>
-If you have any suggestion, please leave a comment or <a href="https://github.com/bluzky/querie/issues/new">open an issuse</a> on Github.</p>
-<p>
-Thanks for reading.</p>
-</div>
+}</code></pre><p>For more query options, please read <a href="https://github.com/bluzky/querie">document</a></p><p>If you have any suggestion, please leave a comment or <a href="https://github.com/bluzky/querie/issues/new">open an issuse</a> on Github.</p><p>Thanks for reading.</p></div>
           </div>
 
           <!-- Post meta -->
@@ -498,9 +423,7 @@ Thanks for reading.</p>
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >

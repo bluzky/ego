@@ -263,37 +263,8 @@
             </div>
             
 
-            <div class="content"><p>
-Validation is a must have part of web application. You have to validate request parameter before processing, you validate data before inserting to database, and many more.</p>
-<p>
-Normally, I use <code class="inline">Ecto.Changeset</code> to do validation job. But it comes with changeset, I have to build schema, changeset then do the validation. Sometime you just don’t need too much thing like that.</p>
-<p>
-So today we are going to build a simple validation module to use without changeset, or in some project you don’t use <code class="inline">Ecto</code>, or just for learning.</p>
-<h2>
-What our validation module includes:</h2>
-<ul>
-  <li>
-Type validation  </li>
-  <li>
-Number validation  </li>
-  <li>
-Length validation for <code class="inline">map, list, string</code>  </li>
-  <li>
-String format validation using regex  </li>
-  <li>
-Inclusion, exclusion validations  </li>
-</ul>
-<p>
-That’s is quite enough, you can define more if you want.
-And the module will support a simple API to validate a value</p>
-<pre><code class="elixir">validate(value::any(), validations::keyword()) :: :ok | {:error, String.t()}</code></pre>
-<p>
-Let’s start.</p>
-<h2>
-Type validation</h2>
-<p>
-Let’s call our module <code class="inline">Checky</code>. Type check is quite straight forward. Elixir support most of type check guard that we need:</p>
-<pre><code class="elixir">defmodule Checky do
+            <div class="content"><p>Validation is a must have part of web application. You have to validate request parameter before processing, you validate data before inserting to database, and many more.</p><p>Normally, I use <code class="inline">Ecto.Changeset</code> to do validation job. But it comes with changeset, I have to build schema, changeset then do the validation. Sometime you just don't need too much thing like that.</p><p>So today we are going to build a simple validation module to use without changeset, or in some project you don't use <code class="inline">Ecto</code>, or just for learning.</p><h2 id="what-our-validation-module-includes">What our validation module includes:</h2><ul><li>Type validation</li><li>Number validation</li><li>Length validation for <code class="inline">map, list, string</code></li><li>String format validation using regex</li><li>Inclusion, exclusion validations</li></ul><p>That's is quite enough, you can define more if you want.
+And the module will support a simple API to validate a value</p><pre><code class="elixir">validate(value::any(), validations::keyword()) :: :ok | {:error, String.t()}</code></pre><p>Let's start.</p><h2 id="type-validation">Type validation</h2><p>Let's call our module <code class="inline">Checky</code>. Type check is quite straight forward. Elixir support most of type check guard that we need:</p><pre><code class="elixir">defmodule Checky do
   def validate_type(value, :boolean) when is_boolean(value), do: :ok
   def validate_type(value, :integer) when is_integer(value), do: :ok
   def validate_type(value, :float) when is_float(value), do: :ok
@@ -307,11 +278,8 @@ Let’s call our module <code class="inline">Checky</code>. Type check is quite 
   def validate_type(value, :function) when is_function(value), do: :ok
   def validate_type(value, :map) when is_map(value), do: :ok
   # we will add some more validation here
-  def validate_type(_, type), do: {:error, &quot;is not a #{type}&quot;}
-end</code></pre>
-<p>
-Easy, right? Now let’s support checking for <code class="inline">struct</code>:</p>
-<pre><code class="elixir">defmodule Checky do
+  def validate_type(_, type), do: {:error, "is not a #{type}"}
+end</code></pre><p>Easy, right? Now let's support checking for <code class="inline">struct</code>:</p><pre><code class="elixir">defmodule Checky do
 
   ...
   # from Elixir 1.12 you can do this
@@ -319,39 +287,29 @@ Easy, right? Now let’s support checking for <code class="inline">struct</code>
   # this is for Elixir before 1.12
   def validate_type(%{__struct__: struct}, struct_name) when struct == struct_name, do: :ok
   ...
-end</code></pre>
-<ul>
-  <li>
-Here we check for <code class="inline">keyword</code>  </li>
-</ul>
-<pre><code class="elixir">defmodule Checky do
+end</code></pre><ul><li>Here we check for <code class="inline">keyword</code></li></ul><pre><code class="elixir">defmodule Checky do
   ...
   # empty list is also a empty keyword
   def validate_type([] = _check_item, :keyword), do: :ok
   # if list item is a tuple of 2 and first element is atom then it is a keyword list
   def validate_type(items, :keyword) when is_list(items) do
     valid? = Enum.all(item, fn 
-        {key, _} when is_atom(key) -&gt; true
-        _ -&gt; false 
+        {key, _} when is_atom(key) -> true
+        _ -> false 
     end)
     
     if valid? do
       :ok
     else
-      {:error, &quot;is not a keyword&quot;}
+      {:error, "is not a keyword"}
     end
   end
   ...
-end</code></pre>
-<ul>
-  <li>
-Now let support array check <code class="inline">{:array, type}</code> which is similar to <code class="inline">Ecto.Schema</code>.  </li>
-</ul>
-<pre><code class="elixir">defmodule Checky do
+end</code></pre><ul><li>Now let support array check <code class="inline">{:array, type}</code> which is similar to <code class="inline">Ecto.Schema</code>.</li></ul><pre><code class="elixir">defmodule Checky do
   ...
   def validate_type(value, {:array, type}) when is_list(value) do
     # We will check type for each value in the list
-    array(value, &amp;validate_type(&amp;1, type))
+    array(value, &validate_type(&1, type))
   end
   ...
    # loop and validate element in array using `validate_func`
@@ -364,176 +322,97 @@ Now let support array check <code class="inline">{:array, type}</code> which is 
   # validate recursively, and return error if any vadation failed
   defp array([h | t], validate_func) do
     case validate_func.(h) do
-      :ok -&gt;
+      :ok ->
         array(t, validate_func)
-      err -&gt;
+      err ->
         err
     end
   end
-end</code></pre>
-<p>
-Phew! We have done with type validation. You can add more type validation if you want.</p>
-<h2>
-Format Validation</h2>
-<p>
-This validation is super easy, <code class="inline">Regex</code> do that for us:</p>
-<pre><code class="elixir">defmodule Checky end
+end</code></pre><p>Phew! We have done with type validation. You can add more type validation if you want.</p><h2 id="format-validation">Format Validation</h2><p>This validation is super easy, <code class="inline">Regex</code> do that for us:</p><pre><code class="elixir">defmodule Checky end
   def validate_format(value, check) when is_binary(value) do
-    if Regex.match?(check, value), do: :ok, else: {:error, &quot;does not match format&quot;}
+    if Regex.match?(check, value), do: :ok, else: {:error, "does not match format"}
   end
 
   def validate_format(_value, _check) do
-    {:error, &quot;format check only support string&quot;}
+    {:error, "format check only support string"}
   end
-end</code></pre>
-<h2>
-Inclusion and exclusion validation</h2>
-<p>
-These are trivial checks too. Just make sure it is implement <code class="inline">Enumerable</code> protocol.</p>
-<pre><code class="elixir">defmodule Checky do
+end</code></pre><h2 id="inclusion-and-exclusion-validation">Inclusion and exclusion validation</h2><p>These are trivial checks too. Just make sure it is implement <code class="inline">Enumerable</code> protocol.</p><pre><code class="elixir">defmodule Checky do
   def validate_inclusion(value, enum) do
     if Enumerable.impl_for(enum) do
       if Enum.member?(enum, value) do
         :ok
       else
-        {:error, &quot;not be in the inclusion list&quot;}
+        {:error, "not be in the inclusion list"}
       end
     else
-      {:error, &quot;given condition does not implement protocol Enumerable&quot;}
+      {:error, "given condition does not implement protocol Enumerable"}
     end
   end
 
-  @doc &quot;&quot;&quot;
+  @doc """
   Check if value is **not** included in the given enumerable. Similar to `validate_inclusion/2`
-  &quot;&quot;&quot;
+  """
   def validate_exclusion(value, enum) do
     if Enumerable.impl_for(enum) do
       if Enum.member?(enum, value) do
-        {:error, &quot;must not be in the exclusion list&quot;}
+        {:error, "must not be in the exclusion list"}
       else
         :ok
       end
     else
-      {:error, &quot;given condition does not implement protocol Enumerable&quot;}
+      {:error, "given condition does not implement protocol Enumerable"}
     end
   end
-end</code></pre>
-<h2>
-Number validation</h2>
-<p>
-This is one of the most complicated part of our module. It’s not difficult, it’s just long.
-We will support following checks:</p>
-<ul>
-  <li>
-<code class="inline">equal_to</code>  </li>
-  <li>
-<code class="inline">greater_than_or_equal_to</code> | <code class="inline">min</code>  </li>
-  <li>
-<code class="inline">greater_than</code>  </li>
-  <li>
-<code class="inline">less_than</code>  </li>
-  <li>
-<code class="inline">less_than_or_equal_to</code> | <code class="inline">max</code>  </li>
-</ul>
-<p>
-And it should support multiple check like this:</p>
-<pre><code class="elixir"> validate_number(x, [min: 10, max: 20])</code></pre>
-<p>
-First we code validation function for single condition like this</p>
-<pre><code class="elixir">  def validate_number(number, {:equal_to, check_value}) do
+end</code></pre><h2 id="number-validation">Number validation</h2><p>This is one of the most complicated part of our module. It's not difficult, it's just long.
+We will support following checks:</p><ul><li><code class="inline">equal_to</code></li><li><code class="inline">greater_than_or_equal_to</code> | <code class="inline">min</code></li><li><code class="inline">greater_than</code></li><li><code class="inline">less_than</code></li><li><code class="inline">less_than_or_equal_to</code> | <code class="inline">max</code></li></ul><p>And it should support multiple check like this:</p><pre><code class="elixir"> validate_number(x, [min: 10, max: 20])</code></pre><p>First we code validation function for single condition like this</p><pre><code class="elixir">  def validate_number(number, {:equal_to, check_value}) do
     if number == check_value do
       :ok
     else
-      {:error, &quot;must be equal to #{check_value}&quot;}
+      {:error, "must be equal to #{check_value}"}
     end
-  end</code></pre>
-<p>
-As I said, it’s so simple. You can fill the remaining check right? Or you can check the final code at the end of the post.
-After implementing all validation fucntion for number, it’s time to support multiple condtion check.</p>
-<pre><code class="elixir">  @spec validate_number(integer() | float(), keyword()) :: :ok | error
+  end</code></pre><p>As I said, it's so simple. You can fill the remaining check right? Or you can check the final code at the end of the post.
+After implementing all validation fucntion for number, it's time to support multiple condtion check.</p><pre><code class="elixir">  @spec validate_number(integer() | float(), keyword()) :: :ok | error
   def validate_number(value, checks) when is_list(checks) do
     if is_number(value) do
       checks
-      |&gt; Enum.reduce(:ok, fn
-        check, :ok -&gt;
+      |> Enum.reduce(:ok, fn
+        check, :ok ->
           validate_number(value, check)
 
-        _, error -&gt;
+        _, error ->
           error
       end)
     else
-      {:error, &quot;must be a number&quot;}
+      {:error, "must be a number"}
     end
-  end</code></pre>
-<h2>
-Length validation</h2>
-<p>
-Length is just a number, so we can reuse number validation. We just have to check if given value is one of support types: <code class="inline">list</code>, <code class="inline">map</code>, <code class="inline">string</code>, and <code class="inline">tuple</code></p>
-<p>
-We will implement <code class="inline">get_length/1</code> function to get data length first.</p>
-<pre><code class="elixir">  @spec get_length(any) :: pos_integer() | {:error, :wrong_type}
+  end</code></pre><h2 id="length-validation">Length validation</h2><p>Length is just a number, so we can reuse number validation. We just have to check if given value is one of support types: <code class="inline">list</code>, <code class="inline">map</code>, <code class="inline">string</code>, and <code class="inline">tuple</code></p><p>We will implement <code class="inline">get_length/1</code> function to get data length first.</p><pre><code class="elixir">  @spec get_length(any) :: pos_integer() | {:error, :wrong_type}
   defp get_length(param) when is_list(param), do: length(param)
   defp get_length(param) when is_binary(param), do: String.length(param)
-  defp get_length(param) when is_map(param), do: param |&gt; Map.keys() |&gt; get_length()
+  defp get_length(param) when is_map(param), do: param |> Map.keys() |> get_length()
   defp get_length(param) when is_tuple(param), do: tuple_size(param)
-  defp get_length(_param), do: {:error, :wrong_type}</code></pre>
-<p>
-Then we do number validation on the length value</p>
-<pre><code class="elixir">  @spec validate_length(support_length_types, keyword()) :: :ok | error
+  defp get_length(_param), do: {:error, :wrong_type}</code></pre><p>Then we do number validation on the length value</p><pre><code class="elixir">  @spec validate_length(support_length_types, keyword()) :: :ok | error
   def validate_length(value, checks) do
-    with length when is_integer(length) &lt;- get_length(value),
+    with length when is_integer(length) <- get_length(value),
          # validation length number
-         :ok &lt;- validate_number(length, checks) do
+         :ok <- validate_number(length, checks) do
       :ok
     else
-      {:error, :wrong_type} -&gt;
-        {:error, &quot;length check supports only lists, binaries, maps and tuples&quot;}
+      {:error, :wrong_type} ->
+        {:error, "length check supports only lists, binaries, maps and tuples"}
 
-      {:error, msg} -&gt;
+      {:error, msg} ->
         # we prepend length to message return by validation number to get full message
-        # like: &quot;length must be equal to x&quot;
-        {:error, &quot;length #{msg}&quot;}
+        # like: "length must be equal to x"
+        {:error, "length #{msg}"}
     end
-  end</code></pre>
-<h2>
-Combine all validation</h2>
-<p>
-Most of time you want to use multiple valitions on the data. So we will add a function that do multiple validation</p>
-<p>
-We define a simple structure for validation first. This is our validate function spec</p>
-<pre><code class="elixir"> @spec validate(any(), keyword()) :: :ok | {:error, messages}</code></pre>
-<p>
-Then we can use it like this:</p>
-<pre><code class="elixir">Checky.validate(value, type: :string, format: ~r/\d\d.+/, length: [min: 8, max: 20])</code></pre>
-<p>
-Validations is a keyword list with short name for validation:</p>
-<ul>
-  <li>
-<code class="inline">:type</code> -&gt; <code class="inline">validate_type</code>  </li>
-  <li>
-<code class="inline">:format</code> -&gt; <code class="inline">validate_format</code>  </li>
-  <li>
-<code class="inline">:in</code> -&gt; <code class="inline">validate_inclusion</code>  </li>
-  <li>
-<code class="inline">:not_in</code> -&gt; <code class="inline">validate_exclusion</code>  </li>
-  <li>
-<code class="inline">:number</code> -&gt; <code class="inline">validate_number</code>  </li>
-  <li>
-<code class="inline">:length</code> -&gt; <code class="inline">validate_length</code>  </li>
-</ul>
-<p>
-<strong>Define mapping function:</strong></p>
-<pre><code class="elixir">  defp get_validator(:type), do: &amp;validate_type/2
-  defp get_validator(:format), do: &amp;validate_format/2
-  defp get_validator(:number), do: &amp;validate_number/2
-  defp get_validator(:length), do: &amp;validate_length/2
-  defp get_validator(:in), do: &amp;validate_inclusion/2
-  defp get_validator(:not_in), do: &amp;validate_exclusion/2
-  defp get_validator(name), do: {:error, &quot;validate_#{name} is not support&quot;}
-</code></pre>
-<p>
-<strong>Go checking validations one by one</strong></p>
-<pre><code class="elixir">  def validate(value, validators) do
+  end</code></pre><h2 id="combine-all-validation">Combine all validation</h2><p>Most of time you want to use multiple valitions on the data. So we will add a function that do multiple validation</p><p>We define a simple structure for validation first. This is our validate function spec</p><pre><code class="elixir"> @spec validate(any(), keyword()) :: :ok | {:error, messages}</code></pre><p>Then we can use it like this:</p><pre><code class="elixir">Checky.validate(value, type: :string, format: ~r/\d\d.+/, length: [min: 8, max: 20])</code></pre><p>Validations is a keyword list with short name for validation:</p><ul><li><code class="inline">:type</code> -> <code class="inline">validate_type</code></li><li><code class="inline">:format</code> -> <code class="inline">validate_format</code></li><li><code class="inline">:in</code> -> <code class="inline">validate_inclusion</code></li><li><code class="inline">:not_in</code> -> <code class="inline">validate_exclusion</code></li><li><code class="inline">:number</code> -> <code class="inline">validate_number</code></li><li><code class="inline">:length</code> -> <code class="inline">validate_length</code></li></ul><p><strong>Define mapping function:</strong></p><pre><code class="elixir">  defp get_validator(:type), do: &validate_type/2
+  defp get_validator(:format), do: &validate_format/2
+  defp get_validator(:number), do: &validate_number/2
+  defp get_validator(:length), do: &validate_length/2
+  defp get_validator(:in), do: &validate_inclusion/2
+  defp get_validator(:not_in), do: &validate_exclusion/2
+  defp get_validator(name), do: {:error, "validate_#{name} is not support"}
+</code></pre><p><strong>Go checking validations one by one</strong></p><pre><code class="elixir">  def validate(value, validators) do
     do_validate(value, validators, :ok)
   end
 
@@ -542,26 +421,19 @@ Validations is a keyword list with short name for validation:</p>
   # check validations one by one
   defp do_validate(value, [h | t] = _validators, acc) do
     case do_validate(value, h) do
-      :ok -&gt; do_validate(value, t, acc)
-      error -&gt; error
+      :ok -> do_validate(value, t, acc)
+      error -> error
     end
   end
 
   # validate single validation
   defp do_validate(value, {validator, opts}) do
     case get_validator(validator) do
-      {:error, _} = err -&gt; err
-      validate_func -&gt; validate_func.(value, opts)
+      {:error, _} = err -> err
+      validate_func -> validate_func.(value, opts)
     end
-  end</code></pre>
-<h2>
-Conclusion</h2>
-<p>
-Writing a validation module is not so hard. Now you can add more validations to fit your need. As I promised, this is the full source of the module with custom validation fucntion.
-<a href="https://github.com/bluzky/valdi/blob/main/lib/valdi.ex">https://github.com/bluzky/valdi/blob/main/lib/valdi.ex</a></p>
-<p>
-Thank you for reading to the end of this post. Please leave me a comment.</p>
-</div>
+  end</code></pre><h2 id="conclusion">Conclusion</h2><p>Writing a validation module is not so hard. Now you can add more validations to fit your need. As I promised, this is the full source of the module with custom validation fucntion.
+<a href="https://github.com/bluzky/valdi/blob/main/lib/valdi.ex">https://github.com/bluzky/valdi/blob/main/lib/valdi.ex</a></p><p>Thank you for reading to the end of this post. Please leave me a comment.</p></div>
           </div>
 
           <!-- Post meta -->
@@ -650,9 +522,7 @@ Thank you for reading to the end of this post. Please leave me a comment.</p>
                         >Dung Nguyen</a
                       >
                     </h4>
-                    <p class="font-primary"><p>
-Hi! I’m Dung Nguyen. I’m an Elixir developer at OnPoint Vietnam.</p>
-</p>
+                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
                     <ul
                       class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
                     >
