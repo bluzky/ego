@@ -38,9 +38,11 @@ defmodule Ego.Store.ContentLoader do
       case String.split(content, ~r/\r*\n-{3,}\r*\n*/, parts: 2) do
         [frontmatter, markdown] ->
           meta = YamlElixir.read_from_string!(frontmatter)
+          {html, text} = parse_markdown(markdown)
 
           %Ego.Document{
-            content: md_to_html(markdown),
+            content: html,
+            plain: text,
             title: meta["title"],
             categories: meta["categories"] || [],
             tags: meta["tags"] || [],
@@ -53,7 +55,12 @@ defmodule Ego.Store.ContentLoader do
           }
 
         markdown ->
-          %Ego.Document{content: md_to_html(markdown)}
+          {html, text} = parse_markdown(markdown)
+
+          %Ego.Document{
+            content: html,
+            plain: text
+          }
       end
 
     type =
@@ -69,12 +76,12 @@ defmodule Ego.Store.ContentLoader do
       type: type,
       slug: slug,
       url: Ego.UrlHelpers.url(type, slug),
-      path: Ego.UrlHelpers.path(type, slug),
-      plain: Floki.text(Floki.parse_document!(doc.content))
+      path: Ego.UrlHelpers.path(type, slug)
     )
   end
 
-  defp md_to_html(content) do
-    Earmark.as_html!(content)
+  defp parse_markdown(content) do
+    ast = Ego.Markdown.parse!(content)
+    {Ego.Markdown.to_html(ast), Ego.Markdown.to_text(ast)}
   end
 end
