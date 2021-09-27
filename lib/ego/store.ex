@@ -29,8 +29,9 @@ defmodule Ego.Store do
 
         documents
 
-      _ ->
+      error ->
         Logger.error("Cannot load content")
+        Logger.error(inspect(error))
     end
   end
 

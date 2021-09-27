@@ -38,9 +38,11 @@ defmodule Ego.Store.ContentLoader do
       case String.split(content, ~r/\r*\n-{3,}\r*\n*/, parts: 2) do
         [frontmatter, markdown] ->
           meta = YamlElixir.read_from_string!(frontmatter)
+          {html, text, toc} = parse_markdown(markdown)
 
           %Ego.Document{
-            content: md_to_html(markdown),
+            content: html,
+            plain: text,
             title: meta["title"],
             categories: meta["categories"] || [],
             tags: meta["tags"] || [],
@@ -49,11 +51,18 @@ defmodule Ego.Store.ContentLoader do
             layout: meta["layout"],
             date: meta["date"],
             image: meta["image"],
-            params: Map.drop(meta, ~w(title categories tags author draft layout date image))
+            params: Map.drop(meta, ~w(title categories tags author draft layout date image)),
+            toc: toc
           }
 
-        markdown ->
-          %Ego.Document{content: md_to_html(markdown)}
+        [markdown] ->
+          {html, text, toc} = parse_markdown(markdown)
+
+          %Ego.Document{
+            content: html,
+            plain: text,
+            toc: toc
+          }
       end
 
     type =
@@ -69,12 +78,17 @@ defmodule Ego.Store.ContentLoader do
       type: type,
       slug: slug,
       url: Ego.UrlHelpers.url(type, slug),
-      path: Ego.UrlHelpers.path(type, slug),
-      plain: Floki.text(Floki.parse_document!(doc.content))
+      path: Ego.UrlHelpers.path(type, slug)
     )
   end
 
-  defp md_to_html(content) do
-    Earmark.as_html!(content)
+  defp parse_markdown(content) do
+    ast = Ego.Markdown.parse!(content)
+
+    toc =
+      Ego.Markdown.extract_toc(ast)
+      |> Ego.Markdown.toc_to_html()
+
+    {Ego.Markdown.to_html(ast), Ego.Markdown.to_text(ast), toc}
   end
 end
