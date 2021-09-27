@@ -114,6 +114,16 @@ menus:
          url: "terms-conditions/"
          name: "Terms & Conditions"
 
+  docs:
+    - name: "Prologue"
+      identifier: "prologue"
+      url: "/docs/prologue"
+      weight: 10
+    - name: "Help"
+      identifier: "help"
+      url: "/docs/help"
+      weight: 20
+
 ############################# Footer Menu ########################
   footer:
     - weight: 1
