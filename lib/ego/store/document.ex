@@ -15,7 +15,8 @@ defmodule Ego.Document do
     tags: [],
     draft: true,
     date: DateTime.utc_now(),
-    params: %{}
+    params: %{},
+    toc: nil
   ]
 
   @type t :: %{
@@ -33,6 +34,7 @@ defmodule Ego.Document do
           image: binary(),
           url: binary(),
           path: binary(),
-          params: map()
+          params: map(),
+          toc: binary()
         }
 end

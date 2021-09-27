@@ -38,7 +38,7 @@ defmodule Ego.Store.ContentLoader do
       case String.split(content, ~r/\r*\n-{3,}\r*\n*/, parts: 2) do
         [frontmatter, markdown] ->
           meta = YamlElixir.read_from_string!(frontmatter)
-          {html, text} = parse_markdown(markdown)
+          {html, text, toc} = parse_markdown(markdown)
 
           %Ego.Document{
             content: html,
@@ -51,15 +51,17 @@ defmodule Ego.Store.ContentLoader do
             layout: meta["layout"],
             date: meta["date"],
             image: meta["image"],
-            params: Map.drop(meta, ~w(title categories tags author draft layout date image))
+            params: Map.drop(meta, ~w(title categories tags author draft layout date image)),
+            toc: toc
           }
 
-        markdown ->
-          {html, text} = parse_markdown(markdown)
+        [markdown] ->
+          {html, text, toc} = parse_markdown(markdown)
 
           %Ego.Document{
             content: html,
-            plain: text
+            plain: text,
+            toc: toc
           }
       end
 
@@ -82,6 +84,11 @@ defmodule Ego.Store.ContentLoader do
 
   defp parse_markdown(content) do
     ast = Ego.Markdown.parse!(content)
-    {Ego.Markdown.to_html(ast), Ego.Markdown.to_text(ast)}
+
+    toc =
+      Ego.Markdown.extract_toc(ast)
+      |> Ego.Markdown.toc_to_html()
+
+    {Ego.Markdown.to_html(ast), Ego.Markdown.to_text(ast), toc}
   end
 end
