@@ -95,8 +95,8 @@ defmodule Ego.Markdown do
   end
 
   @doc """
+  Build toc tree from document ast
   """
-
   @header_tags ~w(h1 h2 h3 h4 h5 h6)
   def extract_toc(ast, fun \\ fn _ast, acc -> acc end)
 
