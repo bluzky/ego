@@ -2,9 +2,28 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  {{ block "head/resource-hints" . }}{{ partial "head/resource-hints.html" . }}{{ end }}
-  {{ block "head/script-header" . }}{{ partial "head/script-header.html" . }}{{ end }}
-  {{ block "head/stylesheet" . }}{{ partial "head/stylesheet.html" . }}{{ end }}
-  {{ block "head/seo" . }}{{ partial "head/seo.html" . }}{{ end }}
-  {{ block "head/favicons" . }}{{ partial "head/favicons.html" . }}{{ end }}
+
+  <!-- Font -->
+  <link rel="preload" as="font" href="{{ "fonts/vendor/jost/jost-v4-latin-regular.woff2" | abs_url }}" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="{{ "fonts/vendor/jost/jost-v4-latin-700.woff2" | abs_url }}" type="font/woff2" crossorigin>
+
+  <!-- script -->
+  {% if site.params.options.dark_mode -%}
+  <script src="{{"js/darkmode-init.js" | abs_url}}"></script>
+  {% endif -%}
+
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="{{ 'css/main.css' | abs_url }}" crossorigin="anonymous">
+  <noscript><style>img.lazyload { display: none; }</style></noscript>
+
+  <!-- seo -->
+ {%comment %} {% render "partials/head/seo.html", site: site %}{%endcomment %}
+
+  <!-- Favicon -->
+  <meta name="theme-color" content="{{ site.params.theme_color }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | abs_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | abs_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | abs_url }}">
+  <link rel="manifest" crossorigin="use-credentials" href="{{ "site.webmanifest" | abs_url }}">
+
 </head>

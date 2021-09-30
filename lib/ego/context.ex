@@ -17,6 +17,7 @@ defmodule Ego.Context do
 
   def put_type(context, type) do
     struct(context, type: type)
+    |> put_var(:type, type)
   end
 
   def put_output_path(context, path) do

@@ -169,7 +169,7 @@ defmodule Ego.Markdown do
         Enum.join(
           [
             "<li>",
-            "<a href=\"#{item.id}\">#{item.text}</a>",
+            "<a href=\"\##{item.id}\">#{item.text}</a>",
             toc_to_html(item.children),
             "</li>"
           ],

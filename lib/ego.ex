@@ -3,6 +3,14 @@ defmodule Ego do
   alias Ego.FileSystem
 
   def build do
-    Ego.Builder.build()
+    Ego.Server.Application.start(:normal, [])
+
+    filters = Application.get_env(:solid, :custom_filters)
+    filters.md5("ego")
+    Ego.build()
+  end
+
+  def server() do
+    Ego.Server.Application.start(:normal, server: true)
   end
 end

@@ -23,8 +23,8 @@ defmodule Ego.Store do
         Cachex.put(:ego, :types, types)
 
         Cachex.put(:ego, :taxonomies, %{
-          categories: extract_term(documents, :categories, :category),
-          tags: extract_term(documents, :tags, :tag)
+          categories: extract_term(documents, :categories, :categories),
+          tags: extract_term(documents, :tags, :tags)
         })
 
         extract_menu(documents)

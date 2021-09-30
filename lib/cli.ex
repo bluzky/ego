@@ -13,19 +13,11 @@ defmodule Ego.CLI do
   end
 
   def process_args({["build" | _], _}) do
-    Ego.Server.Application.start(:normal, [])
-
-    filters = Application.get_env(:solid, :custom_filters)
-    filters.md5("ego")
     Ego.build()
   end
 
   def process_args({["server" | _], _}) do
-    Ego.Server.Application.start(:normal, server: true)
-
-    receive do
-      msg -> IO.puts(msg)
-    end
+    Ego.server()
   end
 
   def process_args(_) do

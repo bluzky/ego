@@ -21,14 +21,6 @@ defmodule Ego.UrlHelpers do
     "/#{slug}"
   end
 
-  def path(:category, slug) do
-    path(:categories, slug)
-  end
-
-  def path(:tag, slug) do
-    path(:tags, slug)
-  end
-
   def path(type, slug) do
     "/#{type}/#{slug}"
   end

@@ -1,48 +1,44 @@
-{{ define "main" }}
+
 	<div class="row flex-xl-nowrap">
 		<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
 			<nav class="docs-links" aria-label="Main navigation">
-				{{ partial "sidebar/docs-menu.html" . }}
+			  {% render "partials/sidebar/docs-menu.html", site: site, page: page %}
 			</nav>
 		</div>
-		{{ if ne .Params.toc false -}}
+		{% if page.params.toc != false -%}
 		<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
-			{{ partial "sidebar/docs-toc.html" . }}
+		  {% render "partials/sidebar/docs-toc.html", page: page %}
 		</nav>
-		{{ end -}}
-		{{ if .Params.toc -}}
+		{% endif -%}
+
+		{% if site.params.toc -%}
 		<main class="docs-content col-lg-11 col-xl-9">
-		{{ else -}}
-		<main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
-		{{ end -}}
-			{{ if .Site.Params.options.breadCrumb -}}
-				<!-- https://discourse.gohugo.io/t/breadcrumb-navigation-for-highly-nested-content/27359/6 -->
+		{% else -%}
+		  <main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
+		    {% endif -%}
+			  {% if site.params.options.breadCrumb -%}
+			  <!-- https://discourse.gohugo.io/t/breadcrumb-navigation-for-highly-nested-content/27359/6 -->
+        {% comment %}
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
-						{{ partial "main/breadcrumb" . -}}
-						<li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+						{% render "partials/main/breadcrumb", page: page -%}
+						<li class="breadcrumb-item active" aria-current="page">{{ page.Title }}</li>
 					</ol>
 				</nav>
-			{{ end }}
-			<h1>{{ .Title }}</h1>
-			<p class="lead">{{ .Params.lead | safeHTML }}</p>
-			{{ if ne .Params.toc false -}}
+        {% endcomment %}
+			{% endif %}
+			<h1>{{ page.title }}</h1>
+			<p class="lead">{{ page.params.lead | safeHTML }}</p>
+			{% if  page.params.toc != false -%}
 			<nav class="d-xl-none" aria-label="Quaternary navigation">
-				{{ partial "sidebar/docs-toc.html" . }}
+				{% render "partials/sidebar/docs-toc.html", page: page %}
 			</nav>
-			{{ end -}}
-			{{ partial "main/headline-hash.html" .Content }}
-			{{ if .Site.Params.editPage -}}
-				{{ partial "main/edit-page.html" . }}
-			{{ end -}}
-			{{ partial "main/docs-navigation.html" . }}
-			<!--
-			{{ if not .Site.Params.options.collapsibleSidebar -}}
-				{{ partial "main/docs-navigation.html" . }}
-			{{ else -}}
-				<div class="my-n3"></div>
-			{{ end -}}
-			-->
+			{% endif -%}
+
+      {% render "partials/main/headline-hash.html", content: page.content %}
+			{% if site.params.editPage -%}
+			{% render "partials/main/edit-page.html", site: site, page: page %}
+			{% endif -%}
+
 		</main>
 	</div>
-{{ end }}

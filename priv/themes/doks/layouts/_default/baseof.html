@@ -1,27 +1,27 @@
 <!doctype html>
-<html lang="{{ .Site.LanguageCode | default "en" }}">
-  {{ partial "head/head.html" . }}
-  {{ if eq .Kind "home" -}}
-    {{ .Scratch.Set "class" "home" -}}
-  {{ else if eq .Kind "404" -}}
-    {{ .Scratch.Set "class" "error404" -}}
-  {{ else if eq .Kind "page" -}}
-    {{ .Scratch.Set "class" .Type -}}
-    {{ .Scratch.Add "class" " single" -}}
-  {{ else -}}
-    {{ .Scratch.Set "class" .Type -}}
-    {{ .Scratch.Add "class" " list" -}}
-  {{ end -}}
-  <body class="{{ .Scratch.Get "class" }}">
-    {{ partial "header/header.html" . }}
+<html lang="{{ site.language | default: "en" }}">
+  {% render "partials/head/head.html", site: site  %}
+
+  {% if section == "index" -%}
+    {% assign class = "home" -%}
+  {% elsif section == "404" -%}
+    {% assign class = "error404" -%}
+  {% elsif type == "page" -%}
+    {% assign class = type -%}
+    {% assign class = class | append: " single" -%}
+  {% else -%}
+    {% assign class = type -%}
+    {% assign class = class | append: " list" -%}
+  {% endif -%}
+
+  <body class="{{ class }}">
+     {% render "partials/header/header.html", site: site %}
     <div class="wrap container-xxl" role="document">
       <div class="content">
-        {{ block "main" . }}{{ end }}
+        {{ inner_content }}
       </div>
     </div>
-    {{ block "sidebar-prefooter" . }}{{ end }}
-    {{ block "sidebar-footer" . }}{{ end }}
-    {{ partial "footer/footer.html" . }}
-    {{ partial "footer/script-footer.html" . }}
+    {% render "partials/footer/footer.html", site: site %}
+    {% render "partials/footer/script-footer.html", site: site %}
   </body>
 </html>

@@ -1,5 +1,6 @@
 defmodule Ego.Document do
   defstruct [
+    :file,
     :title,
     :slug,
     :author,
@@ -16,10 +17,13 @@ defmodule Ego.Document do
     draft: true,
     date: DateTime.utc_now(),
     params: %{},
-    toc: nil
+    toc: nil,
+    list_page: false,
+    section: "home"
   ]
 
   @type t :: %{
+          file: binary(),
           type: binary,
           title: binary,
           slug: binary,
@@ -35,6 +39,8 @@ defmodule Ego.Document do
           url: binary(),
           path: binary(),
           params: map(),
-          toc: binary()
+          toc: binary(),
+          list_page: boolean(),
+          section: binary()
         }
 end

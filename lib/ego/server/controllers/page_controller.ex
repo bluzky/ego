@@ -5,7 +5,7 @@ defmodule Ego.Server.PageController do
   action_fallback(Ego.Server.FallbackController)
 
   def index(conn, params) do
-    document = Ego.Store.find(%{type: :page, slug: "index"})
+    document = Ego.Store.find(%{section: "home"})
 
     context =
       if params["page"] do
@@ -21,13 +21,41 @@ defmodule Ego.Server.PageController do
     Renderer.render_index(context, document)
   end
 
-  def show(conn, %{"slug" => slug}) do
-    document = Ego.Store.find(%{type: :page, slug: slug})
+  def show(conn, %{"path" => path}) do
+    {path, page} = extract_paging(path)
+
+    document = Ego.Store.find(%{path: path})
 
     if document do
-      Renderer.render_page(conn.assigns.context, document)
+      context =
+        if page do
+          Ego.Context.put_var(
+            conn.assigns.context,
+            :__current_page,
+            page
+          )
+        else
+          conn.assigns.context
+        end
+
+      Renderer.render_page(context, document)
     else
       text(conn, "404 not found")
+    end
+  end
+
+  defp extract_paging(path) do
+    case Enum.take(path, -2) do
+      ["page", page] ->
+        path_str =
+          path
+          |> Enum.slice(0..-3)
+          |> Path.join()
+
+        {"/#{path_str}", String.to_integer(page)}
+
+      _ ->
+        {Path.join(["/" | path]), nil}
     end
   end
 end

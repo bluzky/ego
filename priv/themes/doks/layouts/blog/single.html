@@ -1,14 +1,13 @@
-{{ define "main" }}
+
 <div class="row justify-content-center">
   <div class="col-md-12 col-lg-10 col-xl-8">
     <article>
       <div class="blog-header">
-        <h1>{{ .Title }}</h1>
-        {{ partial "main/blog-meta.html" . }}
+        <h1>{{ page.title }}</h1>
+        {% render "partials/main/blog-meta.html", page: page %}
       </div>
-      <p class="lead">{{ .Params.lead | safeHTML }}</p>
-      {{ .Content }}
+      <p class="lead">{{ page.params.lead | safeHTML }}</p>
+      {{ page.content }}
     </article>
   </div>
 </div>
-{{ end }}

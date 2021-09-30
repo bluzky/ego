@@ -13,13 +13,18 @@ defmodule Ego.Server.Router do
   scope "/", Ego.Server do
     pipe_through(:browser)
 
-    get("/page/:page", PageController, :index)
+    get("/categories", CategoryController, :index)
+    get("/categories/page/:page", CategoryController, :index)
+    get("/categories/:slug", CategoryController, :show)
+    get("/categories/:slug/page/:page", CategoryController, :show)
 
-    get("/:type/:slug", ContentController, :show)
-    get("/:type", ContentController, :index)
-    get("/:type/page/:page", ContentController, :index)
+    get("/tags", TagController, :index)
+    get("/tags/page/:page", TagController, :index)
+    get("/tags/:slug", TagController, :show)
+    get("/tags/:slug/page/:page", TagController, :show)
 
     get("/", PageController, :index)
-    # get("/:slug", PageController, :show)
+    get("/page/:page", PageController, :index)
+    get("/*path", PageController, :show)
   end
 end

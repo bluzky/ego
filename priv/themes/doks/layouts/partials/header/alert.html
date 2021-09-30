@@ -1,10 +1,10 @@
-{{ if .Site.Params.alertDismissable -}}
+{% if site.params.alert_dismissable -%}
   <div id="announcement" class="alert alert-primary alert-dismissible fade show d-none text-lg-center" role="alert">
-    {{ .Site.Params.alertText | safeHTML }}
+    {{ site.params.alert_text }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-{{ else -}}
+{% else -%}
   <div class="alert alert-primary text-center" role="alert">
-    {{ .Site.Params.alertText | safeHTML }}
+    {{ site.params.alert_text }}
   </div>
-{{ end -}}
+{% endif -%}

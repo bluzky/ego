@@ -9,6 +9,18 @@ defmodule Ego.Template.Filters do
     input =~ Regex.compile!(pattern)
   end
 
+  def replace_re(input, pattern, to_replace) do
+    if input do
+      case Regex.compile(pattern) do
+        {:ok, reg} ->
+          String.replace(input, reg, to_replace)
+
+        err ->
+          input
+      end
+    end
+  end
+
   def get_page(slug, type \\ nil) do
     document =
       if type do

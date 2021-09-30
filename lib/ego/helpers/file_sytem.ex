@@ -1,5 +1,5 @@
 defmodule Ego.FileSystem do
-  def lookup_dir(:page) do
+  def lookup_dir(type) when type in ["page", nil] do
     paths = [
       "layouts/",
       "layouts/_default"

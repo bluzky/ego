@@ -3,14 +3,14 @@
     <div class="row">
       <div class="col-lg-8 order-last order-lg-first">
         <ul class="list-inline">
-          <li class="list-inline-item">{{ .Site.Params.footer | safeHTML }}</li>
+          <li class="list-inline-item">{{ site.params.footer | safeHTML }}</li>
         </ul>
       </div>
       <div class="col-lg-8 order-first order-lg-last text-lg-end">
         <ul class="list-inline">
-          {{ range .Site.Menus.footer -}}
-            <li class="list-inline-item"><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-          {{ end -}}
+          {% for item in site.menus.footer -%}
+            <li class="list-inline-item"><a href="{{ item.url | rel_url }}">{{ item.name }}</a></li>
+          {% endfor -%}
         </ul>
       </div>
     </div>
