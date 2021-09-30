@@ -22,7 +22,8 @@ defmodule Ego.Renderer do
     layout =
       cond do
         document.list_page -> "list"
-        true -> [document.layout, "single"]
+        document.layout -> [document.layout, "single"]
+        true -> ["single"]
       end
 
     context
@@ -68,7 +69,8 @@ defmodule Ego.Renderer do
 
     opts = [
       file_system: {TemplateResolver, fs},
-      parser: Ego.Template.Parser
+      parser: Ego.Template.Parser,
+      template: template
     ]
 
     context = Context.merge_assign(context, Map.new(assigns))

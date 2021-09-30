@@ -28,6 +28,7 @@ defmodule Ego.TemplateResolver do
       end)
 
     if full_path do
+      IO.inspect(full_path)
       File.cd(Path.dirname(full_path))
       File.read!(full_path)
     else

@@ -23,18 +23,10 @@ menus:
     - name: Docs
       url: /docs/prologue/introduction/
       weight: 10
-    - name: Tutorial
-      url: /tutorial/introduction/
-      weight: 20
-    - name: Showcase
-      url: /showcase/localstack/
-      weight: 30
     - name: Blog
       url: /blog/
       weight: 40
-    - name: Community
-      url: 'https://github.com/h-enk/doks/discussions'
-      weight: 50
+
   social:
     - name: GitHub
       pre: >-

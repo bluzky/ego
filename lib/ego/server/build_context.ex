@@ -7,6 +7,7 @@ defmodule Ego.Server.BuildContext do
     site =
       Application.get_env(:ego, :site_config, %{})
       |> Map.put(:documents, Store.list_documents())
+      |> Map.put(:document_tree, Store.get_document_tree())
       |> Map.put(:taxonomies, Store.list_taxonomies())
 
     assign(conn, :context, Ego.Context.new(%{assigns: %{site: site}}))

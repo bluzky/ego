@@ -2,14 +2,11 @@ defmodule Ego.Store.ContentLoader do
   require Logger
 
   def load_all(directory_path, opts \\ []) do
-    path = Path.expand(directory_path) <> "/"
+    root = opts[:root]
+    path = Path.join(root, directory_path)
 
     if File.dir?(path) do
-      documents =
-        list_file(path)
-        |> Enum.filter(&String.ends_with?(&1, ".md"))
-        |> Enum.map(&String.replace(&1, path, ""))
-        |> Enum.map(&load_file(&1, path))
+      documents = load_directory(directory_path, "root", opts)
 
       {:ok, documents}
     else
@@ -17,20 +14,40 @@ defmodule Ego.Store.ContentLoader do
     end
   end
 
-  # list all file in directory recursively
-  defp list_file(path) do
-    cond do
-      File.regular?(path) ->
-        [path]
+  def load_directory(directory_path, scope, opts \\ []) do
+    root = opts[:root]
 
-      File.dir?(path) ->
-        File.ls!(path)
-        |> Enum.map(&Path.join(path, &1))
-        |> Enum.map(&list_file/1)
-        |> Enum.concat()
+    path = Path.join(root, directory_path)
 
-      true ->
-        []
+    documents =
+      File.ls!(path)
+      |> Enum.map(fn file ->
+        full_path = Path.join(path, file)
+
+        cond do
+          File.dir?(full_path) ->
+            load_directory(Path.join(directory_path, file), file, opts)
+
+          String.ends_with?(file, ".md") and file != "_index.md" ->
+            [load_file(Path.join(directory_path, file), root)]
+
+          true ->
+            []
+        end
+      end)
+      |> Enum.concat()
+      |> Enum.reject(&is_nil(&1))
+      |> Enum.sort_by(& &1.params["weight"])
+
+    index =
+      if File.exists?(Path.join(path, "_index.md")) do
+        load_file(Path.join(directory_path, "_index.md"), root)
+      end
+
+    if index do
+      [%{index | children: documents, has_children: true}]
+    else
+      documents
     end
   end
 
@@ -41,8 +58,6 @@ defmodule Ego.Store.ContentLoader do
     doc =
       case String.split(content, ~r/\r*\n-{3,}\r*\n*/, parts: 2) do
         [frontmatter, markdown] ->
-          IO.inspect(frontmatter)
-
           meta = YamlElixir.read_from_string!(frontmatter)
           {html, text, toc} = parse_markdown(markdown)
 
@@ -87,17 +102,23 @@ defmodule Ego.Store.ContentLoader do
           {section, :page}
 
         [head | tail] ->
+          section =
+            file
+            |> String.replace_trailing("/_index.md", "")
+            |> String.replace(~r/[^\/]+$/, "")
+            |> String.replace("/", "")
+
+          section = (section == "" && "root") || section
+
           {
-            String.replace(file, ~r/\/[^\/]+$/, ""),
+            section,
             String.to_atom(head)
           }
       end
 
     slug = Path.basename(file, ".md")
 
-    path =
-      String.replace_trailing(file, ".md", "")
-      |> String.replace_trailing("/_index", "")
+    path = String.replace(file, ~r/[\/]?(_index)*\.md$/, "")
 
     struct(doc,
       type: type,

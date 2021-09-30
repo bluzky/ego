@@ -59,4 +59,26 @@ defmodule Ego.Template.Filters do
       _error -> nil
     end
   end
+
+  # work with document tree
+  def find_node(node, path) when is_map(node) do
+    find_node(node["children"], path)
+  end
+
+  def find_node(nodes, path) do
+    node =
+      Enum.find(nodes, fn node ->
+        String.starts_with?(path, node["path"])
+      end)
+
+    if not is_nil(node) and node["has_children"] do
+      if node["path"] == path do
+        node
+      else
+        find_node(node["children"], path)
+      end
+    else
+      node
+    end
+  end
 end

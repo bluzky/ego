@@ -19,7 +19,9 @@ defmodule Ego.Document do
     params: %{},
     toc: nil,
     list_page: false,
-    section: "home"
+    section: "home",
+    children: [],
+    has_children: false
   ]
 
   @type t :: %{
