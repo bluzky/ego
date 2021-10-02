@@ -1,514 +1,133 @@
-<!DOCTYPE html>
-<html lang="en-US">
+<!doctype html>
+<html lang="en">
   <head>
-  <meta charset="utf-8" />
-  <title>The Organge+</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <meta name="author" content="Dung Nguyen" />
-  <meta
-    name="description"
-    content=""
-  />
+  <!-- Font -->
+  <link rel="preload" as="font" href="/ego/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/ego/fonts/vendor/jost/jost-v4-latin-700.woff2" type="font/woff2" crossorigin>
 
-  <!-- mobile responsive meta -->
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=5"
-  />
+  <!-- script -->
+  <script src="/ego/js/darkmode-init.js"></script>
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="/ego/css/main.css" crossorigin="anonymous">
+  <noscript><style>img.lazyload { display: none; }</style></noscript>
+
+  <!-- seo -->
+ 
 
   <!-- Favicon -->
-  <link
-    rel="icon"
-    href="/ego/images/favicon.png"
-    type="image/x-icon"
-  />
-
-  <!-- CSS Plugins -->
-  <!-- plugins + stylesheet -->
-<link rel="preconnect" href="https://fonts.gstatic.com" />
-
-
-<link rel="stylesheet" href="/ego/plugins/bootstrap/bootstrap.min.css" media="screen" />
-
-
-
-<link rel="stylesheet" href="/ego/css/style.css" media="screen" />
-
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" />
-
-
-<link rel="stylesheet" href="/ego/css/style.css" media="screen" />
-
-
-  
-  <script type=application/javascript>
-   var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-40665301-3','auto'),ga('send','pageview'))</script>
-  
+  <meta name="theme-color" content="">
+  <link rel="apple-touch-icon" sizes="180x180" href="/ego/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/ego/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/ego/favicon-16x16.png">
+  <link rel="manifest" crossorigin="use-credentials" href="/ego/site.webmanifest">
 
 </head>
 
 
-  <body>
-    <div style="min-height: calc(100vh - 65px)">
-      <div class="header-height-fix"></div>
-<header class="header-nav">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <nav class="navbar navbar-expand-lg navbar-light p-0">
-          <a class="navbar-brand font-weight-bold mr-0" href="">
-            
-            <img
-              loading="lazy"
-              src="/ego/images/logo.png"
-              alt="The Organge+"
-              height="35px"
-            />
-            
-          </a>
+  <body class="blog list">
+     <div class="header-bar"></div>
 
+<header class="navbar navbar-expand-md navbar-light doks-navbar">
+  <nav class="container-xxl flex-wrap flex-md-nowrap" aria-label="Main navigation">
+    <a class="navbar-brand p-0 me-auto" href="/" aria-label="Ego">
+      Ego
+    </a>
+
+    <button class="btn btn-menu d-block d-md-none order-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+
+    <div class="offcanvas offcanvas-start border-0 py-md-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true" aria-labelledby="offcanvasDoksLabel">
+      <div class="header-bar d-md-none"></div>
+      <div class="offcanvas-header d-md-none">
+        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">Ego</a></h2>
+        <button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas" aria-label="Close main menu"></button>
+      </div>
+      <div class="offcanvas-body px-4">
+        <h3 class="h6 text-uppercase mb-3 d-md-none">Main</h3>
+        <ul class="nav flex-column flex-md-row ms-md-n3">
           
-          <button
-            class="search-toggle d-inline-block d-lg-none ml-auto mr-3"
-            data-toggle="search"
-            aria-label="Search Toggle"
-          >
-            <i data-eva="search-outline"></i>
-          </button>
-          
-
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navHeader"
-            aria-controls="navHeader"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i data-eva="menu-outline"></i>
-            <i class="d-none" data-eva="close-outline"></i>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navHeader">
-            <ul
-              class="navbar-nav mx-auto"
-            >
-              
-              
-              
-              
-
-              
-              <li class="nav-item ">
-                <a class="nav-link" href="/ego">Blog</a>
-              </li>
-              
-              
-              
-              
-              
-
-              
-              <li class="nav-item ">
-                <a class="nav-link" href="/ego/tags">Tags</a>
-              </li>
-              
-              
-              
-              
-              
-
-              
-              <li class="nav-item ">
-                <a class="nav-link" href="/ego/about">About me</a>
-              </li>
-              
-              
-              
-              
-              
-
-              
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle d-inline-block "
-                  href="#"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-expanded="false"
-                  >More</a
-                >
-                <ul class="dropdown-menu">
-                  <li>
-                    <a
-                      class="dropdown-item "
-                      href="/ego/categories"
-                      >Category</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item "
-                      href="/ego/elements"
-                      >Elements</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item "
-                      href="/ego/privacy"
-                      >Privacy</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item "
-                      href="/ego/terms-conditions"
-                      >Terms & Conditions</a
-                    >
-                  </li></ul>
-              </li>
-              
-              
-              
-            </ul>
-
-            
-            <div class="navbar-right d-none d-lg-inline-block">
-              <ul class="social-links list-unstyled list-inline">
-                <li class="list-inline-item ml-4 d-none d-lg-inline-block">
-                  <button
-                    class="search-toggle"
-                    data-toggle="search"
-                    aria-label="Search Toggle"
-                  >
-                    <i data-eva="search-outline"></i>
-                  </button>
-                </li>
-              </ul>
-            </div>
-            
-          </div>
-        </nav>
+          <li class="nav-item">
+              <a class="nav-link ps-0 py-1" href="/ego/docs/prologue/introduction">Docs</a>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link ps-0 py-1" href="/ego/blog">Blog</a>
+            </li>
+          </ul>
+        <hr class="text-black-50 my-4 d-md-none">
+        <h3 class="h6 text-uppercase mb-3 d-md-none">Socials</h3>
+        <ul class="nav flex-column flex-md-row ms-md-auto me-md-n5 pe-md-2">
+          <li class="nav-item">
+              <a class="nav-link ps-0 py-1" href="/ego/https://github.com/h-enk/doks"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><small class="ms-2 d-md-none">GitHub</small></a>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link ps-0 py-1" href="/ego/https://twitter.com/getdoks"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><small class="ms-2 d-md-none">Twitter</small></a>
+            </li>
+          </ul>
       </div>
     </div>
-  </div>
+
+    <button id="mode" class="btn btn-link order-md-1" type="button" aria-label="Toggle user interface mode">
+      <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+      <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+    </button>
+    </nav>
 </header>
 
 
-<div class="search-block">
-  <div data-toggle="search-close">
-    <i data-eva="close-outline" class="text-primary"></i>
-  </div>
-  <form action="/search/">
-    <input
-      id="search-query"
-      name="s"
-      type="search"
-      placeholder="Type words &amp; hit enter"
-      class="text-center"
-      aria-label="search-query"
-    />
-  </form>
-</div>
+    <div class="wrap container-xxl" role="document">
+      <div class="content">
+        
+<div class="row justify-content-center">
+  <div class="col-md-12 col-lg-10 col-xl-8">
+    <article>
+      <div class="blog-header">
+        <h1>Tìm hiểu về công nghệ Blockchain</h1>
+        <p><small>Posted 2018-04-11T20:53:06+07:00 by
+  <a class="stretched-link position-relative" href="/contributors/dung-nguyen/">Dung Nguyen</a>
+  
+  </strong></small><p>
 
-
-
-      
-
-      <!-- checking blog -->
-
-
-
-<section class="section-sm">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div
-        class=" col-lg-10 "
-      >
-        <div class="pr-lg-4">
-          <div class="single-post">
-            <div class="text-center mb-5">
-              <h1 class="mb-4 post-title">Tìm hiểu về công nghệ Blockchain</h1>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="#!" class="card-meta-author"><a href="/ego/author/dung-nguyen" class="card-meta-author">
-                      <img
-                        loading="lazy"
-                        src="/ego/images/author/dung-nguyen.jpg"
-                        alt="Dung Nguyen"
-                      />
-                      <span>Dung Nguyen</span>
-                    </a>
-                  </a>
-                </li>
-                <li class="list-inline-item">|</li>
-                <li class="list-inline-item">
-                  <span>2018-04-11T20:53:06+07:00</span>
-                </li>
-              </ul>
-            </div>
-
-            
-            <div class="mb-5 text-center">
-              <img
-                loading="lazy"
-                class="img-fluid rounded"
-                src="/ego/img/blockchain.jpg"
-                alt="Image not Found"
-              />
-            </div>
-            
-
-            <div class="content"><blockquote><p>Từ cơn sốt tiền ảo, công nghệ Blockchain được tung hô và được xem như là công nghệ sẽ làm thay đổi tương lại, thậm chí đến cả công ty thực phẩm thêm chữ Blockchain vào tên sản phẩm cũng đủ làm giá cổ phiếu tăng mấy chục lần. 
+      </div>
+      <p class="lead"></p>
+      <blockquote><p>Từ cơn sốt tiền ảo, công nghệ Blockchain được tung hô và được xem như là công nghệ sẽ làm thay đổi tương lại, thậm chí đến cả công ty thực phẩm thêm chữ Blockchain vào tên sản phẩm cũng đủ làm giá cổ phiếu tăng mấy chục lần. 
 Vậy Blockchain là gì và nó có thực sự là thứ sẽ làm thay đổi tương lai công nghệ? 
 Để trả lời thắc mắc của chính mình, tôi đã dành thời gian để tìm hiểu về Blockchain. Có thể có một số sai sót không tránh khỏi. Rất mong nhận được sự góp ý.</p></blockquote><h2 id="i-blockchain-la-gi">I. Blockchain là gì?</h2><h3 id="1-dinh-nghia">1. Định nghĩa</h3><p>Khó có thể đưa ra một định nghĩa chính xác cho <code class="inline">Blockchain</code></p><p><code class="inline">Blockchain</code> là một công nghệ xác thực, xử lý và lưu trữ các giao dịch trên mạng internet dựa trên hệ thống phân tán.</p><p>Nguồn gốc tên gọi <code class="inline">Blockchain</code> xuất phát từ công nghệ lưu trữ dữ liệu thành các khối <code class="inline">block</code>, sau đó các khối này được kết nối lại với nhau thành một chuỗi <code class="inline">chain</code>.</p><h3 id="2-cach-to-chuc-du-lieu">2. Cách tổ chức dữ liệu</h3><p>Tất cả dữ liệu trong hệ thống <code class="inline">Blockchain</code> sẽ được đóng gói thành các khối, các khối này liên kết với nhau tạo thành một chuỗi duy nhất và thống nhất trên toàn bộ hệ thống.</p><p>Mỗi block chứa nhiều giao dịch (<code class="inline">transaction</code>) khác nhau và Mỗi block có chứa mã hash của <code class="inline">block</code> trước nó. Mã hash được tạo ra nhờ các thuật toán phức tạp như SHA256, MD5, … giá trị của mã hash là khác nhau cho các dữ liệu khác nhau. Chỉ cần một sự thay đổi nhỏ trong dữ liệu cũng sẽ làm thay đổi giá trị của mã hash. Nhờ mã hash này mà việc thay đổi giá trị của một block sẽ khiến mã hash nó thay đổi và không còn trùng với mã hash được lưu ở <code class="inline">block</code> sau nó. Nhờ mã hash mà hệ thống có thể kiểm tra và loại bỏ những thông tin bị cố tình thay đổi.</p><p><code class="inline">Transaction</code> là thông tin của các giao dịch. Giao dịch ở đây không giới hạn trong chuyển tiền, <code class="inline">transaction</code> có thể chứa bất cứ thông tin gì như hình ảnh, âm thanh, ….</p><h3 id="3-blockchain-network">3. Blockchain network</h3><p>Để hiện thực công nghệ blockchain cần có một hệ thống các máy tính kết nối với mạng internet và chạy một ứng dụng khách <code class="inline">client</code>. </p><p>Mỗi máy tính trong network được gọi là <code class="inline">node</code>. Mỗi node có thể chứa bản sao (hoặc một phần) dữ liệu của hệ thống <code class="inline">blockchain</code>. Điều này giúp tránh việt mất mát dữ liệu và đảm bảo an toàn cho hệ thống.</p><h3 id="4-luu-tru-du-lieu">4. Lưu trữ dữ liệu</h3><p><code class="inline">Blockchain</code> sử dụng công nghệ lưu trữ dữ liệu gọi là <code class="inline">sổ cái phân tán</code> (<code class="inline">distributed ledger</code>). Trong đó dữ liệu sẽ được lưu trên tất cả các node trong network, mỗi node sẽ chứa bản sao của <code class="inline">blockchain</code>. Khi có một thay đổi trên <code class="inline">blockchain</code>, thay đổi này sẽ được đồng bộ hoá trong toàn bộ hệ thống. Sau 1 thời gian thì toàn bộ các node trên hệ thống sẽ đồng bộ trở lại và toàn bộ các bản sao trong hệ thống sẽ hoàn toàn giống nhau.</p><h3 id="5-dac-diem-cua-he-thong-blockchain">5. Đặc điểm của hệ thống Blockchain</h3><ul><li>Dữ liệu một khi đã lưu trữ thì hầu như không thể sửa đổi được</li><li>Luôn có thể truy vết nguồn gốc của dữ liệu qua tất cả các giao dịch trước đó</li><li>Dữ liệu trên toàn bộ hệ thống thống nhất với nhau</li><li>Phi tập trung: việc xác nhận và thực thi các giao dịch không cần phụ thuộc vào một bên trung gian thứ 3 cụ thể, mà được xác nhận bởi toàn bộ hệ thống.</li><li>Dữ liệu được lưu trữ phân tán trên toàn bộ hệ thống</li><li>Sử dụng các cơ chế đồng thuận để xác nhận giao dịch</li><li>Mỗi giao dịch cần có sự tham gia của toàn bộ hệ thống</li></ul><h3 id="6-uu-diem">6. Ưu điểm</h3><ul><li><p><strong>Ổn định</strong> : Khác với hệ thống tập trung, khi một phần dịch vụ ngưng hoạt động sẽ ảnh hưởng toàn bộ hệ thống. Khi một vài <code class="inline">node</code> trong hệ thống bị dừng hoặc mất mát dữ liệu, toàn bộ hệ thống vẫn hoạt động bình thường.</p></li><li><p><strong>An toàn dữ liệu</strong>: Một khi dữ liệu đã được lưu vào trong hệ thống thì hầu như không thể thay đổi</p></li><li><p><strong>Bảo mật</strong>: Dữ liệu không thể thay đổi, việc thêm mới dữ liệu cần có sự xác nhận và đồng thuận của toàn bộ hệ thống nên khó để giả mạo thông tin. </p></li><li><p><strong>Thống nhất</strong>: Dữ liệu được lưu trữ trên các <code class="inline">node</code> được đồng bộ và thống nhất với nhau.
- <strong>Không cần trung gian/ không cần tin tưởng</strong>: Việc xác nhận các giao dịch do toàn bộ các <code class="inline">node</code> trong hệ thống thực hiện nên không cần phải thông qua một bên thứ 3 được tin tưởng. Ví dụ: thông thường chuyển tiền qua ngân hàng cần 2 bên tin tưởng tuyệt đối vào ngân hàng. Trong blockchain, các giao dịch được thực hiện trực tiếp     </p></li><li><p><strong>Giảm bớt chi phí, thời gian</strong>: Các giao dịch không cần khoản phí rất nhỏ do không phải trả cho bên trung gian. Thời gian giao dịch nhanh, không cần đợi xác nhận từ ngân hàng, không phải chờ ngày cuối tuần, ...</p></li><li><p><strong>Hạn chế lỗi phát sinh do con người</strong>: Toàn bộ các hoạt động của blockchain do hệ thống tự vận hành, không có sự can thiệp của con người.</p><p> ​</p></li></ul><h3 id="7-nhuoc-diem">7. Nhược điểm</h3><ul><li><strong>Lãng phí</strong>: việc xử lý tính toán được thực hiện bởi tất cả các <code class="inline">node</code> trong hệ thống nhưng chỉ kết quả của 1 node được sử dụng, chi phí tính toán của tất cả node còn lại bị lãng phí.</li><li><strong>Khó mở rộng</strong>: Việc xác nhận các giao dịch và đóng gói dữ liệu được thực hiện bởi toàn bộ các <code class="inline">node</code> trong hệ thống. Nếu lượng giao dịch quá lớn trong khoảng thời gian ngắn thì hệ thống không thể đáp ứng việc xử lý đồng thời quá nhiều</li><li><strong>Vấn đề lưu trữ dữ liệu</strong>: Khi hệ thống trở nên lớn hơn thì lượng dữ liệu cần lưu trữ sẽ ngày càng lớn. Như Ethereum mỗi năm dữ liệu tăng khoảng 55GB, nếu tất cả các <code class="inline">node</code> đều lưu trữ dữ liệu này thì các <code class="inline">node</code> sẽ cần khả năng xử lý cao hơn và điều này không thực tế. Nếu chỉ có một số <code class="inline">node</code> lưu trữ full data thì việc tấn công sẽ dễ hơn bởi vì chỉ cần tấn công một số ít <code class="inline">node</code>.</li><li><strong>Tích hợp phức tạp</strong>: Blockchain là công nghệ hoàn toàn mới nên việc tích hợp vào các hệ thống cũ sẽ rất khó khăn</li><li><strong>Chưa hoàn thiện</strong>: Hiện nay công nghệ <code class="inline">blockchain</code> vẫn đang trong giai đoạn phát triển và chưa có một ứng dụng nào áp dụng công nghệ <code class="inline">blockchain</code> thành công ngoài lĩnh vực <code class="inline">tiền ảo</code></li></ul><h3 id="8-cac-ung-dung-cua-blockchain-cac-van-de-ma-blockc">8. Các ứng dụng của <code class="inline">blockchain</code> / Các vấn đề mà <code class="inline">blockchain</code> có thể xử lý</h3><ul><li>Truy xuất nguồn gốc sản phẩm (vật lý hay kỹ thuật số)</li><li>Giảm chi phí trung gian</li><li>Giải quyết vấn đề giao dịch không cần tin tưởng lẫn nhau</li><li>Hợp đồng thông minh <code class="inline">smart contract</code> tự động thực thi điều khoản hợp đồng khi các điều kiện được đáp ứng, tránh việc chây ỳ, phá hợp đồng.</li></ul><h2 id="ii-smart-contract">II. Smart contract</h2><h3 id="1-smart-contract-la-gi">1. Smart contract là gì?</h3><p><code class="inline">Smart contract</code> là một chương trình máy tính được lưu trữ trong <code class="inline">blockchain</code>, có khả năng thực thi các thoả thuận tự động mà không cần sự can thiệp từ con người.</p><p><code class="inline">Smart contract</code> nói một cách chính xác hơn là giao dịch có điều kiện <code class="inline">conditional transaction</code>. Nghĩa là khi 2 bên đồng ý các điều khoản với nhau thì sẽ lập nên một <code class="inline">smart contract</code>/<code class="inline">transaction</code> với các điều kiện ràng buộc. Khi các điều kiện này thoả thì sẽ thực hiện giao dịch (transaction)/ hoặc huỷ giao dịch tuỳ điều kiện.</p><p><code class="inline">Smart contract</code> được hỗ trợ bởi hầu hết các nền tảng blockchain hiện tại nhưng Ethereum là nền tảng được sử dụng nhiều nhất bởi sự linh hoạt và các tính năng mà nó hỗ trợ.</p><p><strong>Ví dụ:</strong></p><p>Khi A mua hàng sách online tại Shop P, cuốn sách trị giá 200k, A và Shop P lập 1 <code class="inline">smart contract</code> </p><ul><li>200k của A sẽ được lưu trong smart contract</li><li>điều kiện là khi A nhận được cuốn sách từ Shop P -> chuyển 200k vào tài khoản shop P.</li></ul><h3 id="2-smart-contract-hoat-dong-nhu-the-nao">2. Smart contract hoạt động như thế nào?</h3><p><a href="https://codeburst.io/build-your-first-ethereum-smart-contract-with-solidity-tutorial-94171d6b1c4b">implement smart contract Ethereum</a></p><p>Làm thử rồi hiểu</p><h3 id="3-uu-va-nhuoc-diem-cua-smart-contract">3. Ưu và nhược điểm của Smart contract</h3><p><strong>Ưu điểm</strong>:</p><ul><li>Không cần sự can thiệp của con người trong việc thực thi hợp đồng</li><li>Giảm bớt chi phí trung gian: luật sư, phí giao dịch ngân hàng</li><li>Không cần tin tưởng đối tác</li><li>Tự động thực thi</li></ul><p><strong>Nhược điểm:</strong></p><ul><li><p>Để kiểm tra điều kiện của <code class="inline">smart contract</code> thì toàn bộ hệ thống phải truy xuất vào cùng 1 nguồn dữ liệu</p><ul><li>Việc này giống như tấn công DDOS</li><li>Không có gì đảm bảo tất cả các kết quả trả về là giống nhau, vd: nguồn ko hoạt động, bị thay đổi</li></ul></li><li><p><code class="inline">Smart contract</code> không thể cập nhật các điều khoản</p></li><li><p>Không thể huỷ bỏ</p></li><li><p>Tính chính xác của <code class="inline">smart contract</code> phụ thuộc vào người thiết lập các điều khoản (thường là lập trình viên)</p><ul><li>Lập trình viên là con người và có xác suất lỗi</li><li>Lập trình viên phải hoàn toàn hiểu các điều khoản để chuyển thành chương trình</li><li>Phải hoàn toàn tin tưởng vào lập trình viên. 👹(they can be evil)</li></ul></li><li><p>Nguồn dữ liệu để kiểm tra các điều kiện có thể đến từ thế giới thực (vd xác nhận đã nhận hàng) thì vẫn có thể bị tấn công, giả mạo các thông tin đầu vào, hoặc phụ thuộc vào 1 bên thứ 3 được tin tưởng tuyệt đối</p></li></ul><h3 id="4-ung-dung-cua-smart-contract">4. Ứng dụng của Smart contract</h3><p>Tất cả những hoạt động giao dịch có điều kiện đều có thể sử dụng smart contract</p><ul><li><p>Tạo ra các token mới, có thể sử dụng như 1 loại tiền điện tử</p></li><li><p>Xổ số</p></li><li><p>Mua hàng online</p></li><li><p>Bảo hiểm</p></li><li><p>Mua nhà</p></li><li><p>Giao hàng</p></li><li><p>Cá độ</p></li><li><p>…..</p></li></ul><h2 id="iii-fork-hard-fork-vs-soft-fork">III. Fork, Hard fork vs soft fork?</h2><h3 id="1-fork-la-gi">1 Fork là gì?</h3><p>Như đã biết <code class="inline">Blockchain</code> là một chuỗi các khối liên kết với nhau, và các chuỗi này là giống nhau trên toàn bộ hệ thống. Các <code class="inline">node</code> trong hệ thống thông qua một cơ chế đồng thuận <code class="inline">consensus</code> để xác định khối nào sẽ được thêm vào <code class="inline">blockchain</code>.   <code class="inline">Fork</code> xảy ra khi một hệ thống không đạt được sự đống thuận trong việc ghi các khối mới  và  <code class="inline">blockchain</code> bị chia tách thành 2 nhánh khách nhau.</p><p>Nguyên nhân của <code class="inline">fork</code> là do:</p><ul><li>Thêm các tính năng mới để cải tiến chức năng của hệ thống <code class="inline">blockchain</code> hiện tại.</li><li>Sửa đổi các <code class="inline">rule</code> (quy định) trong quá trình xác nhận giao dịch và tạo khối (Vd: kích thước của 1 block) </li></ul><p>Do những thay đổi này là <code class="inline">permanent</code>(lâu dài) nên khi thực hiện <code class="inline">fork</code> các <code class="inline">node</code> trong hệ thống cần phải cập nhật ứng dụng client để tích hợp các <code class="inline">rule</code> mới.</p><p>Fork được chia làm 3 loại:</p><ul><li>Soft fork</li><li>Hard fork</li><li>Spin-off coin</li></ul><h3 id="2-soft-fork">2 Soft fork</h3><p><code class="inline">Soft fork</code> là những cập nhật phần mềm có <code class="inline">tương thích với phiên bản cũ</code> , nghĩa là các node không cần cập nhật phần mềm mới vẫn có thể thực hiện việc kiểm tra (validate) và xác nhận(verify) các giao dịch. Để hoàn thành <code class="inline">soft fork</code> chỉ cần phần lớn các node trong hệ thống cập nhật phiên bản mới, các node cũ vẫn có thể tiếp tục xác nhận các block mới tạo.</p><p><code class="inline">Soft fork</code> là thực hiện việc cập nhật từ từ và không ảnh hưởng nhiều đến chức năng của hệ thống.</p><p><strong>Ví dụ:</strong></p><p>Thay đổi kích thước <code class="inline">block</code> từ 1MB lên 2MB, các node chưa cập nhật vẫn có thể tiếp nhận và xử lý các giao dịch, tuy nhiên các <code class="inline">block</code>  do các node này tạo ra sẽ bị hệ thống bỏ qua, không cho ghi vào <code class="inline">blockchain</code>, nên công sức xử lý của các node này coi như là bị lãng phí.</p><h3 id="3-hard-fork">3 Hard fork</h3><p><code class="inline">Hard fork</code> là những cập nhật phần mềm tạo nên sự không tương thích với các phiên bản cũ. Để hoàn toàn cập nhật, tất cả các node phải cập nhật phần mềm lên phiên bản mới. Những node không cập nhật sẽ vẫn tiếp tục hoạt động theo các <code class="inline">rule</code> cũ. Các node mới và node cũ sẽ tạo nên 2 phiên bản khác nhau từ 1 <code class="inline">blockchain</code> ban đầu.</p><p><img src="https://masterthecrypto.com/wp-content/uploads/2017/10/wsi-imageoptim-Copy-of-Copy-of-CRYPTOCURRENCY-1-1.jpg" alt="img"></img></p><p>Việc thực  hiện <code class="inline">Hard fork</code> có thể là do có kế hoạch trước hoặc là do sự chia rẽ trong cộng đồng sử dụng, bảo trì <code class="inline">blockchain</code>.</p><h4 id="3-1-hard-fork-co-ke-hoach">3.1 Hard fork có kế hoạch</h4><ul><li>Là những cập nhật trong giao thức đã được lên kế hoạch từ trước và có sự đồng thuận từ toàn bộ cộng đồng.</li><li>Tất cả các node sẽ dần chuyển hoàn toàn qua nhánh mới tách ra.</li><li>Nhánh cũ sẽ bị bỏ đi</li><li>Việc cập nhật sẽ không gây ảnh hưởng tới giá trị của coin</li></ul><h4 id="3-2-hard-fork-do-tranh-cai">3.2 Hard fork do tranh cãi</h4><ul><li>Thông thường là do sự bất đồng ý kiến trong cộng đồng trong việc xác định những thay đổi mà mỗi bên cho là tốt nhất đối với <code class="inline">blockchain</code> hiện tại.</li><li>Blockchain sẽ chia tách thành 2 phiên bản khác nhau cùng tồn tại song song với nhau.</li><li>Các node trong mạng lưới ban đầu cũng sẽ tách thành 2 mạng lưới khác nhau: mỗi bên sử dụng 1 bản cập nhật khác nhau.</li><li>Các giao dịch trước khi chia tách sẽ tồn tại trong cả 2 blockchain</li></ul><p><strong>Ví dụ</strong></p><p>Việc <code class="inline">hard fork</code> Bitcoin thành Bitcoin và Bitcoin Cash, do 1 bên muốn giữ kích thước Block 1MB và 1 bên muốn nâng kích thước block lên 8MB để tăng khả năng mở rộng của Bitcoin (thực hiện nhiều giao dịch hơn trong cùng thời gian)</p><h3 id="4-spin-off-coin">4 Spin-off coin</h3><p>Sử dụng mã nguồn của những coin có sẵn và thay đổi để tạo nên <code class="inline">blockchain</code> mới với những tính năng mới thêm vào.</p><p><strong>Ví dụ</strong></p><p>Litecoin là một coin dựa trên mã nguồn của Bitcoin với các thay đổi:</p><ul><li>Thời gian xử lý block trung bình là 2.5 phút so với 10 phút của Bitcoin</li><li>Sử dụng thuật toán Scrypt thay vì SHA256</li><li>Giới hạn tổng số coin là 84 triệu so với 21 triệu Bitcoin</li></ul><h2 id="iv-coin-vs-token">IV. Coin vs Token</h2><h3 id="1-coin-la-gi">1. Coin là gì?</h3><p><code class="inline">Coin</code> là một loại tiền mã hoá (crypto currency) được tạo ra và vận hành một cách độc lập dựa trên một nền tảng blockchain của riêng nó.</p><p><code class="inline">Coin</code> là từ dùng để chỉ chung các loại tiền ảo như : Bitcoin, Ethereum, ...</p><p><code class="inline">Altcoin</code> dùng để chỉ các loại tiền ảo ngoài Bitcoin</p><h3 id="2-token-la-gi">2. Token là gì ?</h3><p><a href="https://www.ethereum.org/token">Tạo token mới từ Ethereum</a></p><p><code class="inline">Token</code> là các đơn vị có thể được sử dụng để dao dịch như <code class="inline">coin</code>, tuy nhiên <code class="inline">token</code> được tạo ra và hoạt động dựa trên cơ chế <code class="inline">Smart contract</code> mà các nền tảng Blockchain như Ethereum hay Omni cung cấp.</p><p>Hiện nay hơn 80% các loại token được tạo ra dựa trên nền tảng Ethereum</p><h3 id="3-phan-loai-token">3. Phân loại token</h3><p>Không có phân loại cụ thể cho token. Một token có thể sử dụng cho một hoặc nhiều mục đích:</p><ul><li>Sử dụng như đơn vị tiền tệ</li><li>Tài sản số (digital)</li><li>Công cụ kế toán</li><li>Công cụ phân chia cổ phần nắm giữ trong các start-up</li><li>Một phương pháp để chống tấn công</li><li>Một dạng điểm, reward cho user</li><li>...</li></ul></div>
-          </div>
-
-          <!-- Post meta -->
-          <div class="single-post-meta">
-            <div class="row justify-content-center">
-              <div class="col-md-6 text-center text-md-left">
-                <ul class="post-meta-tags list-unstyled list-inline">
-                  
-                  <li class="list-inline-item">
-                    <a href="/ego/tagsothers">#others</a>
-                  </li>
-                  
-                  <li class="list-inline-item">
-                    <a href="/ego/tagstech">#tech</a>
-                  </li>
-                  
-                  <li class="list-inline-item">
-                    <a href="/ego/tagsblockchain">#blockchain</a>
-                  </li>
-                  
-                </ul>
-              </div>
-              <div class="col-md-6 text-center text-md-right mt-4 mt-md-0">
-<ul
-  class="social-links has-bg-color list-unstyled list-inline"
-  style="line-height: 0"
->
-  <li class="list-inline-item">
-    <!-- Sharingbutton Facebook -->
-    <a
-      class="resp-sharing-button__link d-block"
-      href="https://facebook.com/sharer/sharer.php?u=/ego/blog/2018-04-11-blockchain"
-      target="_blank"
-      rel="noopener"
-      aria-label=""
-    >
-      <div
-        class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"
-      >
-        <div
-          aria-hidden="true"
-          class="resp-sharing-button__icon resp-sharing-button__icon--solid"
-        >
-          <i data-eva="facebook-outline" class="text-dark"></i>
-        </div>
-      </div>
-    </a>
-  </li>
-
-  <li class="list-inline-item">
-    <!-- Sharingbutton Twitter -->
-    <a
-      class="resp-sharing-button__link d-block"
-      href="https://twitter.com/intent/tweet/?text=Tìm hiểu về công nghệ Blockchain&amp;url=/ego/blog/2018-04-11-blockchain"
-      target="_blank"
-      rel="noopener"
-      aria-label=""
-    >
-      <div
-        class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small"
-      >
-        <div
-          aria-hidden="true"
-          class="resp-sharing-button__icon resp-sharing-button__icon--solid"
-        >
-          <i data-eva="twitter-outline" class="text-dark"></i>
-        </div>
-      </div>
-    </a>
-  </li>
-</ul>
-</div>
-            </div>
-          </div>
-
-          <div class="single-post-author">
-            <div class="row justify-content-center">
-              <div class="col-md-12">
-                <div class="media d-block d-sm-flex text-center text-sm-left">
-                  <a href="/ego/author/dung-nguyen"
-                    ><img
-                      loading="lazy"
-                      class="img-fluid rounded-circle mr-0 mr-sm-4 mb-4"
-                      src="/ego/images/author/dung-nguyen.jpg"
-                      alt="Dung Nguyen"
-                  /></a>
-                  <div class="media-body">
-                    <h4>
-                      <a href="/ego/author/dung-nguyen" class="text-dark font-weight-700"
-                        >Dung Nguyen</a
-                      >
-                    </h4>
-                    <p class="font-primary"><p>Hi! I'm Dung Nguyen. I'm an Elixir developer at OnPoint Vietnam.</p></p>
-                    <ul
-                      class="social-links list-unstyled list-inline ml-0 ml-sm-n2"
-                    >
-                      
-                      <li class="list-inline-item">
-                        <a href="https://www.linkedin.com/in/dung-nguyen-tien-695ba135/">
-                          <i class="lab linkedin-outline"></i>
-                        </a>
-                      </li>
-                      
-                      <li class="list-inline-item">
-                        <a href="https://www.github.com/bluzky">
-                          <i class="lab github-outline"></i>
-                        </a>
-                      </li>
-                      
-                      <li class="list-inline-item">
-                        <a href="https://dev.to/bluzky">
-                          <i class="lab book-outline"></i>
-                        </a>
-                      </li>
-                      
-                    </ul>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- DISQUS comment -->
-          
-          <div class="single-post-similer">
-            <div class="row justify-content-center">
-              <div class="col-md-12">
-                <div class="row mt-3">
-                  <div id="disqus_thread" class="w-100"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-
-          <div class="single-post-similer">
-            <div class="row justify-content-center">
-              <div class="col-md-12">
-                <div class="row mt-3">
-                  <div class="col-12">
-                    <h3 class="text-dark font-weight-800 mb-4 pb-2">
-                      You May Also Like
-                    </h3>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      
-    </div>
+ <strong>Không cần trung gian/ không cần tin tưởng</strong>: Việc xác nhận các giao dịch do toàn bộ các <code class="inline">node</code> trong hệ thống thực hiện nên không cần phải thông qua một bên thứ 3 được tin tưởng. Ví dụ: thông thường chuyển tiền qua ngân hàng cần 2 bên tin tưởng tuyệt đối vào ngân hàng. Trong blockchain, các giao dịch được thực hiện trực tiếp     </p></li><li><p><strong>Giảm bớt chi phí, thời gian</strong>: Các giao dịch không cần khoản phí rất nhỏ do không phải trả cho bên trung gian. Thời gian giao dịch nhanh, không cần đợi xác nhận từ ngân hàng, không phải chờ ngày cuối tuần, ...</p></li><li><p><strong>Hạn chế lỗi phát sinh do con người</strong>: Toàn bộ các hoạt động của blockchain do hệ thống tự vận hành, không có sự can thiệp của con người.</p><p> ​</p></li></ul><h3 id="7-nhuoc-diem">7. Nhược điểm</h3><ul><li><strong>Lãng phí</strong>: việc xử lý tính toán được thực hiện bởi tất cả các <code class="inline">node</code> trong hệ thống nhưng chỉ kết quả của 1 node được sử dụng, chi phí tính toán của tất cả node còn lại bị lãng phí.</li><li><strong>Khó mở rộng</strong>: Việc xác nhận các giao dịch và đóng gói dữ liệu được thực hiện bởi toàn bộ các <code class="inline">node</code> trong hệ thống. Nếu lượng giao dịch quá lớn trong khoảng thời gian ngắn thì hệ thống không thể đáp ứng việc xử lý đồng thời quá nhiều</li><li><strong>Vấn đề lưu trữ dữ liệu</strong>: Khi hệ thống trở nên lớn hơn thì lượng dữ liệu cần lưu trữ sẽ ngày càng lớn. Như Ethereum mỗi năm dữ liệu tăng khoảng 55GB, nếu tất cả các <code class="inline">node</code> đều lưu trữ dữ liệu này thì các <code class="inline">node</code> sẽ cần khả năng xử lý cao hơn và điều này không thực tế. Nếu chỉ có một số <code class="inline">node</code> lưu trữ full data thì việc tấn công sẽ dễ hơn bởi vì chỉ cần tấn công một số ít <code class="inline">node</code>.</li><li><strong>Tích hợp phức tạp</strong>: Blockchain là công nghệ hoàn toàn mới nên việc tích hợp vào các hệ thống cũ sẽ rất khó khăn</li><li><strong>Chưa hoàn thiện</strong>: Hiện nay công nghệ <code class="inline">blockchain</code> vẫn đang trong giai đoạn phát triển và chưa có một ứng dụng nào áp dụng công nghệ <code class="inline">blockchain</code> thành công ngoài lĩnh vực <code class="inline">tiền ảo</code></li></ul><h3 id="8-cac-ung-dung-cua-blockchain-cac-van-de-ma-blockc">8. Các ứng dụng của <code class="inline">blockchain</code> / Các vấn đề mà <code class="inline">blockchain</code> có thể xử lý</h3><ul><li>Truy xuất nguồn gốc sản phẩm (vật lý hay kỹ thuật số)</li><li>Giảm chi phí trung gian</li><li>Giải quyết vấn đề giao dịch không cần tin tưởng lẫn nhau</li><li>Hợp đồng thông minh <code class="inline">smart contract</code> tự động thực thi điều khoản hợp đồng khi các điều kiện được đáp ứng, tránh việc chây ỳ, phá hợp đồng.</li></ul><h2 id="ii-smart-contract">II. Smart contract</h2><h3 id="1-smart-contract-la-gi">1. Smart contract là gì?</h3><p><code class="inline">Smart contract</code> là một chương trình máy tính được lưu trữ trong <code class="inline">blockchain</code>, có khả năng thực thi các thoả thuận tự động mà không cần sự can thiệp từ con người.</p><p><code class="inline">Smart contract</code> nói một cách chính xác hơn là giao dịch có điều kiện <code class="inline">conditional transaction</code>. Nghĩa là khi 2 bên đồng ý các điều khoản với nhau thì sẽ lập nên một <code class="inline">smart contract</code>/<code class="inline">transaction</code> với các điều kiện ràng buộc. Khi các điều kiện này thoả thì sẽ thực hiện giao dịch (transaction)/ hoặc huỷ giao dịch tuỳ điều kiện.</p><p><code class="inline">Smart contract</code> được hỗ trợ bởi hầu hết các nền tảng blockchain hiện tại nhưng Ethereum là nền tảng được sử dụng nhiều nhất bởi sự linh hoạt và các tính năng mà nó hỗ trợ.</p><p><strong>Ví dụ:</strong></p><p>Khi A mua hàng sách online tại Shop P, cuốn sách trị giá 200k, A và Shop P lập 1 <code class="inline">smart contract</code> </p><ul><li>200k của A sẽ được lưu trong smart contract</li><li>điều kiện là khi A nhận được cuốn sách từ Shop P -> chuyển 200k vào tài khoản shop P.</li></ul><h3 id="2-smart-contract-hoat-dong-nhu-the-nao">2. Smart contract hoạt động như thế nào?</h3><p><a href="https://codeburst.io/build-your-first-ethereum-smart-contract-with-solidity-tutorial-94171d6b1c4b">implement smart contract Ethereum</a></p><p>Làm thử rồi hiểu</p><h3 id="3-uu-va-nhuoc-diem-cua-smart-contract">3. Ưu và nhược điểm của Smart contract</h3><p><strong>Ưu điểm</strong>:</p><ul><li>Không cần sự can thiệp của con người trong việc thực thi hợp đồng</li><li>Giảm bớt chi phí trung gian: luật sư, phí giao dịch ngân hàng</li><li>Không cần tin tưởng đối tác</li><li>Tự động thực thi</li></ul><p><strong>Nhược điểm:</strong></p><ul><li><p>Để kiểm tra điều kiện của <code class="inline">smart contract</code> thì toàn bộ hệ thống phải truy xuất vào cùng 1 nguồn dữ liệu</p><ul><li>Việc này giống như tấn công DDOS</li><li>Không có gì đảm bảo tất cả các kết quả trả về là giống nhau, vd: nguồn ko hoạt động, bị thay đổi</li></ul></li><li><p><code class="inline">Smart contract</code> không thể cập nhật các điều khoản</p></li><li><p>Không thể huỷ bỏ</p></li><li><p>Tính chính xác của <code class="inline">smart contract</code> phụ thuộc vào người thiết lập các điều khoản (thường là lập trình viên)</p><ul><li>Lập trình viên là con người và có xác suất lỗi</li><li>Lập trình viên phải hoàn toàn hiểu các điều khoản để chuyển thành chương trình</li><li>Phải hoàn toàn tin tưởng vào lập trình viên. 👹(they can be evil)</li></ul></li><li><p>Nguồn dữ liệu để kiểm tra các điều kiện có thể đến từ thế giới thực (vd xác nhận đã nhận hàng) thì vẫn có thể bị tấn công, giả mạo các thông tin đầu vào, hoặc phụ thuộc vào 1 bên thứ 3 được tin tưởng tuyệt đối</p></li></ul><h3 id="4-ung-dung-cua-smart-contract">4. Ứng dụng của Smart contract</h3><p>Tất cả những hoạt động giao dịch có điều kiện đều có thể sử dụng smart contract</p><ul><li><p>Tạo ra các token mới, có thể sử dụng như 1 loại tiền điện tử</p></li><li><p>Xổ số</p></li><li><p>Mua hàng online</p></li><li><p>Bảo hiểm</p></li><li><p>Mua nhà</p></li><li><p>Giao hàng</p></li><li><p>Cá độ</p></li><li><p>…..</p></li></ul><h2 id="iii-fork-hard-fork-vs-soft-fork">III. Fork, Hard fork vs soft fork?</h2><h3 id="1-fork-la-gi">1 Fork là gì?</h3><p>Như đã biết <code class="inline">Blockchain</code> là một chuỗi các khối liên kết với nhau, và các chuỗi này là giống nhau trên toàn bộ hệ thống. Các <code class="inline">node</code> trong hệ thống thông qua một cơ chế đồng thuận <code class="inline">consensus</code> để xác định khối nào sẽ được thêm vào <code class="inline">blockchain</code>.   <code class="inline">Fork</code> xảy ra khi một hệ thống không đạt được sự đống thuận trong việc ghi các khối mới  và  <code class="inline">blockchain</code> bị chia tách thành 2 nhánh khách nhau.</p><p>Nguyên nhân của <code class="inline">fork</code> là do:</p><ul><li>Thêm các tính năng mới để cải tiến chức năng của hệ thống <code class="inline">blockchain</code> hiện tại.</li><li>Sửa đổi các <code class="inline">rule</code> (quy định) trong quá trình xác nhận giao dịch và tạo khối (Vd: kích thước của 1 block) </li></ul><p>Do những thay đổi này là <code class="inline">permanent</code>(lâu dài) nên khi thực hiện <code class="inline">fork</code> các <code class="inline">node</code> trong hệ thống cần phải cập nhật ứng dụng client để tích hợp các <code class="inline">rule</code> mới.</p><p>Fork được chia làm 3 loại:</p><ul><li>Soft fork</li><li>Hard fork</li><li>Spin-off coin</li></ul><h3 id="2-soft-fork">2 Soft fork</h3><p><code class="inline">Soft fork</code> là những cập nhật phần mềm có <code class="inline">tương thích với phiên bản cũ</code> , nghĩa là các node không cần cập nhật phần mềm mới vẫn có thể thực hiện việc kiểm tra (validate) và xác nhận(verify) các giao dịch. Để hoàn thành <code class="inline">soft fork</code> chỉ cần phần lớn các node trong hệ thống cập nhật phiên bản mới, các node cũ vẫn có thể tiếp tục xác nhận các block mới tạo.</p><p><code class="inline">Soft fork</code> là thực hiện việc cập nhật từ từ và không ảnh hưởng nhiều đến chức năng của hệ thống.</p><p><strong>Ví dụ:</strong></p><p>Thay đổi kích thước <code class="inline">block</code> từ 1MB lên 2MB, các node chưa cập nhật vẫn có thể tiếp nhận và xử lý các giao dịch, tuy nhiên các <code class="inline">block</code>  do các node này tạo ra sẽ bị hệ thống bỏ qua, không cho ghi vào <code class="inline">blockchain</code>, nên công sức xử lý của các node này coi như là bị lãng phí.</p><h3 id="3-hard-fork">3 Hard fork</h3><p><code class="inline">Hard fork</code> là những cập nhật phần mềm tạo nên sự không tương thích với các phiên bản cũ. Để hoàn toàn cập nhật, tất cả các node phải cập nhật phần mềm lên phiên bản mới. Những node không cập nhật sẽ vẫn tiếp tục hoạt động theo các <code class="inline">rule</code> cũ. Các node mới và node cũ sẽ tạo nên 2 phiên bản khác nhau từ 1 <code class="inline">blockchain</code> ban đầu.</p><p><img src="https://masterthecrypto.com/wp-content/uploads/2017/10/wsi-imageoptim-Copy-of-Copy-of-CRYPTOCURRENCY-1-1.jpg" alt="img"></img></p><p>Việc thực  hiện <code class="inline">Hard fork</code> có thể là do có kế hoạch trước hoặc là do sự chia rẽ trong cộng đồng sử dụng, bảo trì <code class="inline">blockchain</code>.</p><h4 id="3-1-hard-fork-co-ke-hoach">3.1 Hard fork có kế hoạch</h4><ul><li>Là những cập nhật trong giao thức đã được lên kế hoạch từ trước và có sự đồng thuận từ toàn bộ cộng đồng.</li><li>Tất cả các node sẽ dần chuyển hoàn toàn qua nhánh mới tách ra.</li><li>Nhánh cũ sẽ bị bỏ đi</li><li>Việc cập nhật sẽ không gây ảnh hưởng tới giá trị của coin</li></ul><h4 id="3-2-hard-fork-do-tranh-cai">3.2 Hard fork do tranh cãi</h4><ul><li>Thông thường là do sự bất đồng ý kiến trong cộng đồng trong việc xác định những thay đổi mà mỗi bên cho là tốt nhất đối với <code class="inline">blockchain</code> hiện tại.</li><li>Blockchain sẽ chia tách thành 2 phiên bản khác nhau cùng tồn tại song song với nhau.</li><li>Các node trong mạng lưới ban đầu cũng sẽ tách thành 2 mạng lưới khác nhau: mỗi bên sử dụng 1 bản cập nhật khác nhau.</li><li>Các giao dịch trước khi chia tách sẽ tồn tại trong cả 2 blockchain</li></ul><p><strong>Ví dụ</strong></p><p>Việc <code class="inline">hard fork</code> Bitcoin thành Bitcoin và Bitcoin Cash, do 1 bên muốn giữ kích thước Block 1MB và 1 bên muốn nâng kích thước block lên 8MB để tăng khả năng mở rộng của Bitcoin (thực hiện nhiều giao dịch hơn trong cùng thời gian)</p><h3 id="4-spin-off-coin">4 Spin-off coin</h3><p>Sử dụng mã nguồn của những coin có sẵn và thay đổi để tạo nên <code class="inline">blockchain</code> mới với những tính năng mới thêm vào.</p><p><strong>Ví dụ</strong></p><p>Litecoin là một coin dựa trên mã nguồn của Bitcoin với các thay đổi:</p><ul><li>Thời gian xử lý block trung bình là 2.5 phút so với 10 phút của Bitcoin</li><li>Sử dụng thuật toán Scrypt thay vì SHA256</li><li>Giới hạn tổng số coin là 84 triệu so với 21 triệu Bitcoin</li></ul><h2 id="iv-coin-vs-token">IV. Coin vs Token</h2><h3 id="1-coin-la-gi">1. Coin là gì?</h3><p><code class="inline">Coin</code> là một loại tiền mã hoá (crypto currency) được tạo ra và vận hành một cách độc lập dựa trên một nền tảng blockchain của riêng nó.</p><p><code class="inline">Coin</code> là từ dùng để chỉ chung các loại tiền ảo như : Bitcoin, Ethereum, ...</p><p><code class="inline">Altcoin</code> dùng để chỉ các loại tiền ảo ngoài Bitcoin</p><h3 id="2-token-la-gi">2. Token là gì ?</h3><p><a href="https://www.ethereum.org/token">Tạo token mới từ Ethereum</a></p><p><code class="inline">Token</code> là các đơn vị có thể được sử dụng để dao dịch như <code class="inline">coin</code>, tuy nhiên <code class="inline">token</code> được tạo ra và hoạt động dựa trên cơ chế <code class="inline">Smart contract</code> mà các nền tảng Blockchain như Ethereum hay Omni cung cấp.</p><p>Hiện nay hơn 80% các loại token được tạo ra dựa trên nền tảng Ethereum</p><h3 id="3-phan-loai-token">3. Phân loại token</h3><p>Không có phân loại cụ thể cho token. Một token có thể sử dụng cho một hoặc nhiều mục đích:</p><ul><li>Sử dụng như đơn vị tiền tệ</li><li>Tài sản số (digital)</li><li>Công cụ kế toán</li><li>Công cụ phân chia cổ phần nắm giữ trong các start-up</li><li>Một phương pháp để chống tấn công</li><li>Một dạng điểm, reward cho user</li><li>...</li></ul>
+    </article>
   </div>
-</section>
+</div>
 
-
-
-    </div>
-    <footer class="section-sm p-0">
-  <div class="container">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-lg-5">
-         
       </div>
-      <div class="col-lg-12 text-center mb-3">
-        
-        <ul
-          class="social-links icon-box list-unstyled list-inline font-weight-500 mb-3"
-        >
-          
+    </div>
+    <footer class="footer text-muted">
+  <div class="container-xxl">
+    <div class="row">
+      <div class="col-lg-8 order-last order-lg-first">
+        <ul class="list-inline">
+          <li class="list-inline-item">Powered by <a href="https://github.com/bluzky/ego/">Ego</a></li>
         </ul>
-
-        <p class="mb-0 font-weight-500 copyright-text content">
-          <p>
-Blog by Dung Nguyen.Theme by <a href="https://gethugothemes.com/">Gethugothemes</a></p>
-
-        </p>
+      </div>
+      <div class="col-lg-8 order-first order-lg-last text-lg-end">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="/ego/about">About me</a></li>
+          <li class="list-inline-item"><a href="/ego/author">Authors</a></li>
+          </ul>
       </div>
     </div>
   </div>
 </footer>
 
-    <!-- JS Plugins + Main script -->
-
-
-<script data-turbolinks-suppress-warning src="/ego/plugins/jquery/jquery.min.js"></script>
- 
-
-<script data-turbolinks-suppress-warning src="/ego/plugins/bootstrap/bootstrap.min.js"></script>
- 
-
-<script data-turbolinks-suppress-warning src="/ego/plugins/search/fuse.min.js"></script>
- 
-
-<script data-turbolinks-suppress-warning src="/ego/plugins/search/mark.js"></script>
- 
-
-<script data-turbolinks-suppress-warning src="/ego/plugins/search/search.js"></script>
- 
-
-<script src="https://unpkg.com/eva-icons"></script>
- 
-
-<script
-  data-turbolinks-suppress-warning
-  src="/ego/js/script.js"
-></script>
-
-<!-- cookie -->
-
-
-<!-- DISQUS -->
-
-<script>
-  /**
-   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-  /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-  */
-  (function () {
-    // DON'T EDIT BELOW THIS LINE
-    var d = document,
-      s = d.createElement("script");
-    s.src = "https://.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
+    <script src="/ego/js/jquery.min.js" defer></script>
+<script src="/ego/js/bootstrap.min.js" defer></script>
+<script src="/ego/js/highlight.js" defer></script>
+<script src="/ego/js/darkmode.js" defer></script>
+<script src="/ego/js/alert.js" defer></script>
+<script src="/ego/js/index.js" defer></script>
 
   </body>
 </html>
