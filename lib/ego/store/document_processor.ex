@@ -17,22 +17,38 @@ defmodule Ego.Store.DocumentProcessor do
   end
 
   def extract_term(documents, extract_key, type) do
-    documents
-    |> Enum.map(&(Map.get(&1, extract_key) || []))
-    |> Enum.concat()
-    |> Enum.group_by(& &1)
-    |> Enum.map(fn {name, items} ->
-      slug = Slug.slugify(name)
+    terms =
+      documents
+      |> Enum.map(&(Map.get(&1, extract_key) || []))
+      |> Enum.concat()
+      |> Enum.group_by(& &1)
+      |> Enum.map(fn {name, items} ->
+        slug = Slug.slugify(name)
 
-      %Ego.Taxonomy{
-        title: name,
-        count: length(items),
-        slug: slug,
+        %Ego.Document{
+          title: name,
+          count: length(items),
+          slug: slug,
+          type: type,
+          section: type,
+          url: UrlHelpers.url(type, slug),
+          path: UrlHelpers.path(type, slug)
+        }
+      end)
+
+    %{
+      page: %Ego.Document{
+        title: Phoenix.Naming.humanize(type),
+        count: length(terms),
+        slug: type,
         type: type,
-        url: UrlHelpers.url(type, slug),
-        path: UrlHelpers.path(type, slug)
-      }
-    end)
+        section: type,
+        url: UrlHelpers.url(type, nil),
+        path: UrlHelpers.path(type, nil),
+        list_page: true
+      },
+      terms: terms
+    }
   end
 
   def extract_menu(documents) do
@@ -44,7 +60,10 @@ defmodule Ego.Store.DocumentProcessor do
             name: doc.title,
             identifier: doc.slug,
             url: doc.path,
-            weight: doc.params["weight"]
+            weight: doc.params["weight"],
+            page: doc,
+            has_children: false,
+            children: []
           }
 
           Enum.map(doc.params["menu"], fn

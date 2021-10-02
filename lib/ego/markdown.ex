@@ -37,13 +37,13 @@ defmodule Ego.Markdown do
     fun.(ast, result)
   end
 
-  def to_html({tag, attrs, inner, _meta} = ast, fun) do
+  def to_html({tag, _attrs, inner, _meta} = ast, fun) do
     attrs = put_anchor_id(ast)
     result = "<#{tag}#{ast_attributes_to_string(attrs)}>" <> to_html(inner, fun) <> "</#{tag}>"
     fun.(ast, result)
   end
 
-  defp put_anchor_id({tag, attrs, inner, _meta} = ast) do
+  defp put_anchor_id({tag, attrs, inner, _meta}) do
     if tag in ~w(h1 h2 h3 h4 h5 h6) do
       id =
         inner
@@ -75,17 +75,17 @@ defmodule Ego.Markdown do
     fun.(list, result)
   end
 
-  def to_text({tag, attrs, _inner, _meta} = ast, fun) when tag in @void_elements do
+  def to_text({tag, _attrs, _inner, _meta} = ast, fun) when tag in @void_elements do
     fun.(ast, "")
   end
 
-  def to_text({tag, attrs, inner, %{verbatim: true}} = ast, fun) do
+  def to_text({_tag, _attrs, inner, %{verbatim: true}} = ast, fun) do
     inner = Enum.join(inner, "")
     result = inner <> "\n"
     fun.(ast, result)
   end
 
-  def to_text({tag, attrs, inner, _meta} = ast, fun) do
+  def to_text({tag, _attrs, inner, _meta} = ast, fun) do
     result = to_text(inner, fun) <> ((need_new_line?(tag) && "\n") || "")
     fun.(ast, result)
   end
@@ -98,12 +98,10 @@ defmodule Ego.Markdown do
   Build toc tree from document ast
   """
   @header_tags ~w(h1 h2 h3 h4 h5 h6)
-  def extract_toc(ast, fun \\ fn _ast, acc -> acc end)
-
-  def extract_toc(list, func) when is_list(list) do
+  def extract_toc(list) when is_list(list) do
     list
     |> Enum.filter(fn {tag, _, _, _} -> tag in @header_tags end)
-    |> Enum.map(fn {tag, attrs, inner, _} ->
+    |> Enum.map(fn {tag, _attrs, inner, _} ->
       text = to_text(inner)
 
       %{
@@ -120,7 +118,7 @@ defmodule Ego.Markdown do
 
   defp build_tree(list, last_header, acc \\ [])
 
-  defp build_tree([header | remain] = list, nil, acc) do
+  defp build_tree([header | remain], nil, acc) do
     build_tree(remain, header, acc)
   end
 

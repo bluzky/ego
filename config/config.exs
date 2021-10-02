@@ -35,7 +35,7 @@ config :solid, :custom_filters, Ego.Template.Filters
 config :dart_sass,
   version: "1.36.0",
   default: [
-    args: ~w(priv/assets/scss/style.scss public/css/style.css)
+    args: ~w(priv/themes/doks/assets/scss/app.scss public/css/app.css)
   ]
 
 import_config "#{Mix.env()}.exs"

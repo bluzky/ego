@@ -1,4 +1,5 @@
 // Color system
+@use "sass:math";
 
 $white:    #fff;
 $gray-100: #f8f9fa;
@@ -15,6 +16,7 @@ $black:    #000;
 $yellow:   #ffe000;
 $black:    #1d2d35;
 $beige:    #fbf7f0;
+$orange: #ff9700;
 // $red:      #e55235;
 $purple:   #5d2f86;
 $brown:    #aa9c84;
@@ -23,7 +25,7 @@ $blue-300: #8ed6fb;
 $pink-100: #fcfaff;
 $pink-500: #d32e9d;
 
-$primary: $purple;
+$primary: $orange;
 
 $color-btn-bg: $pink-500;
 $color-btn-border: darken($pink-500, 5%);
@@ -133,7 +135,7 @@ $spacer: 1rem;
 
 // Navbar
 
-$navbar-padding-y:                  $spacer / 2;
+$navbar-padding-y:                  math.div($spacer, 2);
 $navbar-padding-x:                  null;
 
 $navbar-nav-link-padding-x:         0.5rem;

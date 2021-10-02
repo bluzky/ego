@@ -15,7 +15,7 @@ defmodule Ego.Template.Filters do
         {:ok, reg} ->
           String.replace(input, reg, to_replace)
 
-        err ->
+        _err ->
           input
       end
     end
@@ -60,14 +60,38 @@ defmodule Ego.Template.Filters do
     end
   end
 
-  # work with document tree
-  def find_node(node, path) when is_map(node) do
-    find_node(node["children"], path)
+  def dump(input) do
+    text = Kernel.inspect(input)
+    IO.puts(text)
+    text
   end
 
-  def find_node(nodes, path) do
+  # work with menu
+  def is_current_menu(menu, page) do
+    menu["page"] && get_in(menu, ["page", "path"]) == page["path"]
+  end
+
+  def has_child_menu(menu, page) do
+    Enum.find_value(menu["children"] || [], false, fn item ->
+      if is_current_menu(item, page) do
+        true
+      else
+        has_child_menu(item, page)
+      end
+    end)
+  end
+
+  # work with document tree
+  @doc """
+  Find node of given document tree which match the given path
+  """
+  def find_node(tree, path) when is_map(tree) do
+    find_node(tree["children"], path)
+  end
+
+  def find_node(tree, path) do
     node =
-      Enum.find(nodes, fn node ->
+      Enum.find(tree, fn node ->
         String.starts_with?(path, node["path"])
       end)
 
@@ -79,6 +103,34 @@ defmodule Ego.Template.Filters do
       end
     else
       node
+    end
+  end
+
+  @doc """
+  Check if a path point to a child node of document tree
+  """
+  def has_node(tree, path) do
+    not is_nil(find_node(tree, path))
+  end
+
+  @doc """
+  List all parents nodes of given document
+  """
+  def get_ancestors(nodes, document, acc \\ []) when is_list(nodes) do
+    node =
+      Enum.find(nodes, fn node ->
+        String.starts_with?(document["path"], node["path"])
+      end)
+
+    cond do
+      node["path"] == document["path"] ->
+        Enum.reverse(acc)
+
+      not is_nil(node) ->
+        get_ancestors(node["children"] || [], document, [node | acc])
+
+      true ->
+        []
     end
   end
 end

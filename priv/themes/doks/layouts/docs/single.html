@@ -16,16 +16,16 @@
 		{% else -%}
 		  <main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
 		    {% endif -%}
+
 			  {% if site.params.options.breadCrumb -%}
-			  <!-- https://discourse.gohugo.io/t/breadcrumb-navigation-for-highly-nested-content/27359/6 -->
-        {% comment %}
+        {% assign ancestors = site.document_tree | get_ancestors: page %}
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
-						{% render "partials/main/breadcrumb", page: page -%}
-						<li class="breadcrumb-item active" aria-current="page">{{ page.Title }}</li>
+						{% render "partials/main/breadcrumb", ancestors: ancestors -%}
+						<li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
 					</ol>
 				</nav>
-        {% endcomment %}
+
 			{% endif %}
 			<h1>{{ page.title }}</h1>
 			<p class="lead">{{ page.params.lead | safeHTML }}</p>

@@ -21,7 +21,8 @@ defmodule Ego.Document do
     list_page: false,
     section: "home",
     children: [],
-    has_children: false
+    has_children: false,
+    count: 1
   ]
 
   @type t :: %{
@@ -43,6 +44,7 @@ defmodule Ego.Document do
           params: map(),
           toc: binary(),
           list_page: boolean(),
-          section: binary()
+          section: binary(),
+          count: integer()
         }
 end

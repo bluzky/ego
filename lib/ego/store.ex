@@ -6,7 +6,7 @@ defmodule Ego.Store do
   require Logger
   alias Ego.Store.DocumentProcessor
 
-  def init(content_dir, opts \\ []) do
+  def init(content_dir) do
     case Ego.Store.ContentLoader.load_all("", root: content_dir) do
       {:ok, doc_tree} ->
         documents =

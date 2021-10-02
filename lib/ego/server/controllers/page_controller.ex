@@ -1,6 +1,6 @@
 defmodule Ego.Server.PageController do
   use Ego.Server, :controller
-  alias Ego.{Context, Store, Renderer}
+  alias Ego.Renderer
 
   action_fallback(Ego.Server.FallbackController)
 
@@ -18,7 +18,7 @@ defmodule Ego.Server.PageController do
         conn.assigns.context
       end
 
-    Renderer.render_index(context, document)
+    Renderer.render_page(context, document)
   end
 
   def show(conn, %{"path" => path}) do

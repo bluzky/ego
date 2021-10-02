@@ -49,8 +49,8 @@ defmodule Ego.FileSystem do
 
   def assets_paths() do
     paths =
-      source_path(["assets/", "static/"]) ++
-        theme_path(["assets/", "static/"])
+      source_path(["static/"]) ++
+        theme_path(["static/"])
 
     Enum.filter(paths, fn path ->
       File.exists?(path)

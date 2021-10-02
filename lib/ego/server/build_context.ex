@@ -6,7 +6,7 @@ defmodule Ego.Server.BuildContext do
   def call(conn, _opts) do
     site =
       Application.get_env(:ego, :site_config, %{})
-      |> Map.put(:documents, Store.list_documents())
+      |> Map.put(:documents, Store.list_documents() |> Enum.reject(& &1.list_page))
       |> Map.put(:document_tree, Store.get_document_tree())
       |> Map.put(:taxonomies, Store.list_taxonomies())
 

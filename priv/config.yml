@@ -132,28 +132,28 @@ params:
 
 
   ## Homepage
-  title: "Doks"
+  title: "Ego"
   titleSeparator: "-"
-  titleAddition: "Modern Documentation Theme"
-  description: "Doks is a secure, fast, and SEO-ready Hugo theme for building modern documentation websites."
+  titleAddition: "Ego - Static site generator for Alchemists"
+  description: "Ego is a fast and easy to customize static site generator powered by Elixir"
 
   ## Open Graph
   images: ["doks.png"]
   ogLocale: "en_US"
-  domainTLD: "getdoks.org"
-  titleHome: "Doks Theme"
+  domainTLD: ""
+  titleHome: "Ego static site generator"
 
   ## Twitter Cards
-  twitterSite: "@getdoks"
-  twitterCreator: "@henkverlinde"
+  twitterSite: "#"
+  twitterCreator: "#"
 
   ## JSON-LD
   # schemaType: "Person"
   schemaType: "Organization"
-  schemaName: "Doks"
-  schemaAuthor: "Henk Verlinde"
+  schemaName: "Ego"
+  schemaAuthor: "Dung Nguyen"
   schemaAuthorTwitter: "https://twitter.com/henkverlinde"
-  schemaAuthorLinkedIn: "https://www.linkedin.com/in/henkverlinde/"
+  schemaAuthorLinkedIn: "https://www.linkedin.com/in/dung-nguyen-tien-695ba135/"
   schemaAuthorGitHub: "https://github.com/h-enk"
   schemaLocale: "en-US"
   schemaLogo: "logo-doks.png"
@@ -181,11 +181,11 @@ params:
   lqipWidth: "20x"
 
   # Footer
-  footer: "Powered by <a href=\"https://www.netlify.com/\">Netlify</a>, <a href=\"https://gohugo.io/\">Hugo</a>, and <a href=\"https://getdoks.org/\">Doks</a>"
-  copyright: "Copyright (c) 2020-2021 Henk Verlinde"
+  footer: "Powered by <a href=\"https://github.com/bluzky/ego/\">Ego</a>"
+  copyright: "Copyright (c) 2021 Daniel Nguyen"
 
   # Alert
-  alert: true
+  alert: false
   alert_dismissable: true
   alert_text: "Introducing the Doks child theme, several DX + UX updates, and more! <a class=\"alert-link stretched-link\" href=\"https://getdoks.org/blog/doks-v0.2/\">Check out Doks v0.2</a>"
 

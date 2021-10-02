@@ -6,7 +6,7 @@ defmodule Ego.Store.ContentLoader do
     path = Path.join(root, directory_path)
 
     if File.dir?(path) do
-      documents = load_directory(directory_path, "root", opts)
+      documents = load_directory(directory_path, opts)
 
       {:ok, documents}
     else
@@ -14,7 +14,7 @@ defmodule Ego.Store.ContentLoader do
     end
   end
 
-  def load_directory(directory_path, scope, opts \\ []) do
+  def load_directory(directory_path, opts \\ []) do
     root = opts[:root]
 
     path = Path.join(root, directory_path)
@@ -26,7 +26,7 @@ defmodule Ego.Store.ContentLoader do
 
         cond do
           File.dir?(full_path) ->
-            load_directory(Path.join(directory_path, file), file, opts)
+            load_directory(Path.join(directory_path, file), opts)
 
           String.ends_with?(file, ".md") and file != "_index.md" ->
             [load_file(Path.join(directory_path, file), root)]
@@ -101,7 +101,7 @@ defmodule Ego.Store.ContentLoader do
 
           {section, :page}
 
-        [head | tail] ->
+        [head | _tail] ->
           section =
             file
             |> String.replace_trailing("/_index.md", "")

@@ -7,55 +7,41 @@ defmodule Ego.Renderer do
 
   require Logger
 
-  def render_index(context, document, assigns \\ %{}) do
-    path = UrlHelpers.paginate_path(:page, nil, context.assigns["__current_page"])
-
-    context
-    |> Context.put_var(:page, document)
-    |> Context.put_type(document.type)
-    |> Context.put_var(:current_url, UrlHelpers.url(path))
-    |> Context.put_var(:current_path, path)
-    |> render("index", assigns)
-  end
-
   def render_page(context, document, assigns \\ %{}) do
     layout =
       cond do
+        document.section == "home" -> "index"
         document.list_page -> "list"
         document.layout -> [document.layout, "single"]
         true -> ["single"]
       end
 
+    page = context.assigns["__current_page"]
+
     context
     |> Context.put_var(:page, document)
     |> Context.put_type(document.type)
-    |> Context.put_var(:current_url, UrlHelpers.url(document.path))
-    |> Context.put_var(:current_path, document.path)
+    |> Context.put_var(:current_url, UrlHelpers.paginate(document.url, page))
+    |> Context.put_var(:current_path, UrlHelpers.paginate(document.path, page))
     |> render(layout, assigns)
   end
 
-  def render_term_index(context, [term | _] = terms, assigns \\ %{}) do
-    context
-    |> Context.put_var(:page, terms)
-    |> Context.put_type(term.type)
-    |> Context.put_var(:current_url, UrlHelpers.paginate_url(term.type, nil, assigns[:page]))
-    |> Context.put_var(:current_path, UrlHelpers.paginate_path(term.type, nil, assigns[:page]))
-    |> render(["terms", "list"], assigns)
-  end
+  def render_taxonomy(context, document, assigns \\ %{}) do
+    page = context.assigns["__current_page"]
 
-  def render_term_page(context, term, assigns \\ %{}) do
+    layout =
+      cond do
+        document.list_page -> ["terms", "list"]
+        document.layout -> [document.layout, "single"]
+        true -> ["term", "single"]
+      end
+
     context
-    |> Context.put_var(:page, term)
-    |> Context.put_type(term.type)
-    |> Context.put_var(
-      :current_url,
-      UrlHelpers.paginate(term.url, assigns[:page])
-    )
-    |> Context.put_var(
-      :current_path,
-      UrlHelpers.paginate(term.path, assigns[:page])
-    )
-    |> render(["term", "list"], assigns)
+    |> Context.put_var(:page, document)
+    |> Context.put_type(document.type)
+    |> Context.put_var(:current_url, UrlHelpers.paginate(document.url, page))
+    |> Context.put_var(:current_path, UrlHelpers.paginate(document.path, page))
+    |> render(layout, assigns)
   end
 
   def render(context, template, assigns \\ %{}) do

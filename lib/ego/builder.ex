@@ -8,16 +8,11 @@ defmodule Ego.Builder do
 
   def build() do
     context = build_context()
+    build_pages(context)
 
-    Enum.each(Store.all_types(), fn type ->
-      context
-      |> Context.put_type(type)
-      |> build_content()
-    end)
-
-    Enum.each(Store.list_taxonomies(), fn {type, terms} ->
+    Enum.each(Store.list_taxonomies(), fn {type, taxonomy} ->
       context = Context.put_type(context, type)
-      build_term(context, terms)
+      build_taxonomy(context, taxonomy)
     end)
 
     copy_assets()
@@ -26,106 +21,53 @@ defmodule Ego.Builder do
   defp build_context() do
     site =
       Application.get_env(:ego, :site_config, %{})
-      |> Map.put(:documents, Store.list_documents())
+      |> Map.put(:documents, Store.list_documents() |> Enum.reject(& &1.list_page))
+      |> Map.put(:document_tree, Store.get_document_tree())
       |> Map.put(:taxonomies, Store.list_taxonomies())
 
     Ego.Context.new(%{assigns: %{site: site}})
   end
 
-  # build page level content
-  defp build_content(%{type: :page} = context) do
-    document = Store.find(%{type: :page, slug: "index"})
-    build_home_page(context, document)
-
-    # do not re build index page
-    Store.filter(%{type: :page})
-    |> Enum.reject(&(&1.slug == "index"))
+  # Build all page from store
+  defp build_pages(context) do
+    Ego.Store.list_documents()
     |> Enum.map(fn document ->
-      build_single_page(context, document)
+      build_page(context, document)
     end)
   end
 
-  # build conent for other archetype
-  defp build_content(context) do
-    documents = Store.filter(%{type: context.type})
-    build_list_content(context, documents)
-
-    Enum.map(documents, fn document ->
-      build_single_content(context, document)
+  # Build a single page with given context
+  # if context return pagination, render until there is no more page
+  def build_page(context, document) do
+    context
+    |> Renderer.render_page(document)
+    |> tap(&write_file/1)
+    |> handle_paginate(fn page ->
+      context
+      |> Context.put_var("__current_page", page)
+      |> build_page(document)
     end)
   end
 
   # generate static page for term: category, tag
-  defp build_term(context, terms) do
-    build_list_term(context, terms)
+  defp build_taxonomy(context, taxonomy) do
+    documents = [taxonomy.page | taxonomy.terms]
 
-    Enum.each(terms, fn term ->
-      build_single_term(context, term)
-    end)
-  end
-
-  # build home page
-  defp build_home_page(context, document) do
-    context
-    |> Renderer.render_index(document)
-    |> tap(&write_file/1)
-    |> handle_paginate(fn page ->
-      context
-      |> Context.put_var("__current_page", page)
-      |> build_home_page(document)
-    end)
-  end
-
-  # build single page
-  defp build_single_page(context, document) do
-    context
-    |> Renderer.render_page(document)
-    |> write_file()
-  end
-
-  # build content listing page
-  defp build_list_content(context, documents) do
-    context
-    |> Renderer.render_content_index(documents)
-    |> tap(&write_file/1)
-    |> handle_paginate(fn page ->
-      context
-      |> Context.put_var("__current_page", page)
-      |> build_list_content(documents)
-    end)
-  end
-
-  # build content detail page
-  defp build_single_content(context, document) do
-    context
-    |> Renderer.render_content_page(document)
-    |> write_file()
-  end
-
-  # generate term listing page
-  defp build_list_term(context, terms) do
-    context
-    |> Renderer.render_term_index(terms)
-    |> tap(&write_file/1)
-    |> handle_paginate(fn page ->
-      context
-      |> Context.put_var("__current_page", page)
-      |> build_list_term(terms)
+    Enum.each(documents, fn document ->
+      build_single_term(context, document)
     end)
   end
 
   # generate single term page
   # we pass document which match term with context
-  defp build_single_term(context, term, documents \\ nil) do
-    documents = documents || Store.by_term(context.type, term.title)
-
+  defp build_single_term(context, term) do
     context
-    |> Renderer.render_term_page(term, documents: documents)
+    |> Renderer.render_taxonomy(term)
     |> tap(&write_file/1)
     |> handle_paginate(fn page ->
       context
       |> Context.put_var("__current_page", page)
-      |> build_single_term(term, documents)
+      |> build_single_term(term)
     end)
   end
 
