@@ -1,5 +1,7 @@
 defmodule Ego do
   def build do
+    Application.ensure_all_started(:cachex)
+    Application.ensure_all_started(:ego)
     Ego.Server.Application.start(:normal, [])
 
     filters = Application.get_env(:solid, :custom_filters)
@@ -8,6 +10,8 @@ defmodule Ego do
   end
 
   def server() do
+    Application.ensure_all_started(:cachex)
+    Application.ensure_all_started(:ego)
     Ego.Server.Application.start(:normal, server: true)
   end
 

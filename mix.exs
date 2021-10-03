@@ -14,7 +14,7 @@ defmodule Ego.MixProject do
         "sass default --no-source-map --style=compressed",
         "phx.digest"
       ],
-      escript: [main_module: Ego.CLI, app: nil],
+      escript: [main_module: Ego.CLI],
       docs: docs(),
       name: "Ego",
       description: description(),
@@ -55,7 +55,7 @@ defmodule Ego.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:phoenix, "~> 1.5", runtime: false},
+      {:phoenix, "~> 1.5"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:cachex, "~> 3.4"},
