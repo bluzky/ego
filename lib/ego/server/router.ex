@@ -2,7 +2,6 @@ defmodule Ego.Server.Router do
   use Ego.Server, :router
 
   pipeline :browser do
-    plug(Ego.Server.PlugStatic)
     plug(:accepts, ["html"])
     plug(:fetch_session)
     plug(:fetch_flash)
