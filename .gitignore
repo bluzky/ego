@@ -26,6 +26,6 @@ ego-*.tar
 /tmp/
 
 public/
-air/
 .DS_Store
 node_modules/
+ego

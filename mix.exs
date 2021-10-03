@@ -14,7 +14,12 @@ defmodule Ego.MixProject do
         "sass default --no-source-map --style=compressed",
         "phx.digest"
       ],
-      escript: [main_module: Ego.CLI]
+      escript: [main_module: Ego.CLI],
+      docs: docs(),
+      name: "Ego",
+      description: description(),
+      source_url: "https://github.com/bluzky/ego",
+      package: package()
     ]
   end
 
@@ -24,6 +29,27 @@ defmodule Ego.MixProject do
       # mod: {Ego.Server.Application, []},
       extra_applications: [:logger]
     ]
+  end
+
+  defp docs() do
+    [
+      main: "readme",
+      extras: ["README.md"]
+    ]
+  end
+
+  defp package() do
+    [
+      maintainers: ["Dung Nguyen"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/bluzky/ego"}
+    ]
+  end
+
+  defp description() do
+    """
+    Static site generator for every one
+    """
   end
 
   # Run "mix help deps" to learn about dependencies.
