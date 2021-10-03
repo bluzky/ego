@@ -30,7 +30,7 @@ jobs:
     - name: Build executable
       run: mix escript.install github bluzky/ego --force
     - name: Generate sample file
-      run: ~/.mix/escripts build
+      run: ~/.mix/escripts/ego build
     - name: Deploy to target directory
       uses: peaceiris/actions-gh-pages@v3
       with:
