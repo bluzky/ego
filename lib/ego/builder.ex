@@ -8,6 +8,7 @@ defmodule Ego.Builder do
 
   def build() do
     context = build_context()
+    clean_build_dir()
     build_pages(context)
 
     Enum.each(Store.list_taxonomies(), fn {type, taxonomy} ->
@@ -26,6 +27,10 @@ defmodule Ego.Builder do
       |> Map.put(:taxonomies, Store.list_taxonomies())
 
     Ego.Context.new(%{assigns: %{site: site}})
+  end
+
+  defp clean_build_dir() do
+    File.rm_rf!(FileSystem.output_path(""))
   end
 
   # Build all page from store
