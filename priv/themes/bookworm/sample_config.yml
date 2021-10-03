@@ -1,5 +1,5 @@
-base_url: '/ego'
-title: 'The Organge+'
+base_url: 'http://my.site'
+title: 'My Site'
 theme: 'bookworm'
 
 # post excerpt

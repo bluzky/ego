@@ -42,10 +42,9 @@
             <ul
               class="navbar-nav {% if site.params.search %}mx-auto{% else %}ml-auto{% endif %}"
             >
-              {% assign current = document or term %}
               {% for item in site.menus.main %}
-              {% assign active = current.path == item.url %}
-              {% assign active = active or item.name == current.title %}
+              {% assign active = page.path == item.url %}
+              {% assign active = active or item.name == page.title %}
 
               {% if item.has_children %}
               <li class="nav-item dropdown">

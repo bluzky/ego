@@ -1,4 +1,4 @@
-{% assign url = document.url %}
+{% assign url = page.url %}
 <ul
   class="social-links has-bg-color list-unstyled list-inline"
   style="line-height: 0"
@@ -29,7 +29,7 @@
     <!-- Sharingbutton Twitter -->
     <a
       class="resp-sharing-button__link d-block"
-      href="https://twitter.com/intent/tweet/?text={{ document.title }}&amp;url={{ url }}"
+      href="https://twitter.com/intent/tweet/?text={{ page.title }}&amp;url={{ url }}"
       target="_blank"
       rel="noopener"
       aria-label=""

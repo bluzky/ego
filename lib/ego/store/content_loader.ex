@@ -105,7 +105,6 @@ defmodule Ego.Store.ContentLoader do
           section =
             file
             |> String.replace_trailing("/_index.md", "")
-            |> String.replace(~r/[^\/]+$/, "")
             |> String.replace("/", "")
 
           section = (section == "" && "root") || section

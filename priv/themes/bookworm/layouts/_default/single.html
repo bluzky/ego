@@ -1,8 +1,8 @@
 <!-- checking blog -->
-{% if section == "blog" or section == "category" or section ==
-"tag" %}
+{% if page.section == "blog" or page.section == "categories" or page.section ==
+"tags" %}
 
-{% assign document = document or term %}
+
 <section class="section-sm">
   <div class="container">
     <div class="row justify-content-center">
@@ -12,11 +12,11 @@
         <div class="pr-lg-4">
           <div class="single-post">
             <div class="text-center mb-5">
-              <h1 class="mb-4 post-title">{{document.title}}</h1>
+              <h1 class="mb-4 post-title">{{page.title}}</h1>
               <ul class="card-meta list-inline">
                 <li class="list-inline-item">
                   <a href="#!" class="card-meta-author">
-                    {%- assign author = document.author | urlize | lower | get_page: "author" -%}
+                    {%- assign author = page.author | urlize | lower | get_page: "author" -%}
                     <a href="{{author.url}}" class="card-meta-author">
                       <img
                         loading="lazy"
@@ -29,23 +29,23 @@
                 </li>
                 <li class="list-inline-item">|</li>
                 <li class="list-inline-item">
-                  <span>{{document.date}}</span>
+                  <span>{{page.date}}</span>
                 </li>
               </ul>
             </div>
 
-            {% if document.image %}
+            {% if page.image %}
             <div class="mb-5 text-center">
               <img
                 loading="lazy"
                 class="img-fluid rounded"
-                src="{{ document.image | abs_url}}"
+                src="{{ page.image | abs_url}}"
                 alt="Image not Found"
               />
             </div>
             {% endif %}
 
-            <div class="content">{{document.content}}</div>
+            <div class="content">{{page.content}}</div>
           </div>
 
           <!-- Post meta -->
@@ -53,7 +53,7 @@
             <div class="row justify-content-center">
               <div class="col-md-6 text-center text-md-left">
                 <ul class="post-meta-tags list-unstyled list-inline">
-                  {% for tag in document.tags %}
+                  {% for tag in page.tags %}
                   <li class="list-inline-item">
                     <a href="{{ tag | urlize | lower | prepend: '/tags' | abs_url}}">#{{tag}}</a>
                   </li>
@@ -61,7 +61,7 @@
                 </ul>
               </div>
               <div class="col-md-6 text-center text-md-right mt-4 mt-md-0">
-                {%- render "partials/post-share.html", site: site, document: document -%}
+                {%- render "partials/post-share.html", site: site, page: page -%}
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@
             <div class="row justify-content-center">
               <div class="col-md-12">
                 <div class="media d-block d-sm-flex text-center text-sm-left">
-                   {%- assign author = document.author | urlize | lower | get_page: "author" -%}
+                   {%- assign author = page.author | urlize | lower | get_page: "author" -%}
 
                   {% if author %}
                   <a href="{{author.url}}"
@@ -156,7 +156,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <div class="content">{{document.content}}</div>
+        <div class="content">{{page.content}}</div>
       </div>
     </div>
   </div>

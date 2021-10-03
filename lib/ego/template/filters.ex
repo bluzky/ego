@@ -21,26 +21,27 @@ defmodule Ego.Template.Filters do
     end
   end
 
-  def get_page(slug, type \\ nil) do
-    document =
-      if type do
-        Store.find(%{slug: slug, type: String.to_existing_atom(type)})
-      else
-        Store.find(%{slug: slug})
-      end
+  @doc """
+  Find item that match filter in the list
+  """
+  def find(list, filters) do
+    keys = Map.keys(filters)
 
-    MapHelpers.to_string_key(document)
+    Enum.find(list || [], fn item ->
+      Map.take(item, keys) == filters
+    end)
   end
 
-  def filter_by_section(documents, section) do
-    (documents || [])
-    |> Store.filter(%{"type" => section})
-    |> MapHelpers.to_string_key()
-  end
-
-  def filter_document(value, field) do
-    Store.filter(%{:"#{field}" => value})
-    |> MapHelpers.to_string_key()
+  @doc """
+  Find all item which value in array attribute
+  For example each document.categories is a list then you want to find all document
+  with category `example`
+      where_in(documents, "categories", "example")
+  """
+  def where_in(list, attribute, value) do
+    Enum.filter(list || [], fn item ->
+      value in Map.get(item, attribute, [])
+    end)
   end
 
   def slugify(text), do: Slug.slugify(text || "")

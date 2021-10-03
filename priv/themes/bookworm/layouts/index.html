@@ -3,15 +3,15 @@
     <div class="row no-gutters justify-content-center">
       <div class="col-lg-10">
 
-           {% assign documents = site.documents | filter_by_section: "blog" %}
-          {% paginate documents by 7 %}
+           {% assign pages = site.documents | where: "type", "blog" %}
+          {% paginate pages by 7 %}
 
         <div class="row">
           {% for document in paginate.entries %}
           <div
             class="{% if forloop.index0 == 0 %}col-lg-12{% else %}col-lg-6{% endif %}"
           >
-            {% render "post", site: site, document: document %}
+            {% render "post", site: site, page: document %}
           </div>
           {% endfor %}
         </div>

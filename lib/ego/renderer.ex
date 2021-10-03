@@ -33,7 +33,7 @@ defmodule Ego.Renderer do
       cond do
         document.list_page -> ["terms", "list"]
         document.layout -> [document.layout, "single"]
-        true -> ["term", "single"]
+        true -> ["term", "list", "single"]
       end
 
     context

@@ -2,15 +2,14 @@
   <div class="container">
     <div class="row">
       <div class="col-8 mx-auto text-center">
-        {% assign document = document or term %}
-        {% if  section == "tag" or  section == "category" %}
-        {% if  current_url == 'tags/' | abs_url or current_url == 'categories/' | abs_url %}
-        <h3 class="mb-3 text-dark font-weight-bold">{% if section == "tag" %}Tags{% else %} Categories {% endif %}</h3>
+        {% if  page.section == "tags" or  page.section == "categories" %}
+        {% if  page.list_page %}
+        <h3 class="mb-3 text-dark font-weight-bold">{% if page.type == "tags" %}Tags{% else %} Categories {% endif %}</h3>
         {% else %}
-        <h4 class="mb-3 text-dark font-weight-bold">Showing posts from <mark>{{document.title}}</mark></h4>
+        <h4 class="mb-3 text-dark font-weight-bold">Showing posts from <mark>{{page.title}}</mark></h4>
         {% endif %}
         {% else %}
-        <h3 class="mb-3 text-dark font-weight-bold">{{document.title | markdownify}}</h3>
+        <h3 class="mb-3 text-dark font-weight-bold">{{page.title | markdownify}}</h3>
         {% endif %}
 
 

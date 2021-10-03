@@ -1,15 +1,22 @@
-
 <!-- checking blog -->
-{% if  section == "post" or  section == "blog" or section == "category" or  section == "tag" %}
+{% if  page.section == "blog" or page.section == "categories" or  page.section == "tags" %}
+
+{% if  page.section == "blog" %}
+{% assign pages = site.documents | where: "type", page.type %}
+{% elsif page.section == "categories" %}
+{% assign pages = site.documents | where_in: "categories", page.title %}
+{% else %}
+{% assign pages = site.documents | where_in: "tags", page.title %}
+{% endif %}
 
 <section class="section-sm">
   <div class="container">
     <div class="row no-gutters justify-content-center">
       <div class="col-lg-10">
         <div class="row">
-          {% for document in documents %}
+          {% for page in pages %}
           <div class="col-lg-6">
-            {% render "post", document: document, site: site %}
+            {% render "post", page: page, site: site %}
           </div>
           {% endfor %}
         </div>
@@ -20,7 +27,7 @@
 
 {% else %}
 
-{% render "partial/page-header.html", document: document, site: site %}
+{% render "partials/page-header.html", document: document, site: site %}
 <section class="section-sm">
   <div class="container">
     <div class="row">

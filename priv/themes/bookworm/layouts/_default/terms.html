@@ -3,8 +3,8 @@
     <div class="row justify-content-center text-center">
       <div class="col-12">
         <ul class="list-inline taxonomies-list">
-          {% if section == "tag" %}
-          {% for tag in site.taxonomies.tags %}
+          {% if page.section == "tags" %}
+          {% for tag in site.taxonomies.tags.terms %}
           <li class="list-inline-item mb-1">
             <a
               class="h5 px-4 py-3 rounded bg-light d-block font-weight-700"
@@ -16,8 +16,8 @@
           {% endfor %}
           {% endif %}
 
-          {% if section == "category" %}
-          {% for cat in site.taxonomies.categories %}
+          {% if page.section == "categories" %}
+          {% for cat in site.taxonomies.categories.terms %}
           <li class="list-inline-item mb-1">
             <a
               class="h5 px-4 py-3 rounded bg-light d-block font-weight-700"
