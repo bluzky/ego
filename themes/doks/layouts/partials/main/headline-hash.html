@@ -1,0 +1,1 @@
+{{ content | replace_re: '(<h[2-9] id="([^"]+)".+?)(</h[2-9]+>)', '\g{1}<a href="#\g{2}" class="anchor" aria-hidden="true">#</a> \g{3}' | safeHTML }}

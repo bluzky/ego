@@ -1,0 +1,18 @@
+<footer class="footer text-muted">
+  <div class="container-xxl">
+    <div class="row">
+      <div class="col-lg-8 order-last order-lg-first">
+        <ul class="list-inline">
+          <li class="list-inline-item">{{ site.params.footer | safeHTML }}</li>
+        </ul>
+      </div>
+      <div class="col-lg-8 order-first order-lg-last text-lg-end">
+        <ul class="list-inline">
+          {% for item in site.menus.footer -%}
+            <li class="list-inline-item"><a href="{{ item.url | abs_url }}">{{ item.name }}</a></li>
+          {% endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

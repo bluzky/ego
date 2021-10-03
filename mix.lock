@@ -30,6 +30,8 @@
   "solid": {:git, "https://github.com/bluzky/solid.git", "c9436ada52146747f499c179f87df3c3a7f467f2", [branch: "ego"]},
   "telemetry": {:hex, :telemetry, "0.4.0", "8339bee3fa8b91cb84d14c2935f8ecf399ccd87301ad6da6b71c09553834b2ab", [:rebar3], [], "hexpm", "e9e3cacfd37c1531c0ca70ca7c0c30ce2dbb02998a4f7719de180fe63f8d41e4"},
   "unsafe": {:hex, :unsafe, "1.0.1", "a27e1874f72ee49312e0a9ec2e0b27924214a05e3ddac90e91727bc76f8613d8", [:mix], [], "hexpm", "6c7729a2d214806450d29766abc2afaa7a2cbecf415be64f36a6691afebb50e5"},
+  "unzip": {:hex, :unzip, "0.6.0", "8b32aaaeb35996ec8cf4c2c1ed36729dd22cae14b69505467502cb6622327ddb", [:mix], [], "hexpm", "e0a32d162fc696a51a71c2b08ab788d3b07442ca09d2cf7ef99c7488cb28182a"},
   "yamerl": {:hex, :yamerl, "0.8.1", "07da13ffa1d8e13948943789665c62ccd679dfa7b324a4a2ed3149df17f453a4", [:rebar3], [], "hexpm", "96cb30f9d64344fed0ef8a92e9f16f207de6c04dfff4f366752ca79f5bceb23f"},
   "yaml_elixir": {:hex, :yaml_elixir, "2.8.0", "c7ff0034daf57279c2ce902788ce6fdb2445532eb4317e8df4b044209fae6832", [:mix], [{:yamerl, "~> 0.8", [hex: :yamerl, repo: "hexpm", optional: false]}], "hexpm", "4b674bd881e373d1ac6a790c64b2ecb69d1fd612c2af3b22de1619c15473830b"},
+  "zstream": {:hex, :zstream, "0.6.0", "a939837a577cbe8a01d75225d9e54956a6d6521eaef525b67238bffc0729c068", [:mix], [], "hexpm", "f17e43853b41fdc4f236c65afa38d89a2592cd30038a11ccc7a2288863a8ff24"},
 }

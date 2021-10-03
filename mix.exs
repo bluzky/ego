@@ -44,7 +44,9 @@ defmodule Ego.MixProject do
       {:makeup, "~> 1.0"},
       {:ex_doc, "~> 0.21", only: :docs},
       {:makeup_elixir, ">= 0.0.0"},
-      {:file_system, "~> 0.2"}
+      {:file_system, "~> 0.2"},
+      {:unzip, "~> 0.6"},
+      {:zstream, "~> 0.6.0"}
       # {:dart_sass, "~> 0.1"}
     ]
   end

@@ -20,13 +20,20 @@ defmodule Ego.CLI do
     Ego.server()
   end
 
+  def process_args({["new", "site", site_name], _}) do
+    Ego.new_site(site_name)
+  end
+
   def process_args(_) do
-    IO.puts("Welcome to the Toy Robot simulator!")
+    IO.puts("Welcome to Ego static site generator!")
+
     print_help_message()
   end
 
   @commands %{
-    "build" => "generate static site"
+    "build" => "generate static site",
+    "server" => "run dev server",
+    "new" => "create new site"
   }
 
   defp print_help_message do

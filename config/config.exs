@@ -25,7 +25,7 @@ config :phoenix, :json_library, Jason
 config :phoenix, :stacktrace_depth, 20
 
 config :ego, :config,
-  source_dir: "priv/",
+  source_dir: "",
   output_dir: "public/",
   server: true,
   base_url: "/"

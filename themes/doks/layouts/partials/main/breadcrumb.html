@@ -1,0 +1,3 @@
+{% for item in ancestors -%}
+  <li class="breadcrumb-item"><a href="{{ item.url }}">{% if item.section == "home" %} Home {%else%}{{ item.title }}{% endif %}</a></li>
+{% endfor -%}
