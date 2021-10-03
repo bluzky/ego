@@ -28,7 +28,7 @@ jobs:
     - name: Install dependencies
       run: mix deps.get
     - name: Build executable
-      run: mix escript.install github bluzky/ego
+      run: mix escript.install github bluzky/ego --force
     - name: Generate sample file
       run: ~/.mix/escripts build
     - name: Deploy to target directory
