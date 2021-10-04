@@ -2,11 +2,8 @@ defmodule Ego.Server.Router do
   use Ego.Server, :router
 
   pipeline :browser do
+    plug(Ego.Server.RuntimeStatic)
     plug(:accepts, ["html"])
-    plug(:fetch_session)
-    plug(:fetch_flash)
-    plug(:protect_from_forgery)
-    plug(:put_secure_browser_headers)
     plug(Ego.Server.BuildContext)
   end
 
