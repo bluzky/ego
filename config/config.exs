@@ -1,5 +1,5 @@
 # General application configuration
-use Mix.Config
+import Config
 
 # Configures the endpoint
 config :ego, Ego.Server.Endpoint,

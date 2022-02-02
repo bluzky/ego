@@ -1,9 +1,9 @@
 defmodule Ego.Server.Router do
   use Ego.Server, :router
-  require Ego.Server.RuntimeStatic
+  # require Ego.Server.RuntimeStatic
 
   pipeline :browser do
-    plug(Ego.Server.RuntimeStatic)
+    # plug(Ego.Server.RuntimeStatic)
     plug(:accepts, ["html"])
     plug(Ego.Server.BuildContext)
   end
