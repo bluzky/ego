@@ -28,4 +28,4 @@ ego-*.tar
 public/
 .DS_Store
 node_modules/
-ego
+/ego
