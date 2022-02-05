@@ -1,10 +1,10 @@
-defmodule Ego.Server.FallbackController do
+defmodule EgoWeb.FallbackController do
   @moduledoc """
   Translates controller action results into valid `Plug.Conn` responses.
 
   See `Phoenix.Controller.action_fallback/1` for more details.
   """
-  use Ego.Server, :controller
+  use EgoWeb, :controller
 
   # This clause handles errors returned by Ecto's insert/update/delete.
   def call(conn, {:error, message, _}) do

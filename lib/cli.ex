@@ -1,4 +1,4 @@
-defmodule Ego.CLI do
+defmodule EgoCLI do
   def main(args) do
     args |> parse_args |> process_args
   end

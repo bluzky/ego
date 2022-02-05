@@ -1,4 +1,4 @@
-defmodule Ego.Server.Endpoint do
+defmodule EgoWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :ego
 
   # The session will be stored in the cookie and signed,
@@ -15,15 +15,15 @@ defmodule Ego.Server.Endpoint do
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
 
-  # output_dir =
-  #   Application.get_env(:ego, :config)
-  #   |> Keyword.get(:output_dir)
+  output_dir =
+    Application.get_env(:ego, :config)
+    |> Keyword.get(:output_dir)
 
-  # plug(Plug.Static,
-  #   at: "/",
-  #   from: output_dir,
-  #   gzip: false
-  # )
+  plug(Plug.Static,
+    at: "/",
+    from: output_dir,
+    gzip: false
+  )
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -42,5 +42,5 @@ defmodule Ego.Server.Endpoint do
   plug(Plug.MethodOverride)
   plug(Plug.Head)
   plug(Plug.Session, @session_options)
-  plug(Ego.Server.Router)
+  plug(EgoWeb.Router)
 end

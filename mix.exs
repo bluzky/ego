@@ -28,7 +28,7 @@ defmodule Ego.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      mod: {Ego.Server.Application, []},
+      # mod: {Ego.Application, []},
       extra_applications:
         [:logger, :runtime_tools, :os_mon, :inets, :ssl, :xmerl] ++
           extra_applications(Mix.target()),
@@ -65,7 +65,7 @@ defmodule Ego.MixProject do
 
   defp escript do
     [
-      main_module: Ego.CLI,
+      main_module: EgoCLI,
       app: nil
     ]
   end

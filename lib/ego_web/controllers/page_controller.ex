@@ -1,8 +1,8 @@
-defmodule Ego.Server.PageController do
-  use Ego.Server, :controller
+defmodule EgoWeb.PageController do
+  use EgoWeb, :controller
   alias Ego.Renderer
 
-  action_fallback(Ego.Server.FallbackController)
+  action_fallback(EgoWeb.FallbackController)
 
   def index(conn, params) do
     document = Ego.Store.find(%{section: "home"})

@@ -1,12 +1,12 @@
-defmodule Ego.Server do
+defmodule EgoWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use Ego.Server, :controller
-      use Ego.Server, :view
+      use EgoWeb, :controller
+      use EgoWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,11 +19,11 @@ defmodule Ego.Server do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: Ego.Server
+      use Phoenix.Controller, namespace: EgoWeb
 
       import Plug.Conn
-      import Ego.Server.ControllerHelper
-      alias Ego.Server.Router.Helpers, as: Routes
+      import EgoWeb.ControllerHelper
+      alias EgoWeb.Router.Helpers, as: Routes
     end
   end
 

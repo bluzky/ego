@@ -1,8 +1,8 @@
-defmodule Ego.Server.TaxonomyController do
-  use Ego.Server, :controller
+defmodule EgoWeb.TaxonomyController do
+  use EgoWeb, :controller
   alias Ego.Renderer
   alias Ego.Store
-  action_fallback(Ego.Server.FallbackController)
+  action_fallback(EgoWeb.FallbackController)
 
   # render terms
   def index(conn, params) do

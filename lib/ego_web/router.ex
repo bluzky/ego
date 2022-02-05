@@ -1,14 +1,14 @@
-defmodule Ego.Server.Router do
-  use Ego.Server, :router
-  # require Ego.Server.RuntimeStatic
+defmodule EgoWeb.Router do
+  use EgoWeb, :router
+  # require EgoWeb.RuntimeStatic
 
   pipeline :browser do
-    # plug(Ego.Server.RuntimeStatic)
+    # plug(EgoWeb.RuntimeStatic)
     plug(:accepts, ["html"])
-    plug(Ego.Server.BuildContext)
+    plug(EgoWeb.BuildContext)
   end
 
-  scope "/", Ego.Server do
+  scope "/", EgoWeb do
     pipe_through(:browser)
 
     get("/categories", TaxonomyController, :index, assigns: %{type: :categories})

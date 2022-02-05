@@ -2,7 +2,7 @@ defmodule Ego do
   def build do
     Application.ensure_all_started(:cachex)
     Application.ensure_all_started(:ego)
-    Ego.Server.Application.start(:normal, [])
+    Ego.Application.start(:normal, [])
 
     filters = Application.get_env(:solid, :custom_filters)
     filters.md5("ego")
@@ -12,7 +12,7 @@ defmodule Ego do
   def server() do
     Application.ensure_all_started(:cachex)
     Application.ensure_all_started(:ego)
-    Ego.Server.Application.start(:normal, server: true)
+    Ego.Application.start(:normal, server: true)
   end
 
   def new_site(site_name) do

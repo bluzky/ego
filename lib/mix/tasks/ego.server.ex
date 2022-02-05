@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Ego.Server do
+defmodule Mix.Tasks.EgoWeb do
   def run(_) do
     Ego.server()
 
