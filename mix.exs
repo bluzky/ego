@@ -81,7 +81,7 @@ defmodule Ego.MixProject do
       {:solid, github: "bluzky/solid", branch: "ego"},
       # {:solid, path: "../solid"},
       {:yaml_elixir, "~> 2.8"},
-      {:earmark, ">= 1.4.15"},
+      {:earmark, ">= 1.4.20"},
       {:makeup, "~> 1.0"},
       {:ex_doc, "~> 0.21", only: :docs},
       {:makeup_elixir, ">= 0.0.0"},
