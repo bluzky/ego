@@ -55,9 +55,13 @@ defmodule Ego.Template.Filters do
   def md5(text), do: text |> then(&:crypto.hash(:md5, &1)) |> Base.encode64()
 
   def markdownify(text) do
-    case Earmark.as_html(text || "") do
-      {:ok, content, _} -> content
-      _error -> nil
+    try do
+      case Earmark.as_html(text || "") do
+        {:ok, content, _} -> content
+        _error -> nil
+      end
+    rescue
+      _e -> text
     end
   end
 
